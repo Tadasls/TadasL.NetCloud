@@ -24,9 +24,17 @@
             Console.WriteLine("1");
             Console.WriteLine("2");
             Console.WriteLine("3");
+            Console.WriteLine("4");
 
-
+            Console.WriteLine("Write any kay to continue --------- ");
             Console.ReadKey();
+            Console.Clear();
+
+
+
+
+
+
         }
     }
 }
