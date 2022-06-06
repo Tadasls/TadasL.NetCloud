@@ -22,6 +22,8 @@
             Console.WriteLine(" tekstas \n isvestas \"Tekstas \n kabutese\"");
             Console.WriteLine(" tekstas \t isvestas \"Tekstas \t kabutese\"");
             Console.WriteLine("");
+            Console.WriteLine("");
+
 
 
             Console.ReadKey();
