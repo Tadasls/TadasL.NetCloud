@@ -23,7 +23,7 @@
             Console.WriteLine(" tekstas \t isvestas \"Tekstas \t kabutese\"");
             Console.WriteLine("");
             Console.WriteLine("");
-
+            Console.WriteLine("");
 
 
             Console.ReadKey();
