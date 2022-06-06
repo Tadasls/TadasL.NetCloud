@@ -17,8 +17,8 @@
             Console.WriteLine("{0} {1} {2}", "Isvestis", "pirmasis", "liniuote");//kompozicija
             Console.WriteLine($"{"output"} {"antrasis"} {"paskutinis"} "); //interpelecija
             Console.WriteLine("------------------");
-            
 
+            Console.WriteLine("\"Tekstas kabute\"");
 
 
 
