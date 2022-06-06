@@ -18,9 +18,10 @@
             Console.WriteLine($"{"output"} {"antrasis"} {"paskutinis"} "); //interpelecija
             Console.WriteLine("------------------");
 
-            Console.WriteLine("\"Tekstas kabute\"");
-
-
+            Console.WriteLine(" tekstas isvestas \"Tekstas kabutese\"");
+            Console.WriteLine(" tekstas \n isvestas \"Tekstas \n kabutese\"");
+            Console.WriteLine(" tekstas \t isvestas \"Tekstas \t kabutese\"");
+            Console.WriteLine("");
 
 
             Console.ReadKey();
