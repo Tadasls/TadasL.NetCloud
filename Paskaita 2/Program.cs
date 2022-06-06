@@ -30,6 +30,8 @@
             Console.ReadKey();
             Console.Clear();
 
+            Console.ReadLine();
+
 
 
 
