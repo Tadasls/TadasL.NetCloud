@@ -29,11 +29,21 @@
             Console.WriteLine("Write any kay to continue --------- ");
             Console.ReadKey();
             Console.Clear();
+            Console.WriteLine("Iveskite savo Varda");
+            // Console.WriteLine("Jusu vardas " + Console.ReadLine());
+            // antras Console.WriteLine(" o stai mano vardas  {0}", Console.ReadLine()); 
+            // Console.WriteLine($"o tai kazkas { Console.ReadLine()}");
 
-            Console.ReadLine();
+            Console.WriteLine("Iveskite raide");
+            var key = Console.ReadKey();
+            Console.WriteLine("ivestas simbolis {0}", key.KeyChar);
+            Console.WriteLine("ivestas simbolis {0}", key.Key);
+            Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
 
 
 
+
+            Console.ReadKey();
 
 
 
