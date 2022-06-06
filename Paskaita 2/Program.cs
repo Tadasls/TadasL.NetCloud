@@ -40,15 +40,13 @@
              Console.WriteLine("ivestas simbolis {0}", key.KeyChar);
              Console.WriteLine("ivestas simbolis {0}", key.Key);
              Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
-
-            */
-
-            /*
             Console.WriteLine("ivestas simbolis {0}", Console.ReadKey().KeyChar);
             Console.WriteLine("ivestas simbolis {0}", (int)Console.ReadKey().KeyChar);
+                        
 
-            Console.WriteLine("iveskite varda , o pirma raide bus: ");
-            Console.WriteLine("pakartojimas yra \" " + Console.ReadLine() { } +" \" " );
+            Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
+            Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
+
 
             Console.ReadKey();
             */
@@ -82,34 +80,34 @@
             
         //3
            Console.WriteLine("Dabar Iveskite savo vardo Pirmaja raide");
-           var key1 = Console.ReadKey();
+           var key0 = Console.ReadKey();
            Console.WriteLine();
-           Console.WriteLine(" \n ivestas simbolis ASCII sistemoje yra {0}",(int)key1.KeyChar);
+           Console.WriteLine(" \n ivestas simbolis ASCII sistemoje yra {0}",(int)key0.KeyChar);
 
 
-            
+         //4
+            Console.WriteLine("Dabar Iveskite savo vardo Pirmaja raide");
+            var key1 = Console.ReadKey();
+            Console.WriteLine(" \n ivestas simbolis ASCII sistemoje yra {0}", (int)key1.KeyChar);
+
             Console.WriteLine("Iveskite betkoky skaiciu");
             var key2 = Console.ReadKey();
-            Console.WriteLine();
-            Console.WriteLine(" \n ivestas simbolis {0}", key2.KeyChar);
+            Console.WriteLine(" \n ivestas simbolis {0}", (int)key2.KeyChar);
             
            
-                 Console.WriteLine(" \n skaiciu suma: {0}", key2.KeyChar);
+            Console.WriteLine(key1.KeyChar + (int)key2.KeyChar);
 
-
-
+    
+            //5A
             Console.WriteLine("Spauskite Enter kas pamatytute ivairius lygiavimus");
             Console.ReadLine();
-
-
-            //5A
             Console.WriteLine(" \n 1 pirkti, \n 2 parduoti, \n 3 likuciai");
            //5B
             Console.WriteLine(@" 
             1 pirkti, 
             2 parduoti, 
             3 likuciai  ");
-
+           
            
 
         }
