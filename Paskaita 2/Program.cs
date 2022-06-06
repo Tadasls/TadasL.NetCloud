@@ -70,36 +70,41 @@
             */
 
            
-
-
-           Console.WriteLine(" Sveiki Tadai, Iveskite savo varda");
-           Console.WriteLine(" Jusu vardas yra " + Console.ReadLine());
             
-            
-           Console.WriteLine(" Vardas yra {0}", Console.ReadLine()); 
+        //1
+           Console.WriteLine(" Sveiki Tadai... Follow white rabbit, Enter" );
+
+         //2
+           Console.WriteLine(" Iveskite savo varda, ir paspauskite Enter" + Console.ReadLine());
+           Console.WriteLine(" Jusu Vardas yra: {0}", Console.ReadLine()); 
+           
            
             
-
-           Console.WriteLine("Iveskite savo vardo 1 raide");
-           var key = Console.ReadKey();
+        //3
+           Console.WriteLine("Dabar Iveskite savo vardo Pirmaja raide");
+           var key1 = Console.ReadKey();
            Console.WriteLine();
-           Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
+           Console.WriteLine(" \n ivestas simbolis ASCII sistemoje yra {0}",(int)key1.KeyChar);
 
 
             
             Console.WriteLine("Iveskite betkoky skaiciu");
             var key2 = Console.ReadKey();
-
             Console.WriteLine();
-            Console.WriteLine("ivestas simbolis {0}", key2.KeyChar);
+            Console.WriteLine(" \n ivestas simbolis {0}", key2.KeyChar);
             
-
-            
-            
-          
            
-            Console.WriteLine(" \n 1 pirkti, \n 2 parduoti, \n 3 likuciai");
+                 Console.WriteLine(" \n skaiciu suma: {0}", key2.KeyChar);
 
+
+
+            Console.WriteLine("Spauskite Enter kas pamatytute ivairius lygiavimus");
+            Console.ReadLine();
+
+
+            //5A
+            Console.WriteLine(" \n 1 pirkti, \n 2 parduoti, \n 3 likuciai");
+           //5B
             Console.WriteLine(@" 
             1 pirkti, 
             2 parduoti, 
