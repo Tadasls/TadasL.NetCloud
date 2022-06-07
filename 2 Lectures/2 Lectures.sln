@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paskaita 2 consoles uzduoty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "p2 sTRINGAI kintamieji", "p2 sTRINGAI kintamieji\p2 sTRINGAI kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "namu darbai V001", "namu darbai V001\namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BCAB8984-8561-4393-8A49-6092ED50B5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCAB8984-8561-4393-8A49-6092ED50B5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCAB8984-8561-4393-8A49-6092ED50B5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23181AB2-2595-44C5-A905-557BCA375616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23181AB2-2595-44C5-A905-557BCA375616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23181AB2-2595-44C5-A905-557BCA375616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23181AB2-2595-44C5-A905-557BCA375616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
