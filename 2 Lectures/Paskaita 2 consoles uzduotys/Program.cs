@@ -57,12 +57,36 @@
 
 
 
-            //Programa kuri nuskaito 
-            Console.WriteLine("Iveskita savo varda  " + Console.ReadLine()[1]); 
-           
+            //Programa kuri nuskaito 2 raide
+            //Console.WriteLine("Iveskita savo varda  " + Console.ReadLine()[1]); 
 
 
-            
+            //parasyti programa kury suskaiciuoja 
+            // Console.WriteLine("Iveskite varda: ");
+            //  Console.WriteLine("  Iveskita savo varda  " + Console.ReadLine()!.Length);
+            //  Console.WriteLine("  jame yra raidziu  " + Console.ReadLine()!.Count());
+
+
+
+            //   Console.WriteLine("Iveskite varda: ");
+            //    Console.WriteLine("  Iveskita savo varda  " + Console.ReadLine());
+
+            // ivedimas 1 tada ivedimas 2 tada isvedama 2 kintamiej
+            // Console.WriteLine(" [     {0}  /   {1}  ", Console.ReadLine(), Console.ReadLine() );
+
+            //trimis eilutemis zemiau
+            //Console.WriteLine(" \n  \n \n   {0}  ", Console.ReadLine() );
+
+
+
+            Console.WriteLine(@"
+
+                 --****************--
+                ----o---------o------
+                ----""""""""""""""""".Replace("*", "\""));
+
+
+
 
 
 
