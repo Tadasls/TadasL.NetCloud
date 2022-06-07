@@ -35,21 +35,21 @@
 
 
             /*
-             Console.WriteLine("Iveskite raide");
-             var key = Console.ReadKey();
-             Console.WriteLine("ivestas simbolis {0}", key.KeyChar);
-             Console.WriteLine("ivestas simbolis {0}", key.Key);
-             Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
+            Console.WriteLine("Iveskite raide");
+            var key = Console.ReadKey();
+            Console.WriteLine("ivestas simbolis {0}", key.KeyChar);
+            Console.WriteLine("ivestas simbolis {0}", key.Key);
+            Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
             Console.WriteLine("ivestas simbolis {0}", Console.ReadKey().KeyChar);
             Console.WriteLine("ivestas simbolis {0}", (int)Console.ReadKey().KeyChar);
-                        
+               */         
 
-            Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
-            Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
+           // Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
+            //Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
 
 
-            Console.ReadKey();
-            */
+           //Console.ReadKey();
+            
 
             /*
 
@@ -67,10 +67,10 @@
 
             */
 
-
+            
 
             //1
-            Console.WriteLine(" Sveiki Tadai... Follow white rabbit, Enter");
+            Console.WriteLine(" Sveiki Tadai... Follow white rabbit,  Enter");
 
             //2
             Console.WriteLine(" Iveskite savo varda, ir paspauskite Enter" + Console.ReadLine());
@@ -92,11 +92,9 @@
 
             Console.WriteLine("Iveskite betkoky skaiciu");
             var key2 = Console.ReadKey();
-
-
-            Console.WriteLine(" ivestas simbolis {0}", key2);
-
-            Console.WriteLine((int)key1.KeyChar + (int)key2.KeyChar);
+            var suma = (int)key1.KeyChar + (int)key2.KeyChar;
+        ;
+                    Console.WriteLine("Skaiciu suma: ", suma );
 
 
             //5A
@@ -111,7 +109,7 @@
 
             //5C
             Console.WriteLine(" \n {0} \n {1} \n {2}", "Pirkti", "Parduoti", "Likuciai");
-
+            
           
         }
     }
