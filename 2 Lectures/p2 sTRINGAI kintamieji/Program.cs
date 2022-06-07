@@ -24,6 +24,19 @@
             kintamasis = "tekstas belenkoks";
             Console.WriteLine(kintamasis);
                 
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }
