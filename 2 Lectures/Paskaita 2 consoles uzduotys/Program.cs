@@ -77,13 +77,16 @@
             //trimis eilutemis zemiau
             //Console.WriteLine(" \n  \n \n   {0}  ", Console.ReadLine() );
 
-
-
+            /*
+            //paisymas
             Console.WriteLine(@"
 
                  --****************--
                 ----o---------o------
                 ----""""""""""""""""".Replace("*", "\""));
+
+            */
+
 
 
 
