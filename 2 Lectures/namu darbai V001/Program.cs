@@ -6,7 +6,7 @@
         static void Main(string[] args)
         {
                             
-                        Console.WriteLine("Home , Work! to Start, press Enter");
+                        Console.WriteLine("Home Work! to Start, press Enter");
             Console.ReadLine();
 
 
