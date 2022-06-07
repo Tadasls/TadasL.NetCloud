@@ -162,7 +162,7 @@
             Console.WriteLine(apatineEilute);
 
             //9 task
-            Console.WriteLine(" \n Sukurkite viena eilute: pvz ###|### \n");
+            Console.WriteLine(" \n Sukurkite viena eilute: pvz ###|###  ir baigus Spauskite ENTER! \n");
             string userDrawing = Console.ReadLine(); //naujas kintamasis
 
             L0 = $"    {userDrawing}   {userDrawing}    {  userDrawing}"; //kaip tiksliai sulyginti nemoku..
