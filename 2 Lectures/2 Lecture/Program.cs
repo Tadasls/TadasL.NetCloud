@@ -63,7 +63,7 @@
             eilute trecia  ");
             */
 
-
+            /*
 
             //1
             Console.WriteLine(" Sveiki Tadai... Follow white rabbit,  Enter");
@@ -80,6 +80,7 @@
             Console.WriteLine();
             Console.WriteLine(" \n ivestas simbolis ASCII sistemoje yra {0}", (int)key0.KeyChar);
 
+            */
 
             //4
             Console.WriteLine("Dabar Iveskite savo vardo Pirmaja raide");
@@ -88,9 +89,10 @@
 
             Console.WriteLine("Iveskite betkoky skaiciu");
             var key2 = Console.ReadKey();
-            var suma = (int)key1.KeyChar + (int)key2.KeyChar;
+            var skaicius = Convert.ToInt32((int)key2.KeyChar);
+            var suma = ((int)key1.KeyChar + key2.KeyChar);
             ;
-            Console.WriteLine("Skaiciu suma: ", (int)key1.KeyChar);
+            Console.WriteLine("Skaiciu suma: " + suma);
 
 
             //5A
