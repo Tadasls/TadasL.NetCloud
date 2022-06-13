@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Paskaita 2 consoles uzduotys\Paskaita 2 consoles uzduotys.csproj" />
+  </ItemGroup>
+
 </Project>
