@@ -4,16 +4,26 @@
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(" {0:d}\n", DateTime.Now);
 
-            /*Console.WriteLine("Sveikas, Pasauly!");
+
+            Console.WriteLine("Sveikas, Pasauly!");
             Console.WriteLine();
             Console.WriteLine("Visiskai kita eilute");
             Console.Write("tekstas");
+
+
             Console.WriteLine("------------------");
             Console.WriteLine("Išvedimas " + "Pirmas " + "Linija ");//kontanacija 
             Console.WriteLine("{0} {1} {2}", "Isvestis", "pirmasis", "liniuote");//kompozicija
             Console.WriteLine($"{"output"} {"antrasis"} {"paskutinis"} "); //interpelecija
+
+
+
             Console.WriteLine("------------------");
+
+
+
             Console.WriteLine(" tekstas isvestas \"Tekstas kabutese\"");
             Console.WriteLine(" tekstas \n isvestas \"Tekstas \n kabutese\"");
             Console.WriteLine(" tekstas \t isvestas \"Tekstas \t kabutese\"");
@@ -23,17 +33,17 @@
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("Iveskite savo Varda");
-            */
+            
 
 
-            /*
+            
              Console.WriteLine("Jusu vardas " + Console.ReadLine());
               Console.WriteLine(" o stai mano vardas  {0}", Console.ReadLine()); 
              Console.WriteLine($"o tai kazkas { Console.ReadLine()}");
-            */
+            
 
 
-            /*
+            
             Console.WriteLine("Iveskite raide");
             var key = Console.ReadKey();
             Console.WriteLine("ivestas simbolis {0}", key.KeyChar);
@@ -41,7 +51,7 @@
             Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
             Console.WriteLine("ivestas simbolis {0}", Console.ReadKey().KeyChar);
             Console.WriteLine("ivestas simbolis {0}", (int)Console.ReadKey().KeyChar);
-               */
+               
 
             // Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
             //Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
@@ -111,10 +121,7 @@
 
             Console.WriteLine("--------");
             Console.WriteLine("Standard DateTime Format Specifiers");
-            Console.WriteLine(
-                "(d) Short date: . . . . . . . {0:d}\n",
-
-                DateTime.Now);
+            Console.WriteLine(" {0:d}\n", DateTime.Now);
 
 
 

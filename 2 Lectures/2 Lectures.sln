@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "p2 sTRINGAI kintamieji", "p
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "namu darbai V001", "namu darbai V001\namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kintamieji", "kintamieji\kintamieji.csproj", "{56E46CAE-16B7-4707-B951-45F126EF7399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kintamieji", "kintamieji\kintamieji.csproj", "{56E46CAE-16B7-4707-B951-45F126EF7399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kintamieji uzduotys", "kintamieji uzduotys\kintamieji uzduotys.csproj", "{C089FE00-20A8-45C7-9923-66910B3D81FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{56E46CAE-16B7-4707-B951-45F126EF7399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E46CAE-16B7-4707-B951-45F126EF7399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E46CAE-16B7-4707-B951-45F126EF7399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C089FE00-20A8-45C7-9923-66910B3D81FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C089FE00-20A8-45C7-9923-66910B3D81FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C089FE00-20A8-45C7-9923-66910B3D81FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C089FE00-20A8-45C7-9923-66910B3D81FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
