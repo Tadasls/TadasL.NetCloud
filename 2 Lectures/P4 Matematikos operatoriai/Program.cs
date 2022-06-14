@@ -4,7 +4,6 @@
 Console.WriteLine("Hello, Priskyrimo operatoriai = += -= *= /=!");
 
 
-
 int skaicius;
 int kitasSkaicius = 20; //pradzia 20 
 int nelyginisSkaicius = 5;
@@ -100,7 +99,7 @@ Console.WriteLine($"begalybe/=- {a/double.PositiveInfinity}");
 //overFlow and underFlow
 
 
-/
+/*
 short s1 = 30_000;
 short s2 = 30_000;
 short s3 = (short)(s1 + s2);
@@ -168,8 +167,6 @@ sukurkite naują kintamajį short ir prskirkite didžiausią reikšmę
 - iš rezultato atimkite maksimalų long skaičių
 - ir pridėkite maksimalų int skaičių
 */
-
-
 
 
 
