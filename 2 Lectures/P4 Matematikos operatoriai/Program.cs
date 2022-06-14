@@ -4,7 +4,7 @@
 Console.WriteLine("Hello, Priskyrimo operatoriai = += -= *= /=!");
 
 
-/*
+
 int skaicius;
 int kitasSkaicius = 20; //pradzia 20 
 int nelyginisSkaicius = 5;
@@ -111,7 +111,7 @@ checked
 {
     s3 = (short)(s1 + s2);
 }
-*/
+
 
 
 //Pirma uzduotis
@@ -130,6 +130,7 @@ Console.WriteLine($"{skaicius1}*{skaicius2}={skaicius1 * skaicius2}");
 Console.WriteLine($"{skaicius1}/{skaicius2}={skaicius1 / skaicius2}");
 
 
+
 //antra uzduotis
 
 
@@ -142,11 +143,10 @@ int skaiciusA2 = int.Parse(Console.ReadLine());
 Console.WriteLine("Iveskite skaiciu 3");
 int skaiciusA3 = int.Parse(Console.ReadLine());
 
-Console.WriteLine($" vidurkis yra = {0}", (double)(skaiciusA1 + skaiciusA2 + skaiciusA3) /3 );
+Console.WriteLine(" vidurkis yra = {0}", (double)(skaiciusA1 + skaiciusA2 + skaiciusA3) /3 );
 
 
 //trecia uzduotis
-
 
 long skaiciusLong = long.MaxValue;
 short skaiciusShort = short.MaxValue;
@@ -161,7 +161,7 @@ Console.WriteLine($" ir pridejus maxiInta = {(double)((skaiciusLong / skaiciusSh
 
 
 /*
-  salyga
+ 3 salyga
 sukurkite naują kintamajį long ir prskirkite didžiausią reikšmę.
 sukurkite naują kintamajį short ir prskirkite didžiausią reikšmę
 - padalinkite didesnį skaičių iš mažesnio
