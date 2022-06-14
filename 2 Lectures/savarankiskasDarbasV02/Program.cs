@@ -28,24 +28,42 @@ Console.WriteLine($" ar sutapima konvertuota C is F ? {patikrinimas1}"); //patik
 Console.WriteLine($" ar sutapima konvertuota C is K ? {patikrinimas2}"); //patikrinimas 2
 Console.WriteLine($" ar sutapima konvertuota C is K ? {patikrinimas3}"); //patikrinimas 3
 
+var k1 = 40;
+var k2 = 35;
+var k3 = 30;
+var k4 = 25;
+var k5 = 20;
+var k6 = 15;
+var k7 = 10;
+var k8 = 5;
+var k9 = 0;
+var k10 = -5;
+var k11 = -10;
+var k12 = -15;
+var k13 = -20;
+var k14 = -25;
+var k15 = -30;
+var k16 = -35;
+var k17 = -40;
 
-var tC1 = tempC + 40;
-var tC2 = tempC + 35;
-var tC3 = tempC + 30;
-var tC4 = tempC + 25;
-var tC5 = tempC + 20;
-var tC6 = tempC + 15;
-var tC7 = tempC + 10;
-var tC8 = tempC + 5;
-var tC9 = tempC + 0;
-var tC10 = tempC - 5;
-var tC11 = tempC - 10;
-var tC12 = tempC - 15;
-var tC13 = tempC - 20;
-var tC14 = tempC - 25;
-var tC15 = tempC - 30;
-var tC16 = tempC - 35;
-var tC17 = tempC - 40;
+
+var tC1 = tempC + k1;
+var tC2 = tempC + k2;
+var tC3 = tempC + k3;
+var tC4 = tempC + k4;
+var tC5 = tempC + k5;
+var tC6 = tempC + k6;
+var tC7 = tempC + k7;
+var tC8 = tempC + k8;
+var tC9 = tempC + k9;
+var tC10 = tempC + k10;
+var tC11 = tempC + k11;
+var tC12 = tempC + k12;
+var tC13 = tempC + k13;
+var tC14 = tempC + k14;
+var tC15 = tempC + k15;
+var tC16 = tempC + k16;
+var tC17 = tempC + k17;
 
 var fC1 = tC1 + 32;
 var fC2 = tC2 + 32;
@@ -70,30 +88,29 @@ var fC17 = tC17 + 32;
 
 Console.WriteLine($"        |               --------------------|  ");
 Console.WriteLine($"        |             ^F     _ ^ C |      ");
-Console.WriteLine($"        | {fC1} - |{tempC >= 40} | - {tC1}  | ");
-Console.WriteLine($"        | {fC2} - |{tempC >= 35} | - {tC2}  | ");
-Console.WriteLine($"        | {fC3} - |{tempC >= 30} | - {tC3}  | ");
-Console.WriteLine($"        | {fC4} - |{tempC >= 25} | - {tC4}  | ");
-Console.WriteLine($"        | {fC5} - |{tempC >= 20} | - {tC5}  | ");
-Console.WriteLine($"        | {fC6} - |{tempC >= 15} | - {tC6}  | ");
-Console.WriteLine($"        | {fC7} - |{tempC >= 10} | - {tC7}  | ");
-Console.WriteLine($"        | {fC8} - |{tempC >= 5}  | - {tC8}  | ");
-Console.WriteLine($"        | {fC9} - |{tempC >= 0}  | - {tC9}  | ");
-Console.WriteLine($"        | {fC10} - |{tempC >= -5} | - {tC10} | ");
-Console.WriteLine($"        | {fC11} - |{tempC >= -10}| - {tC11} | ");
-Console.WriteLine($"        | {fC12} - |{tempC >= -15}| - {tC12} | ");
-Console.WriteLine($"        | {fC13} - |{tempC >= -20}| - {tC13} | ");
-Console.WriteLine($"        | {fC14} - |{tempC >= -25}| - {tC14} | ");
-Console.WriteLine($"        | {fC15} - |{tempC >= -30}| - {tC15} | ");
-Console.WriteLine($"        | {fC16} - |{tempC >= -35}| - {tC16} | ");
-Console.WriteLine($"        | {fC17} - |{tempC >= -40}| - {tC17} | ");
+Console.WriteLine($"        | {fC1} - |{tempC >= k1} | - {tC1}  | ");
+Console.WriteLine($"        | {fC2} - |{tempC >= k2} | - {tC2}  | ");
+Console.WriteLine($"        | {fC3} - |{tempC >= k3} | - {tC3}  | ");
+Console.WriteLine($"        | {fC4} - |{tempC >= k4} | - {tC4}  | ");
+Console.WriteLine($"        | {fC5} - |{tempC >= k5} | - {tC5}  | ");
+Console.WriteLine($"        | {fC6} - |{tempC >= k6} | - {tC6}  | ");
+Console.WriteLine($"        | {fC7} - |{tempC >= k7} | - {tC7}  | ");
+Console.WriteLine($"        | {fC8} - |{tempC >= k8}  | - {tC8}  | ");
+Console.WriteLine($"        | {fC9} - |{tempC >= k9}  | - {tC9}  | ");
+Console.WriteLine($"        | {fC10} - |{tempC >= k10} | - {tC10} | ");
+Console.WriteLine($"        | {fC11} - |{tempC >= k11}| - {tC11} | ");
+Console.WriteLine($"        | {fC12} - |{tempC >= k12}| - {tC12} | ");
+Console.WriteLine($"        | {fC13} - |{tempC >= k13}| - {tC13} | ");
+Console.WriteLine($"        | {fC14} - |{tempC >= k14}| - {tC14} | ");
+Console.WriteLine($"        | {fC15} - |{tempC >= k15}| - {tC15} | ");
+Console.WriteLine($"        | {fC16} - |{tempC >= k16}| - {tC16} | ");
+Console.WriteLine($"        | {fC17} - |{tempC >= k17}| - {tC17} | ");
 Console.WriteLine($"        |                     '***`          | ");
 Console.WriteLine($"        |                    (*****)         | ");
 Console.WriteLine($"        |                     `---'          | ");
 Console.WriteLine($"        |               ____________________ | ");
 
 
-var TS = tempC >= 40;
 //Console.WriteLine($" {TS}").Replace(true, " ").Replace(false, "#");
 //Console.WriteLine($" {TS}");
 
