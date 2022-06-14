@@ -81,19 +81,19 @@ Console.WriteLine($" BYTE = {(byte)didelis10Skaicius}");
 //short sumazintasShort10Skaicius = Convert.ToInt16(sumazintasInt10Skaicius);
 //byte sumazintasByte10Skaicius = Convert.ToByte(sumazintasShort10Skaicius);
 
-Console.WriteLine(didelis10Skaicius);
+//Console.WriteLine(didelis10Skaicius);
 
 
 
 
-
+/*
  3 salyga
 sukurkite naują kintamajį long ir prskirkite didžiausią reikšmę.
 sukurkite naują kintamajį short ir prskirkite didžiausią reikšmę
 - padalinkite didesnį skaičių iš mažesnio
 - iš rezultato atimkite maksimalų long skaičių
 - ir pridėkite maksimalų int skaičių
-
+*/
 
 
 //5 programa Programa praso ivesti rutulio diametra o isveda plota ir turi

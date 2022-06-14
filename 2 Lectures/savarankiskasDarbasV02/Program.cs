@@ -1,0 +1,129 @@
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, savarankiskas Darbas!");
+
+
+
+Console.WriteLine("įvesti 1 skaičių - temperatūrą pagal Celsijų.");
+
+var tempC = Convert.ToDouble(Console.ReadLine());
+var tempF = tempC + 32;
+var tempK = tempC + 273.16;
+
+var tempCPerskIsF = tempF - 32;
+var tempCPerskIsK = tempK - 273.16;
+var tempKPerskIsF = ((tempF - 32) + 273.16);
+
+bool patikrinimas1 = tempC == tempCPerskIsF;
+bool patikrinimas2 = tempC == tempCPerskIsK;
+bool patikrinimas3 = tempKPerskIsF == tempK;
+
+Console.WriteLine($" Temp Farenfeitais {tempF}"); //išveskite į ekraną temperatūrą pagal farenheitą.
+Console.WriteLine($" Temp Kelvinais {tempK}"); //išveskite į ekraną temperatūrą pagal kelviną.
+
+Console.WriteLine($" Temp celsijais {tempCPerskIsF}");
+Console.WriteLine($" Temp celsijais {tempCPerskIsK}"); 
+Console.WriteLine($" Temp Kelvinais {tempKPerskIsF}"); 
+
+Console.WriteLine($" ar sutapima konvertuota C is F ? {patikrinimas1}"); //patikrinimas 1
+Console.WriteLine($" ar sutapima konvertuota C is K ? {patikrinimas2}"); //patikrinimas 2
+Console.WriteLine($" ar sutapima konvertuota C is K ? {patikrinimas3}"); //patikrinimas 3
+
+
+var tC1 = tempC + 40;
+var tC2 = tempC + 35;
+var tC3 = tempC + 30;
+var tC4 = tempC + 25;
+var tC5 = tempC + 20;
+var tC6 = tempC + 15;
+var tC7 = tempC + 10;
+var tC8 = tempC + 5;
+var tC9 = tempC + 0;
+var tC10 = tempC - 5;
+var tC11 = tempC - 10;
+var tC12 = tempC - 15;
+var tC13 = tempC - 20;
+var tC14 = tempC - 25;
+var tC15 = tempC - 30;
+var tC16 = tempC - 35;
+var tC17 = tempC - 40;
+
+var fC1 = tC1 + 32;
+var fC2 = tC2 + 32;
+var fC3 = tC3 + 32;
+var fC4 = tC4 + 32;
+var fC5 = tC5 + 32; 
+var fC6 = tC6 + 32;
+var fC7 = tC7 + 32;
+var fC8 = tC8 + 32;
+var fC9 = tC9 + 32;
+var fC10 = tC10 + 32;
+var fC11 = tC11 + 32;
+var fC12 = tC12 + 32;
+var fC13 = tC13 + 32;
+var fC14 = tC14 + 32;
+var fC15 = tC15 + 32;
+var fC16 = tC16 + 32;
+var fC17 = tC17 + 32;
+
+
+//paisome termometra
+
+Console.WriteLine($"        |               --------------------|  ");
+Console.WriteLine($"        |             ^F     _ ^ C |      ");
+Console.WriteLine($"        | {fC1} - |{tempC >= 40} | - {tC1}  | ");
+Console.WriteLine($"        | {fC2} - |{tempC >= 35} | - {tC2}  | ");
+Console.WriteLine($"        | {fC3} - |{tempC >= 30} | - {tC3}  | ");
+Console.WriteLine($"        | {fC4} - |{tempC >= 25} | - {tC4}  | ");
+Console.WriteLine($"        | {fC5} - |{tempC >= 20} | - {tC5}  | ");
+Console.WriteLine($"        | {fC6} - |{tempC >= 15} | - {tC6}  | ");
+Console.WriteLine($"        | {fC7} - |{tempC >= 10} | - {tC7}  | ");
+Console.WriteLine($"        | {fC8} - |{tempC >= 5}  | - {tC8}  | ");
+Console.WriteLine($"        | {fC9} - |{tempC >= 0}  | - {tC9}  | ");
+Console.WriteLine($"        | {fC10} - |{tempC >= -5} | - {tC10} | ");
+Console.WriteLine($"        | {fC11} - |{tempC >= -10}| - {tC11} | ");
+Console.WriteLine($"        | {fC12} - |{tempC >= -15}| - {tC12} | ");
+Console.WriteLine($"        | {fC13} - |{tempC >= -20}| - {tC13} | ");
+Console.WriteLine($"        | {fC14} - |{tempC >= -25}| - {tC14} | ");
+Console.WriteLine($"        | {fC15} - |{tempC >= -30}| - {tC15} | ");
+Console.WriteLine($"        | {fC16} - |{tempC >= -35}| - {tC16} | ");
+Console.WriteLine($"        | {fC17} - |{tempC >= -40}| - {tC17} | ");
+Console.WriteLine($"        |                     '***`          | ");
+Console.WriteLine($"        |                    (*****)         | ");
+Console.WriteLine($"        |                     `---'          | ");
+Console.WriteLine($"        |               ____________________ | ");
+
+
+var TS = tempC >= 40;
+//Console.WriteLine($" {TS}").Replace(true, " ").Replace(false, "#");
+//Console.WriteLine($" {TS}");
+
+
+/*
+       
+     b) Grafiškai atvaizduokite įvestą temperatūros stulpelį. 
+        <HINT> naudokite .ToString(), palyginimo reliacinius operatorius (==, >, < ir t.t.) ir .Replace(). 
+        if naudoti negalima, ternary operator (?) naudoti negalima. rezultatas gali atrodyti taip:
+                            |--------------------|
+                            |   ^F     _    ^C   |
+                            |  100  - | | -  40  |
+                            |   95  - | | -  35  |
+                            |   90  - | | -  30  |
+                            |   80  - | | -  25  |
+                            |   70  - | | -  20  |
+                            |   60  - | | -  15  |
+                            |   50  - |#| -  10  |
+                            |   40  - |#| -   5  |
+                            |   30  - |#| -   0  |
+                            |   20  - |#| -  -5  |
+                            |   10  - |#| - -10  |
+                            |    5  - |#| - -15  |
+                            |    0  - |#| - -20  |
+                            |  -10  - |#| - -25  |
+                            |  -20  - |#| - -30  |
+                            |  -30  - |#| - -35  |
+                            |  -40  - |#| - -40  |
+                            |        '***`       |
+                            |       (*****)      |
+                            |        `---'       |
+                            |____________________|
+ */

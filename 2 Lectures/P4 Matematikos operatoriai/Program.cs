@@ -3,7 +3,7 @@
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, Priskyrimo operatoriai = += -= *= /=!");
 
-/*
+
 int skaicius;
 int kitasSkaicius = 20; //pradzia 20 
 int nelyginisSkaicius = 5;

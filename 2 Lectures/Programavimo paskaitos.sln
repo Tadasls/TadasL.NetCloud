@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P5 Operatoriai", "P5 operat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P4 Matematines uzduotys", "P4 matematines uzduotys\P4 Matematines uzduotys.csproj", "{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "savarankiskasDarbasV02", "savarankiskasDarbasV02\savarankiskasDarbasV02.csproj", "{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
