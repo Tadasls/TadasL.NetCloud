@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
-/*
+
 //Pirma uzduotis
 Console.WriteLine();
 
@@ -74,6 +74,7 @@ double didelis10Skaicius = Convert.ToDouble(Console.ReadLine());
 Console.WriteLine($" Int = {(int)didelis10Skaicius}");
 Console.WriteLine($" SHORT = {(short)didelis10Skaicius}");
 Console.WriteLine($" BYTE = {(byte)didelis10Skaicius}");
+*/
 
 
 //int sumazintasInt10Skaicius = Convert.ToInt32(didelis10Skaicius);
@@ -85,7 +86,7 @@ Console.WriteLine(didelis10Skaicius);
 
 
 
-/*
+
  3 salyga
 sukurkite naują kintamajį long ir prskirkite didžiausią reikšmę.
 sukurkite naują kintamajį short ir prskirkite didžiausią reikšmę
@@ -121,7 +122,7 @@ var laikasValandomis = laikasMinutemis / 60;
 
 Console.WriteLine($" Greitis KM/H = {atstumasKilometrais}/{laikasValandomis}");
 Console.WriteLine($" Greitis KM/H = {atstumasKilometrais}/{laikasSekundemis}");
-*/
+
 
 
 // 7 programa
@@ -134,6 +135,45 @@ var funkcija2 = ((y * y) + (x / 2));
 
 Console.WriteLine($" funkcija = {funkcija1}");
 Console.WriteLine($" funkcija = {funkcija2}");
+
+
+//patikrinimas ka ivedus Enter grazina 
+//var d = Console.ReadLine(); 
+//Console.WriteLine($" ar null {d == null}");
+//Console.WriteLine($" ar empty {d == string.Empty}");
+
+//astunta uzduotis
+
+//Console.WriteLine("iveskite 5 skaicius");
+//var vartotojoSkaicius = Convert.ToDouble(Console.ReadLine().Replace("1", "0"));
+//Console.WriteLine($" {vartotojoSkaicius} / 2 = {vartotojoSkaicius /2}");
+
+//devinta uzduotis
+
+
+Console.WriteLine("iveskite 5 skaicius");
+var vartotojoSkaicius = Convert.ToDouble(Console.ReadLine()
+
+    .Replace("2", "0")
+    .Replace("3", "0")
+    .Replace("4", "0")
+    .Replace("5", "0")
+    .Replace("6", "0")
+    .Replace("7", "0")
+    .Replace("8", "0")
+    .Replace("9", "0"));
+
+Console.WriteLine($" {vartotojoSkaicius} / 2 = {vartotojoSkaicius / 2}");
+
+
+
+//desimta uzduotis 
+
+Console.WriteLine("iveskite 1 skaicius");
+var vartSk = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($" Rezultatas {++vartSk},{++vartSk},{++vartSk},{++vartSk},{++vartSk} ");
+
+
 
 
 
