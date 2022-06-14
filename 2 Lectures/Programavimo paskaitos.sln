@@ -3,25 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2 Lecture", "2 Lecture\2 Lecture.csproj", "{0D723CE1-4546-4257-BFEE-3D2E3BE3C124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P1 Lecture", "2 Lecture\P1 Lecture.csproj", "{0D723CE1-4546-4257-BFEE-3D2E3BE3C124}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "komentavimas", "komentavimas\komentavimas.csproj", "{D09BC390-7EA2-4285-894F-85378CF6726C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 komentavimas", "komentavimas\P2 komentavimas.csproj", "{D09BC390-7EA2-4285-894F-85378CF6726C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paskaita 2 consoles uzduotys", "Paskaita 2 consoles uzduotys\Paskaita 2 consoles uzduotys.csproj", "{894254E8-66CA-40DA-A61B-0357784FB6F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 consoles uzduotys", "Paskaita 2 consoles uzduotys\P2 consoles uzduotys.csproj", "{894254E8-66CA-40DA-A61B-0357784FB6F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "p2 sTRINGAI kintamieji", "p2 sTRINGAI kintamieji\p2 sTRINGAI kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "namu darbai V001", "namu darbai V001\namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kintamieji", "kintamieji\kintamieji.csproj", "{56E46CAE-16B7-4707-B951-45F126EF7399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P3 kintamieji", "kintamieji\P3 kintamieji.csproj", "{56E46CAE-16B7-4707-B951-45F126EF7399}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kintamieji uzduotys", "kintamieji uzduotys\kintamieji uzduotys.csproj", "{C089FE00-20A8-45C7-9923-66910B3D81FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P3 kintamieji uzduotys", "kintamieji uzduotys\P3 kintamieji uzduotys.csproj", "{C089FE00-20A8-45C7-9923-66910B3D81FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Tipu konversijos", "P4 Tipu konversijos\P4 Tipu konversijos.csproj", "{8B1E0C8A-DA0E-450E-B8F1-E575DA842538}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Matematikos operatoriai", "P4 Matematikos operatoriai\P4 Matematikos operatoriai.csproj", "{35C70C34-C377-41AB-9694-322917DD99F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P5 operatoriai", "P5 operatoriai\P5 operatoriai.csproj", "{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P5 operatoriai", "P5 operatoriai\P5 operatoriai.csproj", "{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P4 matematines uzduotys", "P4 matematines uzduotys\P4 matematines uzduotys.csproj", "{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

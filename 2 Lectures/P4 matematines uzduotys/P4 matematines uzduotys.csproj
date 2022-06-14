@@ -3,13 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>_2_Lecture</RootNamespace>
+    <RootNamespace>P4_matematines_uzduotys</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Paskaita 2 consoles uzduotys\Paskaita 2 consoles uzduotys.csproj" />
-  </ItemGroup>
 
 </Project>
