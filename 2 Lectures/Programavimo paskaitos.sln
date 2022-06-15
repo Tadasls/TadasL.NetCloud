@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Matematines uzduotys", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarankiskasDarbasV02", "savarankiskasDarbasV02\savarankiskasDarbasV02.csproj", "{D8AAFAC6-77E1-490C-B7B0-E54968FCBE27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P6 Loginiai operatoriai", "P6 Loginiai operatoriai\P6 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P6 Loginiai operatoriai", "P6 Loginiai operatoriai\P6 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavarankiskasDarbasV02K", "SavarankiskasDarbasV02K\SavarankiskasDarbasV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074146E0-B156-4E1D-AB9B-C50820C5C772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074146E0-B156-4E1D-AB9B-C50820C5C772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074146E0-B156-4E1D-AB9B-C50820C5C772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074146E0-B156-4E1D-AB9B-C50820C5C772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

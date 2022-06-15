@@ -6,23 +6,23 @@ Console.WriteLine("Hello, savarankiskas Darbas!");
 Console.WriteLine("įvesti 1 skaičių - temperatūrą pagal Celsijų.");
 
 var tempC = Convert.ToDouble(Console.ReadLine());
-var tempF = tempC + 32;
+var tempF = (tempC * 9 / 5 ) + 32;
 var tempK = tempC + 273.16;
 
-var tempCPerskIsF = tempF - 32;
+var tempCPerskIsF = (tempF - 32) / 1.8;
 var tempCPerskIsK = tempK - 273.16;
-var tempKPerskIsF = ((tempF - 32) + 273.16);
+var tempKPerskIsF = (((tempF - 32) / 1.8) + 273.16);
 
 bool patikrinimas1 = tempC == tempCPerskIsF;
 bool patikrinimas2 = tempC == tempCPerskIsK;
 bool patikrinimas3 = tempKPerskIsF == tempK;
 
-Console.WriteLine($" Temp Farenfeitais {tempF}"); //išveskite į ekraną temperatūrą pagal farenheitą.
-Console.WriteLine($" Temp Kelvinais {tempK}"); //išveskite į ekraną temperatūrą pagal kelviną.
+Console.WriteLine($" Temp Farenfeitais  - {tempF}"); //išveskite į ekraną temperatūrą pagal farenheitą.
+Console.WriteLine($" Temp Kelvinais  - {tempK}"); //išveskite į ekraną temperatūrą pagal kelviną.
 
-Console.WriteLine($" Temp celsijais {tempCPerskIsF}");
-Console.WriteLine($" Temp celsijais {tempCPerskIsK}"); 
-Console.WriteLine($" Temp Kelvinais {tempKPerskIsF}"); 
+Console.WriteLine($" Temp celsijais  - {tempCPerskIsF}");
+Console.WriteLine($" Temp celsijais  - {tempCPerskIsK}"); 
+Console.WriteLine($" Temp Kelvinais - {tempKPerskIsF}"); 
 
 Console.WriteLine($" ar sutapima konvertuota C is F ? {patikrinimas1}"); //patikrinimas 1
 Console.WriteLine($" ar sutapima konvertuota C is K ? {patikrinimas2}"); //patikrinimas 2
@@ -65,89 +65,83 @@ var tC15 = tempC + k15;
 var tC16 = tempC + k16;
 var tC17 = tempC + k17;
 
-var fC1 = tC1 + 32;
-var fC2 = tC2 + 32;
-var fC3 = tC3 + 32;
-var fC4 = tC4 + 32;
-var fC5 = tC5 + 32; 
-var fC6 = tC6 + 32;
-var fC7 = tC7 + 32;
-var fC8 = tC8 + 32;
-var fC9 = tC9 + 32;
-var fC10 = tC10 + 32;
-var fC11 = tC11 + 32;
-var fC12 = tC12 + 32;
-var fC13 = tC13 + 32;
-var fC14 = tC14 + 32;
-var fC15 = tC15 + 32;
-var fC16 = tC16 + 32;
-var fC17 = tC17 + 32;
+
+var fC1 = (tC1 * 9 / 5) + 32;
+var fC2 = (tC2 * 9 / 5) + 32;
+var fC3 = (tC3 * 9 / 5) + 32;
+var fC4 = (tC4 * 9 / 5) + 32;
+var fC5 = (tC5 * 9 / 5) + 32;
+var fC6 = (tC6 * 9 / 5) + 32;
+var fC7 = (tC7 * 9 / 5) + 32;
+var fC8 = (tC8 * 9 / 5) + 32;
+var fC9 = (tC9 * 9 / 5) + 32;
+var fC10 = (tC10 * 9 / 5) + 32;
+var fC11 = (tC11 * 9 / 5) + 32;
+var fC12 = (tC12 * 9 / 5) + 32;
+var fC13 = (tC13 * 9 / 5) + 32;
+var fC14 = (tC14 * 9 / 5) + 32;
+var fC15 = (tC15 * 9 / 5) + 32;
+var fC16 = (tC16 * 9 / 5) + 32;
+var fC17 = (tC17 * 9 / 5) + 32;
+
+bool TS1 = tempC >= k1 + tempC;
+bool TS2 = tempC >= k2 + tempC;
+bool TS3 = tempC >= k3 + tempC;
+bool TS4 = tempC >= k4 + tempC;
+bool TS5 = tempC >= k5 + tempC;
+bool TS6 = tempC >= k6 + tempC;
+bool TS7 = tempC >= k7 + tempC;
+bool TS8 = tempC >= k8 + tempC;
+bool TS9 = tempC >= k9 + tempC;
+bool TS10 = tempC >= k10 + tempC;
+bool TS11 = tempC >= k11 + tempC;
+bool TS12 = tempC >= k12 + tempC;
+bool TS13 = tempC >= k13 + tempC;
+bool TS14 = tempC >= k14 + tempC;
+bool TS15 = tempC >= k15 + tempC;
+bool TS16 = tempC >= k16 + tempC;
+bool TS17 = tempC >= k17 + tempC;
 
 
 //paisome termometra
 
-Console.WriteLine($"        |               --------------------|  ");
-Console.WriteLine($"        |             ^F     _ ^ C |      ");
-Console.WriteLine($"        | {fC1} - |{tempC >= k1} | - {tC1}  | ");
-Console.WriteLine($"        | {fC2} - |{tempC >= k2} | - {tC2}  | ");
-Console.WriteLine($"        | {fC3} - |{tempC >= k3} | - {tC3}  | ");
-Console.WriteLine($"        | {fC4} - |{tempC >= k4} | - {tC4}  | ");
-Console.WriteLine($"        | {fC5} - |{tempC >= k5} | - {tC5}  | ");
-Console.WriteLine($"        | {fC6} - |{tempC >= k6} | - {tC6}  | ");
-Console.WriteLine($"        | {fC7} - |{tempC >= k7} | - {tC7}  | ");
-Console.WriteLine($"        | {fC8} - |{tempC >= k8}  | - {tC8}  | ");
-Console.WriteLine($"        | {fC9} - |{tempC >= k9}  | - {tC9}  | ");
-Console.WriteLine($"        | {fC10} - |{tempC >= k10} | - {tC10} | ");
-Console.WriteLine($"        | {fC11} - |{tempC >= k11}| - {tC11} | ");
-Console.WriteLine($"        | {fC12} - |{tempC >= k12}| - {tC12} | ");
-Console.WriteLine($"        | {fC13} - |{tempC >= k13}| - {tC13} | ");
-Console.WriteLine($"        | {fC14} - |{tempC >= k14}| - {tC14} | ");
-Console.WriteLine($"        | {fC15} - |{tempC >= k15}| - {tC15} | ");
-Console.WriteLine($"        | {fC16} - |{tempC >= k16}| - {tC16} | ");
-Console.WriteLine($"        | {fC17} - |{tempC >= k17}| - {tC17} | ");
-Console.WriteLine($"        |                     '***`          | ");
-Console.WriteLine($"        |                    (*****)         | ");
-Console.WriteLine($"        |                     `---'          | ");
-Console.WriteLine($"        |               ____________________ | ");
-
-var TS = tempC >= k1;
-var TS1 = TS.ToString().Replace("true", "1").Replace("false", "#2");
-Console.WriteLine($" {TS1}, {TS}");
-
-Console.Write($"{(false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.WriteLine($"        |--------------------|  ");
+Console.WriteLine($"        |   ^F     _ ^ C     |  ");
+Console.WriteLine($"        | {fC1}  - |{(TS1).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC1}  | ");
+Console.WriteLine($"        | {fC2}  - |{(TS2).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC2}  | ");
+Console.WriteLine($"        | {fC3}  - |{(TS3).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC3}  | ");
+Console.WriteLine($"        | {fC4}  - |{(TS4).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC4}  | ");
+Console.WriteLine($"        | {fC5}  - |{(TS5).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC5}  | ");
+Console.WriteLine($"        | {fC6}  - |{(TS6).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC6}  | ");
+Console.WriteLine($"        | {fC7}  - |{(TS7).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC7}  | ");
+Console.WriteLine($"        | {fC8}  - |{(TS8).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC8}  | ");
+Console.WriteLine($"        | {fC9}  - |{(TS9).ToString().Replace("True", "#").Replace("False", " ")}  | - {tC9}  | ");
+Console.WriteLine($"        | {fC10} - |{(TS10).ToString().Replace("True", "#").Replace("False", " ")} | - {tC10} | ");
+Console.WriteLine($"        | {fC11} - |{(TS11).ToString().Replace("True", "#").Replace("False", " ")} | - {tC11} | ");
+Console.WriteLine($"        | {fC12} - |{(TS12).ToString().Replace("True", "#").Replace("False", " ")} | - {tC12} | ");
+Console.WriteLine($"        | {fC13} - |{(TS13).ToString().Replace("True", "#").Replace("False", " ")} | - {tC13} | ");
+Console.WriteLine($"        | {fC14} - |{(TS14).ToString().Replace("True", "#").Replace("False", " ")} | - {tC14} | ");
+Console.WriteLine($"        | {fC15} - |{(TS15).ToString().Replace("True", "#").Replace("False", " ")} | - {tC15} | ");
+Console.WriteLine($"        | {fC16} - |{(TS16).ToString().Replace("True", "#").Replace("False", " ")} | - {tC16} | ");
+Console.WriteLine($"        | {fC17} - |{(TS17).ToString().Replace("True", "#").Replace("False", " ")} | - {tC17} | ");
+Console.WriteLine($"        |        '***`          | ");
+Console.WriteLine($"        |       (*****)         | ");
+Console.WriteLine($"        |        `---'          | ");
+Console.WriteLine($"        |  ____________________ | ");
 
 
-var a = 123;
-Console.WriteLine("  --- ---  ");
-   Console.WriteLine("  --- ---  ");
+
+
+
+
 
 
 /*
-       
-     b) Grafiškai atvaizduokite įvestą temperatūros stulpelį. 
-        <HINT> naudokite .ToString(), palyginimo reliacinius operatorius (==, >, < ir t.t.) ir .Replace(). 
-        if naudoti negalima, ternary operator (?) naudoti negalima. rezultatas gali atrodyti taip:
-                            |--------------------|
-                            |   ^F     _    ^C   |
-                            |  100  - | | -  40  |
-                            |   95  - | | -  35  |
-                            |   90  - | | -  30  |
-                            |   80  - | | -  25  |
-                            |   70  - | | -  20  |
-                            |   60  - | | -  15  |
-                            |   50  - |#| -  10  |
-                            |   40  - |#| -   5  |
-                            |   30  - |#| -   0  |
-                            |   20  - |#| -  -5  |
-                            |   10  - |#| - -10  |
-                            |    5  - |#| - -15  |
-                            |    0  - |#| - -20  |
-                            |  -10  - |#| - -25  |
-                            |  -20  - |#| - -30  |
-                            |  -30  - |#| - -35  |
-                            |  -40  - |#| - -40  |
-                            |        '***`       |
-                            |       (*****)      |
-                            |        `---'       |
-                            |____________________|
- */
+
+Console.WriteLine();
+var a = 1233154;
+ Console.WriteLine($" | ---{a,-6}--- |"  );
+Console.WriteLine(" | ---{0,-6}--- |", a);
+Console.WriteLine($"  | ---------    |"   );
+
+*/
