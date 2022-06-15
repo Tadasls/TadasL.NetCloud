@@ -110,9 +110,9 @@ Console.WriteLine($"        |                    (*****)         | ");
 Console.WriteLine($"        |                     `---'          | ");
 Console.WriteLine($"        |               ____________________ | ");
 
-
-//Console.WriteLine($" {TS}").Replace(true, " ").Replace(false, "#");
-//Console.WriteLine($" {TS}");
+var TS = tempC >= k1;
+var TS1 = TS.ToString().Replace("true", "1").Replace("false", "#2");
+Console.WriteLine($" {TS1}, {TS}");
 
 
 /*
