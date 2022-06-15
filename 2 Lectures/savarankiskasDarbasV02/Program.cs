@@ -114,6 +114,13 @@ var TS = tempC >= k1;
 var TS1 = TS.ToString().Replace("true", "1").Replace("false", "#2");
 Console.WriteLine($" {TS1}, {TS}");
 
+Console.Write($"{(false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+var a = 123;
+Console.WriteLine("  --- ---  ");
+   Console.WriteLine("  --- ---  ");
+
 
 /*
        

@@ -361,7 +361,9 @@ Console.Write($"{((true || true) !&& true).ToString().Replace("True", "-").Repla
 Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
 Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
 Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
-Console.WriteLine();
+
+
+
 
 
 
