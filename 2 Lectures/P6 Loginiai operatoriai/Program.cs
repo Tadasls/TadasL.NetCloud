@@ -61,3 +61,307 @@ Console.WriteLine($" tiesa NXOR Tiesa  {!(tiesa ^ tiesa)} ");
 Console.WriteLine($" tiesa NXOR melas  {!(tiesa ^ melas)} ");
 Console.WriteLine($" melas NXOR Tiesa  {!(melas ^ tiesa)} ");
 Console.WriteLine($" melas NXOR melas  {!(melas ^ melas)} ");
+
+// operacijas daro nuosekliai pirmus dviejus, tada su treciu tada su ketvirtu ir t.t.t
+
+Console.WriteLine($" melas OR tiesa OR melas AND Tiesa  {melas || tiesa ||(melas && tiesa)} ");
+
+int a = 5;
+int b = 5;
+int c = 6;
+
+bool s = a >= b && a > c;   // bus reikalingas 2 savarankiskosuzd sprendimui
+
+Console.WriteLine(s);
+
+
+
+
+
+/*
+//uzdavinys1
+
+Console.WriteLine($"Iveskite 2 skaicius  ");
+var a1 = Convert.ToInt32(Console.ReadLine());
+var b1 = Convert.ToInt32(Console.ReadLine());
+bool ats = a == b;
+Console.WriteLine($" atsakymas = {ats} ");
+
+//uzdavinys2
+Console.WriteLine($"Iveskite 2 skaicius  ");
+var a2 = Convert.ToInt32(Console.ReadLine());
+var b2 = Convert.ToInt32(Console.ReadLine());
+
+bool ra2 = a2 % 2 == 0 ;
+bool rb2 = b2 % 2 == 0;
+bool r = ra2 && rb2;
+
+Console.WriteLine($" atsakymas = {r} ");
+
+*/
+
+/*/
+
+kanalas A __--- ___--- ___--- ___--- ___
+kanalas B ____---___---___---___---_
+
+
+Parašykite progamą kuri atvazduoja šių kanalų logines operacijas:
+a) A AND B
+b) A OR B
+c) A XOR B
+d) A NAND B
+e) A NOR B
+f) NOT A
+g) NOT A OR B
+h) (A OR B) NAND A
+
+*/
+
+
+
+
+Console.WriteLine();
+Console.Write(" A atsakymas  - " );
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false && false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+Console.WriteLine();
+Console.Write(" B atsakymas  - ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ||  false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+Console.WriteLine();
+Console.Write(" C atsakymas  - ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false ^ false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+
+Console.WriteLine();
+Console.Write(" D atsakymas  - ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+
+Console.WriteLine();
+Console.Write(" E atsakymas  - ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(true !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+
+Console.WriteLine();
+Console.Write(" F atsakymas  - ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+
+Console.WriteLine();
+Console.Write(" G atsakymas  - ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!true || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{(!false || false).ToString().Replace("True", "-").Replace("False", "_")} ");
+
+Console.WriteLine(); 
+Console.Write(" H atsakymas  - ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || true) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || true) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || true) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || false) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((true || true) !&& true).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || true) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.Write($"{((false || false) !&& false).ToString().Replace("True", "-").Replace("False", "_")} ");
+Console.WriteLine();
+
+
+
