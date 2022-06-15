@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Kelio skaiciavimas!");
 
 //skaiciavimai
 
@@ -20,13 +20,19 @@ var greitisBMasinos = Convert.ToDouble(Console.ReadLine());
 
 var laikasNuoAIkiSusitikimo = atstumasKilometrais / (greitisAMasinos + greitisBMasinos);
 var atstumasNuoAIkiSusitikimo = laikasNuoAIkiSusitikimo * greitisAMasinos;
+Console.WriteLine($"susitikimas įvyks už {atstumasNuoAIkiSusitikimo * 1000} metru");
+Console.WriteLine($"susitikimas įvyks per {laikasNuoAIkiSusitikimo * 3600} sekundziu");
+Console.WriteLine($"A masina nuvaziuos per {atstumasKilometrais / greitisAMasinos * 60 } minuciu");
+Console.WriteLine($"B masina nuvaziuos per {atstumasKilometrais / greitisBMasinos * 60} minuciu");
+Console.WriteLine($"Automobiliu tarsa {atstumasKilometrais * 95 *2} gramu ");
 
-var susitikimoLaikasSek = "yyy";
-var laikasPasiektiGala = "zzz";
-var tarsaAutomobiliu = "ccc" * 95;
+//var laikasPasiektiGalaAmasinai = atstumasKilometrais / greitisAMasinos;
+//var laikasPasiektiGalaAmasinai = atstumasKilometrais / greitisBMasinos;
+//var tarsaAutomobiliu = atstumasKilometrais * 95 * 2; 
 
 
 
+/*
 
   
   - GRAFIŠKAI PAVAIZDUOTI KELIĄ NUO A IKI B SUSKIRSTYTĄ Į 20 LYGIŲ SEGMENTŲ (TARKIME ĮVESTAS ATSTUMAS YRA 100KM, TUOMENT TURĖSIME 20 SEGMENTU PO 5KM).  
@@ -49,7 +55,7 @@ _A______ | ______ | ______ | ______ | ___V___ | ______ | ______ | ______ | _____
  | >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   200 min >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|
  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   60 min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< |
 
-
+*/
 
 
 
