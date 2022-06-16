@@ -42,13 +42,13 @@ Console.WriteLine($"Automobiliu tarsa {atstumasKilometrais * 95 *2} gramu ");
     D) PARODYTI ABIEJŲ TRANSPORTO PRIEMONIŲ VAŽIAVIMO TRUKMĘ
     REZULTATAS GALI ARTODYTI TAIP:
    viso 100 km
-         
+   
     //paisymas
 
  | --------------------------------------------------------------------------------------------------------------------------------------------|
  0      5     10     15     20      25     30     35     40     45     50     55     60     65     70     75     80     85     90     95    100
  |      |      |      |      |       |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
-_A______ | ______ | ______ | ______ | ___V___ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______B_
+ A______ | ______ | ______ | ______ | ___V___ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______ | ______B_
  | -------------------------------|
    susitikimo vieta 23,1 km
    susitikimo laikas po 0,87 val.
@@ -56,8 +56,18 @@ _A______ | ______ | ______ | ______ | ___V___ | ______ | ______ | ______ | _____
  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   60 min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< |
 
 */
-
-
+var kelias = 100;
+var susitiks = 27;
+int segmentas = kelias / 20;
+int segmentassusitikimo = susitiks / segmentas;
+int atkarpa = 0;
+const int tar = 6;
+string Susitikimas = "__V__|";
+string nesusitikimas = "_____|";
+string Testas = new string('V', 100);
+int i = 0;
+Console.WriteLine($"{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}{atkarpa += segmentas,tar}");
+Console.WriteLine($"{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}{(i++ == segmentassusitikimo).ToString().Replace("True", Susitikimas).Replace("False", nesusitikimas)}");
 
 
 
