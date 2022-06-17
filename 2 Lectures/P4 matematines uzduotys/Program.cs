@@ -17,7 +17,6 @@ Console.WriteLine($"{skaicius1}*{skaicius2}={skaicius1 * skaicius2}");
 Console.WriteLine($"{skaicius1}/{skaicius2}={skaicius1 / skaicius2}");
 
 
-
 //antra uzduotis suskaiciuoja 3 skaiciu vidurky
 
 

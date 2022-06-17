@@ -9,6 +9,7 @@
             string kintamasis = "Hello world";
             Console.WriteLine(kintamasis);
 
+
             var stringKintamasis = "belekoks tekstas";
             string tuscias = "";   // tuscias empty
             string nulas = null;    // nera lygus nieko nera null

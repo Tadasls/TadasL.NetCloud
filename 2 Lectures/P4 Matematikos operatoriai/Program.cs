@@ -8,6 +8,7 @@ int skaicius;
 int kitasSkaicius = 20; //pradzia 20 
 int nelyginisSkaicius = 5;
 
+
 skaicius = 10;
 kitasSkaicius = skaicius;    //kitasSkaicius tampa 10  
 Console.WriteLine($"skaiciusyra  = {skaicius}, o kitasSkaisius yra = {kitasSkaicius}  ");

@@ -13,6 +13,7 @@
 
             var castintasLong2 = (long)skaiciusInt;
             
+
             byte skaiciusByte = 200;
             int skaiciusInt2 = skaiciusByte;
             long skaiciusLong2 = skaiciusByte;

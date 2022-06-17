@@ -10,7 +10,6 @@
             Console.ReadLine();
 
 
-
             //kintamieji, o D for drawing, Tree Rings
             string D0 = "      |      ";
             string D1 = "     #|#     ";

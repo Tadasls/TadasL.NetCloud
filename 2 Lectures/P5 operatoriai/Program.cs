@@ -8,6 +8,7 @@ var skaicius = 10;
 var nelyginisSkaicius = 5;
 var lyginisSkaicius = 10;
 
+
 Console.WriteLine(" == patikrina ar kintamieji yra lygūs");
 Console.WriteLine($" {skaicius}=={lyginisSkaicius} yra {skaicius == lyginisSkaicius}");
 bool ar10yraLygu5 = skaicius == nelyginisSkaicius;

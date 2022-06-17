@@ -17,6 +17,7 @@ Console.WriteLine($"A masina nuvaziuos per {atstumasKilometrais / greitisAMasino
 Console.WriteLine($"B masina nuvaziuos per {atstumasKilometrais / greitisBMasinos * 60} minuciu");
 Console.WriteLine($"Automobiliu tarsa {atstumasKilometrais * 95 *2} gramu ");
 
+
 //paisymas A variantas 
 
 double s0 = 0;

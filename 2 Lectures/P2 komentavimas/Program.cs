@@ -12,7 +12,6 @@
             /*
              multiline komentaras
             keliu eiluciu kometavimas
-
              */
 
             Console.WriteLine();  //komentaras uz kodo

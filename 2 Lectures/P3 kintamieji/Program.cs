@@ -8,6 +8,7 @@
             Console.WriteLine("Sveiki kintamieji");
             //Skaičių kintamieji
             //Sveikų skaičių kintamieji
+
             byte mazasSkaicius = 2; //255
             short trumpasSkaicius = 2; //32767
             int skaicius = 2; //2.147.483.647
