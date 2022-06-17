@@ -10,7 +10,6 @@ Console.WriteLine($"melas = {melas}");
 Console.WriteLine($"!melas = {!melas}");
 Console.WriteLine($"!melas = {melas}");
 
-
 Console.WriteLine();
 Console.WriteLine("AND &&  operatorius"); // tik kai abu teigimi tada true
 
