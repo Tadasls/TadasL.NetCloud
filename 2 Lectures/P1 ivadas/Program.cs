@@ -7,6 +7,7 @@
             Console.WriteLine(" {0:d}\n", DateTime.Now);
 
 
+
             Console.WriteLine("Sveikas, Pasauly!");
             Console.WriteLine();
             Console.WriteLine("Visiskai kita eilute");
