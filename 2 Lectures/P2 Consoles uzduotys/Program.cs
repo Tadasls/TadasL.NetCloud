@@ -9,6 +9,7 @@
              Console.WriteLine ("    iveskime varda" + (int)Console.ReadKey().KeyChar);
 
 
+
             
             //nuskaityti pirma raide
             Console.WriteLine(" Iveskime savo vardo pirma Raide");

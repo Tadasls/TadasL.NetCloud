@@ -8,6 +8,7 @@
             Console.WriteLine("Kokie buna komentarai ?");
 
             //paprastas komentaras
+
             /*
              multiline komentaras
             keliu eiluciu kometavimas
