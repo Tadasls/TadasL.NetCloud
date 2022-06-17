@@ -9,7 +9,7 @@
             int skaiciusInt = 100;
             long skaiciusLong = 100;
             long castintasLong = (long)skaiciusInt;
-            long castintasLong1 = skaiciusInt; //tipo konversija daroma automatiskai
+            long castintasLong1 = skaiciusInt; // i aukstesni tipa konversija daroma automatiskai
 
             var castintasLong2 = (long)skaiciusInt;
             

@@ -64,7 +64,7 @@ Console.WriteLine($"skaicius padidintas  ++ vienetu = {skaicius}");
 skaicius--;
 Console.WriteLine($"skaicius pamazintas -- vienetu = {skaicius}");
 
-//trapecijos ploto skaiciavimas
+//uzdavinys trapecijos ploto skaiciavimas
 
 double side1 = 5.5;
 double side2 = 3.25;

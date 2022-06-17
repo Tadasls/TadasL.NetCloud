@@ -1,14 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
-//Pirma uzduotis
+//Pirma uzduotis matematiniai veiksmai
 Console.WriteLine();
 
 Console.WriteLine("Iveskite skaiciu 1");
 int skaicius1 = int.Parse(Console.ReadLine());
 
 Console.WriteLine("Iveskite skaiciu 2");
-double skaicius2 = double.Parse(Console.ReadLine());
+double skaicius2 = double.Parse(Console.ReadLine()); // jei yra dalyba reikia double
 
 
 Console.WriteLine($"{skaicius1}+{skaicius2}={skaicius1 + skaicius2}");
@@ -18,7 +18,7 @@ Console.WriteLine($"{skaicius1}/{skaicius2}={skaicius1 / skaicius2}");
 
 
 
-//antra uzduotis
+//antra uzduotis suskaiciuoja 3 skaiciu vidurky
 
 
 Console.WriteLine("Iveskite skaiciu 1");
@@ -76,7 +76,6 @@ Console.WriteLine($" SHORT = {(short)didelis10Skaicius}");
 Console.WriteLine($" BYTE = {(byte)didelis10Skaicius}");
 */
 
-
 //int sumazintasInt10Skaicius = Convert.ToInt32(didelis10Skaicius);
 //short sumazintasShort10Skaicius = Convert.ToInt16(sumazintasInt10Skaicius);
 //byte sumazintasByte10Skaicius = Convert.ToByte(sumazintasShort10Skaicius);
@@ -110,7 +109,7 @@ Console.WriteLine($" Plotas Yra = {4 * Pi * rutulioSpindulys * rutulioSpindulys}
 Console.WriteLine($" Turis Yra = {(4 / 3) * Pi * (rutulioSpindulys * rutulioSpindulys * rutulioSpindulys)}");
 
 
-// 6 programa
+// 6 programa greicio konvertavimas
 Console.WriteLine("Iveskite metrus ir sekundes ");
 
 var atstumasMetrais = double.Parse(Console.ReadLine());
@@ -125,7 +124,7 @@ Console.WriteLine($" Greitis KM/H = {atstumasKilometrais}/{laikasSekundemis}");
 
 
 
-// 7 programa
+// 7 programa funkciju skaiciavimas
 Console.WriteLine("Iveskite x ir y ");
 var x = int.Parse(Console.ReadLine());
 var y = int.Parse(Console.ReadLine());
@@ -142,7 +141,7 @@ Console.WriteLine($" funkcija = {funkcija2}");
 //Console.WriteLine($" ar null {d == null}");
 //Console.WriteLine($" ar empty {d == string.Empty}");
 
-//astunta uzduotis
+//astunta uzduotis pakeicia ivesto skaiciaus skaitmenis 1 arba visus
 
 //Console.WriteLine("iveskite 5 skaicius");
 //var vartotojoSkaicius = Convert.ToDouble(Console.ReadLine().Replace("1", "0"));
@@ -167,7 +166,7 @@ Console.WriteLine($" {vartotojoSkaicius} / 2 = {vartotojoSkaicius / 2}");
 
 
 
-//desimta uzduotis 
+//desimta uzduotis isveda skaiciu seka ivedus viena skaiciu
 
 Console.WriteLine("iveskite 1 skaicius");
 var vartSk = Convert.ToInt32(Console.ReadLine());

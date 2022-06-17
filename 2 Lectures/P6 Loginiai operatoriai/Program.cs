@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("&& (AND) , || (OR) , ! (Not), ^ (XOR) ");
+Console.WriteLine("&& (AND) , || (OR) , ! (NOT), ^ (XOR) ");
 
 
-Console.WriteLine("Neigimas ! not operatorius");
+Console.WriteLine("Neigimas ! NOT operatorius");
 bool tiesa = true;
 bool melas = !tiesa;
 Console.WriteLine($"Tiesa = {tiesa}");
@@ -75,32 +75,29 @@ bool s = a >= b && a > c;   // bus reikalingas 2 savarankiskosuzd sprendimui
 Console.WriteLine(s);
 
 
-
-
-
-/*
 //uzdavinys1
 
 Console.WriteLine($"Iveskite 2 skaicius  ");
 var a1 = Convert.ToInt32(Console.ReadLine());
 var b1 = Convert.ToInt32(Console.ReadLine());
 bool ats = a == b;
-Console.WriteLine($" atsakymas = {ats} ");
+Console.WriteLine($" atsakymas ar A lygus B = {ats} ");
 
 //uzdavinys2
 Console.WriteLine($"Iveskite 2 skaicius  ");
 var a2 = Convert.ToInt32(Console.ReadLine());
 var b2 = Convert.ToInt32(Console.ReadLine());
 
-bool ra2 = a2 % 2 == 0 ;
+bool ra2 = a2 % 2 == 0 ; // dalina ir tikrinam ar liekana nulis
 bool rb2 = b2 % 2 == 0;
-bool r = ra2 && rb2;
+bool r = ra2 && rb2; // tikrina ar abieju liekanos yra nulines
 
-Console.WriteLine($" atsakymas = {r} ");
+Console.WriteLine($" atsakymas ar skaiciai abu lyginiai  = {r} ");
 
-*/
+
 
 /*/
+Uzdavinio salyga:
 
 kanalas A __--- ___--- ___--- ___--- ___
 kanalas B ____---___---___---___---_
@@ -271,7 +268,6 @@ Console.Write($"{(true !|| true).ToString().Replace("True", "-").Replace("False"
 Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
 Console.Write($"{(false !|| true).ToString().Replace("True", "-").Replace("False", "_")} ");
 Console.Write($"{(false !|| false).ToString().Replace("True", "-").Replace("False", "_")} ");
-
 
 
 Console.WriteLine();
