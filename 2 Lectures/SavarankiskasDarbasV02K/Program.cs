@@ -190,26 +190,26 @@ Console.WriteLine($"Visas kelias {atstumasKilometrais} km");
 Console.WriteLine($" | -------------------------------------------------------------------------------------------------------------------------------------------- | "); // hardcore piesimas
 Console.WriteLine($"  0{pS1, 7}{pS2, 7}{pS3, 7}{pS4,7}{pS5,7}{pS6,7}{pS7,7}{pS8,7}{pS9,7}{pS10,7}{pS11,7}{pS12,7}{pS13,7}{pS14,7}{pS15,7}{pS16,7}{pS17,7}{pS18,7}{pS19,7}{pS20,7}"); //piesia i elementu vietas ju reiksmes
 Console.WriteLine($"  |{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}{tS,7}"); // paiso tarpus
-Console.WriteLine($" _A{((pS1 >= atstumasNuoAIkiSusitikimo)&&(pS1 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V___|").Replace("False", "______|"),7}" +
- $"{((pS2 >= atstumasNuoAIkiSusitikimo) && (pS2 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS3 >= atstumasNuoAIkiSusitikimo) && (pS3 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS4 >= atstumasNuoAIkiSusitikimo) && (pS4 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS5 >= atstumasNuoAIkiSusitikimo) && (pS5 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS6 >= atstumasNuoAIkiSusitikimo) && (pS6 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS7 >= atstumasNuoAIkiSusitikimo) && (pS7 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS8 >= atstumasNuoAIkiSusitikimo) && (pS8 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS9 >= atstumasNuoAIkiSusitikimo) && (pS9 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS10 >= atstumasNuoAIkiSusitikimo) && (pS10 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS11 >= atstumasNuoAIkiSusitikimo) && (pS11 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS12 >= atstumasNuoAIkiSusitikimo) && (pS12 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS13 >= atstumasNuoAIkiSusitikimo) && (pS13 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS14 >= atstumasNuoAIkiSusitikimo) && (pS14 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS15 >= atstumasNuoAIkiSusitikimo) && (pS15 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS16 >= atstumasNuoAIkiSusitikimo) && (pS16 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS17 >= atstumasNuoAIkiSusitikimo) && (pS17 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS18 >= atstumasNuoAIkiSusitikimo) && (pS18 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS19 >= atstumasNuoAIkiSusitikimo) && (pS19 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
- $"{((pS20 >= atstumasNuoAIkiSusitikimo) && (pS20 <= atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______B_"),7}");
+Console.WriteLine($" _A{((pS1 >= atstumasNuoAIkiSusitikimo)&&(pS1 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V___|").Replace("False", "______|"),7}" +
+ $"{((pS2 >= atstumasNuoAIkiSusitikimo) && (pS2 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS3 >= atstumasNuoAIkiSusitikimo) && (pS3 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS4 >= atstumasNuoAIkiSusitikimo) && (pS4 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS5 >= atstumasNuoAIkiSusitikimo) && (pS5 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS6 >= atstumasNuoAIkiSusitikimo) && (pS6 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS7 >= atstumasNuoAIkiSusitikimo) && (pS7 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS8 >= atstumasNuoAIkiSusitikimo) && (pS8 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS9 >= atstumasNuoAIkiSusitikimo) && (pS9 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS10 >= atstumasNuoAIkiSusitikimo) && (pS10 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS11 >= atstumasNuoAIkiSusitikimo) && (pS11 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS12 >= atstumasNuoAIkiSusitikimo) && (pS12 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS13 >= atstumasNuoAIkiSusitikimo) && (pS13 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS14 >= atstumasNuoAIkiSusitikimo) && (pS14 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS15 >= atstumasNuoAIkiSusitikimo) && (pS15 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS16 >= atstumasNuoAIkiSusitikimo) && (pS16 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS17 >= atstumasNuoAIkiSusitikimo) && (pS17 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS18 >= atstumasNuoAIkiSusitikimo) && (pS18 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS19 >= atstumasNuoAIkiSusitikimo) && (pS19 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______|"),7}" +
+ $"{((pS20 >= atstumasNuoAIkiSusitikimo) && (pS20 < atstumasNuoAIkiSusitikimo)).ToString().Replace("True", "___V__|").Replace("False", "______B_"),7}");
 // susitikimo piesimas
 Console.WriteLine($" |" +
  $"{((pS1 <= atstumasNuoAIkiSusitikimo) ).ToString().Replace("True", "_______").Replace("False", "")}" +

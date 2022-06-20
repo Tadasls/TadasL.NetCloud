@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Matematines uzduotys", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P6 Loginiai operatoriai", "P6 Loginiai operatoriai\P6 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavarankiskasDarbasV02K", "SavarankiskasDarbasV02K\SavarankiskasDarbasV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarankiskasDarbasV02K", "SavarankiskasDarbasV02K\SavarankiskasDarbasV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P3 kintamieji uzduotys", "P3 kintamieji uzduotys\P3 kintamieji uzduotys.csproj", "{B4A5401B-0234-4441-BF7F-95AE4BD30E7C}"
 EndProject
@@ -30,6 +30,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 Consoles uzduotys", "P2 Consoles uzduotys\P2 Consoles uzduotys.csproj", "{92D9E3FF-5A3C-482A-8C83-0B872102CE9A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarankiskasDarbasV02T", "savarankiskasDarbasV02T\savarankiskasDarbasV02T.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P7 IF", "P7 IF\P7 IF.csproj", "{935AF535-513C-49FC-8BCF-7C2EDCF28703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{C791CD7B-EA60-483E-9648-0E834762CD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C791CD7B-EA60-483E-9648-0E834762CD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C791CD7B-EA60-483E-9648-0E834762CD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935AF535-513C-49FC-8BCF-7C2EDCF28703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935AF535-513C-49FC-8BCF-7C2EDCF28703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935AF535-513C-49FC-8BCF-7C2EDCF28703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935AF535-513C-49FC-8BCF-7C2EDCF28703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
