@@ -71,3 +71,10 @@ if (arGerasSkaicius)
     {
         Console.WriteLine("klaida");
     }
+
+// 4 uzdavinys
+
+
+
+
+
