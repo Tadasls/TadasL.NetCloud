@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, switch!");
 
-/*
+
 Console.WriteLine($"iveskite meniu skaiciu 1,2,3,4");
 int meniuChoise = Convert.ToInt32(Console.ReadLine());  // pavercia ivesti i skaicius
 
@@ -68,7 +68,7 @@ switch (meniuChoise)
         Console.WriteLine("vartotojas pasirinko 1 arba 2");
         break;
 }
-*/
+
 
 //----------su ifais uzdavinys------ 
 
