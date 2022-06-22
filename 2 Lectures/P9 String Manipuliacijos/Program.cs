@@ -89,9 +89,14 @@ Console.WriteLine(aa7);
 
 Console.WriteLine("-------------------");
 
-double skaicius = 6.5135151315;
+double skaicius = 66553.5135151315;
+string skaiciusSuApribotuSkaiciumPoKablelio = skaicius.ToString("0.00");
+Console.WriteLine(skaiciusSuApribotuSkaiciumPoKablelio + 8888888); // suapvalino po kablelio ir tiesiog prideda
+Console.WriteLine(double.Parse(skaiciusSuApribotuSkaiciumPoKablelio) + 8888888); // ssugrazina i skaiciu ir prideda
 
+//--------------------
 
+Console.WriteLine("-------------------");
 
 
 
