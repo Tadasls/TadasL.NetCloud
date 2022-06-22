@@ -51,7 +51,7 @@ else
 
 Console.WriteLine($"iveskite isdirbtas valandas");
 bool arGerasSkaicius = int.TryParse(Console.ReadLine(), out int input); // kazkokia kieta funkcija
-int imput;
+ // int input; //kitoje bugina
 
 if (arGerasSkaicius)
 
@@ -71,9 +71,6 @@ if (arGerasSkaicius)
     {
         Console.WriteLine("klaida");
     }
-
-// 4 uzdavinys
-
 
 
 
