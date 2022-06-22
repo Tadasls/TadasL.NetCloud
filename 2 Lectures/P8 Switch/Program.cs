@@ -72,7 +72,7 @@ switch (meniuChoise)
 
 //----------su ifais uzdavinys------ 
 
-/*
+
 
 Console.WriteLine("---if -- iveskite egzamino pazimy");
 var meniuHitas = Convert.ToInt32(Console.ReadLine()); 
@@ -156,10 +156,10 @@ Console.WriteLine(meniuHit switch
           
    });
 
-*/
+
 
 // ketvirtas uzdavinys
-/*
+
 Console.WriteLine("Iveskite kiek puodeliu nusipirko");
 var pardavimoOperacija = Convert.ToInt32(Console.ReadLine());
 
@@ -173,16 +173,16 @@ if (pardavimoOperacija >= 3)
 {
     Console.WriteLine("Pirkejui nepriklauso nemokama kava");
 }
-*/
-/*
+
+
 Console.WriteLine("iveskite perkamu kavos puodeliu kieki");
 var input = Convert.ToInt32(Console.ReadLine());
 var kava = input / 3;
 Console.WriteLine(input / 3 == 0 ? "nepriklauso" :$"priklauso {kava}");
-*/
+
 // uzdavinio variantas su salyginiu
 
-/*
+
 Console.WriteLine("Iveskite 4 sveikus skaicius");
 var skaicius1 = Convert.ToInt32(Console.ReadLine());
 var skaicius2 = Convert.ToInt32(Console.ReadLine());
@@ -194,9 +194,9 @@ Console.WriteLine(skaicius1 != 0 ? $"{skaicius2} -> {skaicius2 * -1}" : $" 0 => 
 Console.WriteLine(skaicius1 != 0 ? $"{skaicius3} -> {skaicius3 * -1}" : $" 0 => N/A");
 Console.WriteLine(skaicius1 != 0 ? $"{skaicius4} -> {skaicius4 * -1}" : $" 0 => N/A");
 
-*/
 
-/*
+
+
 if (skaicius1 > 0)
 {
     Console.WriteLine($"ivedus teigiama skaicius {skaicius1} -> gauname neigiama {skaicius1 * -1} ");
@@ -231,7 +231,7 @@ else if (skaicius4 < 0)
     Console.WriteLine($"ivedus neigiama skaiciu {skaicius4} -> gauname teigiama {skaicius4 * -1} ");
 }
 else { Console.WriteLine($"{skaicius4}  -> N/A"); }
-*/
+
 
 /* reikia patobulinti
     int nezinomasisSkaicius = 12;
@@ -285,10 +285,10 @@ else if (ivestasSkaicius6 > nezinomasisSkaicius)
 { Console.WriteLine($"{ivestasSkaicius6} yra didesnis"); }
 else if (ivestasSkaicius6 < nezinomasisSkaicius)
 { Console.WriteLine($"{ivestasSkaicius6} yra mazesnis"); }
-
 */
+
 //su if ir su swift
-/*
+
 
 Console.WriteLine("įvesti du skaičius ir matematinę operaciją ( +, -, * arba / )");
 var imput1 = Convert.ToDouble(Console.ReadLine());
@@ -332,11 +332,11 @@ switch (imput0)
         Console.WriteLine($" dalyba = {(double)imput1 / imput2}");
         break;
 }
-*/
+
 
 // uzduotis nauja
 
-/*
+
 Console.WriteLine("įvesti tris vardus ");
 var vardasA = Console.ReadLine();
 var vardasB = Console.ReadLine();
@@ -372,7 +372,7 @@ else if (amziusB < amziusA && amziusB < amziusC)
 else if (amziusC < amziusA && amziusC < amziusB)
 { Console.WriteLine("C jauniausias"); }
 
-*/
+
 
 
 // kita uzduotis
