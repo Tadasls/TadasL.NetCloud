@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P8 Switch", "P8 Switch\P8 S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P9 String Manipuliacijos", "P9 String Manipuliacijos\P9 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namu darbai V201", "Namu darbai V201\Namu darbai V201.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
