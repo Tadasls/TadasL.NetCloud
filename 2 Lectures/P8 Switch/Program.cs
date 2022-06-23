@@ -175,12 +175,15 @@ if (pardavimoOperacija >= 3)
 }
 
 
-Console.WriteLine("iveskite perkamu kavos puodeliu kieki");
-var input = Convert.ToInt32(Console.ReadLine());
-var kava = input / 3;
-Console.WriteLine(input / 3 == 0 ? "nepriklauso" :$"priklauso {kava}");
 
 // uzdavinio variantas su salyginiu
+Console.WriteLine("iveskite perkamu kavos puodeliu kieki");
+var suvedimas = Convert.ToInt32(Console.ReadLine());
+var kava = suvedimas / 3;
+Console.WriteLine(suvedimas / 3 == 0 ? "nepriklauso" :$"priklauso {kava}");
+
+
+// dar vienas uzdavinys
 
 
 Console.WriteLine("Iveskite 4 sveikus skaicius");
@@ -234,58 +237,102 @@ else { Console.WriteLine($"{skaicius4}  -> N/A"); }
 
 
 /* reikia patobulinti
-    int nezinomasisSkaicius = 12;
+ ŽAIDIMAS ATSPĖK SKAIČIŲ
+- ĮHARDKODINAMAS BETKOKS SKAIČIUS NUO 1 IKI 20
+- NAUDOTOJAS 6 KARTUS PRAŠOMAS ĮVESTI SKAIČIŲ NUO 1 IKI 20
+- JEI NAUDOTOJAS ĮVEDĖ SKAIČIŲ MAŽESNĮ UŽ 1 AR DIDENĮ UŽ 20 - IŠVEDAMA "NETEISINGAS SKAIČIUS"
+- JEI NAUDOTOJAS ĮVEDĖ TEISINGAI - IŠVEDAMAS SVEIKINIMAS "TEISINGAI" IR PROGRAMA STABDOMA
+- JEI NAUDOTOJAS ĮVEDĖ PER MAŽĄ SKAIČIŲ - IŠVEDAMAS PRANEŠIMAS "SKAIČIUS YRA DIDESNIS"
+- JEI NAUDOTOJAS ĮVEDĖ PER DIDELĮ SKAIČIŲ - IŠVEDAMAS PRANEŠIMAS "SKAIČIUS YRA MAŽESNIS"
+nutraukiant programos vykdymą Environment.Exit(0) ar pan. naudoti negalima. Naudoti if.
+ */
 
-Console.WriteLine("atspekite skaiciu nuo 0 iki 21 per 6 karts");
-var ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
+int nezinomasisSkaicius = 12;
+Console.WriteLine("atspekite skaiciu nuo 0 iki 20 per 6 karts");
+int ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
 
-if (ivestasSkaicius1 == nezinomasisSkaicius) 
-{Console.WriteLine($"Atspejote");}
+if (ivestasSkaicius1 < 0 && ivestasSkaicius1 > 20)
+    Console.WriteLine(" neteisingas skaicius");
+else if (ivestasSkaicius1 == nezinomasisSkaicius)
+    Console.WriteLine("Atspeta is pirmo karto ");
 else if (ivestasSkaicius1 > nezinomasisSkaicius)
-{Console.WriteLine($"{ivestasSkaicius1} yra didesnis");}
-else if (ivestasSkaicius1 < nezinomasisSkaicius) 
-{Console.WriteLine($"{ivestasSkaicius1} yra mazesnis");}
+    Console.WriteLine(" didesnis nei spejimas");
+else Console.WriteLine("mazesnis");
 
-    var ivestasSkaicius2 = Convert.ToInt32(Console.ReadLine());
-if (ivestasSkaicius2 == nezinomasisSkaicius)
-{ Console.WriteLine($"Atspejote"); }
-else if (ivestasSkaicius2 > nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius2} yra didesnis"); }
-else if (ivestasSkaicius2 < nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius2} yra mazesnis"); }
+if (ivestasSkaicius1 != nezinomasisSkaicius)
+{
+   Console.WriteLine("bandykite sekanty spejima");
+     ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
 
-var ivestasSkaicius3 = Convert.ToInt32(Console.ReadLine());
-if (ivestasSkaicius3 == nezinomasisSkaicius)
-{ Console.WriteLine($"Atspejote"); }
-else if (ivestasSkaicius3 > nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius3} yra didesnis"); }
-else if (ivestasSkaicius3 < nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius3} yra mazesnis"); }
+    if (ivestasSkaicius1 < 0 || ivestasSkaicius1 > 20)
+        Console.WriteLine("netinkamas skaicius");
+    else if (ivestasSkaicius1 == nezinomasisSkaicius)
+        Console.WriteLine(" atspeta is 2 karto");
+    else if (ivestasSkaicius1 < nezinomasisSkaicius)
+        Console.WriteLine(" skaicius mazesnis jei spejimas");
+    else Console.WriteLine("skaicius didesnis nei spejimas");
 
-var ivestasSkaicius4 = Convert.ToInt32(Console.ReadLine());
-if (ivestasSkaicius4 == nezinomasisSkaicius)
-{ Console.WriteLine($"Atspejote"); }
-else if (ivestasSkaicius4 > nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius4} yra didesnis"); }
-else if (ivestasSkaicius4 < nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius4} yra mazesnis"); }
+    if(ivestasSkaicius1 != nezinomasisSkaicius)
+    {
+        Console.WriteLine("bandykite sekanty spejima");
+        ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
+        if (ivestasSkaicius1 < 0 || ivestasSkaicius1 > 20)
+            Console.WriteLine("netinkamas skaicius");
+        else if (ivestasSkaicius1 == nezinomasisSkaicius)
+            Console.WriteLine(" atspeta is trecio karto");
+        else if (ivestasSkaicius1 < nezinomasisSkaicius)
+            Console.WriteLine(" skaicius mazesnis jei spejimas");
+        else Console.WriteLine("skaicius didesnis nei spejimas");
 
-var ivestasSkaicius5 = Convert.ToInt32(Console.ReadLine());
-if (ivestasSkaicius5 == nezinomasisSkaicius)
-{ Console.WriteLine($"Atspejote"); }
-else if (ivestasSkaicius5 > nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius5} yra didesnis"); }
-else if (ivestasSkaicius5 < nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius5} yra mazesnis"); }
+        if(ivestasSkaicius1 != nezinomasisSkaicius)
+        {
+            Console.WriteLine("bandykite sekanty spejima");
+            ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
+            if (ivestasSkaicius1 < 0 || ivestasSkaicius1 > 20)
+                Console.WriteLine("netinkamas skaicius");
+            else if (ivestasSkaicius1 == nezinomasisSkaicius)
+                Console.WriteLine(" atspeta is ketvirto karto");
+            else if (ivestasSkaicius1 < nezinomasisSkaicius)
+                Console.WriteLine(" skaicius mazesnis jei spejimas");
+            else Console.WriteLine("skaicius didesnis nei spejimas");
 
-var ivestasSkaicius6 = Convert.ToInt32(Console.ReadLine());
-if (ivestasSkaicius6 == nezinomasisSkaicius)
-{ Console.WriteLine($"Atspejote"); }
-else if (ivestasSkaicius6 > nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius6} yra didesnis"); }
-else if (ivestasSkaicius6 < nezinomasisSkaicius)
-{ Console.WriteLine($"{ivestasSkaicius6} yra mazesnis"); }
-*/
+            if(ivestasSkaicius1 != nezinomasisSkaicius)
+            {
+                Console.WriteLine("bandykite sekanty spejima");
+                ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
+                if (ivestasSkaicius1 < 0 || ivestasSkaicius1 > 20)
+                    Console.WriteLine("netinkamas skaicius");
+                else if (ivestasSkaicius1 == nezinomasisSkaicius)
+                    Console.WriteLine(" atspeta is penkto karto");
+                else if (ivestasSkaicius1 < nezinomasisSkaicius)
+                    Console.WriteLine(" skaicius mazesnis jei spejimas");
+                else Console.WriteLine("skaicius didesnis nei spejimas");
+
+                if(ivestasSkaicius1 != nezinomasisSkaicius)
+                {
+                    Console.WriteLine("bandykite sekanty spejima");
+                    ivestasSkaicius1 = Convert.ToInt32(Console.ReadLine());
+                    if (ivestasSkaicius1 < 0 || ivestasSkaicius1 > 20)
+                        Console.WriteLine("netinkamas skaicius");
+                    else if (ivestasSkaicius1 == nezinomasisSkaicius)
+                        Console.WriteLine(" atspeta is 6 karto");
+                    else if (ivestasSkaicius1 < nezinomasisSkaicius)
+                        Console.WriteLine(" skaicius mazesnis jei spejimas");
+                    else Console.WriteLine("skaicius didesnis nei spejimas");
+
+                    Console.WriteLine("-----------game Over------------ ");
+
+
+                }
+
+            }
+        }
+    }
+}
+ 
+
+
+
 
 //su if ir su swift
 
@@ -408,7 +455,5 @@ else if (metai4.Month == 12 && metai4.Day == 24)
     Console.WriteLine(" got some cokies");
 else
     Console.WriteLine("no cokies wait");
-
-
 
 

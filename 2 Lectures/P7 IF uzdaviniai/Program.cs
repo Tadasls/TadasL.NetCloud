@@ -48,24 +48,26 @@ else
 
 // 3 uzduotis 
 
-
+int ivestis3; //kitoje bugina
 Console.WriteLine($"iveskite isdirbtas valandas");
-bool arGerasSkaicius = int.TryParse(Console.ReadLine(), out int input); // kazkokia kieta funkcija
- // int input; //kitoje bugina
+bool arGerasSkaicius = int.TryParse(Console.ReadLine(), out  ivestis3); // kazkokia kieta funkcija
+
+
 
 if (arGerasSkaicius)
+  
 
-    if (input < 160)
+    if (ivestis3 < 160)
     {
-        Console.WriteLine($"dar reikia isdirbti  {160 - input} val");
+        Console.WriteLine($"dar reikia isdirbti  {160 - ivestis3} val");
     }
-    else if (input == 160)
+    else if (ivestis3 == 160)
     {
         Console.WriteLine("isdirbtas Etapas");
     }
-    else if (input > 160)
+    else if (ivestis3 > 160)
     {
-        Console.WriteLine($"virsvalandziu  {input - 160} val");
+        Console.WriteLine($"virsvalandziu  {ivestis3 - 160} val");
     }
     else
     {
