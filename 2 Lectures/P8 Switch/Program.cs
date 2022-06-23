@@ -236,7 +236,7 @@ else if (skaicius4 < 0)
 else { Console.WriteLine($"{skaicius4}  -> N/A"); }
 
 
-/* reikia patobulinti
+/* 
  ŽAIDIMAS ATSPĖK SKAIČIŲ
 - ĮHARDKODINAMAS BETKOKS SKAIČIUS NUO 1 IKI 20
 - NAUDOTOJAS 6 KARTUS PRAŠOMAS ĮVESTI SKAIČIŲ NUO 1 IKI 20
