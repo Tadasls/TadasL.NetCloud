@@ -60,13 +60,84 @@
             IsveskSkaiciuIrTekstaEkranan(1, "kazkoks tekstas");
             Console.WriteLine("---------------------------");
 
+            int patikrinimas = SkaiciausPatikrinimas(20, 50, 100);
+            Console.WriteLine($"patikrinimas {patikrinimas}" );
+
+
+            //paduodami pavadinti parametrai
+            int patikrinimas1 = SkaiciausPatikrinimas(max:100, min:50, skaicius : 51); //kad kodas butu skaitomesnis
+            Console.WriteLine($"patikrinimas {patikrinimas1}");
+            //parametrus reikia paduoti is eiles 
+            Console.WriteLine("---------------------------");
+
+            Console.WriteLine("Vidurkis metotas" + Vidurkis(2,3));
+            Console.WriteLine("Vidurkis metotas" + Vidurkis(2, 3, 8));
+            Console.WriteLine("Vidurkis metotas" + Vidurkis(2, 3, 325, 355, 1551));
+
+            Console.WriteLine("---------------------------");
+
+            GautiSkaiciu(out int gautasSkaicius);
+            Console.WriteLine($"gautas skaicius {gautasSkaicius}");
+            
+            Console.WriteLine("---------------------------");
+            int rsk = 2;
+            Console.WriteLine($"rsk yra lygu {rsk}");  //pasieme is cia skaiciu
+
+            ReferenceSkaicius(ref rsk); // reikesmes perdavimas per reference keicia kvieciamajame metote
+            Console.WriteLine($"rsk yra lygu {rsk}"); // pasieme su referencu skaiciu is metodo
+
+            Console.WriteLine("---------------------------");
+
+            //lokalios funkcijos
+            int Add(int a, int b)
+            {
+                return a + b;   
+            }
+            Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
+
+
+
         }
 
 
+        public static void ReferenceSkaicius(ref int skaicius)
+        {
+            skaicius = 900;
+        }
 
 
+        public static void GautiSkaiciu(out int skaicius)
+        {
+            skaicius = 2;   
+        }
 
 
+        public static double Vidurkis(params int[] skaiciai)
+        {
+            double total = 0;
+            foreach (var skaicius in skaiciai)
+            {
+                total += skaicius;
+            }
+            return total / skaiciai.Length;
+        }
+
+        
+        
+        public static int SkaiciausPatikrinimas(int skaicius, int min, int max)
+        {
+            if (skaicius < min)
+            {
+                return min;
+
+            }
+            if (skaicius > max)
+            {
+                return max;
+            }
+            return skaicius;
+        }
+           
 
         public static void IsveskTekstaEkranan(string tekstas = "tesktas neivestas") //default parametras priskiriamas
         {
