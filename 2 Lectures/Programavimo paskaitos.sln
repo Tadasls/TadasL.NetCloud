@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "p2 Stringai kintamieji", "p2 sTRINGAI kintamieji\p2 Stringai kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 Stringai kintamieji", "p2 sTRINGAI kintamieji\P2 Stringai kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "namu darbai V001", "namu darbai V001\namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
 EndProject
@@ -37,9 +37,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P7 IF uzdaviniai", "P7 IF u
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P8 Switch", "P8 Switch\P8 Switch.csproj", "{4BB2B723-01C3-491F-B4FD-9A08C44EC2E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P9 String Manipuliacijos", "P9 String Manipuliacijos\P9 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P9 String Manipuliacijos", "P9 String Manipuliacijos\P9 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namu darbai V201", "Namu darbai V201\Namu darbai V201.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V201", "Namu darbai V201\Namu darbai V201.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P10 Metodai", "P10 Metodai\P10 Metodai.csproj", "{2DC9FF00-36AD-4ADD-824B-6088BC49A606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03C791F4-0FE0-4737-9225-291A81AC85E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
