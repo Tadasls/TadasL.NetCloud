@@ -23,14 +23,12 @@ else {
         };
 
 // is kodo paimame metus menesy diena
-var userBirthYear = userCode.Substring(1, 2);
-var userBirthMonth = userCode.Substring(3, 2);
-var userBirthDay = userCode.Substring(5, 2);
+var birthYear = userCode.Substring(1, 2);
+var birthMonth = userCode.Substring(3, 2);
+var birthDay = userCode.Substring(5, 2);
 
-//  Console.WriteLine($"kodo dalis metai {userBirthYear} menuo {userBirthMonth} diena {userBirthDay}  ");
-
-//tikrina asmens kodo ilgi
-bool arGerasUserCode = userCode.Length == 11;
+//  Console.WriteLine($"kodo dalis metai {birthYear} menuo {birthMonth} diena {birthDay}  ");
+bool arGerasUserCode = userCode.Length == 11;  //tikrina asmens kodo ilgi
 // Console.WriteLine($" patikrina koda 11 {arGerasUserCode}");
 
 //extra uzduotis tikriname asmens koda
@@ -69,33 +67,16 @@ if (sumaKodo % 11 != 10)
 }
 else
 {
-    var temp = (vA * 3 + vB * 4 + vC * 5 + vD * 6 + vE * 7 + vF * 8 + vG * 9 + vH * 1 + vI * 2 + vJ * 3) % 11;
-    check1 = (temp != 10) ? temp : 0;
+    var check2 = (vA * 3 + vB * 4 + vC * 5 + vD * 6 + vE * 7 + vF * 8 + vG * 9 + vH * 1 + vI * 2 + vJ * 3) % 11;
+    check1 = (check2 != 10) ? check2 : 0;
 }
 
-Console.WriteLine($" kontrolinis skaicius yra {check1}");
+Console.WriteLine($" asm kodo {userCode} kontrolinis skaicius yra {check1}");
 
-
-/*   jei prireiktu pilnos datos.. 
-string pilnaData;
-if (userCode[0] == 1 || userCode[0] == 2)
-{
-    pilnaData = "18" + userBirthDate;
-}
-else if (userCode[0] == 3 || userCode[0] == 4)
-{
-    pilnaData = "19" + userBirthDate;
-}
-else if (userCode[0] == 5 || userCode[0] == 6)
-{
-    pilnaData = "20" + userBirthDate;
-}
-else Console.WriteLine($"pilna data nesigavo padaryti is {userCode[0]}");
-*/
 
 
 // pirmas patikrinimas ivesta amziu lygina su gimimo data
-        //is Gimimo metu padaromas amzius
+//is Gimimo metu padaromas amzius
 
 DateTime gimimoMetai = userBirthDate;
 DateTime now = DateTime.Today;
@@ -106,17 +87,17 @@ if (now.Month < gimimoMetai.Month || (now.Month == gimimoMetai.Month
 
 if (Convert.ToInt32(userAge) == age)
 {
-    Console.WriteLine(" 1 amžius patikimas");
+    Console.WriteLine("1 amžius patikimas");
     status = " 1 amžius patikimas";
 }
 else
 {
-    Console.WriteLine(" 2 amžius pameluotas");
+    Console.WriteLine("2 amžius pameluotas");
     status = " 2 amžius pameluotas";
 }
 
 //antras patikrinimas ivesta gimimo data lygina su asm kodo metais
-if (userBirthDate.Year.ToString().Substring(2, 2) == userBirthYear)
+if (userBirthDate.Year.ToString().Substring(2, 2) == birthYear)
 {
     Console.WriteLine("3 amžius patikimas");
     status = " 3 amžius patikimas";
@@ -128,28 +109,30 @@ else
 }
 // trecias patikrinimas visu triju
 
-if (userAge == userBirthDate.Year.ToString().Substring(2, 2) && userBirthYear != userBirthDate.Year.ToString().Substring(2, 2))
-{
-    Console.WriteLine("6 amžius nepatikimas");
-    status = " 6 amžius nepatikimas";
-}
-else if (userAge != userBirthDate.Year.ToString().Substring(2, 2) && userBirthYear == userBirthDate.Year.ToString().Substring(2, 2))
-{
-    Console.WriteLine("7 amžius pameluotas");
-    status = " 7 amžius pameluotas";
-}
-else if (userAge == userBirthDate.Year.ToString().Substring(2, 2) && userBirthYear == userBirthDate.Year.ToString().Substring(2, 2))
-{
-    Console.WriteLine("5 amžius tikras");
+
+
+
+    Console.WriteLine($" user Age {userAge} ir" +
+    $"userBirthDate {userBirthDate.Year.ToString().Substring(2, 2)} ir " +
+    $" userBirth Year {birthYear} ir " +
+    $" age yra {age }");
+
+
+
+if (userAge == userBirthDate.Year.ToString().Substring(2, 2) && birthYear == userBirthDate.Year.ToString().Substring(2, 2))
     status = " 5 amžius tikras";
-}
+if (userAge == userBirthDate.Year.ToString().Substring(2, 2) && birthYear == userBirthDate.Year.ToString().Substring(2, 2))
+    status = " 6 amžius nepatikimas";
+if (userAge == userBirthDate.Year.ToString().Substring(2, 2) && birthYear == userBirthDate.Year.ToString().Substring(2, 2))
+    status = " 7 amžius pameluotas";
+else  Console.WriteLine("Error"); 
+    
+  
+
 
 
 if (userBirthDate == null && userAge == null)
-{
-    Console.WriteLine("8 patikimumui trūksta duomenų");
-    status = " 8 patikimumui trūksta duomenų";
-}
+{ status = " 8 patikimumui trūksta duomenų";}
 
 
 Console.WriteLine($" ATASKAITA APIE ASMENĮ ");
@@ -165,4 +148,4 @@ Console.WriteLine($" Amzius - {userAge} ");
 Console.WriteLine();
 Console.WriteLine($" Gimimo Data - {userBirthDate.ToString("yyyy-MM-dd")} ");
 Console.WriteLine();
-Console.WriteLine($" Amziaus patikimumas - \"{status}");
+Console.WriteLine($" Amziaus patikimumas - \"{status} \" ");

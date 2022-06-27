@@ -95,9 +95,111 @@
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
 
+            /*
+
+            // uzdaviniai
+
+            //UserioVardoIvedimas();
+            //AntrasMetodas();
+
+           
+            //dar vienas uzdavinys       
+                       
+            Console.WriteLine("Iveskite 1 skaiciu  ");
+            string ss1 = Console.ReadLine();
+            Console.WriteLine("Iveskite 2 skaiciu  ");
+            string ss2 = Console.ReadLine();
+
+            bool arSkai1 = int.TryParse(ss1, out int intSs1);
+            bool arSkai2 = int.TryParse(ss2, out int intSs2);
+
+            if (arSkai1 && arSkai2)
+            {
+                SkaiciuSuma(intSs1, intSs2);
+            }
+
+            
+            //kitas uzdavinys
+
+           IvedimoMedotas();
+*/
+
+
+            /*
+            -Metodas į ekraną išveda teksto ilgį be tarpų įvesto teksto pradžioje ir gale
+            Pvz:
+            > Iveskite teksta:
+                        _ ' as mokausi '
+                        > Teksto ilgis yra: 10
+            */
+
+
+            IlgioSkaiciavimoMetodas();
+
+        }
+
+        public static void IlgioSkaiciavimoMetodas()
+        {
+            Console.WriteLine("iveskite bet koky teksta  ");
+            string kazkoksIvestasTekstas = Console.ReadLine();
+            Console.WriteLine($"  teksto ilgis yra {kazkoksIvestasTekstas.Length}");
+            // reikia surasti pradzia ir pabaiga ir panaikinti tarpus
 
 
         }
+
+
+
+
+        public static void IvedimoMedotas()
+        {
+            Console.WriteLine("iveskite bet koky teksta su tarpais ");
+            string kazkoksTekstas = Console.ReadLine();
+            Console.WriteLine($"Tekste tarpu yra {TarpuMetodas(kazkoksTekstas)} ");
+        }
+    
+
+        public static int TarpuMetodas(string kazkoksTekstas)
+        {
+           int visasTekstoIlgis = kazkoksTekstas.Length;
+           kazkoksTekstas = kazkoksTekstas.Replace(" ", "");
+           return visasTekstoIlgis - kazkoksTekstas.Length;
+        }
+
+
+        public static void SkaiciuSuma(int intSs1, int intSs2)
+        {
+            Console.WriteLine($" {intSs1} + {intSs2}  = {intSs1 + intSs2}");
+        }
+
+       
+
+        public static string UserioVardoIvedimas()
+        {
+            Console.WriteLine($"Iveskite savo Varda: ");
+            var vardas = Console.ReadLine();
+            Console.WriteLine($"Labas, {vardas}");
+            return vardas;
+        }
+
+        public static void AntrasMetodas()
+        {
+        Console.WriteLine($"Labas tai kas ivesta, {UserioVardoIvedimas()}");
+        Console.WriteLine($"Linkiu Jums {UserioVardoIvedimas()} geros dienos");
+        }
+
+
+
+        public static void Pasisveikinimas()
+        {
+            Console.WriteLine("Sveiki visi");
+        }
+
+        public static void Palinkejimas()
+        {
+            Console.WriteLine("Linkiu jums geros dienos");
+        }
+
 
 
         public static void ReferenceSkaicius(ref int skaicius)
@@ -138,6 +240,9 @@
             return skaicius;
         }
            
+
+
+
 
         public static void IsveskTekstaEkranan(string tekstas = "tesktas neivestas") //default parametras priskiriamas
         {
