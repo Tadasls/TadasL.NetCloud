@@ -151,7 +151,6 @@ Console.WriteLine($" funkcija = {funkcija2}");
 
 Console.WriteLine("iveskite 5 skaicius");
 var vartotojoSkaicius = Convert.ToDouble(Console.ReadLine()
-
     .Replace("2", "0")
     .Replace("3", "0")
     .Replace("4", "0")

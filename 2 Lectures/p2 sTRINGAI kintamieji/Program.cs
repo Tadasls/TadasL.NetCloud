@@ -21,6 +21,11 @@
             //konkatinacija
             string kompozicija = string.Format("{0}", stringKintamasis);
             string interpoliacija = $"{stringKintamasis}";
+            Console.WriteLine(konkatinacija);
+            Console.WriteLine(kompozicija);
+            Console.WriteLine(interpoliacija);
+
+
 
             kintamasis = "tekstas belenkoks";
             Console.WriteLine(kintamasis);

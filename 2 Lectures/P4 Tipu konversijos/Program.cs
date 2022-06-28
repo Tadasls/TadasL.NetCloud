@@ -102,7 +102,7 @@
             Console.WriteLine($"  skaiciusIntParsintas  + 1 = {skaiciusString + 1} ");
             Console.WriteLine($"  skaiciusIntParsintas  + 1 = {skaiciusString + 1} ");
 
-          // int skaiciusParsintas = int.Parse(skaiciusDidelisString);
+           //int skaiciusParsintas = int.Parse(skaiciusDidelisString); //luzta per didelis
 
             // int tekstasIntParsintas = int.Parse(tekstas);   // nulusz
 

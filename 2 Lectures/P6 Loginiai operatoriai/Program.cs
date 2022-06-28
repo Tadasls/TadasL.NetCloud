@@ -80,7 +80,7 @@ Console.WriteLine(s);
 Console.WriteLine($"Iveskite 2 skaicius  ");
 var a1 = Convert.ToInt32(Console.ReadLine());
 var b1 = Convert.ToInt32(Console.ReadLine());
-bool ats = a == b;
+bool ats = a1 == b1;
 Console.WriteLine($" atsakymas ar A lygus B = {ats} ");
 
 //uzdavinys2

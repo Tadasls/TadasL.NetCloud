@@ -3,45 +3,45 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 Stringai kintamieji", "p2 sTRINGAI kintamieji\P2 Stringai kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Stringai kintamieji", "p2 sTRINGAI kintamieji\P002 Stringai kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "namu darbai V001", "namu darbai V001\namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V001", "namu darbai V001\Namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Tipu konversijos", "P4 Tipu konversijos\P4 Tipu konversijos.csproj", "{8B1E0C8A-DA0E-450E-B8F1-E575DA842538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P004 Tipu konversijos", "P4 Tipu konversijos\P004 Tipu konversijos.csproj", "{8B1E0C8A-DA0E-450E-B8F1-E575DA842538}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Matematikos operatoriai", "P4 Matematikos operatoriai\P4 Matematikos operatoriai.csproj", "{35C70C34-C377-41AB-9694-322917DD99F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P004 Matematikos operatoriai", "P4 Matematikos operatoriai\P004 Matematikos operatoriai.csproj", "{35C70C34-C377-41AB-9694-322917DD99F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P5 Operatoriai", "P5 operatoriai\P5 Operatoriai.csproj", "{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P005 Operatoriai", "P5 operatoriai\P005 Operatoriai.csproj", "{1BDC9721-A2E5-444C-9A57-E748CF04CC7D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P4 Matematines uzduotys", "P4 matematines uzduotys\P4 Matematines uzduotys.csproj", "{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P004 Matematines uzduotys", "P4 matematines uzduotys\P004 Matematines uzduotys.csproj", "{E03DD2CC-091A-4187-B5E5-33BEFA81D4CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P6 Loginiai operatoriai", "P6 Loginiai operatoriai\P6 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P006 Loginiai operatoriai", "P6 Loginiai operatoriai\P006 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarankiskasDarbasV02K", "SavarankiskasDarbasV02K\SavarankiskasDarbasV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarDrbV02K", "SavarankiskasDarbasV02K\SavarDrbV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P3 kintamieji uzduotys", "P3 kintamieji uzduotys\P3 kintamieji uzduotys.csproj", "{B4A5401B-0234-4441-BF7F-95AE4BD30E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P003 kintamieji uzduotys", "P3 kintamieji uzduotys\P003 kintamieji uzduotys.csproj", "{B4A5401B-0234-4441-BF7F-95AE4BD30E7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P3 kintamieji", "P3 kintamieji\P3 kintamieji.csproj", "{7704702B-3EBB-47B0-AEA6-3E163EEC7A1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P003 kintamieji", "P3 kintamieji\P003 kintamieji.csproj", "{7704702B-3EBB-47B0-AEA6-3E163EEC7A1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 Komentavimas", "P2 komentavimas\P2 Komentavimas.csproj", "{F0221150-770D-41D5-B191-FEBB00B755E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Komentavimas", "P2 komentavimas\P002 Komentavimas.csproj", "{F0221150-770D-41D5-B191-FEBB00B755E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P1 Ivadas", "P1 ivadas\P1 Ivadas.csproj", "{3E3424D5-0EA1-44FB-8407-54E83EE6E576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P001 Ivadas", "P1 ivadas\P001 Ivadas.csproj", "{3E3424D5-0EA1-44FB-8407-54E83EE6E576}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2 Consoles uzduotys", "P2 Consoles uzduotys\P2 Consoles uzduotys.csproj", "{92D9E3FF-5A3C-482A-8C83-0B872102CE9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Consoles uzduotys", "P2 Consoles uzduotys\P002 Consoles uzduotys.csproj", "{92D9E3FF-5A3C-482A-8C83-0B872102CE9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarankiskasDarbasV02T", "savarankiskasDarbasV02T\savarankiskasDarbasV02T.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarDrbV02T", "savarankiskasDarbasV02T\savarDrbV02T.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P7 IF", "P7 IF\P7 IF.csproj", "{935AF535-513C-49FC-8BCF-7C2EDCF28703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P007 IF", "P7 IF\P007 IF.csproj", "{935AF535-513C-49FC-8BCF-7C2EDCF28703}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P7 IF uzdaviniai", "P7 IF uzdaviniai\P7 IF uzdaviniai.csproj", "{8C4C851E-CE1F-49EC-AE3D-475E28B594A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P007 IF uzdaviniai", "P7 IF uzdaviniai\P007 IF uzdaviniai.csproj", "{8C4C851E-CE1F-49EC-AE3D-475E28B594A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P8 Switch", "P8 Switch\P8 Switch.csproj", "{4BB2B723-01C3-491F-B4FD-9A08C44EC2E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P008 Switch", "P8 Switch\P008 Switch.csproj", "{4BB2B723-01C3-491F-B4FD-9A08C44EC2E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P9 String Manipuliacijos", "P9 String Manipuliacijos\P9 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P009 String Manipuliacijos", "P9 String Manipuliacijos\P009 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V201", "Namu darbai V201\Namu darbai V201.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P10 Metodai", "P10 Metodai\P10 Metodai.csproj", "{2DC9FF00-36AD-4ADD-824B-6088BC49A606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P010 Metodai", "P10 Metodai\P010 Metodai.csproj", "{2DC9FF00-36AD-4ADD-824B-6088BC49A606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
