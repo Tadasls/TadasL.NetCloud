@@ -66,8 +66,8 @@
                                                
                 var kursuPradzia = new DateTime(2022, 06, 09);
                 var kursuPabaiga = new DateTime(2022, 12, 31);
-                TimeSpan KursuTrkme = kursuPabaiga - siandienosData;
-                Console.WriteLine($"Kursai prasideda {kursuPradzia.ToShortDateString()} jie trunka {KursuTrkme.Days} ir baigiasi {kursuPabaiga.ToShortDateString()}");
+                TimeSpan KursuTrukme = kursuPabaiga - siandienosData;
+                Console.WriteLine($"Kursai prasideda {kursuPradzia.ToShortDateString()} jie trunka {KursuTrukme.Days} ir baigiasi {kursuPabaiga.ToShortDateString()}");
 
 
                 /*

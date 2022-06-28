@@ -25,7 +25,7 @@
             uint tikTeigiamasSkaicius = 2; //4.294.967.295
             //tikTeigiamasSkaicius = -5; taip negalima
 
-            int? skaicius5 = null;
+            int? skaicius5 = null;  // padaro kad leistu null reiksme
             Console.WriteLine(skaicius5 + "nerodo skaiciaus!!!");
             skaicius5 = 5;
             Console.WriteLine(skaicius5 + " ivedus jau rodo!!");

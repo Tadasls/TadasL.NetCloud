@@ -1,16 +1,25 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Tado Antrieji Namu darbai  - Registracijos Forma!");
 
-var status = "viskas ok"; // isivedu kintamaji
+var status = ""; // isivedu kintamaji
+DateTime userBirthDate = DateTime.Today;
+bool hasBirt = false;
+
 
 Console.WriteLine("Įveskite Vardą ir Pavardę");
 var userName = Console.ReadLine(); //ivedam varda ir pavarde kartu
 Console.WriteLine("Įveskite asmens Kodą 11 simbolių");
 var userCode = Console.ReadLine(); //ivedamas asmens kodas
 Console.WriteLine("Įveskite amžių metais  ");
-var userAge = Console.ReadLine();   //ivedamas amzius
+string userAge = Console.ReadLine();   //ivedamas amzius
 Console.WriteLine("Įveskite Gimimo data");
-var userBirthDate = DateTime.Parse(Console.ReadLine()); //ivedama gimimo data
+var ivedamaData = Console.ReadLine(); //ivedama gimimo data
+if (ivedamaData != "")
+{
+ userBirthDate = DateTime.Parse(ivedamaData); //ivedama gimimo data
+    hasBirt = true;
+}
+   bool hasAge = (userAge.Length > 0)? true:false;
 
 
 // tikriname ar vyras ar moteris ir paraso
@@ -21,7 +30,6 @@ if (firstUserCodeChar == "1" || firstUserCodeChar == "3" || firstUserCodeChar ==
 else {
     lytis = "Moteris";
         };
-
 
 //extra uzduotis tikriname asmens koda
 // pasidaliname ivesta asmens koda i tekstinis skaitmenis 
@@ -80,49 +88,47 @@ Console.WriteLine("Kodas per trumpas");
 } 
  
 
-
 // pirmas patikrinimas ivesta amziu lygina su gimimo data
 // is kodo paimame metus menesy diena
 var birthYear = userCode.Substring(1, 2);
 var birthMonth = userCode.Substring(3, 2);
 var birthDay = userCode.Substring(5, 2);
-
-//is Gimimo metu padaromas amzius
-
-DateTime gimimoMetai = userBirthDate;
 DateTime now = DateTime.Today;
-int age = now.Year - gimimoMetai.Year;
-if (now.Month < gimimoMetai.Month || (now.Month == gimimoMetai.Month
-&& now.Day < gimimoMetai.Day))
-    age--;
+//is Gimimo metu padaromas amzius
+if (hasBirt&&hasAge) 
+{
+    DateTime gimimoMetai = userBirthDate;
+    
+    int age = now.Year - gimimoMetai.Year;
+    if (now.Month < gimimoMetai.Month || (now.Month == gimimoMetai.Month
+    && now.Day < gimimoMetai.Day))
+        age--;
 
-if (Convert.ToInt32(userAge) == age)
-    status = " 1 amžius patikimas";
-else
-    status = " 2 amžius pameluotas";
-
-
+    if (Convert.ToInt32(userAge) == age)
+        status = " amžius patikimas";
+    else
+        status = " amžius pameluotas";
 //antras patikrinimas ivesta gimimo data lygina su asm kodo metais
-if (userBirthDate.Year.ToString().Substring(2, 2) == birthYear)
-   status = " 3 amžius patikimas";
-else
-   status = " 4 amžius pameluotas";
-
+    if (userBirthDate.Year.ToString().Substring(2, 2) == birthYear)
+        status = " amžius patikimas";
+    else
+        status = " amžius pameluotas";
 // trecias patikrinimas visu triju
 
-var ivestasAmzius = userAge.Substring(0, 2);
-int skAmzius = (now.Year - Convert.ToInt32(userAge) - 1);
-var vartAmzius = Convert.ToString(skAmzius);
+    var ivestasAmzius = userAge.Substring(0, 2);
+    int skAmzius = (now.Year - Convert.ToInt32(userAge) - 1);
+    var vartAmzius = Convert.ToString(skAmzius);
 
-if (vartAmzius == userBirthDate.Year.ToString() && birthYear == userBirthDate.Year.ToString().Substring(2, 2))
-    status = " 5 amžius tikras";
-if (vartAmzius == userBirthDate.Year.ToString() && birthYear != userBirthDate.Year.ToString().Substring(2, 2))
-    status = " 6 amžius nepatikimas";
-if (vartAmzius != userBirthDate.Year.ToString() && birthYear == userBirthDate.Year.ToString().Substring(2, 2))
-    status = " 7 amžius pameluotas";
+    if ((vartAmzius == userBirthDate.Year.ToString() && birthYear == userBirthDate.Year.ToString().Substring(2, 2) && (hasBirt && hasAge)))
+        status = " amžius tikras";
+    if ((vartAmzius == userBirthDate.Year.ToString() && birthYear != userBirthDate.Year.ToString().Substring(2, 2) && (hasBirt && hasAge))) 
+        status = " amžius nepatikimas";
+    if ((vartAmzius != userBirthDate.Year.ToString() && birthYear == userBirthDate.Year.ToString().Substring(2, 2) && (hasBirt && hasAge))) 
+        status = " amžius pameluotas";
+}
 
-if (userBirthDate == null && userAge == null)
-{ status = " 8 patikimumui trūksta duomenų";}
+if (!hasBirt && !hasAge)
+{ status = " patikimumui trūksta duomenų";}
 
 // lenteles piesinys
 
