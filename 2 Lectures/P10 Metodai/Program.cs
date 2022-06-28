@@ -210,12 +210,10 @@
               _ as mokausi programuoti
               > Zodziu kiekis yra: 3
             */
-         /*
+         
             //uzdavinys nr 6
             Console.WriteLine("6 Uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($"zodziu skaicius yra {KiekYraZodziu(Console.ReadLine())}");
-
-
 
             /*---------------------------------------------------
     Parašykite programą kurioje vienas metodas. 
@@ -227,7 +225,7 @@
     _ ' as mokausi      '
     > Gale yra tarpų: 6
     */
-            /*
+            
             // uzdavinys nr 7
            
             Console.WriteLine("7 uzd įvesti betkokį tekstą su tarpais");
@@ -245,7 +243,7 @@
      > Pradžioje yra tarpų: 1
      */
 
-            /*
+            
             // uzdavinys nr 8
 
             Console.WriteLine("8 uzd įvesti betkokį tekstą su tarpais");
@@ -264,7 +262,7 @@
    > Pradžioje yra tarpų: 1
    > Gale yra tarpų: 6
    */
-            /*
+            
             // uzdavinys nr 9 
             Console.WriteLine("9 uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($" kiek tarpu priekyje {KiekYraTarpuPriekyjeIrGale(Console.ReadLine(), out int tarpaiGale)} ");  // grazina reiksme is metodo
