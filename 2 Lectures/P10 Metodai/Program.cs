@@ -15,7 +15,7 @@
             Console.WriteLine("Hello, Methods!");
             // metodai neturetu buti metode, o turi buti klaseje
 
-            
+            /*
             
             Console.WriteLine("Iveskite teksta");
             Tekstas = Console.ReadLine();
@@ -110,21 +110,30 @@
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
 
-            
-            
-            
-            
 
+
+
+
+
+            
+            /*
+             Parašykite programą kurioje yra 2 metodai. 
+             - Pirmas metodas į konsolę išveda "Sveiki visi"
+             - Antrtas metodas į konsolę išveda "Linkiu jums geros dienos"
+             */
             // uzdavinys nr 1
 
+            /*
             UserioVardoIvedimas();
+            AntrasMetodas();
+
 
             // uzdavinys nr 2
 
-            AntrasMetodas();
-
-            //uzdavinys nr 3
             
+
+            
+
             /*
               Parašykite programą kurioje yra vienas metodas priimantis du skaitmeninio tipo argumentus. 
        - Main metode naudotojo paprašome įvesti 2 skaičius ir perduokite juos metodui. 
@@ -138,6 +147,8 @@
        > Rezultatas: 31
            */
 
+            //uzdavinys nr 3
+            /*
             Console.WriteLine("Iveskite 1 skaiciu  ");
             string ss1 = Console.ReadLine();
             Console.WriteLine("Iveskite 2 skaiciu  ");
@@ -150,20 +161,22 @@
             {
                 SkaiciuSuma(intSs1, intSs2);
             }
- 
+            else { Console.WriteLine(" nesigauna suma"); }
+
+
 
             // 4uzdavinys 
-           /*---------------------------------------------------
-    Parašykite programą kurioje yra vienas metodas priimantis vieną argumentą. 
-    - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
-    - Įvestas tekstas metodui perduodamas per parametrus ir grąžina tarpų kiekį 
-    - Main metode į ekraną išveskite tarpų kiekį
-    Pvz: 
-    > Iveskite teksta:
-    _ 'as mokausi programuoti'
-    > Tarpu kiekis yra: 2
-    */
-           
+            /*---------------------------------------------------
+     Parašykite programą kurioje yra vienas metodas priimantis vieną argumentą. 
+     - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
+     - Įvestas tekstas metodui perduodamas per parametrus ir grąžina tarpų kiekį 
+     - Main metode į ekraną išveskite tarpų kiekį
+     Pvz: 
+     > Iveskite teksta:
+     _ 'as mokausi programuoti'
+     > Tarpu kiekis yra: 2
+     */
+            /*
             IvedimoMedotas();
 
 
@@ -177,9 +190,13 @@
           _ ' as mokausi      '
           > Teksto ilgis yra: 10
        */
+            /*
+            // uzdavinis nr 5
+            Console.WriteLine("Įveskite bet kokį tekstą:");
+            string tekstas = Console.ReadLine();
+            Console.WriteLine($" Teksto ilgis yra: {TekstoIlgioSkaiciavimoMetodas()}");
 
-            
-            IlgioSkaiciavimoMetodas();
+                                   
           
 
             /*
@@ -193,7 +210,7 @@
               _ as mokausi programuoti
               > Zodziu kiekis yra: 3
             */
-         
+         /*
             //uzdavinys nr 6
             Console.WriteLine("6 Uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($"zodziu skaicius yra {KiekYraZodziu(Console.ReadLine())}");
@@ -210,9 +227,11 @@
     _ ' as mokausi      '
     > Gale yra tarpų: 6
     */
+            /*
             // uzdavinys nr 7
-            int uzdavinys7 = VienasMetodasTekstoPabaigojeTarpai();
-            Console.WriteLine($"tarpu gale buvo = {uzdavinys7}");
+           
+            Console.WriteLine("7 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine($"Metodas grąžina tarpų kiekį teksto gale {TarpaiGale(Console.ReadLine())}");
 
 
             /*---------------------------------------------------
@@ -226,10 +245,12 @@
      > Pradžioje yra tarpų: 1
      */
 
+            /*
             // uzdavinys nr 8
-            int uzdavinys8 = VienasMetodasTekstoPradzioje();
-            Console.WriteLine($"tarpu pradzioje buvo = {uzdavinys8}");
 
+            Console.WriteLine("8 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine($"Metodas grąžina tarpų kiekį teksto priekyje {TarpaiPradzioje(Console.ReadLine())}");
+                      
 
             /*---------------------------------------------------
    Parašykite programą kurioje vienas metodas. 
@@ -245,10 +266,10 @@
    */
             /*
             // uzdavinys nr 9 
-            Console.WriteLine("ivesk teksta");
-            Console.WriteLine($" kiek tarpu priekyje {KiekYraTarpuPriekyjeIrGale(Console.ReadLine(), out int tarpaiGale)} ");
-            Console.WriteLine($" kiek tarpu gale {tarpaiGale} ");
-            */
+            Console.WriteLine("9 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine($" kiek tarpu priekyje {KiekYraTarpuPriekyjeIrGale(Console.ReadLine(), out int tarpaiGale)} ");  // grazina reiksme is metodo
+            Console.WriteLine($" kiek tarpu gale {tarpaiGale} "); // grazina paima reiksme is parametro
+            
 
 
            /* Parašykite programą kurioje yra vienas metodas. 
@@ -263,21 +284,15 @@
 
             // uzdavinys nr 10
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
-            Console.WriteLine($" kiek yra A raidziu skaicius {KiekYraARaidziuTekste("kazkoks tekstas")}");
-
-
-
+            Console.WriteLine($" kiek yra A raidziu skaicius {KiekYraARaidziuTekste(Console.ReadLine())}");
+             
         }
 
 
-
-        public static int KiekYraARaidziuTekste(string? ilgasTekstas)  // 10 uzdavinio metodas
-        {
-            string pilnasTekstas = Console.ReadLine();
-            string naujasTekstas = pilnasTekstas.Replace("a", "").Length; 
-            return pilnasTekstas.Length  - naujasTekstas.Length;
         
-
+        public static int KiekYraARaidziuTekste(string tekstas)  // 10 uzdavinio metodas
+        {
+           return tekstas.Length - tekstas.Replace("a", "").Length; 
         }
             
 
@@ -294,9 +309,8 @@
         Console.WriteLine($"Labas tai kas ivesta, {UserioVardoIvedimas()}");
         Console.WriteLine($"Linkiu Jums {UserioVardoIvedimas()} geros dienos");
         }
-       
-        // trecio uzdavinio metodo vieta
 
+        // trecio uzdavinio metodo vieta 
 
         public static void IvedimoMedotas()  // 4 uzdavinio metodas
         {
@@ -305,12 +319,9 @@
             Console.WriteLine($"Tekste tarpu yra {TarpuMetodas(kazkoksTekstas)} ");
         }
 
-        public static void IlgioSkaiciavimoMetodas() // 5 uzdavinio metodas
+        public static int TekstoIlgioSkaiciavimoMetodas() // 5 uzdavinio metodas
         {
-            Console.WriteLine("iveskite bet koky teksta  ");
-            string kazkoksIvestasTekstas = Console.ReadLine();
-            Console.WriteLine($"  teksto ilgis yra {kazkoksIvestasTekstas.Length}");
-            Console.WriteLine($"({kazkoksIvestasTekstas.Trim()}).");
+            return Tekstas.Length - Tekstas.Trim().Length;
         }
 
         public static int KiekYraZodziu(string tekstas)    // 6 uzdavinio metodas
@@ -319,41 +330,35 @@
             return tekstas.Split(" ", StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
-
-        public static int VienasMetodasTekstoPabaigojeTarpai() // 7 uzdavinio metodas
+        public static int TarpaiGale(string? tekstas) // 7 uzdavinio metodas
         {
-            Console.WriteLine("iveskite bet koky teksta  ");
-            string betkoksTekstas = Console.ReadLine();
-
-            string sutrumpintasTekstas = betkoksTekstas.TrimEnd();
-            int skirtumasPab = betkoksTekstas.Length - sutrumpintasTekstas.Length;
-
-            return skirtumasPab;
+            return tekstas.Length - tekstas.TrimEnd().Length;
         }
 
-        public static int VienasMetodasTekstoPradzioje() // 8 uzdavinio metodas
+        public static int TarpaiPradzioje(string? tekstas) // 8 uzdavinio metodas 
         {
-            Console.WriteLine("iveskite bet koky teksta  ");
-            string betkoksTekstas = Console.ReadLine();
-
-            string sutrumpintasTekstas = betkoksTekstas.TrimStart();
-            int skirtumasStart = betkoksTekstas.Length - sutrumpintasTekstas.Length;
-
-            return skirtumasStart;
+            return tekstas.Length - tekstas.TrimStart().Length;
         }
 
-        public static void KiekYraTarpuPriekyjeIrGale(string tekstas, out int priekyje, out int gale)// 9 uzdavinio metodas
+        public static int KiekYraTarpuPriekyjeIrGale(string tekstas, out int gale)//9 uzd metodas  kai grazina per metoda ir  parametra                                                                                      
         {
-            priekyje = tekstas.Length - tekstas.TrimStart().Length;
             gale = tekstas.Length - tekstas.TrimEnd().Length;
+            return tekstas.Length - tekstas.TrimStart().Length;
         }
+
+        public static void KiekYraTarpuPriekyjeIrGale(string tekstas, out int priekyje, out int gale)//  metodas grazina per dvejus parametrus                                                                        
+        {
+            gale = tekstas.Length - tekstas.TrimEnd().Length;
+            priekyje = tekstas.Length - tekstas.TrimStart().Length;
+        }
+
+
 
 
 
 
 
         //teorijos metodai
-
 
         public static void IsvestiIvestaTeksta() //1
         {
@@ -457,7 +462,7 @@
         }
         public static void TadoMetodas()
         {
-            Console.WriteLine("Tu esi kietas");
+            Console.WriteLine("Tau pavyks, Tu gali!!!");
         }
 
 
