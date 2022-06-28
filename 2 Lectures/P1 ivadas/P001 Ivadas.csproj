@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Paskaita 2 consoles uzduotys\P2 Consoles uzduotys.csproj" />
+    <ProjectReference Include="..\P2 Consoles uzduotys\P002 Consoles uzduotys.csproj" />
   </ItemGroup>
 
 </Project>
