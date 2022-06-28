@@ -98,5 +98,6 @@ Console.WriteLine(double.Parse(skaiciusSuApribotuSkaiciumPoKablelio) + 8888888);
 
 Console.WriteLine("-------------------");
 
+//  pasiekimas kitos programos P10_Metodai.Program.IsveskTekstaEkranan();
 
 

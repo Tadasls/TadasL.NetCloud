@@ -5,7 +5,6 @@ var status = ""; // isivedu kintamaji
 DateTime userBirthDate = DateTime.Today;
 bool hasBirt = false;
 
-
 Console.WriteLine("Įveskite Vardą ir Pavardę");
 var userName = Console.ReadLine(); //ivedam varda ir pavarde kartu
 Console.WriteLine("Įveskite asmens Kodą 11 simbolių");
@@ -20,7 +19,6 @@ if (ivedamaData != "")
     hasBirt = true;
 }
    bool hasAge = (userAge.Length > 0)? true:false;
-
 
 // tikriname ar vyras ar moteris ir paraso
 var firstUserCodeChar = userCode.Substring(0,1);
@@ -87,7 +85,6 @@ Console.WriteLine("Kodas per trumpas");
    var userCodeStatus = "kodas neteisingas";
 } 
  
-
 // pirmas patikrinimas ivesta amziu lygina su gimimo data
 // is kodo paimame metus menesy diena
 var birthYear = userCode.Substring(1, 2);
@@ -130,23 +127,24 @@ if (hasBirt&&hasAge)
 if (!hasBirt && !hasAge)
 { status = " patikimumui trūksta duomenų";}
 
+
 // lenteles piesinys
 
-Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine($"           ATASKAITA APIE ASMENĮ ");
-Console.WriteLine($"          {DateTime.Now.ToShortDateString()} " );
-Console.WriteLine();
-Console.WriteLine($" Vardas, Pavarde - {userName} ");
-Console.WriteLine();
-Console.WriteLine($" Lytis - {lytis} ");
-Console.WriteLine();
-Console.WriteLine($" Asmens Kodas - {userCode} ");
-Console.WriteLine();
-Console.WriteLine($" Amzius - {userAge} ");
-Console.WriteLine();
-Console.WriteLine($" Gimimo Data - {userBirthDate.ToString("yyyy-MM-dd")} ");
-Console.WriteLine();
-Console.WriteLine($" Amziaus patikimumas - \"{status} \" ");
-
-// programos pabaiga
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ATASKAITA APIE ASMENĮ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓ {DateTime.Now.ToShortDateString(),-20}   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ " );
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Vardas, Pavarde      ▓ {userName, -34} ▓ ");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Lytis                ▓ {lytis, -34} ▓ ");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Asmens Kodas         ▓ {userCode, -35}▓ ");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Amzius               ▓ {userAge, -34} ▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Gimimo Data          ▓ {userBirthDate.ToString("yyyy-MM-dd"), -34} ▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓ Amziaus patikimumas  ▓ {status,-34} ▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+// programos pabaiga ▓ 

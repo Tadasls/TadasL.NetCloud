@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V201", "Namu da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P010 Metodai", "P10 Metodai\P010 Metodai.csproj", "{2DC9FF00-36AD-4ADD-824B-6088BC49A606}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testai", "Testai", "{E906DC24-D340-4306-9A1A-A1C9D41D2A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P011_Metodu_Testai", "P011_Metodu_Testai\P011_Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,9 +133,16 @@ Global
 		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DC9FF00-36AD-4ADD-824B-6088BC49A606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999} = {E906DC24-D340-4306-9A1A-A1C9D41D2A4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABFB28B4-1A40-4092-B6C6-ACB6313AF235}
