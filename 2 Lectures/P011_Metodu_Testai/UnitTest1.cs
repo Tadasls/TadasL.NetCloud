@@ -4,13 +4,14 @@ namespace P011_Metodu_Testai
     public class P11_Metodu_Testas
     {
         [TestMethod]
-        public void KiekYraZodziu()
+        public void TekstoIlgisBeTarpu()
         {
-            var fake = "as mokausi programuoti";
-            var expected = 3;
-            var actual = P10_Metodai.Program.KiekYraZodziu(fake);
+            var fake = " as mokausi      ";
+            var expected = 7;
+            var actual = P10_Metodai.Program.TekstoIlgisBeTarpu(fake);
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void KiekYraZodziu2()
         {
@@ -78,6 +79,17 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected1, actual1);
             Assert.AreEqual(expected2, actual2);
         }
+        [TestMethod]
+        public void KiekYraARaidziuTekste()
+        {
+            var fake = " as mokausi programuoti ";
+            var expected = 3;
+            var actual1 = P10_Metodai.Program.KiekYraARaidziuTekste(fake);
+            Assert.AreEqual(expected, actual1);
+            
+        }
+
+
 
     }
 }

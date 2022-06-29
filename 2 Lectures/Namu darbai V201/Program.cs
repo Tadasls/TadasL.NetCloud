@@ -3,7 +3,7 @@ Console.WriteLine("Tado Antrieji Namu darbai  - Registracijos Forma!");
 
 var status = ""; // isivedu kintamaji
 DateTime userBirthDate = DateTime.Today;
-bool hasBirt = false;
+bool hasBirt = false; 
 
 Console.WriteLine("Įveskite Vardą ir Pavardę");
 var userName = Console.ReadLine(); //ivedam varda ir pavarde kartu
@@ -13,6 +13,7 @@ Console.WriteLine("Įveskite amžių metais  ");
 string userAge = Console.ReadLine();   //ivedamas amzius
 Console.WriteLine("Įveskite Gimimo data");
 var ivedamaData = Console.ReadLine(); //ivedama gimimo data
+
 if (ivedamaData != "")
 {
  userBirthDate = DateTime.Parse(ivedamaData); //ivedama gimimo data
@@ -29,7 +30,7 @@ else {
     lytis = "Moteris";
         };
 
-//extra uzduotis tikriname asmens koda
+//extra uzduotis tikriname asmens koda // pvz 33309240064  
 // pasidaliname ivesta asmens koda i tekstinis skaitmenis 
 string A = userCode.Substring(0, 1);
 string B = userCode.Substring(1, 1);

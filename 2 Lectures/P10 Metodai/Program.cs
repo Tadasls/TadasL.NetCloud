@@ -63,12 +63,10 @@
             double sudaugintiDuDoubleSkaiciai1 = DaugintiSkaicius((double)sk1, sk2d); //kiti kintamieji panaudoti todel nesutampa rez.
             Console.WriteLine($"sudaugintiDuDoubleSkaiciai1 = {sudaugintiDuDoubleSkaiciai1}");
 
-
             Console.WriteLine("---------------------------");
             IsveskTekstaEkranan(); // neivestas parametras nes neprivalomas
             IsveskTekstaEkranan("kazkoks tekstas paduodamas"); 
             
-
 
             Console.WriteLine("---------------------------");
             IsveskSkaiciuIrTekstaEkranan(1);
@@ -110,45 +108,20 @@
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
 
-
-
-
-
-
+            */
+               
             
-            /*
-             Parašykite programą kurioje yra 2 metodai. 
-             - Pirmas metodas į konsolę išveda "Sveiki visi"
-             - Antrtas metodas į konsolę išveda "Linkiu jums geros dienos"
-             */
+            /*         
+           
             // uzdavinys nr 1
 
-            /*
+            // uzdavinys nr 2
             UserioVardoIvedimas();
             AntrasMetodas();
 
 
-            // uzdavinys nr 2
-
-            
-
-            
-
-            /*
-              Parašykite programą kurioje yra vienas metodas priimantis du skaitmeninio tipo argumentus. 
-       - Main metode naudotojo paprašome įvesti 2 skaičius ir perduokite juos metodui. 
-         N.B. būtina validacija
-       - Į ekraną išveskite argumentų matematinę sumą.
-       Pvz: 
-       > Iveskite pirmą skaičių:
-       _ 15
-       > Iveskite antrą skaičių:
-       _ 16
-       > Rezultatas: 31
-           */
-
             //uzdavinys nr 3
-            /*
+            
             Console.WriteLine("Iveskite 1 skaiciu  ");
             string ss1 = Console.ReadLine();
             Console.WriteLine("Iveskite 2 skaiciu  ");
@@ -164,130 +137,67 @@
             else { Console.WriteLine(" nesigauna suma"); }
 
 
-
-            // 4uzdavinys 
-            /*---------------------------------------------------
-     Parašykite programą kurioje yra vienas metodas priimantis vieną argumentą. 
-     - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
-     - Įvestas tekstas metodui perduodamas per parametrus ir grąžina tarpų kiekį 
-     - Main metode į ekraną išveskite tarpų kiekį
-     Pvz: 
-     > Iveskite teksta:
-     _ 'as mokausi programuoti'
-     > Tarpu kiekis yra: 2
-     */
-            /*
+            // 4 uzdavinys
             IvedimoMedotas();
-
-
-            // uzdavinys nr 5
-            /*---------------------------------------------------
-       Parašykite programą kurioje vienas metodas. 
-       - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
-       - Metodas į ekraną išveda teksto ilgį be tarpų įvesto teksto pradžioje ir gale
-          Pvz: 
-          > Iveskite teksta:
-          _ ' as mokausi      '
-          > Teksto ilgis yra: 10
-       */
-            /*
+                  
+            
             // uzdavinis nr 5
             Console.WriteLine("Įveskite bet kokį tekstą:");
             string tekstas = Console.ReadLine();
-            Console.WriteLine($" Teksto ilgis yra: {TekstoIlgioSkaiciavimoMetodas()}");
-
-                                   
-          
-
-            /*
-             6 uzduotis   
-     
-             - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
-             - Įvestas tekstas metodui perduodamas per parametrus ir grąžina žodžių kiekį 
-             - Main metode į ekraną išveskite žodžių kiekį
-             Pvz: 
-              > Iveskite teksta:
-              _ as mokausi programuoti
-              > Zodziu kiekis yra: 3
-            */
-         
+            Console.WriteLine($" Teksto ilgis yra: {TekstoIlgisBeTarpu(tekstas)}");
+                     
             //uzdavinys nr 6
             Console.WriteLine("6 Uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($"zodziu skaicius yra {KiekYraZodziu(Console.ReadLine())}");
-
-            /*---------------------------------------------------
-    Parašykite programą kurioje vienas metodas. 
-    - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
-    - Metodas grąžina tarpų kiekį teksto gale
-    - Main į ekraną išveda rezultatą
-    Pvz: 
-    > Iveskite teksta:
-    _ ' as mokausi      '
-    > Gale yra tarpų: 6
-    */
-            
+                        
             // uzdavinys nr 7
-           
             Console.WriteLine("7 uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($"Metodas grąžina tarpų kiekį teksto gale {TarpaiGale(Console.ReadLine())}");
-
-
-            /*---------------------------------------------------
-     Parašykite programą kurioje vienas metodas. 
-     - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
-     - Metodas grąžina tarpų kiekį teksto pradžioje
-     - Main į ekraną išveda rezultatą
-     Pvz: 
-     > Iveskite teksta:
-     _ ' as mokausi      '
-     > Pradžioje yra tarpų: 1
-     */
-
-            
+                        
             // uzdavinys nr 8
-
             Console.WriteLine("8 uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($"Metodas grąžina tarpų kiekį teksto priekyje {TarpaiPradzioje(Console.ReadLine())}");
-                      
 
-            /*---------------------------------------------------
-   Parašykite programą kurioje vienas metodas. 
-   - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
-   - Metodas grąžina dvi reikšmes pirmoji - tarpų kiekį teksto pradžioje, antroji - tarpų kiekį teksto gale
-     <hint> naudoti out 
-   - Main į ekraną išveda rezultatą
-   Pvz: 
-   > Iveskite teksta:
-   _ ' as mokausi      '
-   > Pradžioje yra tarpų: 1
-   > Gale yra tarpų: 6
-   */
-            
             // uzdavinys nr 9 
             Console.WriteLine("9 uzd įvesti betkokį tekstą su tarpais");
             Console.WriteLine($" kiek tarpu priekyje {KiekYraTarpuPriekyjeIrGale(Console.ReadLine(), out int tarpaiGale)} ");  // grazina reiksme is metodo
             Console.WriteLine($" kiek tarpu gale {tarpaiGale} "); // grazina paima reiksme is parametro
             
-
-
-           /* Parašykite programą kurioje yra vienas metodas. 
-            -Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
-            -Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina 'a' raidžių kiekį tekste.
-            - Main metode į ekraną išveskite metodo darbo rezultatą
-            Pvz: 
-               > Iveskite teksta:
-               _ as mokausi programuoti
-               > 'a' raidžių kiekis yra: 3
-           */
-
             // uzdavinys nr 10
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
             Console.WriteLine($" kiek yra A raidziu skaicius {KiekYraARaidziuTekste(Console.ReadLine())}");
-             
+
+            */
+
+            // uzdavinys nr 11
+            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
+            Console.WriteLine($" taipNe jei mokausi yra tekste {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
+            
+            // uzdavinys nr 12
+            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
+            Console.WriteLine($" taipNe jei mokausi yra tekste {ARaidesVietaTekste(Console.ReadLine())} ");
+
+
+
+
+
+
         }
 
-
         
+
+        public static int ARaidesVietaTekste(string tekstas) // 12 uzdavinys
+        {
+            int aVieta = tekstas.IndexOf("a");
+            return aVieta;
+        }
+
+        public static string IeskomeZodzioMokausiTekste(string tekstas) // 11 uzdavinys
+        {
+          // mano versija return tekstas.Contains("mokausi").ToString().Replace("true", "Taip").Replace("false", "Ne");
+            return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+        }
+
         public static int KiekYraARaidziuTekste(string tekstas)  // 10 uzdavinio metodas
         {
            return tekstas.Length - tekstas.Replace("a", "").Length; 
@@ -317,9 +227,10 @@
             Console.WriteLine($"Tekste tarpu yra {TarpuMetodas(kazkoksTekstas)} ");
         }
 
-        public static int TekstoIlgioSkaiciavimoMetodas() // 5 uzdavinio metodas
+       
+        public static int TekstoIlgisBeTarpu(string tekstas)// 5 uzdavinio metodas
         {
-            return Tekstas.Length - Tekstas.Trim().Length;
+          return tekstas.Length - tekstas.Trim().Length;
         }
 
         public static int KiekYraZodziu(string tekstas)    // 6 uzdavinio metodas
@@ -468,3 +379,126 @@
 
     }
 }
+
+
+
+/*
+       // pirmi uzdaviniai
+       Parašykite programą kurioje yra 2 metodai. 
+       - Pirmas metodas į konsolę išveda "Sveiki visi"
+       - Antrtas metodas į konsolę išveda "Linkiu jums geros dienos"
+
+
+      //3 uzdavinys
+      Parašykite programą kurioje yra vienas metodas priimantis du skaitmeninio tipo argumentus. 
+ - Main metode naudotojo paprašome įvesti 2 skaičius ir perduokite juos metodui. 
+   N.B. būtina validacija
+ - Į ekraną išveskite argumentų matematinę sumą.
+ Pvz: 
+ > Iveskite pirmą skaičių:
+ _ 15
+ > Iveskite antrą skaičių:
+ _ 16
+ > Rezultatas: 31
+
+
+
+      // 4uzdavinys 
+      ---------------------------------------------------
+Parašykite programą kurioje yra vienas metodas priimantis vieną argumentą. 
+- Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
+- Įvestas tekstas metodui perduodamas per parametrus ir grąžina tarpų kiekį 
+- Main metode į ekraną išveskite tarpų kiekį
+Pvz: 
+> Iveskite teksta:
+_ 'as mokausi programuoti'
+> Tarpu kiekis yra: 2
+
+
+           // uzdavinys nr 5
+      ---------------------------------------------------
+ Parašykite programą kurioje vienas metodas. 
+ - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+ - Metodas į ekraną išveda teksto ilgį be tarpų įvesto teksto pradžioje ir gale
+    Pvz: 
+    > Iveskite teksta:
+    _ ' as mokausi      '
+    > Teksto ilgis yra: 10
+
+      ----------------------------------------
+       6 uzduotis   
+
+       - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
+       - Įvestas tekstas metodui perduodamas per parametrus ir grąžina žodžių kiekį 
+       - Main metode į ekraną išveskite žodžių kiekį
+       Pvz: 
+        > Iveskite teksta:
+        _ as mokausi programuoti
+        > Zodziu kiekis yra: 3
+
+             --------7 ? uzdavinys-------------------------------------------
+Parašykite programą kurioje vienas metodas. 
+- Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+- Metodas grąžina tarpų kiekį teksto gale
+- Main į ekraną išveda rezultatą
+Pvz: 
+> Iveskite teksta:
+_ ' as mokausi      '
+> Gale yra tarpų: 6
+
+
+
+      -------------8 uzd --------------------------------------
+Parašykite programą kurioje vienas metodas. 
+- Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+- Metodas grąžina tarpų kiekį teksto pradžioje
+- Main į ekraną išveda rezultatą
+Pvz: 
+> Iveskite teksta:
+_ ' as mokausi      '
+> Pradžioje yra tarpų: 1
+
+      ---------------------------------------------------
+Parašykite programą kurioje vienas metodas. 
+- Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+- Metodas grąžina dvi reikšmes pirmoji - tarpų kiekį teksto pradžioje, antroji - tarpų kiekį teksto gale
+<hint> naudoti out 
+- Main į ekraną išveda rezultatą
+Pvz: 
+> Iveskite teksta:
+_ ' as mokausi      '
+> Pradžioje yra tarpų: 1
+> Gale yra tarpų: 6
+
+/ uzdavinys nr 
+
+      Parašykite programą kurioje yra vienas metodas. 
+      -Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
+      -Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina 'a' raidžių kiekį tekste.
+      - Main metode į ekraną išveskite metodo darbo rezultatą
+      Pvz: 
+         > Iveskite teksta:
+         _ as mokausi programuoti
+         > 'a' raidžių kiekis yra: 3
+     */
+
+/* 12 uzdavinys
+ Parašykite programą kurioje yra vienas metodas. 
+-Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
+-Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina pirmos 'a' raidės vietą tekste.
+- Main metode į ekraną išveskite metodo darbo rezultatą
+Pvz: 
+> Iveskite teksta:
+   _ as mokausi programuoti
+   > 'a' raides vieta yra: 0
+
+   */
+/* 11 uzdavinys
+Parašykite programą kurioje vienas metodas.
+- Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+-Metodas grąžina žodžius Taip arba Ne ar tekste rado žodį 'mokausi'.N.B.grąžinama string, o ne bool.
+- Išvesti rezultatą Main metode.
+Pvz: 
+> Iveskite teksta:
+_ ' as labai mokausi programuoti     '
+> Ar yra mokausi: Taip */
