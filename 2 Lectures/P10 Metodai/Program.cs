@@ -171,11 +171,11 @@
 
             // uzdavinys nr 11
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
-            Console.WriteLine($" taipNe jei mokausi yra tekste {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
+            Console.WriteLine($" jei zodis mokausi yra tekste gauname reiksme -  {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
             
             // uzdavinys nr 12
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
-            Console.WriteLine($" taipNe jei mokausi yra tekste {ARaidesVietaTekste(Console.ReadLine())} ");
+            Console.WriteLine($" ivestame tekste a raide yra nr - {ARaidesVietaTekste(Console.ReadLine())} ");
 
 
 
