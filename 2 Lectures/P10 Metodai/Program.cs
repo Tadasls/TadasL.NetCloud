@@ -11,10 +11,12 @@
             Console.WriteLine("Hello, Methods!");
             // metodai neturetu buti metode, o turi buti klaseje
 
-            
+
             // teorija
             #region  
 
+
+            
             Console.WriteLine("Iveskite teksta");
             Tekstas = Console.ReadLine();
             IsvestiIvestaTeksta();  //1
@@ -106,12 +108,13 @@
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
 
+            
             #endregion
 
 
             //Uzdaviniai
             #region
-
+            /*
             // uzdavinys nr 1
             SveikiVisi();
             LinkiuJumsGerosDienos();
@@ -174,23 +177,27 @@
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais   11 A ");
             Console.WriteLine($" jei zodis mokausi yra tekste gauname reiksme -  {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
             #endregion
+            
+            */
+            #endregion
+
 
             // uzdavinys nr 11 b
             Console.WriteLine("paprašome ' as labai mokausi programuoti     '  11 b uzduotis");
-            Console.WriteLine($" jei zodis mokausi yra tekste nesulipes  gauname reiksme -  {IeskomeZodzioMokausiEkstraTekste(Console.ReadLine())}");
-           
+            Console.WriteLine($" jei zodis mokausi yra tekste nesulipes  gauname reiksme -  {IeskomeZodzioMokausiEkstraTekste(Console.ReadLine()) }");
+        
             // uzdavinys nr 12
             Console.WriteLine("paprašome įvesti _ as mokausi programuoti  ");
             Console.WriteLine($" ivestame  tekste 'a' raides vieta yra: - {ARaidesVietaTekste(Console.ReadLine())} ");
 
-
+            
 
             
 
 
         }
 
-
+        
         //Metodai
         #region
 
@@ -265,12 +272,25 @@
             return tekstas.Length - tekstas.Replace("a", "").Length;
         }
 
+
+        
         public static string IeskomeZodzioMokausiTekste(string tekstas) // 11a uzdavinys
         {
 
             bool isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase);
             int indexOfMokausi = tekstas.IndexOf("mokausi");
             int tekstoIlgis = tekstas.Length;
+            
+
+
+
+            if(isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase))
+            {
+            char simbolisPriesais = tekstas[indexOfMokausi - 1];
+            char simbolisUz = tekstas[indexOfMokausi + 8];
+            Console.WriteLine($"{simbolisPriesais} ir {simbolisUz} ");
+            }
+            
 
             if (isMokausi && indexOfMokausi == 0 && tekstas.Contains("mokausi ", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
                 return "Taip";
@@ -285,9 +305,11 @@
             else
                 return "Ne";
 
-           // return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+            
+
+            // return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
         }
-        #endregion
+        
 
 
 
@@ -313,7 +335,7 @@
 
             // return (" " + tekstas + " ").Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
             // return (" " + tekstas + " ").StartsWith("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
-            //tekstas = " " + tekstas + " ";
+            // tekstas = " " + tekstas + " ";
             // string sPattern = "^\\d{7}-\\d{7}-\\d{7}$";
             // return (System.Text.RegularExpressions.Regex.IsMatch("mokausi", sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) ? "Taip" : "Ne";
 
@@ -327,7 +349,7 @@
         }
 
 
-        //#endregion
+        #endregion
 
 
 
@@ -443,8 +465,8 @@
 
 
 // uzdaviniu salygos
-#region
 
+#region
 /*
  // 1 uzdavinys
 ---------------------------------------------------
@@ -670,10 +692,7 @@ UŽDUOTIS 11A (sunkense) + testai
     _ 'as studijuojumokausi)'
     > Ar yra mokausi: Ne
 
-
-
-
- */
+*/
 #endregion
 
 

@@ -92,7 +92,7 @@ namespace P011_Metodu_Testai
 
 
         [TestMethod]
-        public void ArYraZodisMokausi_Test()
+        public void ArYraZodisMokausi11a_Test()
         {
             var fake = " as labai mokausi programuoti     ";
             var expected = "Taip";
@@ -101,7 +101,7 @@ namespace P011_Metodu_Testai
         }
 
         [TestMethod]
-        public void ArYraZodisMokausi_Test1()
+        public void ArYraZodisMokausi11a_Test1()
         {
             var fake = " as_labai_mokausi_programuoti     ";
             var expected = "Taip";
@@ -110,7 +110,7 @@ namespace P011_Metodu_Testai
         }
 
         [TestMethod]
-        public void ArYraZodisMokausi_Test2()
+        public void ArYraZodisMokausi11a_Test2()
         {
             var fake = " as_labai_MOKAUSI_programuoti     ";
             var expected = "Taip";
@@ -120,7 +120,7 @@ namespace P011_Metodu_Testai
 
 
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_Test0()
+        public void ArYraNesulipesZodisMokausi11b_Test0()
         {
             var fake = " as_labai_mokausi_programuoti     ";
             var expected = "Ne";
@@ -130,7 +130,7 @@ namespace P011_Metodu_Testai
         }
 
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_Test1()
+        public void ArYraNesulipesZodisMokausi11b_Test1()
         {
             var fake = "mokausi programuoti labai         ";
             var expected = "Taip";
@@ -139,7 +139,7 @@ namespace P011_Metodu_Testai
         }
 
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_Test2()
+        public void ArYraNesulipesZodisMokausi11b_Test2()
         {
             var fake = "";
             var expected = "Ne";
@@ -150,7 +150,7 @@ namespace P011_Metodu_Testai
 
 
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_1Test()
+        public void ArYraNesulipesZodisMokausi11b_1Test()
         {
             var fake = " as labai mokausi programuoti     ";
             var expected = "Taip";
@@ -158,7 +158,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_2Test()  // praina nes turi nepraeiti 
+        public void ArYraNesulipesZodisMokausi11b_2Test()  // praina nes turi nepraeiti 
         {
             var fake = "aslabaimokausiprogramuoti";
             var expected = "Ne";
@@ -166,7 +166,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_3Test()
+        public void ArYraNesulipesZodisMokausi11b_3Test()
         {
             var fake = "mokausi programuoti labai    ";
             var expected = "Taip";
@@ -174,7 +174,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_4Test()
+        public void ArYraNesulipesZodisMokausi11b_4Test()
         {
             var fake = "as mokausi, labai stipriai";
             var expected = "Taip";
@@ -182,7 +182,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_5Test()
+        public void ArYraNesulipesZodisMokausi11b_5Test()
         {
             var fake = "as mokausi!";
             var expected = "Taip";
@@ -190,7 +190,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_6Test()
+        public void ArYraNesulipesZodisMokausi11b_6Test()
         {
             var fake = "as mokausi?";
             var expected = "Taip";
@@ -198,7 +198,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_7Test()
+        public void ArYraNesulipesZodisMokausi11b_7Test()
         {
             var fake = "as studijuoju (mokausi)";
             var expected = "Taip";
@@ -206,7 +206,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_8Test()
+        public void ArYraNesulipesZodisMokausi11b_8Test()
         {
             var fake = "as studijuojumokausi)";
             var expected = "Ne";
