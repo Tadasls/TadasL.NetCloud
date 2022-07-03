@@ -158,7 +158,7 @@ namespace P011_Metodu_Testai
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ArYraNesulipesZodisMokausi_2Test()
+        public void ArYraNesulipesZodisMokausi_2Test()  // praina nes turi nepraeiti 
         {
             var fake = "aslabaimokausiprogramuoti";
             var expected = "Ne";

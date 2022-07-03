@@ -169,11 +169,12 @@
             // uzdavinys nr 10
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais  10 ");
             Console.WriteLine($" kiek yra A raidziu skaicius {KiekYraARaidziuTekste(Console.ReadLine())}");
-
+           
             // uzdavinys nr 11 a
             Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais   11 A ");
             Console.WriteLine($" jei zodis mokausi yra tekste gauname reiksme -  {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
-           
+            #endregion
+
             // uzdavinys nr 11 b
             Console.WriteLine("paprašome ' as labai mokausi programuoti     '  11 b uzduotis");
             Console.WriteLine($" jei zodis mokausi yra tekste nesulipes  gauname reiksme -  {IeskomeZodzioMokausiEkstraTekste(Console.ReadLine())}");
@@ -184,7 +185,7 @@
 
 
 
-            #endregion
+            
 
 
         }
@@ -260,29 +261,62 @@
 
         public static int KiekYraARaidziuTekste(string tekstas)  // 10 uzdavinio metodas
         {
+      
             return tekstas.Length - tekstas.Replace("a", "").Length;
         }
 
         public static string IeskomeZodzioMokausiTekste(string tekstas) // 11a uzdavinys
         {
-            // mano versija return tekstas.Contains("mokausi").ToString().Replace("true", "Taip").Replace("false", "Ne");
-           
-            return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+
+            bool isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase);
+            int indexOfMokausi = tekstas.IndexOf("mokausi");
+            int tekstoIlgis = tekstas.Length;
+
+            if (isMokausi && indexOfMokausi == 0 && tekstas.Contains("mokausi ", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi ", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 8)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis - indexOfMokausi == 7)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
+                return "Taip";
+            else if (isMokausi && tekstoIlgis == 7)
+                return "Taip";
+            else
+                return "Ne";
+
+           // return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
         }
+        #endregion
+
+
 
         public static string IeskomeZodzioMokausiEkstraTekste(string tekstas)  // 11b uzdavinys
         {
-           
-            return (" " + tekstas + " ").Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+            bool isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase);
+            int indexOfMokausi = tekstas.IndexOf("mokausi");
+            int tekstoIlgis = tekstas.Length;
+
+            if (isMokausi && indexOfMokausi == 0 && tekstas.Contains("mokausi ") && tekstoIlgis >= 7)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi ") && tekstoIlgis >= 8)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi") && tekstoIlgis >= 7)
+                return "Taip";
+            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
+                return "Taip";
+            else if (isMokausi && tekstoIlgis == 7)
+                return "Taip";
+            else
+                return "Ne";
 
 
+            // return (" " + tekstas + " ").Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
             // return (" " + tekstas + " ").StartsWith("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
-
-
             //tekstas = " " + tekstas + " ";
-           // string sPattern = "^\\d{7}-\\d{7}-\\d{7}$";
-           // return (System.Text.RegularExpressions.Regex.IsMatch("mokausi", sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) ? "Taip" : "Ne";
-           
+            // string sPattern = "^\\d{7}-\\d{7}-\\d{7}$";
+            // return (System.Text.RegularExpressions.Regex.IsMatch("mokausi", sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) ? "Taip" : "Ne";
+
         }
 
         public static int ARaidesVietaTekste(string tekstas) // 12 uzdavinys
@@ -293,7 +327,7 @@
         }
 
 
-        #endregion
+        //#endregion
 
 
 
