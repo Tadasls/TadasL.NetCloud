@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Stringai kintamieji", "p2 sTRINGAI kintamieji\P002 Stringai kintamieji.csproj", "{BCAB8984-8561-4393-8A49-6092ED50B5E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V001", "namu darbai V001\Namu darbai V001.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamu darbai V001 Hanoi", "namu darbai V001\SNamu darbai V001 Hanoi.csproj", "{23181AB2-2595-44C5-A905-557BCA375616}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P004 Tipu konversijos", "P4 Tipu konversijos\P004 Tipu konversijos.csproj", "{8B1E0C8A-DA0E-450E-B8F1-E575DA842538}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P004 Matematines uzduotys",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P006 Loginiai operatoriai", "P6 Loginiai operatoriai\P006 Loginiai operatoriai.csproj", "{A50B16B1-C41A-4370-BED9-ACB7115C2F7B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarDrbV02K", "SavarankiskasDarbasV02K\SavarDrbV02K.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarDrbV02Kelias", "SavarankiskasDarbasV02K\SavarDrbV02Kelias.csproj", "{074146E0-B156-4E1D-AB9B-C50820C5C772}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P003 kintamieji uzduotys", "P3 kintamieji uzduotys\P003 kintamieji uzduotys.csproj", "{B4A5401B-0234-4441-BF7F-95AE4BD30E7C}"
 EndProject
@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P001 Ivadas", "P1 ivadas\P0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Consoles uzduotys", "P2 Consoles uzduotys\P002 Consoles uzduotys.csproj", "{92D9E3FF-5A3C-482A-8C83-0B872102CE9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarDrbV02T", "savarankiskasDarbasV02T\savarDrbV02T.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarDrbV02Termometras", "savarankiskasDarbasV02T\savarDrbV02Termometras.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P007 IF", "P7 IF\P007 IF.csproj", "{935AF535-513C-49FC-8BCF-7C2EDCF28703}"
 EndProject
@@ -39,13 +39,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P008 Switch", "P8 Switch\P0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P009 String Manipuliacijos", "P9 String Manipuliacijos\P009 String Manipuliacijos.csproj", "{E20287EB-4D26-4B43-87C8-8CD95AA3E6CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Namu darbai V201", "Namu darbai V201\Namu darbai V201.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamu darbai V201 Reg Forma", "Namu darbai V201\SNamu darbai V201 Reg Forma.csproj", "{03C791F4-0FE0-4737-9225-291A81AC85E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P010 Metodai", "P10 Metodai\P010 Metodai.csproj", "{2DC9FF00-36AD-4ADD-824B-6088BC49A606}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testai", "Testai", "{E906DC24-D340-4306-9A1A-A1C9D41D2A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P011_Metodu_Testai", "P011_Metodu_Testai\P011_Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P011_Metodu_Testai", "P011_Metodu_Testai\P011_Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "belenkas", "belenkas\belenkas.csproj", "{E2BD061A-A605-44B5-98A1-2228EE1FD689}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +139,10 @@ Global
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2BD061A-A605-44B5-98A1-2228EE1FD689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2BD061A-A605-44B5-98A1-2228EE1FD689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2BD061A-A605-44B5-98A1-2228EE1FD689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2BD061A-A605-44B5-98A1-2228EE1FD689}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

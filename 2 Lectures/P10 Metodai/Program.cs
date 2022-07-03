@@ -4,19 +4,17 @@
     {
         // klaseje turi buti metodai 
 
-
-         static string Tekstas = " ";
-
-
-
+         static string Tekstas = " ";  //globalus kintamasis
 
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, Methods!");
             // metodai neturetu buti metode, o turi buti klaseje
 
-            /*
             
+            // teorija
+            #region  
+
             Console.WriteLine("Iveskite teksta");
             Tekstas = Console.ReadLine();
             IsvestiIvestaTeksta();  //1
@@ -108,20 +106,25 @@
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
 
-            */
-               
-            
-            /*         
-           
+            #endregion
+
+
+            //Uzdaviniai
+            #region
+
             // uzdavinys nr 1
+            SveikiVisi();
+            LinkiuJumsGerosDienos();
+
+
 
             // uzdavinys nr 2
-            UserioVardoIvedimas();
-            AntrasMetodas();
+            NuskaitytiIrIsvestiVarda();
+            LinkiuJumsGerosDienos1();
 
-
+                       
             //uzdavinys nr 3
-            
+
             Console.WriteLine("Iveskite 1 skaiciu  ");
             string ss1 = Console.ReadLine();
             Console.WriteLine("Iveskite 2 skaiciu  ");
@@ -142,83 +145,77 @@
                   
             
             // uzdavinis nr 5
-            Console.WriteLine("Įveskite bet kokį tekstą:");
+            Console.WriteLine("  Įveskite bet kokį tekstą: 5 UZD");
             string tekstas = Console.ReadLine();
             Console.WriteLine($" Teksto ilgis yra: {TekstoIlgisBeTarpu(tekstas)}");
                      
             //uzdavinys nr 6
-            Console.WriteLine("6 Uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine("6 Uzd įvesti betkokį tekstą su tarpais  6 ");
             Console.WriteLine($"zodziu skaicius yra {KiekYraZodziu(Console.ReadLine())}");
                         
             // uzdavinys nr 7
-            Console.WriteLine("7 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine("7 uzd įvesti betkokį tekstą su tarpais  7 ");
             Console.WriteLine($"Metodas grąžina tarpų kiekį teksto gale {TarpaiGale(Console.ReadLine())}");
                         
             // uzdavinys nr 8
-            Console.WriteLine("8 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine("8 uzd įvesti betkokį tekstą su tarpais  8 ");
             Console.WriteLine($"Metodas grąžina tarpų kiekį teksto priekyje {TarpaiPradzioje(Console.ReadLine())}");
 
             // uzdavinys nr 9 
-            Console.WriteLine("9 uzd įvesti betkokį tekstą su tarpais");
+            Console.WriteLine("9 uzd įvesti betkokį tekstą su tarpais  9 ");
             Console.WriteLine($" kiek tarpu priekyje {KiekYraTarpuPriekyjeIrGale(Console.ReadLine(), out int tarpaiGale)} ");  // grazina reiksme is metodo
             Console.WriteLine($" kiek tarpu gale {tarpaiGale} "); // grazina paima reiksme is parametro
             
             // uzdavinys nr 10
-            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
+            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais  10 ");
             Console.WriteLine($" kiek yra A raidziu skaicius {KiekYraARaidziuTekste(Console.ReadLine())}");
 
-            */
-
-            // uzdavinys nr 11
-            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
+            // uzdavinys nr 11 a
+            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais   11 A ");
             Console.WriteLine($" jei zodis mokausi yra tekste gauname reiksme -  {IeskomeZodzioMokausiTekste(Console.ReadLine())}");
-            
+           
+            // uzdavinys nr 11 b
+            Console.WriteLine("paprašome ' as labai mokausi programuoti     '  11 b uzduotis");
+            Console.WriteLine($" jei zodis mokausi yra tekste nesulipes  gauname reiksme -  {IeskomeZodzioMokausiEkstraTekste(Console.ReadLine())}");
+           
             // uzdavinys nr 12
-            Console.WriteLine("paprašome įvesti betkokį tekstą su tarpais");
-            Console.WriteLine($" ivestame tekste a raide yra nr - {ARaidesVietaTekste(Console.ReadLine())} ");
+            Console.WriteLine("paprašome įvesti _ as mokausi programuoti  ");
+            Console.WriteLine($" ivestame  tekste 'a' raides vieta yra: - {ARaidesVietaTekste(Console.ReadLine())} ");
 
 
 
-
+            #endregion
 
 
         }
 
-        
 
-        public static int ARaidesVietaTekste(string tekstas) // 12 uzdavinys
+        //Metodai
+        #region
+
+        public static void SveikiVisi()// 1 uzdavinio metodas
         {
-            int aVieta = tekstas.IndexOf("a");
-            return aVieta;
+            Console.WriteLine("Sveiki visi");
         }
-
-        public static string IeskomeZodzioMokausiTekste(string tekstas) // 11 uzdavinys
+        public static void LinkiuJumsGerosDienos()
         {
-          // mano versija return tekstas.Contains("mokausi").ToString().Replace("true", "Taip").Replace("false", "Ne");
-            return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+            Console.WriteLine("Linkiu jums geros dienos");
         }
-
-        public static int KiekYraARaidziuTekste(string tekstas)  // 10 uzdavinio metodas
+                                
+           public static string NuskaitytiIrIsvestiVarda()  // 2 uzdavinio  1 metodas
         {
-           return tekstas.Length - tekstas.Replace("a", "").Length; 
-        }
-            
-
-        public static string UserioVardoIvedimas()  // pirmas uzdavinys
-        {
-            Console.WriteLine($"Iveskite savo Varda: ");
+            Console.WriteLine("Iveskite savo varda");
             var vardas = Console.ReadLine();
-            Console.WriteLine($"Labas, {vardas}");
+            Console.WriteLine($"Labas {vardas}");
             return vardas;
         }
-
-        public static void AntrasMetodas()  // antras uzdavinys paleidzia pirmo uzdavinio metoda
+        public static void LinkiuJumsGerosDienos1()  // 2 uzdavinio  2 metodas
         {
-        Console.WriteLine($"Labas tai kas ivesta, {UserioVardoIvedimas()}");
-        Console.WriteLine($"Linkiu Jums {UserioVardoIvedimas()} geros dienos");
+            Console.WriteLine($"Linkiu jums {NuskaitytiIrIsvestiVarda()} geros dienos");
         }
 
-        // trecio uzdavinio metodo vieta 
+
+        // 3 uzdavinio metodo vieta 
 
         public static void IvedimoMedotas()  // 4 uzdavinio metodas
         {
@@ -255,20 +252,53 @@
             return tekstas.Length - tekstas.TrimStart().Length;
         }
 
-        public static void KiekYraTarpuPriekyjeIrGale(string tekstas, out int priekyje, out int gale)//  metodas grazina per dvejus parametrus                                                                        
+        public static void KiekYraTarpuPriekyjeIrGale(string tekstas, out int priekyje, out int gale)// 9a metodas grazina per dvejus parametrus                                                                        
         {
             gale = tekstas.Length - tekstas.TrimEnd().Length;
             priekyje = tekstas.Length - tekstas.TrimStart().Length;
         }
 
+        public static int KiekYraARaidziuTekste(string tekstas)  // 10 uzdavinio metodas
+        {
+            return tekstas.Length - tekstas.Replace("a", "").Length;
+        }
+
+        public static string IeskomeZodzioMokausiTekste(string tekstas) // 11a uzdavinys
+        {
+            // mano versija return tekstas.Contains("mokausi").ToString().Replace("true", "Taip").Replace("false", "Ne");
+           
+            return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+        }
+
+        public static string IeskomeZodzioMokausiEkstraTekste(string tekstas)  // 11b uzdavinys
+        {
+           
+            return (" " + tekstas + " ").Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
 
 
+            // return (" " + tekstas + " ").StartsWith("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
 
+
+            //tekstas = " " + tekstas + " ";
+           // string sPattern = "^\\d{7}-\\d{7}-\\d{7}$";
+           // return (System.Text.RegularExpressions.Regex.IsMatch("mokausi", sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) ? "Taip" : "Ne";
+           
+        }
+
+        public static int ARaidesVietaTekste(string tekstas) // 12 uzdavinys
+        {
+            tekstas = " " + tekstas + " ";
+            int aVieta = tekstas.IndexOf("a")+1;  //+1 ?
+            return aVieta;
+        }
+
+
+        #endregion
 
 
 
         //teorijos metodai
-
+        #region
         public static void IsvestiIvestaTeksta() //1
         {
             Console.WriteLine($" ivestas tekstas {Tekstas} ");
@@ -285,7 +315,6 @@
         {
             Console.WriteLine($" {intSs1} + {intSs2}  = {intSs1 + intSs2}");
         }
-
 
         public static void Pasisveikinimas()
         {
@@ -316,7 +345,7 @@
             }
             return total / skaiciai.Length;
         }
-                    
+                  
         public static int SkaiciausPatikrinimas(int skaicius, int min, int max)
         {
             if (skaicius < min)
@@ -362,10 +391,8 @@
 
         public static float GautiRandomSkaiciu()
         {
-
             float a = 4;
             return a + 4.635228f;
-
             //double a = 53652;
             //return "asdffas"; blogi pvz kad negrazina kito tipo 
         }
@@ -374,23 +401,41 @@
             Console.WriteLine("Tau pavyks, Tu gali!!!");
         }
 
-
+        #endregion
 
 
     }
 }
 
 
+// uzdaviniu salygos
+#region
 
 /*
-       // pirmi uzdaviniai
+ // 1 uzdavinys
+---------------------------------------------------
        Parašykite programą kurioje yra 2 metodai. 
        - Pirmas metodas į konsolę išveda "Sveiki visi"
        - Antrtas metodas į konsolę išveda "Linkiu jums geros dienos"
 
+  
+// 2 uzdavinys
+---------------------------------------------------
+       Parašykite programą kurioje yra 2 metodai. 
+        - Pirmas metodas naudotojo paprašo įvesti savo vardą ir  į konsolę išveda "Labas tai_kas_ivesta" 
+          ir grąžina tai kas ivesta.
+        - Antras metodas į konsolę išveda "Linkiu jums tai_kas_ivesta_pirmame_metode geros dienos"
+       Pvz: 
+       > Iveskite savo Varda:
+       _ Petras
+       > Labas Petras
+       > Linkiu jums Petras geros dienos
+       
 
-      //3 uzdavinys
-      Parašykite programą kurioje yra vienas metodas priimantis du skaitmeninio tipo argumentus. 
+
+//3 uzdavinys
+---------------------------------------------------
+Parašykite programą kurioje yra vienas metodas priimantis du skaitmeninio tipo argumentus. 
  - Main metode naudotojo paprašome įvesti 2 skaičius ir perduokite juos metodui. 
    N.B. būtina validacija
  - Į ekraną išveskite argumentų matematinę sumą.
@@ -403,8 +448,8 @@
 
 
 
-      // 4uzdavinys 
-      ---------------------------------------------------
+// 4uzdavinys 
+---------------------------------------------------
 Parašykite programą kurioje yra vienas metodas priimantis vieną argumentą. 
 - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
 - Įvestas tekstas metodui perduodamas per parametrus ir grąžina tarpų kiekį 
@@ -414,9 +459,8 @@ Pvz:
 _ 'as mokausi programuoti'
 > Tarpu kiekis yra: 2
 
-
-           // uzdavinys nr 5
-      ---------------------------------------------------
+// uzdavinys nr 5
+---------------------------------------------------
  Parašykite programą kurioje vienas metodas. 
  - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
  - Metodas į ekraną išveda teksto ilgį be tarpų įvesto teksto pradžioje ir gale
@@ -425,18 +469,21 @@ _ 'as mokausi programuoti'
     _ ' as mokausi      '
     > Teksto ilgis yra: 10
 
-      ----------------------------------------
-       6 uzduotis   
+   
 
-       - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
-       - Įvestas tekstas metodui perduodamas per parametrus ir grąžina žodžių kiekį 
-       - Main metode į ekraną išveskite žodžių kiekį
-       Pvz: 
-        > Iveskite teksta:
-        _ as mokausi programuoti
-        > Zodziu kiekis yra: 3
 
-             --------7 ? uzdavinys-------------------------------------------
+// 6 uzduotis   
+ ----------------------------------------
+ - Main metode naudotojo paprašome įvesti betkokį tekstą su tarpais 
+ - Įvestas tekstas metodui perduodamas per parametrus ir grąžina žodžių kiekį 
+- Main metode į ekraną išveskite žodžių kiekį
+   Pvz: 
+    > Iveskite teksta:
+    _ as mokausi programuoti
+     > Zodziu kiekis yra: 3
+
+// 7 uzdavinys
+ ---------------------------------------------------
 Parašykite programą kurioje vienas metodas. 
 - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
 - Metodas grąžina tarpų kiekį teksto gale
@@ -447,8 +494,8 @@ _ ' as mokausi      '
 > Gale yra tarpų: 6
 
 
-
-      -------------8 uzd --------------------------------------
+// 8 uzdavinys
+ --------------------------------------------------
 Parašykite programą kurioje vienas metodas. 
 - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
 - Metodas grąžina tarpų kiekį teksto pradžioje
@@ -458,7 +505,9 @@ Pvz:
 _ ' as mokausi      '
 > Pradžioje yra tarpų: 1
 
-      ---------------------------------------------------
+
+// 9 uzdavinys 
+---------------------------------------------------
 Parašykite programą kurioje vienas metodas. 
 - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
 - Metodas grąžina dvi reikšmes pirmoji - tarpų kiekį teksto pradžioje, antroji - tarpų kiekį teksto gale
@@ -470,35 +519,127 @@ _ ' as mokausi      '
 > Pradžioje yra tarpų: 1
 > Gale yra tarpų: 6
 
-/ uzdavinys nr 
 
-      Parašykite programą kurioje yra vienas metodas. 
-      -Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
-      -Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina 'a' raidžių kiekį tekste.
-      - Main metode į ekraną išveskite metodo darbo rezultatą
-      Pvz: 
+// 10 uzdavinys
+---------------------------------------------------
+ Parašykite programą kurioje yra vienas metodas. 
+-Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
+-Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina 'a' raidžių kiekį tekste.
+- Main metode į ekraną išveskite metodo darbo rezultatą
+Pvz: 
          > Iveskite teksta:
          _ as mokausi programuoti
          > 'a' raidžių kiekis yra: 3
-     */
+   
 
-/* 12 uzdavinys
+
+ 11 A uzdavinys
+---------------------------------------------------
+  Parašykite programą kurioje vienas metodas. 
+    - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+    - Metodas grąžina žodžius Taip arba Ne ar tekste rado žodį 'mokausi'. N.B. grąžinama string, o ne bool.
+    -  Išvesti rezultatą Main metode.
+    Pvz: 
+    > Iveskite teksta:
+    _ ' as labai mokausi programuoti     '
+    > Ar yra mokausi: Taip
+    Pvz: 
+    > Iveskite teksta:
+    _ ' as_labai_mokausi_programuoti     '
+    > Ar yra mokausi: Taip
+    Pvz3:  
+    > Iveskite teksta:
+    _ ' as_labai_MOKAUSI_programuoti     '
+    > Ar yra mokausi: Taip  
+   
+
+
+ 11 B uzdavinys
+---------------------------------------------------
+    Parašykite programą kurioje vienas metodas. 
+    - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+    - Metodas grąžina žodžius Taip arba Ne ar tekste rado žodį 'mokausi'. 
+        Bet tik tuo atveju jei žodis 'mokausi' nesulipęs su kitu žodžiu.
+        N.B. grąžinama string, o ne bool.
+    -  Išvesti rezultatą Main metode.
+    Pvz: 
+    > Iveskite teksta:
+    _ ' as labai mokausi programuoti     '
+    > Ar yra mokausi: Taip
+    Pvz2: 
+    > Iveskite teksta:
+    _ ' as_labai_mokausi_programuoti     '
+    > Ar yra mokausi: Ne
+    Pvz3: 
+    > Iveskite teksta:
+    _ 'mokausi programuoti labai    '
+    > Ar yra mokausi: Taip
+   
+
+
+// 12 uzdavinys
+---------------------------------------------------
  Parašykite programą kurioje yra vienas metodas. 
--Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais
--Įvestas teikstas kaip argumentas perduodamas metodui.Metodas grąžina pirmos 'a' raidės vietą tekste.
-- Main metode į ekraną išveskite metodo darbo rezultatą
-Pvz: 
-> Iveskite teksta:
-   _ as mokausi programuoti
-   > 'a' raides vieta yra: 0
+ - Main metode Naudotojo paprašome įvesti betkokį tekstą su tarpais 
+ - Įvestas teikstas kaip argumentas perduodamas metodui. Metodas grąžina pirmos 'a' raidės vietą tekste.
+ - Main metode į ekraną išveskite metodo darbo rezultatą
+ Pvz: 
+ > Iveskite teksta:
+ _ as mokausi programuoti
+ > 'a' raides vieta yra: 0
 
-   */
-/* 11 uzdavinys
-Parašykite programą kurioje vienas metodas.
-- Naudotojo paprašome įvesti betkokį tekstą Main metode. 
--Metodas grąžina žodžius Taip arba Ne ar tekste rado žodį 'mokausi'.N.B.grąžinama string, o ne bool.
-- Išvesti rezultatą Main metode.
-Pvz: 
-> Iveskite teksta:
-_ ' as labai mokausi programuoti     '
-> Ar yra mokausi: Taip */
+
+
+
+Namu darbo užduotis būtuL
+UŽDUOTIS 11A (sunkense) + testai
+
+ Parašykite programą kurioje vienas metodas. 
+    - Naudotojo paprašome įvesti betkokį tekstą Main metode. 
+    - Metodas grąžina žodžius Taip arba Ne ar tekste rado žodį 'mokausi'. 
+        Bet tik tuo atveju jei žodis 'mokausi' nesulipęs su kitu žodžiu.
+        N.B. grąžinama string, o ne bool.
+    -  Išvesti rezultatą Main metode.
+    Pvz: 
+    > Iveskite teksta:
+    _ ' as labai mokausi programuoti     '
+    > Ar yra mokausi: Taip
+ 
+    Pvz2: 
+    > Iveskite teksta:
+    _ 'aslabaimokausiprogramuoti'
+    > Ar yra mokausi: Ne
+
+    Pvz3: 
+    > Iveskite teksta:
+    _ 'mokausi programuoti labai    '
+    > Ar yra mokausi: Taip  
+        
+    Pvz4: 
+    > Iveskite teksta:
+    _ 'as mokausi, labai stipriai'
+    > Ar yra mokausi: Taip
+    Pvz5: 
+    > Iveskite teksta:
+    _ 'as mokausi!'
+    > Ar yra mokausi: Taip
+    Pvz6: 
+    > Iveskite teksta:
+    _ 'as mokausi?'
+    > Ar yra mokausi: Taip
+    Pvz7: 
+    > Iveskite teksta:
+    _ 'as studijuoju (mokausi)'
+    > Ar yra mokausi: Taip
+    Pvz8: 
+    > Iveskite teksta:
+    _ 'as studijuojumokausi)'
+    > Ar yra mokausi: Ne
+
+
+
+
+ */
+#endregion
+
+

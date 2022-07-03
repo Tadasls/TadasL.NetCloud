@@ -149,3 +149,70 @@ Console.WriteLine($"▓ Amziaus patikimumas  ▓ {status,-34} ▓");
 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
 // programos pabaiga ▓ 
+
+ 
+  // destytojo versija
+
+
+    Console.WriteLine("Hello, Amziaus melagis!");
+    var vardas = "Vardenis Pavardenis";
+    var kodas = "44012029286";
+    var amzius = "82";
+    var gimData = "1940-12-03";
+
+    var isAsmKodas = kodas.Length == 11 && long.TryParse(kodas, out _);
+    var lytis1 = !isAsmKodas ? "N/D" : int.Parse(kodas.Substring(0, 1)) % 2 == 0 ? "Moteris" : "Vyras";
+
+    var isAmzius = int.TryParse(amzius, out int amziusInt) && amziusInt >= 0;
+    var isGimData = DateTime.TryParse(gimData, out DateTime gimDataDate) && gimDataDate <= DateTime.Today;
+
+    if (!isAmzius) amzius = "N/G";
+    if (!isGimData) gimData = "N/G";
+
+    var patikimumas = "patikimumui trūksta duomenų";
+    if ((isAmzius || isGimData) && isAsmKodas)
+    {
+        var kodoMetai = (kodas.Substring(0, 1) switch
+        {
+            "1" or "2" => 18 + kodas.Substring(1, 2),
+            "3" or "4" => 19 + kodas.Substring(1, 2),
+            "5" or "6" => 20 + kodas.Substring(1, 2),
+            _ => 21 + kodas.Substring(1, 2),
+        }) + $"-{kodas.Substring(3, 2)}-{kodas.Substring(5, 2)}";
+        var gimDataPagalAsmKodaDate = DateTime.Parse(kodoMetai);
+        var amziusPagalAsmKoda = (int)((DateTime.Today - gimDataPagalAsmKodaDate).TotalDays / 365.25);
+        var isGimDataPatikima = gimDataPagalAsmKodaDate == gimDataDate && isGimData;
+        var isDataPagalAmziuPatikima = amziusInt == amziusPagalAsmKoda && isAmzius;
+
+        if (isGimDataPatikima && isDataPagalAmziuPatikima)
+            patikimumas = "amzius tikras";
+        else if ((isGimDataPatikima || isDataPagalAmziuPatikima) && isAmzius && isGimData)
+            patikimumas = "amzius nepatikimas";
+        else if (isGimDataPatikima || isDataPagalAmziuPatikima)
+            patikimumas = "amzius patikimas";
+        else
+            patikimumas = "amzius pameluotas";
+    }
+
+
+    var output =
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ATASKAITA APIE ASMENĮ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      {DateTime.Today.ToShortDateString()}       ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓     Vardas, pavardė ▓ {vardas,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓               Lytis ▓ {lytis1,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓        Asmens kodas ▓ {kodas,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓              Amžius ▓ {amzius,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓         Gimimo data ▓ {gimData,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓ Amžiaus patikimumas ▓ {patikimumas,-35} ▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n" +
+     $"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n";
+
+    Console.WriteLine(output);

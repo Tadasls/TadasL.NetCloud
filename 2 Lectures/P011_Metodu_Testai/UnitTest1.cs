@@ -91,5 +91,133 @@ namespace P011_Metodu_Testai
 
 
 
+        [TestMethod]
+        public void ArYraZodisMokausi_Test()
+        {
+            var fake = " as labai mokausi programuoti     ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ArYraZodisMokausi_Test1()
+        {
+            var fake = " as_labai_mokausi_programuoti     ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ArYraZodisMokausi_Test2()
+        {
+            var fake = " as_labai_MOKAUSI_programuoti     ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_Test0()
+        {
+            var fake = " as_labai_mokausi_programuoti     ";
+            var expected = "Ne";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_Test1()
+        {
+            var fake = "mokausi programuoti labai         ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_Test2()
+        {
+            var fake = "";
+            var expected = "Ne";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_1Test()
+        {
+            var fake = " as labai mokausi programuoti     ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_2Test()
+        {
+            var fake = "aslabaimokausiprogramuoti";
+            var expected = "Ne";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_3Test()
+        {
+            var fake = "mokausi programuoti labai    ";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_4Test()
+        {
+            var fake = "as mokausi, labai stipriai";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_5Test()
+        {
+            var fake = "as mokausi!";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_6Test()
+        {
+            var fake = "as mokausi?";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_7Test()
+        {
+            var fake = "as studijuoju (mokausi)";
+            var expected = "Taip";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ArYraNesulipesZodisMokausi_8Test()
+        {
+            var fake = "as studijuojumokausi)";
+            var expected = "Ne";
+            var actual = P10_Metodai.Program.IeskomeZodzioMokausiEkstraTekste(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
+
     }
 }
