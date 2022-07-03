@@ -293,6 +293,8 @@
 
             string galimisimboliai = " \\\"\\(\\)\\!\\,\\?"; 
 
+
+            //     klausiame taip/ne     tikriname  =  pradzia > 0 ? jei taip ieskome issimciu ir jei tinka True/ kitaip budu false : ir gale True nes neatitikimas > reiskia priekyje nieko nera.. 
             bool isPriekyjeSimbolisGalimas = (simbolisPriesais >0) ? galimisimboliai.Contains(tekstas[simbolisPriesais]):true;
             bool isGaleSimbolisGalimas = (simbolisGale < tekstoIlgis-1) ? galimisimboliai.Contains(tekstas[simbolisGale]):true;
                       
