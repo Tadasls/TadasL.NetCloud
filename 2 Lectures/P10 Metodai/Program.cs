@@ -15,7 +15,7 @@
             // teorija
             #region  
 
-
+            /*
             
             Console.WriteLine("Iveskite teksta");
             Tekstas = Console.ReadLine();
@@ -107,7 +107,7 @@
                 return a + b;   
             }
             Console.WriteLine(Add(2,2)); //nera prasmes kurioje vietoje patalpiname
-
+            */
             
             #endregion
 
@@ -276,38 +276,7 @@
         
         public static string IeskomeZodzioMokausiTekste(string tekstas) // 11a uzdavinys
         {
-
-            bool isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase);
-            int indexOfMokausi = tekstas.IndexOf("mokausi");
-            int tekstoIlgis = tekstas.Length;
-            
-
-
-
-            if(isMokausi = tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase))
-            {
-            char simbolisPriesais = tekstas[indexOfMokausi - 1];
-            char simbolisUz = tekstas[indexOfMokausi + 8];
-            Console.WriteLine($"{simbolisPriesais} ir {simbolisUz} ");
-            }
-            
-
-            if (isMokausi && indexOfMokausi == 0 && tekstas.Contains("mokausi ", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi ", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 8)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis - indexOfMokausi == 7)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
-                return "Taip";
-            else if (isMokausi && tekstoIlgis == 7)
-                return "Taip";
-            else
-                return "Ne";
-
-            
-
-            // return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
+             return tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";             
         }
         
 
@@ -319,25 +288,18 @@
             int indexOfMokausi = tekstas.IndexOf("mokausi");
             int tekstoIlgis = tekstas.Length;
 
-            if (isMokausi && indexOfMokausi == 0 && tekstas.Contains("mokausi ") && tekstoIlgis >= 7)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi ") && tekstoIlgis >= 8)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains(" mokausi") && tekstoIlgis >= 7)
-                return "Taip";
-            else if (isMokausi && indexOfMokausi > 0 && tekstas.Contains("mokausi", StringComparison.OrdinalIgnoreCase) && tekstoIlgis >= 7)
-                return "Taip";
-            else if (isMokausi && tekstoIlgis == 7)
-                return "Taip";
+            var simbolisPriesais = indexOfMokausi - 1;
+            var simbolisGale = indexOfMokausi + 7;
+
+            string galimisimboliai = " \\\"\\(\\)\\!\\,\\?"; 
+
+            bool isPriekyjeSimbolisGalimas = (simbolisPriesais >0) ? galimisimboliai.Contains(tekstas[simbolisPriesais]):true;
+            bool isGaleSimbolisGalimas = (simbolisGale < tekstoIlgis-1) ? galimisimboliai.Contains(tekstas[simbolisGale]):true;
+                      
+            if (isMokausi && isPriekyjeSimbolisGalimas && isGaleSimbolisGalimas) 
+               return "Taip";
             else
-                return "Ne";
-
-
-            // return (" " + tekstas + " ").Contains("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
-            // return (" " + tekstas + " ").StartsWith("mokausi", StringComparison.OrdinalIgnoreCase) ? "Taip" : "Ne";
-            // tekstas = " " + tekstas + " ";
-            // string sPattern = "^\\d{7}-\\d{7}-\\d{7}$";
-            // return (System.Text.RegularExpressions.Regex.IsMatch("mokausi", sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase)) ? "Taip" : "Ne";
+               return "Ne";
 
         }
 
@@ -382,7 +344,7 @@
             Console.WriteLine("Linkiu jums geros dienos");
         }
 
-        public static void ReferenceSkaicius(ref int skaicius)
+        public static void ReferenceSkaicius(ref int skaicius) 
         {
             skaicius = 900;
         }

@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testai", "Testai", "{E906DC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P011_Metodu_Testai", "P011_Metodu_Testai\P011_Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Belenkas1", "Belenkas1\Belenkas1.csproj", "{AA91DC78-70A5-4364-A72F-D6E426496CBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,10 @@ Global
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA91DC78-70A5-4364-A72F-D6E426496CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA91DC78-70A5-4364-A72F-D6E426496CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA91DC78-70A5-4364-A72F-D6E426496CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA91DC78-70A5-4364-A72F-D6E426496CBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
