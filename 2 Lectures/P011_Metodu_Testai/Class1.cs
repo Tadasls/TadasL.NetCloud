@@ -43,5 +43,22 @@ namespace P011_Methods_Tests
             var actual = P014_Debuginimas.Program.DecimalHour(fake);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void SkaiciuotuvoTestas_01()
+        {
+            //fakes
+            var a = 3;
+            var b = 2;
+            //expected
+            var expected = 1.5;
+            //actual
+            var actual = P014_Debuginimas.Program.Skaiciuotuvas(a, b, "/");
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
     }
 }
