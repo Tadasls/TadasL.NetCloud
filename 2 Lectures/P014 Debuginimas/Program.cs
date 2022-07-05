@@ -6,7 +6,7 @@ namespace P014_Debuginimas
 {
     public class Program
     {
-        
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, & Debug!");
@@ -57,6 +57,7 @@ namespace P014_Debuginimas
             string aritmetinisVeiksmas = Console.ReadLine();
 
             Console.WriteLine($" Gautas rezultatas{Skaiciuotuvas(pS, aS, aritmetinisVeiksmas)} ");
+
             */
 
             // 3 
@@ -84,39 +85,32 @@ namespace P014_Debuginimas
             Console.WriteLine("Iveskite krastines b ilgi ");
             int b = Convert.ToInt32(Console.ReadLine());  // krastines ilgis
 
-
             var figurosPlotas = n switch
             {
                 0 or 1 or 2 => 0,
-                3 => TrikampioPlotas(b),
+                3 => TrikampioPlotas(b, out int h),
                 4 => KeturkampioPlotas(b),
                 5 or 6 or 7 or 8 or 9 or 10 => PenkiakampioIrDaugiauPlotas(n, b),
                 _ => DaugiakampioKrastuSuma(n)
             };
             Console.WriteLine(figurosPlotas);
 
-
-         
         }
 
 
-        private static double DaugiakampioKrastuSuma(int n)
-        {
-            return 180 * (n - 2);
-        }
+        public static double DaugiakampioKrastuSuma(int n) => 180 * (n - 2);
+       
         public static double PenkiakampioIrDaugiauPlotas(int n, int b, int r = 5)
         {
             Console.Write("Iveskite statmenį r: ");
             r = Convert.ToInt32(Console.ReadLine());
             return (double)n / 2 * b * r;
         }
-        public static double KeturkampioPlotas(int b)
-        { 
-            return b * b;
-        }
-        public static double TrikampioPlotas(int b, int h = 5) 
+        public static double KeturkampioPlotas(int b) => b * b;
+       
+        public static double TrikampioPlotas(int b, out int h)
         {
-            Console.Write("Iveskite aukšį h: ");
+            Console.Write($"Iveskite aukšį h: " );
             h = Convert.ToInt32(Console.ReadLine());
             return 0.5D * b * h;
         }
@@ -125,54 +119,28 @@ namespace P014_Debuginimas
 
 
 
-
-
-
-
-
-
-
         public static double? Skaiciuotuvas(int pS, int aS, string aritmetinisVeiksmas)
         {
-            switch (aritmetinisVeiksmas)
+            switch (aritmetinisVeiksmas) //state machine
             {
                 case "+":
-                    Console.WriteLine($"Suma yra {Suma(pS, aS)}");
-                    return Suma(pS, aS);
+                  return Suma(pS, aS);
                 case "*":
-                    Console.WriteLine($"Sandauga yra {Sandauga(pS, aS)}");
                     return Sandauga(pS, aS);
-               case "-":
-                    Console.WriteLine($"Skirtumas yra {Skirtumas(pS, aS)}");
+                case "-":
                     return Skirtumas(pS, aS);
                 case "/":
-                    Console.WriteLine($"Dalyba yra {Dalyba(pS, aS)}");
                     return Dalyba(pS, aS);
                 default:
                     return null;
             }
         }
-        
-          
 
 
-
-        public static int Suma(int pS, int aS)
-        {
-            return pS + aS;
-        }
-        public static int Sandauga(int pS, int aS)
-        {
-            return pS * aS;
-        }
-        public static int Skirtumas(int pS, int aS)
-        {
-            return pS - aS;
-        }
-        public static double Dalyba(double pS, int aS)
-        {
-          return pS / aS;
-        }
+        public static int Suma(int pS, int aS) => pS + aS;  // sumuoja
+        public static int Sandauga(int pS, int aS) => pS * aS; // daugina
+        public static int Skirtumas(int pS, int aS) => pS - aS; // minusuoja
+        public static double Dalyba(int pS, int aS) => (double)pS / aS; // dalina
 
 
 
@@ -184,7 +152,8 @@ namespace P014_Debuginimas
 
 
 
-            /*
+
+
 
         public static string DecimalHour(string input)
         {
@@ -233,9 +202,9 @@ namespace P014_Debuginimas
         private static bool IsInputMinuteInValid(string[] a) => !int.TryParse(a[1], out int minute) || minute < 0 || minute > 60;
         private static bool IsInputSecondsInValid(string[] a) => a.Length > 2 && (!int.TryParse(a[2], out int sec) || sec < 0 || sec > 60);
 
-            */
 
-            /*
+
+
 
         public static void Pinigas()
         {
@@ -258,7 +227,6 @@ namespace P014_Debuginimas
             Debug.WriteLine("Jus turite rankose {0}", rezultatas);
             Console.ReadKey();
 
-            */
 
 
 
@@ -266,12 +234,14 @@ namespace P014_Debuginimas
 
 
 
-        
 
 
 
 
 
 
+
+
+        }
     }
 }

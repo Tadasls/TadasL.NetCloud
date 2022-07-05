@@ -58,6 +58,31 @@ namespace P011_Methods_Tests
         }
 
 
+        [TestMethod]
+        public void PlotoTestas_001()
+        {
+            //fakes
+            var fake = 4;
+            //expected
+            var expected = 16;
+            //actual
+            var actual = P014_Debuginimas.Program.KeturkampioPlotas(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void PlotoTestas_002()
+        {
+            //fakes
+            var fake =11;
+            //expected
+            var expected = 1620;
+            //actual
+            var actual = P014_Debuginimas.Program.DaugiakampioKrastuSuma(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+
 
 
     }
