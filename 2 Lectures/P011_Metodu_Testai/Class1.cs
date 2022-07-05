@@ -78,12 +78,11 @@ namespace P011_Methods_Tests
             //expected
             var expected = 1620;
             //actual
-            var actual = P014_Debuginimas.Program.DaugiakampioKrastuSuma(fake);
+            var actual = P014_Debuginimas.Program.DaugiakampioPlotas(fake);
             Assert.AreEqual(expected, actual);
         }
 
 
-
-
+    
     }
 }
