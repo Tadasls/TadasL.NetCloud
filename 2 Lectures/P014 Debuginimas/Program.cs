@@ -48,7 +48,10 @@ namespace P014_Debuginimas
 
         public static void DNR()
         {
-            string dnrGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";
+
+            //string dnrGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";  // nesutvarkyta
+            string dnrGrandine = "TCG-TAC-GAC-TAC-CGT-CAG-ACT-TAA-CCA-GTC-CAT-AGA-GCT"; // sutvarkyta
+
             Console.WriteLine($"Pasirinkite veiksma \n 1) DNR grandinės normalizavimas \n 2) DNR Grandinės validavimas \n 3) Sub-meniu \n ");
             string meniu = Convert.ToString(Console.ReadLine());
 
@@ -84,14 +87,49 @@ namespace P014_Debuginimas
             Debug.WriteLine(" Tikrintos raides A,T,C,G");
             return isDnrValid;
         }
+
         public static void TreciasPasirinkimas(bool isDnrNormal, bool isDnrValid, ref string dnrGrandine)
         {
+            arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGrandine);
+            arGrandineValidi = GrandinesValidavimas(ref dnrGrandine);
 
-            if (isDnrNormal)
+            if (arbuvonormalizuota && arGrandineValidi)
             {
-
-                
-
+                Console.WriteLine($"Pasirinkite veiksma \n 1) \n 2) \n 3) \n 4) \n 5) \n 6) \n 7) \n 8) \n 9) \n ");
+                string submeniu = Convert.ToString(Console.ReadLine());
+                switch (submeniu) //state machine
+                {
+                    case "1":
+                        Console.WriteLine($" 1 ");
+                        break;
+                    case "2":
+                        Console.WriteLine($" 2 ");
+                        break;
+                    case "3":
+                        Console.WriteLine($" 3 ");
+                        break;
+                    case "4":
+                        Console.WriteLine($" 4 ");
+                        break;
+                    case "5":
+                        Console.WriteLine($" 5 ");
+                        break;
+                    case "6":
+                        Console.WriteLine($" 6 ");
+                        break;
+                    case "7":
+                        Console.WriteLine($" 7 ");
+                        break;
+                    case "8":
+                        Console.WriteLine($" 8 ");
+                        break;
+                    case "9":
+                        Console.WriteLine($" 9 ");
+                        break;
+                    default:
+                        Console.WriteLine($" tokio meniu nera");
+                        break;
+                };
             }
             else
             {
@@ -157,20 +195,20 @@ namespace P014_Debuginimas
         {
             //3.2.7
             Console.WriteLine("Iveskite segmenta kuri norite salinti");
-            string salinamas = Console.ReadLine();
-            dnrGSrandine = dnrGSrandine.Replace(salinamas, "");
+            string trinamasElemetas = Console.ReadLine();
+            dnrGSrandine = dnrGSrandine.Replace(trinamasElemetas, "");
             Console.WriteLine($" grandine po valymo {dnrGSrandine}"); 
         }
         public static void TreciasSub8(ref string dnrGSrandine)
         {
             //3.2.8 
             Console.WriteLine("Iveskite segmenta kuri norite keisti");
-            string kurikeisime = Console.ReadLine();
+            string pasirinktasElementas = Console.ReadLine();
             Console.WriteLine("Iveskite segmenta kuriuo norite pakeisiti");
-            string pakeitimas = Console.ReadLine();
-            if ((kurikeisime.Length == 3 && kurikeisime.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (pakeitimas.Length == 3 && pakeitimas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
+            string ivestasElementas = Console.ReadLine();
+            if ((pasirinktasElementas.Length == 3 && pasirinktasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (ivestasElementas.Length == 3 && ivestasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
             {
-                dnrGSrandine = dnrGSrandine.Replace(kurikeisime, pakeitimas);
+                dnrGSrandine = dnrGSrandine.Replace(pasirinktasElementas, ivestasElementas);
             }
         }
         public static void TreciasSub9(ref string dnrGSrandine)
