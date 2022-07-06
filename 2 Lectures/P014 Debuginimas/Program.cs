@@ -7,7 +7,7 @@ namespace P014_Debuginimas
     {
         public static bool arbuvonormalizuota = false;
         public static bool arGrandineValidi = false;
-        public static string dnrGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";
+        public static string dnrGlobaliGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";  //globalizacija 
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Debug!");
@@ -48,83 +48,173 @@ namespace P014_Debuginimas
 
         public static void DNR()
         {
-
-            //string dnrGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";  // nesutvarkyta
-            string dnrGrandine = "TCG-TAC-GAC-TAC-CGT-CAG-ACT-TAA-CCA-GTC-CAT-AGA-GCT"; // sutvarkyta
-
+    
             Console.WriteLine($"Pasirinkite veiksma \n 1) DNR grandinės normalizavimas \n 2) DNR Grandinės validavimas \n 3) Sub-meniu \n ");
             string meniu = Convert.ToString(Console.ReadLine());
-
-            switch (meniu) //state machine
+                        
+            if (meniu == "1" )
             {
-                case "1":
-                    arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGrandine);
-                    Console.WriteLine(" Grandine buvo Normalizuota");
-                    break;
-                case "2":
-                    arGrandineValidi =  GrandinesValidavimas(ref dnrGrandine);
-                    Console.WriteLine($"Ar grandine Validi {arGrandineValidi.ToString()} ");
-                    break;
-                case "3":
-                    if (arGrandineValidi)
-                        TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
-                    break;
+                arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                Console.WriteLine(" Grandine buvo Normalizuota");
+                DNR();
+            } else if (meniu == "2" )
+            {
+                arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
+                Console.WriteLine($"Ar grandine Validi {arGrandineValidi.ToString()} ");
+                DNR();
+            } else if (meniu == "3")
+            {
+                if (arbuvonormalizuota || arGrandineValidi)
+                {
+                    Console.WriteLine($"Pasirinkite veiksma \n " +
+                        $"1) GCT pakeisti į AGG \n " +
+                        $"2) Išvesti ar yra tekste CAT \n " +
+                        $"3) 3 ir 5 grandinės segmentai\n " +
+                        $"4) Raidžių kiekis tekste \n " +
+                        $"5) Kiek kartų pasikartoja ivestas segmentas \n " +
+                        $"6) Prie grandinės galo pridėti ivesta elementa \n " +
+                        $"7) pašalinti pasirinką elementą\n " +
+                        $"8) Pakeisti pasirinkti segmentą \n " +
+                        $"9) Exit to meniu \n ");
+                    string submeniu = Convert.ToString(Console.ReadLine());
+                    switch (submeniu) //state machine
+                    {
+                        case "1":
+                            TreciasSub1(ref dnrGlobaliGrandine);
+                            break;
+                        case "2":
+                            TreciasSub2(ref dnrGlobaliGrandine);
+                            break;
+                        case "3":
+                            TreciasSub3(ref dnrGlobaliGrandine);
+                            break;
+                        case "4":
+                            TreciasSub4(ref dnrGlobaliGrandine);
+                            break;
+                        case "5":
+                            TreciasSub5(ref dnrGlobaliGrandine);
+                            break;
+                        case "6":
+                            TreciasSub6(ref dnrGlobaliGrandine);
+                            break;
+                        case "7":
+                            TreciasSub7(ref dnrGlobaliGrandine);
+                            break;
+                        case "8":
+                            TreciasSub8(ref dnrGlobaliGrandine);
+                            break;
+                        case "9":
+                            TreciasSub9(ref dnrGlobaliGrandine);
+                            break;
+                        default:
+                            Console.WriteLine($" tokio meniu nera");
+                            break;
+                    };
+                }
+                else
+                {
+                    Console.WriteLine("1 Normalizuoti Grandine  \n 2  Iseiti is programos ");
+                    string variantasB = Console.ReadLine();
+                    if (variantasB == "1")
+                    {
+
+                        arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                        DNR();
+                        //arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                        // GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                        //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Exit");
+                        System.Environment.Exit(-1);
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGlobaliGrandine);
             }
+            else
+            {
+                Console.WriteLine("nera tokio pasirinkimo");
+            }
+            
+                        
+     
         }
        
-        public static bool GrandinesNormalizavimas(ref string dnrGrandine)
+        public static bool GrandinesNormalizavimas(ref string dnrGlobaliGrandine)
         {
-            dnrGrandine = dnrGrandine.Trim().ToUpper().Replace(" ","");
-            Console.WriteLine("Po normalizavimo ! " + dnrGrandine);
-            Debug.WriteLine("pasalinti tarpai ir padarytos didziosios");
+            dnrGlobaliGrandine = dnrGlobaliGrandine.Trim().ToUpper().Replace(" ","");
+            //Console.WriteLine("Po normalizavimo ! " + dnrGrandine);
+            Debug.WriteLine("Ivyko normalizacija pasalinti tarpai ir padarytos didziosios");
             return true;
         }
-        public static bool GrandinesValidavimas(ref string dnrGrandine)
+        public static bool GrandinesValidavimas(ref string dnrGlobaliGrandine)
         {
-            string sutrumpintaGrandine = dnrGrandine.ToUpper().Replace("A", "").Replace("T", "").Replace("C", "").Replace("G", "").Replace("-", "").Replace(" ", "");
+            string sutrumpintaGrandine = dnrGlobaliGrandine.ToUpper().Replace("A", "").Replace("T", "").Replace("C", "").Replace("G", "").Replace("-", "").Replace(" ", "");
             bool isDnrValid = sutrumpintaGrandine.Length == 0;
-            Console.WriteLine("pries validavima ! " + dnrGrandine +"\n ir po normalizavimo" + dnrGrandine.ToUpper().Trim().Replace(" ", ""));
-            Debug.WriteLine(" Tikrintos raides A,T,C,G");
+            //Console.WriteLine("pries validavima ! " + dnrGrandine +"\n ir po normalizavimo" + dnrGrandine.ToUpper().Trim().Replace(" ", ""));
+            Debug.WriteLine(" Ivyko validacija Tikrintos raides A,T,C,G");
             return isDnrValid;
         }
-
-        public static void TreciasPasirinkimas(bool isDnrNormal, bool isDnrValid, ref string dnrGrandine)
+        public static void TreciasPasirinkimas(bool isDnrNormal, bool isDnrValid, ref string dnrGlobaliGrandine)
         {
-            arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGrandine);
-            arGrandineValidi = GrandinesValidavimas(ref dnrGrandine);
+           bool arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+           bool arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
 
+            
             if (arbuvonormalizuota && arGrandineValidi)
             {
-                Console.WriteLine($"Pasirinkite veiksma \n 1) \n 2) \n 3) \n 4) \n 5) \n 6) \n 7) \n 8) \n 9) \n ");
+                Console.WriteLine($"Pasirinkite veiksma \n " +
+                    $"1) GCT pakeisti į AGG \n " +
+                    $"2) Išvesti ar yra tekste CAT \n " +
+                    $"3) 3 ir 5 grandinės segmentai\n " +
+                    $"4) Raidžių kiekis tekste \n " +
+                    $"5) Kiek kartų pasikartoja ivestas segmentas \n " +
+                    $"6) Prie grandinės galo pridėti ivesta elementa \n " +
+                    $"7) pašalinti pasirinką elementą\n " +
+                    $"8) Pakeisti pasirinkti segmentą \n " +
+                    $"9) Exit to meniu \n ");
                 string submeniu = Convert.ToString(Console.ReadLine());
                 switch (submeniu) //state machine
                 {
                     case "1":
-                        Console.WriteLine($" 1 ");
+                        TreciasSub1(ref dnrGlobaliGrandine);
                         break;
                     case "2":
-                        Console.WriteLine($" 2 ");
+                        TreciasSub2(ref dnrGlobaliGrandine);
                         break;
                     case "3":
-                        Console.WriteLine($" 3 ");
+                        TreciasSub3(ref dnrGlobaliGrandine);
                         break;
                     case "4":
-                        Console.WriteLine($" 4 ");
+                        TreciasSub4(ref dnrGlobaliGrandine);
                         break;
                     case "5":
-                        Console.WriteLine($" 5 ");
+                        TreciasSub5(ref dnrGlobaliGrandine);
                         break;
                     case "6":
-                        Console.WriteLine($" 6 ");
+                        TreciasSub6(ref dnrGlobaliGrandine);
                         break;
                     case "7":
-                        Console.WriteLine($" 7 ");
+                        TreciasSub7(ref dnrGlobaliGrandine);
                         break;
                     case "8":
-                        Console.WriteLine($" 8 ");
+                        TreciasSub8(ref dnrGlobaliGrandine);
                         break;
                     case "9":
-                        Console.WriteLine($" 9 ");
+                        TreciasSub9(ref dnrGlobaliGrandine);
                         break;
                     default:
                         Console.WriteLine($" tokio meniu nera");
@@ -134,11 +224,12 @@ namespace P014_Debuginimas
             else
             {
                 Console.WriteLine("Normalizuoti Grandine - 1 \n arba Iseiti - 2 ");
-                string Kadarom = Console.ReadLine();
-                if (Kadarom == "1")
+                string variantasB = Console.ReadLine();
+                if (variantasB == "1")
                 {
-                    arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGrandine);
-                    TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
+                    arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                    GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                    //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
                 }
                 else
                 {
@@ -148,70 +239,83 @@ namespace P014_Debuginimas
             }
 
         }
-        public static void TreciasSub1(ref string dnrGSrandine)
+        public static void TreciasSub1(ref string dnrGlobaliGrandine)
         {
             //3.2.1
-            dnrGSrandine.Replace("GCT", "AGG");
+            string dnrGrandineUpdated = dnrGlobaliGrandine.Replace("GCT", "AGG");
+            Console.WriteLine(dnrGrandineUpdated);
+            Console.WriteLine("pakeista GCT i AGG");
+            
+
         }
-        public static void TreciasSub2(ref string dnrGSrandine)
+        public static void TreciasSub2(ref string dnrGlobaliGrandine)
         {
             //3.2.2
-            Console.WriteLine($"  ar grandineje yra CAT  : {dnrGSrandine.Contains("CAT").ToString()} ");
+            Console.WriteLine($"  ar grandineje yra CAT  : {dnrGlobaliGrandine.Contains("CAT").ToString()} ");
         }
-        public static void TreciasSub3(ref string dnrGSrandine)
+        public static void TreciasSub3(ref string dnrGlobaliGrandine)
         {
             //3.2.3 
-            //String[] reiksmes = dnrGSrandine.Split("-");
+            //String[] reiksmes = dnrGrandine.Split("-");
             //Console.WriteLine($" trecios sekcijos reiksmes : {reiksmes[2]}  penktos sekcijos reiksmes : {reiksmes[4]}");
-            Console.WriteLine($" trecios sekcijos reiksmes : {dnrGSrandine.Substring(7, 3)}  penktos sekcijos reiksmes : {dnrGSrandine.Substring(16, 3)} ");
+            Console.WriteLine($" trecios sekcijos reiksmes : {dnrGlobaliGrandine.Substring(8, 3)}  penktos sekcijos reiksmes : {dnrGlobaliGrandine.Substring(16, 3)} ");
         }
-        public static void TreciasSub4(ref string dnrGSrandine)
+        public static void TreciasSub4(ref string dnrGlobaliGrandine)
         {
             //3.2.4
-            string senagrandine = dnrGSrandine;
+            string senagrandine = dnrGlobaliGrandine;
             senagrandine = senagrandine.Replace("-", "");
             Console.WriteLine($"Grandines raidziu kiekis = : {senagrandine.Length}");
         }
-        public static void TreciasSub5(ref string dnrGSrandine)
+        public static void TreciasSub5(ref string dnrGlobaliGrandine)
         {
             //3.2.5
             Console.WriteLine("Iveskite triju raidiziu koda xxx kuris sudarytas is AGTC");
             string ivestasSegmentas = Console.ReadLine();
-            int kartu = dnrGSrandine.Split("-").Count(s => s == ivestasSegmentas);
-            Console.WriteLine($" ivestas {ivestasSegmentas} kartojasi tiek kartu : {kartu.ToString()}");
+            ivestasSegmentas = ivestasSegmentas.ToUpper();
+            int kartu = dnrGlobaliGrandine.Split("-").Count(s => s == ivestasSegmentas);
+            
+            
+            Console.WriteLine($" ivestas {ivestasSegmentas} kartojasi  - {kartu.ToString()} kartu ");
         }
-        public static void TreciasSub6(ref string dnrGSrandine)
+        public static void TreciasSub6(ref string dnrGlobaliGrandine)
         {
             //3.2.6
             Console.WriteLine("Iveskite triju raidiziu koda xxx kuris sudarytas is AGTC");
             string ivestasSegmentas2 = Console.ReadLine();
+            ivestasSegmentas2 = ivestasSegmentas2.ToUpper();
             if (ivestasSegmentas2.Length == 3 && ivestasSegmentas2.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0)
             {
-                dnrGSrandine = dnrGSrandine + "-" + ivestasSegmentas2;
-                Console.WriteLine($" NAuja grandine {dnrGSrandine}");
+                dnrGlobaliGrandine = dnrGlobaliGrandine + "-" + ivestasSegmentas2;
+                Console.WriteLine($" Nauja grandine {dnrGlobaliGrandine}");
             }
         }
-        public static void TreciasSub7(ref string dnrGSrandine)
+        public static void TreciasSub7(ref string dnrGlobaliGrandine)
         {
             //3.2.7
-            Console.WriteLine("Iveskite segmenta kuri norite salinti");
-            string trinamasElemetas = Console.ReadLine();
-            dnrGSrandine = dnrGSrandine.Replace(trinamasElemetas, "");
-            Console.WriteLine($" grandine po valymo {dnrGSrandine}"); 
+            Console.WriteLine($"Iveskite segmenta kuri norite salinti is {dnrGlobaliGrandine}");
+            string trinamasElementas = Console.ReadLine();
+            trinamasElementas = trinamasElementas.ToUpper();
+            dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(trinamasElementas, "");
+            Console.WriteLine($" grandine po valymo {dnrGlobaliGrandine}"); 
         }
-        public static void TreciasSub8(ref string dnrGSrandine)
+        public static void TreciasSub8(ref string dnrGlobaliGrandine)
         {
             //3.2.8 
             Console.WriteLine("Iveskite segmenta kuri norite keisti");
             string pasirinktasElementas = Console.ReadLine();
+            pasirinktasElementas = pasirinktasElementas.ToUpper();
             Console.WriteLine("Iveskite segmenta kuriuo norite pakeisiti");
             string ivestasElementas = Console.ReadLine();
+            ivestasElementas = ivestasElementas.ToUpper();
             if ((pasirinktasElementas.Length == 3 && pasirinktasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (ivestasElementas.Length == 3 && ivestasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
             {
-                dnrGSrandine = dnrGSrandine.Replace(pasirinktasElementas, ivestasElementas);
+                dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(pasirinktasElementas, ivestasElementas);
             }
+            Console.WriteLine($"Nauja grandine {dnrGlobaliGrandine}");
+
         }
-        public static void TreciasSub9(ref string dnrGSrandine)
+        public static void TreciasSub9(ref string dnrGlobaliGrandine)
         {
             //3.2.9
             DNR();
