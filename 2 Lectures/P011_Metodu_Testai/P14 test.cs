@@ -74,15 +74,17 @@ namespace P011_Methods_Tests
         public void PlotoTestas_002()
         {
             //fakes
-            var fake =11;
+            var b = 2;
+            var r = 2;
+            var n = 2;
             //expected
-            var expected = 1620;
+            var expected = 4;
             //actual
-            var actual = P014_Debuginimas.Program.DaugiakampioPlotas(fake);
+            var actual = P014_Debuginimas.Program.DaugiakampioPlotas(n, b, r);
             Assert.AreEqual(expected, actual);
         }
 
+        
 
-    
     }
 }

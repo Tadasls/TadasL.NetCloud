@@ -22,7 +22,7 @@ namespace P011_Methods_Tests
         public void Skaiciuotuvas_Test1()
         {
             var expected = 10.1 * 10.1;
-            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10,1", "10", "^2");
+            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10.1", "10", "^2");
 
             Assert.AreEqual(expected, actual);
         }
@@ -31,7 +31,7 @@ namespace P011_Methods_Tests
         public void Skaiciuotuvas_Test2()
         {
             var expected = 10.1 - 10;
-            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10,1", "10", "2");
+            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10.1", "10", "2");
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,7 +40,7 @@ namespace P011_Methods_Tests
         public void Skaiciuotuvas_Test3()
         {
             var expected = 10.1 * 10.1;
-            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10,1", "10", "5");
+            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10.1", "10", "5");
 
             Assert.AreEqual(expected, actual);
         }
@@ -49,7 +49,7 @@ namespace P011_Methods_Tests
         public void Skaiciuotuvas_Test4()
         {
             var expected = 10.1 + 10;
-            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10,1", "10", "+");
+            var actual = P014_Debuginimas.Program.Skaiciuotuvas("10.1", "10", "+");
 
             Assert.AreEqual(expected, actual);
         }

@@ -5,16 +5,167 @@ namespace P014_Debuginimas
 {
     public class Program
     {
-
+        public static bool arbuvonormalizuota = false;
+        public static bool arGrandineValidi = false;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Debug!");
             //Pinigas();
             //Console.WriteLine(DecimalHour(Console.ReadLine()));
             //DaugiakampioPlotas_Main(null);
+            //MatematikaPapildymas_Main(null);
+            DNR();
+        }
+            /*---------------------------------------------------
+                Tarkime turime DNR grandinę užkoduotą tekstu var txt =" T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ".
+            Galimos bazės: Adenine, Thymine, Cytosine, Guanine
+            Parašykite programą kurioje atsiranda MENIU kuriame naudotojas gali pasirinkti:
+            1. Atlikti DNR grandinės normalizavimo veiksmus:
+                - pašalina tarpus.
+                - visas raides keičia didžiosiomis. 
+            2. Atlikti grandinės validaciją
+                - patikrina ar nėra kitų nei ATCG raidžių
+        3. Atlieka veiksmus su DNR grandine (tik tuo atveju jei grandinė yra normalizuota ir validi). 
+        Nuspaudus 3 įeinama į sub-meniu
+            - Jeigu grandinė yra validi, tačiau nenormalizuota programa pasiūlo naudotojui 
+            1) normalizuoti grandinę
+            2) išeiti iš programos
+            - jei grandinė normalizuota arba kai buvo atlikta normalizacija
+            1) GCT pakeis į AGG
+            2) Išvesti ar yra tekste CAT 
+            3) Išvesti trečia ir penktą grandinės segmentus (naudoti Substring()).
+            4) Išvesti raidžių kiekį tekste (naudoti string composition)
+            5) Išvesti ar yra tekste ir kiek kartų pasikartoja iš klaviatūros įvestas segmento kodas 
+            6) Prie grandinės galo pridėti iš klaviatūros įvesta segmentą  
+                (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
+            7) Iš grandinės pašalinti pasirinką elementą  
+            8) Pakeisti pasirinkti segmentą įvestu iš klaviatūros  
+                (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
+            9) Gryžti į ankstesnį meniu
+       Visoms operacijoms reikalingi testai.
+       */
+
+        public static void DNR()
+        {
+            string dnrGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";
+
+            Console.WriteLine($"Pasirinkite veiksma \n 1) DNR grandinės normalizavimas \n 2) DNR Grandinės validavimas \n 3) Sub-meniu \n ");
+            string meniu = Convert.ToString(Console.ReadLine());
+
+            switch (meniu) //state machine
+            {
+                case "1":
+                    arbuvonormalizuota = GrandinesNormalizavimas( ref dnrGrandine);
+                    Console.WriteLine(" Grandine buvo Normalizuota");
+                    break;
+                case "2":
+                    arGrandineValidi =  GrandinesValidavimas( ref dnrGrandine);
+                    Console.WriteLine($"Ar grandine Validi {arGrandineValidi.ToString()} ");
+                    break;
+                case "3":
+                    if (arGrandineValidi)
+                    TreciasMetodas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
+                    break;
+            }
+
+        }
+       
+
+        public static bool GrandinesNormalizavimas( ref string dnrGrandine)
+        {
+             dnrGrandine = dnrGrandine.Trim().ToUpper().Replace(" ","");
+            Console.WriteLine(dnrGrandine + " po normalizavimo ! ");
+             return true;
+        }
+        public static bool GrandinesValidavimas(ref string dnrGrandine)
+        {
+            Debug.WriteLine("A,T,C,G");
+            string sutrumpintaGrandine = dnrGrandine.Replace("A", "").Replace("T", "").Replace("C", "").Replace("G", "").Replace("-", "");
+            bool isDnrValid = sutrumpintaGrandine.Length == 0;
+            return isDnrValid;
+        }
+        public static void TreciasMetodas(bool isDnrNormal, bool isDnrValid, ref string dnrGrandine)
+        {
+
+            if (isDnrNormal)
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("Ei JEi nori sutvakrysiu grandine arba eini von ! Y/N");
+                string Kadarom = Console.ReadLine();
+                if (Kadarom == "Y")
+                {
+                    arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGrandine);
+                    TreciasMetodas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
+                }
+                else
+                {
+                    Console.WriteLine("dasvidaniaja");
+                    System.Environment.Exit(-1);
+                }
+            }
+
+        }
+        public static void TreciasSub(ref string dnrGSrandine)
+        {
+            //3.2.1
+            dnrGSrandine.Replace("GCT", "AGG");
+            //3.2.2
+            Console.WriteLine($"  ar grandineje yra CAT  : {dnrGSrandine.Contains("CAT").ToString()} ");
+            //3.2.3 
+            //String[] reiksmes = dnrGSrandine.Split("-");
+            //Console.WriteLine($" trecios sekcijos reiksmes : {reiksmes[2]}  penktos sekcijos reiksmes : {reiksmes[4]}");
+            Console.WriteLine($" trecios sekcijos reiksmes : {dnrGSrandine.Substring(7, 3)}  penktos sekcijos reiksmes : {dnrGSrandine.Substring(16, 3)} ");
+            //3.2.4
+            string senagrandine = dnrGSrandine;
+            senagrandine = senagrandine.Replace("-", "");
+            Console.WriteLine($"Grandines raidziu kiekis = : {senagrandine.Length}");
+
+            //3.2.5
+            Console.WriteLine("Iveskite triju raidiziu koda kuris sudarytas is AGTC");
+            string ivestasSegmentas = Console.ReadLine();
+            int kartu = dnrGSrandine.Split("-").Count(s => s == ivestasSegmentas);
+            Console.WriteLine($" ivestas {ivestasSegmentas} kartojasi tiek kartu : {kartu.ToString()}");
+            //3.2.6
+            string ivestasSegmentas2 = ivestasSegmentas;
+            if (ivestasSegmentas.Length == 3 && ivestasSegmentas2.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0)
+            {
+                dnrGSrandine = dnrGSrandine + "-" + ivestasSegmentas;
+                Console.WriteLine($" NAuja grandine {dnrGSrandine}");
+            }
+            //3.2.7
+            Console.WriteLine("Iveskite segmenta kuri norite salinti");
+            string salinamas = Console.ReadLine();
+
+            dnrGSrandine = dnrGSrandine.Replace(salinamas, "");
+            Console.WriteLine($" grandine po valymo {dnrGSrandine}");
+            //3.2.8 
+            Console.WriteLine("Iveskite segmenta kuri norite keisti");
+            string kurikeisime = Console.ReadLine();
+            Console.WriteLine("Iveskite segmenta kuriuo norite pakeisiti");
+            string pakeitimas = Console.ReadLine();
+            if ((kurikeisime.Length == 3 && kurikeisime.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (pakeitimas.Length == 3 && pakeitimas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
+            {
+                dnrGSrandine = dnrGSrandine.Replace(kurikeisime, pakeitimas);
+            }
+            //3.2.9
+            DNR();
+
+
+
         }
 
-        /*
+
+
+
+
+
+
+
+
+        /*  darbo laikas ivedamas is consoles parodomi trukumai aarba virsvalandziai
          Įveskite darbo laiką valandomis ir minutėmis hh.mm arba valandomis, minutėmis ir sekundėmis hh.mm.ss 
          - Konvertuokite išdirbtą laiką į dešimtainę išlaišką
          - Suapvalinkite iki 4 skaičių po kablelio 
@@ -71,76 +222,30 @@ namespace P014_Debuginimas
                 return false;
             }
 
-                 return true;
+            return true;
         }
         private static bool IsInputTimeInValid(string[] a) => a.Length < 2;
         private static bool IsInputHourInValid(string[] a) => !int.TryParse(a[0], out int hour) || hour < 0;
         private static bool IsInputMinuteInValid(string[] a) => !int.TryParse(a[1], out int minute) || minute < 0 || minute > 60;
         private static bool IsInputSecondsInValid(string[] a) => a.Length > 2 && (!int.TryParse(a[2], out int sec) || sec < 0 || sec > 60);
 
-
-
-        public static void MatematikaPapildymas_Main(string[] args)
-        {
-            Console.WriteLine("iveskite skaiciu a");
-            var a = Console.ReadLine();
-            Console.WriteLine("iveskite skaiciu b");
-            var b = Console.ReadLine();
-            Console.WriteLine(@"Pasirinkite veiksma
-            1) +
-            2) -
-            3) *
-            4) /
-            5) ^2
-            6) ^3
-            ");
-            var veiksmas = Console.ReadLine();
-
-            double? rezultatas = null;
-            rezultatas = Skaiciuotuvas(a, b, veiksmas);
-
-            Console.WriteLine($" {a} {veiksmas} {b} = {rezultatas}");
-
-        }
-
-        public static double? Skaiciuotuvas(string? a, string? b, string? veiksmas)
-        {
-            VeiksmoNormalizacija(ref veiksmas);
-            if (ArSveikiejiSkaiciai(a, b) && !ArNaujasVeiksmas(veiksmas))
-            {
-                return Skaiciuotuvas(Convert.ToInt32(a), Convert.ToInt32(b), veiksmas);
-            }
-            else if (ArSkaiciai(a, b))
-            {
-                return Skaiciuotuvas(Convert.ToDouble(a), Convert.ToDouble(b), veiksmas);
-            }
-
-            return null;
-        }
-
-        public static void VeiksmoNormalizacija(ref string veiksmas)
-        {
-            veiksmas = veiksmas.Replace("1", "+");
-            veiksmas = veiksmas.Replace("2", "-");
-            veiksmas = veiksmas.Replace("3", "*");
-            veiksmas = veiksmas.Replace("4", "/");
-            veiksmas = veiksmas.Replace("5", "^2");
-            veiksmas = veiksmas.Replace("6", "^3");
-        }
-
-
-        public static bool ArSveikiejiSkaiciai(string a, string b) => int.TryParse(a, out _) && int.TryParse(b, out _);
-        public static bool ArSkaiciai(string a, string b) => double.TryParse(a, out _) && double.TryParse(b, out _);
-        public static bool ArNaujasVeiksmas(string veiksmas) => veiksmas == "^2" || veiksmas == "^3";
-
-        public static double Suma(double a, double b) => a + b;
-        public static double Atimtis(double a, double b) => a - b;
-        public static double Daugyba(double a, double b) => a * b;
-        public static double Dalyba(double a, double b) => a / b;
-        public static double Kvadratu(double a) => a * a;
-        public static double Kubu(double a) => a * a * a;
-
-        public static double? Skaiciuotuvas(double a, double b, string veiksmas)
+        /* MATEMATIKA ------Skaiciuotuvas su Int---------------------------------------------
+         1. Sukurti metodus Suma, Atimtis, Daugyba, Dalyba.
+         - Main metode paprašykite įvesti 2 skaičius
+         - Kiekvienas matematinis veiksmas turi turėti savo metodą 
+           metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezultatą.
+         - Kiekvieno metodo darbo rezultatus atspausdinti Main metode.
+         - Visų gautų rezultatų sumą atspausdinti Main metode.
+         
+        2. Skaičiuotuvas. Naudoti pirmos dalies matematinius metodus.
+         - Main metode paprašykite įvesti 2 skaičius ir matematinį veiksmą
+         - Metodas 'Skaiciuotuvas' turi priimti tris parametrus du skaičius (int tipo) ir veiksmą. 
+         - Metodas 'Skaiciuotuvas' turi parinkti reikiamą matematinį metodą ir grąžinti rezultatą (naudoti switch)
+         - parašyti testus
+         - gautą rezultatą atspausdinti į ekraną Main metode.
+           
+         */
+        public static double? Skaiciuotuvas(int a, int b, string veiksmas)
         {
             switch (veiksmas) //state machine
             {
@@ -152,108 +257,65 @@ namespace P014_Debuginimas
                     return Daugyba(a, b);
                 case "/":
                     return Dalyba(a, b);
-                case "^2":
-                    return Kvadratu(a);
-                case "^3":
-                    return Kubu(a);
                 default:
                     return null;
             }
         }
-
-
-        /* MATEMATIKA ---------------------------------------------------
-1. Sukurti metodus Suma, Atimtis, Daugyba, Dalyba.
-- Main metode paprašykite įvesti 2 skaičius
-- Kiekvienas matematinis veiksmas turi turėti savo metodą 
-metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezultatą.
-- Kiekvieno metodo darbo rezultatus atspausdinti Main metode.
-- Visų gautų rezultatų sumą atspausdinti Main metode.
-
-2. Skaičiuotuvas. Naudoti pirmos dalies matematinius metodus.
-- Main metode paprašykite įvesti 2 skaičius ir matematinį veiksmą
-- Metodas 'Skaiciuotuvas' turi priimti tris parametrus du skaičius (int tipo) ir veiksmą. 
-- Metodas 'Skaiciuotuvas' turi parinkti reikiamą matematinį metodą ir grąžinti rezultatą (naudoti switch)
-- parašyti testus
-- gautą rezultatą atspausdinti į ekraną Main metode.
-
-*/
-
         public static int Suma(int a, int b) => a + b;
         public static int Atimtis(int a, int b) => a - b;
         public static int Daugyba(int a, int b) => a * b;
         public static double Dalyba(int a, int b) => (double)a / b;
 
-        public static double? Skaiciuotuvas(int a, int b, string veiksmas)
-        {
-             switch (veiksmas) //state machine
-             {
-            case "+":
-                return Suma(a, b);
-            case "-":
-                return Atimtis(a, b);
-            case "*":
-                return Daugyba(a, b);
-            case "/":
-                return Dalyba(a, b);
-            default:
-                return null;
-             }
-        }
-
-         /* DAUGIAKAMPIO PLOTAS---------------------------------------------------
-                   Paprašyti naudotojo įvesti taisyklingojo daugiakampio kraštių kiekį (n) ir kraštinės ilgį (b)., 
-                     metodo parinkimui naudoti switch expression
-                   1. Kai įvestas trikampis, 
-                   - paprašyti įvesti aukšį h
-                   - A=1/2bh
-                   2. Kai įvestas keturkampis,
-                   - A=b*b
-                   3. Kai įvestas penkiakampis, šešiakampis ir t.t.,
-                   - paprašyti įvesti statmenį r
-                   - A=n/2 * b * r
-                   4. išvesti betkokio daugiakampio vidinių kampų sumą
-                   - 180 * (n - 2)
-                  N.B! atkreipkite dėmesį į metodų testuojamumą. 
-                    visi atvejai 1,2,3 ir 4 turi būti atskiruose metoduose ir metodai turi būti testuojami
-                   */
-   
+        /* DAUGIAKAMPIO PLOTAS---------------------------------------------------
+       Paprašyti naudotojo įvesti taisyklingojo daugiakampio kraštių kiekį (n) ir kraštinės ilgį (b)., 
+         metodo parinkimui naudoti switch expression
+       1. Kai įvestas trikampis, 
+       - paprašyti įvesti aukšį h
+       - A=1/2bh
+       2. Kai įvestas keturkampis,
+       - A=b*b
+       3. Kai įvestas penkiakampis, šešiakampis ir t.t.,
+       - paprašyti įvesti statmenį r
+       - A=n/2 * b * r
+       4. išvesti betkokio daugiakampio vidinių kampų sumą
+       - 180 * (n - 2)
+      N.B! atkreipkite dėmesį į metodų testuojamumą. 
+        visi atvejai 1,2,3 ir 4 turi būti atskiruose metoduose ir metodai turi būti testuojami
+       */
         public static void DaugiakampioPlotas_Main(string[] args)
         {
-        Console.WriteLine("Iveskite kraštių kiekį (n)");
-        int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Iveskite kraštių kiekį (n)");
+            int n = Convert.ToInt32(Console.ReadLine());
 
-        if (!IsKampuKiekisValid(n))
-        {
-            Console.WriteLine("neteisingas krastiniu kiekis");
-            return;
-        }
+            if (!IsKampuKiekisValid(n))
+            {
+                Console.WriteLine("neteisingas krastiniu kiekis");
+                return;
+            }
 
-        Console.WriteLine("Iveskite kraštinės ilgį (b)");
-        int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Iveskite kraštinės ilgį (b)");
+            int b = Convert.ToInt32(Console.ReadLine());
 
-        int h = 0;
-        int r = 0;
-        if (n == 3)
-        {
-            Console.WriteLine("Iveskite trikampio auksti (h)");
-            h = Convert.ToInt32(Console.ReadLine());
-        }
-        else if (n > 4)
-        {
-            Console.WriteLine("Iveskite įvesti statmenį (r)");
-            r = Convert.ToInt32(Console.ReadLine());
-        }
+            int h = 0;
+            int r = 0;
+            if (n == 3)
+            {
+                Console.WriteLine("Iveskite trikampio auksti (h)");
+                h = Convert.ToInt32(Console.ReadLine());
+            }
+            else if (n > 4)
+            {
+                Console.WriteLine("Iveskite įvesti statmenį (r)");
+                r = Convert.ToInt32(Console.ReadLine());
+            }
 
-        var A = PoligonoPlotas(n, b, h, r);
-        var S = VidineKampuSuma(n);
-        Console.WriteLine($"plotas A={A}");
-        Console.WriteLine($"VidineKampuSuma S={S}");
-        }
-
+            var A = PligonoPlotas(n, b, h, r);
+            var S = VidineKampuSuma(n);
+            Console.WriteLine($"plotas A={A}");
+            Console.WriteLine($"VidineKampuSuma S={S}");
+        }   // verslo logika
         public static bool IsKampuKiekisValid(int n) => n > 2;
-
-        public static double PoligonoPlotas(int n, int b, int h = 0, int r = 0) //state machine
+        public static double PligonoPlotas(int n, int b, int h = 0, int r = 0) //state machine
         {
             double A = n switch
             {
@@ -265,22 +327,13 @@ metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezulta
 
             return A;
         }
-
-        public static double TrikampioPlotas(int b, int h) => 1d / 2 * b * h;
-
-        public static double KeturkampioPlotas(int b)
-        {
-            return b * b;
-        }
-
+        public static double TrikampioPlotas(int b, int h) => 1d / 2 * b * h;  // metodai
+        public static double KeturkampioPlotas(int b) => b * b; 
         public static double DaugiakampioPlotas(int n, int b, int r) => n / 2 * b * r;
-
         public static double VidineKampuSuma(int n) => 180 * (n - 2);
 
-
-
-
-        //------------------------------
+        /* Pinigas ------------------------------
+         */
         public static void Pinigas()
         {
             Console.WriteLine("Iveskite pinigu suma");
@@ -300,38 +353,33 @@ metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezulta
             Console.WriteLine("Jus turite rankoje {0} pinigus", rezultatas);
             Debug.WriteLine("Jus turite rankoje {0} pinigus", rezultatas);
             Console.ReadKey();
-
         }
 
-
-
-            /* MATEMATIKA SU PASIRINKIMU---------------------------------------------------
-          1.Naudodami method overloading sukurkite metodus Suma, Atimtis, Daugyba, Dalyba kurie priima du double tipo parametrus.
-            (prieštai sukurtų metodų ištrinti negalima)
-          2. Naudotojui įvedus skaičius nustatykite ar buvo įvestas skaičius su kableliu ar be ir duomenis nukreipkite reikiamiems metodams. 
-            (Informaciją apie tai, koks metodas buvo panaudotas išveskite į debug konsolę)
-          3. Matematinius metodus palildykite kėlimu kvadratu (^2) ir kėlimu kūbu ( ^3).
-          4.Padarykite meniu, kur naudotojui leis pasirinkti koks matematinis veiksmas bus atliekamas 
-            (gali parinkti arba veiksmą, arba veiksmo numerį meniu. Abiem atvejais bus atliekama matematinė operacija) 
-            (Pasirinkimams panaudoti switch sakinį)
-              1) +
-              2) -
-              3) *
-              4) /
-              5) ^2
-              6) ^3
-            N.B. Ankstesnis Skaiciuotuvas metodas nemoka atlikti ^2, ir ^3, 
-                 todel nepriklausomai nuo ar ivesta sveikas ar trupmeninis skaicius reikia nukreipti i naują Matematika metodą
-        */
+        /* MATEMATIKA SU PASIRINKIMU---------------------------------------------------
+      1.Naudodami method overloading sukurkite metodus Suma, Atimtis, Daugyba, Dalyba kurie priima du double tipo parametrus.
+        (prieštai sukurtų metodų ištrinti negalima)
+      2. Naudotojui įvedus skaičius nustatykite ar buvo įvestas skaičius su kableliu ar be ir duomenis nukreipkite reikiamiems metodams. 
+        (Informaciją apie tai, koks metodas buvo panaudotas išveskite į debug konsolę)
+      3. Matematinius metodus palildykite kėlimu kvadratu (^2) ir kėlimu kūbu ( ^3).
+      4.Padarykite meniu, kur naudotojui leis pasirinkti koks matematinis veiksmas bus atliekamas 
+        (gali parinkti arba veiksmą, arba veiksmo numerį meniu. Abiem atvejais bus atliekama matematinė operacija) 
+        (Pasirinkimams panaudoti switch sakinį)
+          1) +
+          2) -
+          3) *
+          4) /
+          5) ^2
+          6) ^3
+        N.B. Ankstesnis Skaiciuotuvas metodas nemoka atlikti ^2, ir ^3, 
+             todel nepriklausomai nuo ar ivesta sveikas ar trupmeninis skaicius reikia nukreipti i naują Matematika metodą
+    */
 
         public static void MatematikaPapildymas_Main(string[] args)
         {
             Console.WriteLine("iveskite skaiciu a");
             var a = Console.ReadLine();
-            
             Console.WriteLine("iveskite skaiciu b");
             var b = Console.ReadLine();
-           
             Console.WriteLine(@"Pasirinkite veiksma
             1) +
             2) -
@@ -340,18 +388,18 @@ metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezulta
             5) ^2
             6) ^3
             ");
-
             var veiksmas = Console.ReadLine();
 
             double? rezultatas = null;
             rezultatas = Skaiciuotuvas(a, b, veiksmas);
 
             Console.WriteLine($" {a} {veiksmas} {b} = {rezultatas}");
+
         }
 
         public static double? Skaiciuotuvas(string? a, string? b, string? veiksmas)
         {
-           // VeiksmoNormalizacija(ref vb)eiksmas);
+          VeiksmoNormalizacija(ref veiksmas);
             if (ArSveikiejiSkaiciai(a, b) && !ArNaujasVeiksmas(veiksmas))
             {
                 return Skaiciuotuvas(Convert.ToInt32(a), Convert.ToInt32(b), veiksmas);
@@ -360,30 +408,31 @@ metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezulta
             {
                 return Skaiciuotuvas(Convert.ToDouble(a), Convert.ToDouble(b), veiksmas);
             }
+
             return null;
         }
 
         public static void VeiksmoNormalizacija(ref string veiksmas)
         {
-            veiksmas = veiksmas.Replace("1", "+");
-            veiksmas = veiksmas.Replace("2", "-");
-            veiksmas = veiksmas.Replace("3", "*");
-            veiksmas = veiksmas.Replace("4", "/");
-            veiksmas = veiksmas.Replace("5", "^2");
-            veiksmas = veiksmas.Replace("6", "^3");
-        }
+            if (veiksmas == "1") {veiksmas = "+";};
+            if (veiksmas == "2") {veiksmas = "-";};
+            if (veiksmas == "3") {veiksmas = "*";};
+            if (veiksmas == "4") {veiksmas = "/";};
+            if (veiksmas == "5") {veiksmas = "^2";};
+            if (veiksmas == "6") {veiksmas = "^3";};
 
+            //veiksmas = veiksmas.Replace("1", "+");
+            //veiksmas = veiksmas.Replace("2", "-");
+            //veiksmas = veiksmas.Replace("3", "*");
+            //veiksmas = veiksmas.Replace("4", "/");
+            //veiksmas = veiksmas.Replace("5", "^2");
+            //veiksmas = veiksmas.Replace("6", "^3");
+
+        }
 
         public static bool ArSveikiejiSkaiciai(string a, string b) => int.TryParse(a, out _) && int.TryParse(b, out _);
         public static bool ArSkaiciai(string a, string b) => double.TryParse(a, out _) && double.TryParse(b, out _);
         public static bool ArNaujasVeiksmas(string veiksmas) => veiksmas == "^2" || veiksmas == "^3";
-
-        public static double Suma(double a, double b) => a + b;
-        public static double Atimtis(double a, double b) => a - b;
-        public static double Daugyba(double a, double b) => a * b;
-        public static double Dalyba(double a, double b) => a / b;
-        public static double Kvadratu(double a) => a * a;
-        public static double Kubu(double a) => a * a * a;
 
         public static double? Skaiciuotuvas(double a, double b, string veiksmas)
         {
@@ -406,38 +455,43 @@ metodas turi priimti 2 int tipo parametrus ir grąžinti atlikto veiksmo rezulta
             }
         }
 
+        public static double Suma(double a, double b) => a + b;
+        public static double Atimtis(double a, double b) => a - b;
+        public static double Daugyba(double a, double b) => a * b;
+        public static double Dalyba(double a, double b) => a / b;
+        public static double Kvadratu(double a) => a * a;
+        public static double Kubu(double a) => a * a * a;
 
-                /*---------------------------------------------------
+
+
+
+                    /*---------------------------------------------------
             Tarkime turime DNR grandinę užkoduotą tekstu var txt =" T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ".
             Galimos bazės: Adenine, Thymine, Cytosine, Guanine
-              Parašykite programą kurioje atsiranda MENIU kuriame naudotojas gali pasirinkti:
-              1. Atlikti DNR grandinės normalizavimo veiksmus:
-                 - pašalina tarpus.
-                 - visas raides keičia didžiosiomis. 
-              2. Atlikti grandinės validaciją
-                 - patikrina ar nėra kitų nei ATCG raidžių
-              3. Atlieka veiksmus su DNR grandine (tik tuo atveju jei grandinė yra normalizuota ir validi). Nuspaudus 3 įeinama į sub-meniu
-                  - Jeigu grandinė yra validi, tačiau nenormalizuota programa pasiūlo naudotojui 
-                  1) normalizuoti grandinę
-                  2) išeiti iš programos
-                  - jei grandinė normalizuota arba kai buvo atlikta normalizacija
-                  1) GCT pakeis į AGG
-                  2) Išvesti ar yra tekste CAT 
-                  3) Išvesti trečia ir penktą grandinės segmentus (naudoti Substring()).
-                  4) Išvesti raidžių kiekį tekste (naudoti string composition)
-                  5) Išvesti ar yra tekste ir kiek kartų pasikartoja iš klaviatūros įvestas segmento kodas 
-                  6) Prie grandinės galo pridėti iš klaviatūros įvesta segmentą  
-                      (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
-                  7) Iš grandinės pašalinti pasirinką elementą  
-                  8) Pakeisti pasirinkti segmentą įvestu iš klaviatūros  
-                      (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
-                  9) Gryžti į ankstesnį meniu
+            Parašykite programą kurioje atsiranda MENIU kuriame naudotojas gali pasirinkti:
+            1. Atlikti DNR grandinės normalizavimo veiksmus:
+               - pašalina tarpus.
+               - visas raides keičia didžiosiomis. 
+            2. Atlikti grandinės validaciją
+               - patikrina ar nėra kitų nei ATCG raidžių
+            3. Atlieka veiksmus su DNR grandine (tik tuo atveju jei grandinė yra normalizuota ir validi). Nuspaudus 3 įeinama į sub-meniu
+                - Jeigu grandinė yra validi, tačiau nenormalizuota programa pasiūlo naudotojui 
+                1) normalizuoti grandinę
+                2) išeiti iš programos
+                - jei grandinė normalizuota arba kai buvo atlikta normalizacija
+                1) GCT pakeis į AGG
+                2) Išvesti ar yra tekste CAT 
+                3) Išvesti trečia ir penktą grandinės segmentus (naudoti Substring()).
+                4) Išvesti raidžių kiekį tekste (naudoti string composition)
+                5) Išvesti ar yra tekste ir kiek kartų pasikartoja iš klaviatūros įvestas segmento kodas 
+                6) Prie grandinės galo pridėti iš klaviatūros įvesta segmentą  
+                    (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
+                7) Iš grandinės pašalinti pasirinką elementą  
+                8) Pakeisti pasirinkti segmentą įvestu iš klaviatūros  
+                    (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
+                9) Gryžti į ankstesnį meniu
             Visoms operacijoms reikalingi testai.
-             */
-
-
-
-
+            */
 
 
 
