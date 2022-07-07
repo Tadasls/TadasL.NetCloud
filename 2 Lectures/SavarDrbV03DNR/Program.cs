@@ -271,6 +271,7 @@ namespace SavarDrbV03DNR
                 dnrGlobaliGrandine = dnrGlobaliGrandine + "-" + ivestasSegmentas2;
                 Console.WriteLine($" Nauja grandine {dnrGlobaliGrandine}");
             }
+            else { Console.WriteLine("neteisingai ivestas elementas"); };
         }
         public static void TreciasSub7(ref string dnrGlobaliGrandine)
         {
@@ -293,8 +294,10 @@ namespace SavarDrbV03DNR
             if ((pasirinktasElementas.Length == 3 && pasirinktasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (ivestasElementas.Length == 3 && ivestasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
             {
                 dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(pasirinktasElementas, ivestasElementas);
+                Console.WriteLine($"Nauja grandine {dnrGlobaliGrandine}");
             }
-            Console.WriteLine($"Nauja grandine {dnrGlobaliGrandine}");
+            else { Console.WriteLine("Neteisingai ivesti elementai"); };
+            
         }
         public static void TreciasSub9(ref string dnrGlobaliGrandine)
         {
