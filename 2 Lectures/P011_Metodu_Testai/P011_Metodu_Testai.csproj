@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\P014 Debuginimas\P014 Debuginimas.csproj" />
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
+    <ProjectReference Include="..\SavarDrbV03DNR\SavarDrbV03DNR.csproj" />
   </ItemGroup>
 
 </Project>

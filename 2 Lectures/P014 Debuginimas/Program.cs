@@ -120,9 +120,7 @@ namespace P014_Debuginimas
 
                         arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
                         DNR();
-                        //arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-                        // GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-                        //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
+
                     }
                     else
                     {
@@ -131,26 +129,11 @@ namespace P014_Debuginimas
                     }
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-                //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGlobaliGrandine);
             }
             else
             {
                 Console.WriteLine("nera tokio pasirinkimo");
             }
-            
-                        
-     
         }
        
         public static bool GrandinesNormalizavimas(ref string dnrGlobaliGrandine)
@@ -229,7 +212,6 @@ namespace P014_Debuginimas
                 {
                     arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
                     GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-                    //TreciasPasirinkimas(arbuvonormalizuota, arGrandineValidi, ref dnrGrandine);
                 }
                 else
                 {
@@ -245,8 +227,6 @@ namespace P014_Debuginimas
             string dnrGrandineUpdated = dnrGlobaliGrandine.Replace("GCT", "AGG");
             Console.WriteLine(dnrGrandineUpdated);
             Console.WriteLine("pakeista GCT i AGG");
-            
-
         }
         public static void TreciasSub2(ref string dnrGlobaliGrandine)
         {
@@ -274,8 +254,6 @@ namespace P014_Debuginimas
             string ivestasSegmentas = Console.ReadLine();
             ivestasSegmentas = ivestasSegmentas.ToUpper();
             int kartu = dnrGlobaliGrandine.Split("-").Count(s => s == ivestasSegmentas);
-            
-            
             Console.WriteLine($" ivestas {ivestasSegmentas} kartojasi  - {kartu.ToString()} kartu ");
         }
         public static void TreciasSub6(ref string dnrGlobaliGrandine)
@@ -313,7 +291,6 @@ namespace P014_Debuginimas
                 dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(pasirinktasElementas, ivestasElementas);
             }
             Console.WriteLine($"Nauja grandine {dnrGlobaliGrandine}");
-
         }
         public static void TreciasSub9(ref string dnrGlobaliGrandine)
         {
@@ -322,12 +299,7 @@ namespace P014_Debuginimas
         }
 
 
-
-
-
-
-
-
+        //-----------------------------------------------------------------------------
 
         /*  darbo laikas ivedamas is consoles parodomi trukumai aarba virsvalandziai
          Įveskite darbo laiką valandomis ir minutėmis hh.mm arba valandomis, minutėmis ir sekundėmis hh.mm.ss 
@@ -625,40 +597,6 @@ namespace P014_Debuginimas
         public static double Dalyba(double a, double b) => a / b;
         public static double Kvadratu(double a) => a * a;
         public static double Kubu(double a) => a * a * a;
-
-
-
-
-                    /*---------------------------------------------------
-            Tarkime turime DNR grandinę užkoduotą tekstu var txt =" T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ".
-            Galimos bazės: Adenine, Thymine, Cytosine, Guanine
-            Parašykite programą kurioje atsiranda MENIU kuriame naudotojas gali pasirinkti:
-            1. Atlikti DNR grandinės normalizavimo veiksmus:
-               - pašalina tarpus.
-               - visas raides keičia didžiosiomis. 
-            2. Atlikti grandinės validaciją
-               - patikrina ar nėra kitų nei ATCG raidžių
-            3. Atlieka veiksmus su DNR grandine (tik tuo atveju jei grandinė yra normalizuota ir validi). Nuspaudus 3 įeinama į sub-meniu
-                - Jeigu grandinė yra validi, tačiau nenormalizuota programa pasiūlo naudotojui 
-                1) normalizuoti grandinę
-                2) išeiti iš programos
-                - jei grandinė normalizuota arba kai buvo atlikta normalizacija
-                1) GCT pakeis į AGG
-                2) Išvesti ar yra tekste CAT 
-                3) Išvesti trečia ir penktą grandinės segmentus (naudoti Substring()).
-                4) Išvesti raidžių kiekį tekste (naudoti string composition)
-                5) Išvesti ar yra tekste ir kiek kartų pasikartoja iš klaviatūros įvestas segmento kodas 
-                6) Prie grandinės galo pridėti iš klaviatūros įvesta segmentą  
-                    (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
-                7) Iš grandinės pašalinti pasirinką elementą  
-                8) Pakeisti pasirinkti segmentą įvestu iš klaviatūros  
-                    (reikalinga validacija ar nėra kitų kaip ATCG ir 3 raidės) 
-                9) Gryžti į ankstesnį meniu
-            Visoms operacijoms reikalingi testai.
-            */
-
-
-
 
 
 
