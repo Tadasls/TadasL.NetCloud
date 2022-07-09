@@ -13,6 +13,7 @@
             // TreciasUzdavinys();
              MathRandomPavyzdys();
             // SestaUzduotis();
+            
           
 
         }
@@ -26,7 +27,6 @@
                 skaicius++;
             }
         }
-
         public static void WhileCikloZaidejoPavyzdys()  // tol kol nepatenkina salygos tol kartojamas
         {
             int zaidejuSkaicius = 0;
@@ -66,7 +66,7 @@
             {
                 Console.WriteLine($" skaiciuojama Suma: {suma}");
                 suma += i;
-                Console.WriteLine($" i: {suma}\n");
+                Console.WriteLine($" i: {i}\n");
                 i--;
             }
             Console.WriteLine($"--------------");
@@ -123,21 +123,36 @@
             galetu zaisti iki kol pasieke arba 10 pergaliu arba 10 pralaimejimu */
         public static void MathRandomPavyzdys()
         {
-            Random randomObjektas = new Random();
-            int ismestaMoneta = randomObjektas.Next(1,2);
-            int monetosMetimas = 0; 
+            Random random = new Random();
+            int moneta = random.Next(1, 3);
+            int i = 0;
+            int laimejimai = 0;
+            int pralaimejimai = 0;
+            int target = 9;
 
-            while(monetosMetimas < 10)
+            while (laimejimai <= target && pralaimejimai <= target)
             {
-                monetosMetimas++;
-                Console.WriteLine(ismestaMoneta);
-                Console.WriteLine(randomObjektas.Next(1, 2));
-            }
-           
+                Console.WriteLine("pasirinkite - 1 - jei skaicius arba - 2 - jei herbas:");
+                int ivestis = int.Parse(Console.ReadLine());
+                moneta = random.Next(1, 3);
+                i++;
+
+                if (moneta == ivestis)
+                {
+                    laimejimai++;
+                    Console.WriteLine($"Atspeta laimejimas {laimejimai} is 10 ");
+                }
+                else
+                {
+                    pralaimejimai++;
+                    Console.WriteLine($"Neatspeta neatspejimas {pralaimejimai} is 10");
+                }
+
+            } 
+              Console.WriteLine($"Laimeta kartu : {laimejimai}, Pralaimeta kartu : {pralaimejimai}");
 
 
         }
-
 
 
 
@@ -155,7 +170,6 @@
             string code, userCode;
             int bandymai = 0;
             int prisijungimoStatusas = 0;
-
             Console.WriteLine("Iveskite nauja Pin: ");
             userCode = Console.ReadLine();
 
@@ -164,13 +178,11 @@
                 Console.WriteLine("Iveskite Pin: ");
                 code = Console.ReadLine();
                 Console.WriteLine("Bandymas {0} is 3 ", bandymai + 1);
-
                 if (code == userCode)
                 {
                     prisijungimoStatusas = 1;
                     bandymai = 3;
                 }
-
                 else
                 {
                     prisijungimoStatusas = 0;
@@ -180,7 +192,8 @@
             while ((code != userCode) && (bandymai != 3));
             if (prisijungimoStatusas == 0)
             {
-                Console.WriteLine("Buvo 3 bandymai. Blokuotas!");
+                Console.WriteLine("Buvo 3 bandymai. Jus uzblokuotas!");
+                Environment.Exit(1);
             }
             else if (prisijungimoStatusas == 1)
             {
