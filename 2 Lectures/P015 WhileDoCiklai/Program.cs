@@ -118,6 +118,7 @@
 
 
 
+
         /* penkta uzduotis
         5. Parasykite programa, kuri paklaustu naudotojo “skaicius ar herbas” ir naudotojas
             galetu zaisti iki kol pasieke arba 10 pergaliu arba 10 pralaimejimu */
