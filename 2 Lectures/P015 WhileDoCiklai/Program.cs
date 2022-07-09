@@ -8,10 +8,10 @@
             // WhileCikloPavyzdys();
             // WhileCikloZaidejoPavyzdys();
             // DoWhilePavyzdys();
-            // PirmoSprendimoApskaiciavimas();
+             PirmoSprendimoApskaiciavimas();
             // AntrasUzdavinys();
             // TreciasUzdavinys();
-             MathRandomPavyzdys();
+            // MathRandomPavyzdys();
             // SestaUzduotis();
             
           
@@ -64,13 +64,13 @@
 
             while (i > 0)
             {
-                Console.WriteLine($" skaiciuojama Suma: {suma}");
-                suma += i;
+             Console.WriteLine($" skaiciuojama Suma: {suma}");
+              suma += i;
                 Console.WriteLine($" i: {i}\n");
                 i--;
             }
-            Console.WriteLine($"--------------");
-            Console.WriteLine($" Suma: {suma}");
+             Console.WriteLine($"--------------");
+             Console.WriteLine($" Suma: {suma}");
         }
 
         /* 2 uzdavinys
@@ -116,9 +116,6 @@
             Console.WriteLine($"suma : {suma}");
         }
 
-
-
-
         /* penkta uzduotis
         5. Parasykite programa, kuri paklaustu naudotojo “skaicius ar herbas” ir naudotojas
             galetu zaisti iki kol pasieke arba 10 pergaliu arba 10 pralaimejimu */
@@ -155,8 +152,6 @@
 
         }
 
-
-
         /*   6 uzduoties salyga     
         6. Parasykite slaptazodzio ivedimo simuliacija. Pirma kompiuteris paprasys, kad nustatytumete slaptazodi 
          tada prasys naudotojo pakartoti slaptazodi. Bet koks neteisingas ivedimas grazina “Slaptazodis neteisingas. 
@@ -165,7 +160,6 @@
          BONUS TASKAI: Padarykite taip, kad po 3 neteisingai ivestu slaptazodzio kartu programa ismestu teksta 
          “Jus uzblokuotas” ir iseitu is ciklo.      
         */
-
         public static void SestaUzduotis()
         {
             string code, userCode;
