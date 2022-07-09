@@ -74,8 +74,9 @@ namespace SavarDrbV03DNR
                         $"6) Prie grandinės galo pridėti ivesta elementa \n " +
                         $"7) pašalinti pasirinką elementą\n " +
                         $"8) Pakeisti pasirinkti segmentą \n " +
-                        $"9) Exit to meniu \n ");
+                        $"9) Exit to main meniu \n ");
                     string submeniu = Convert.ToString(Console.ReadLine());
+
                     switch (submeniu) //state machine
                     {
                         case "1":
@@ -116,10 +117,8 @@ namespace SavarDrbV03DNR
                     string variantasB = Console.ReadLine();
                     if (variantasB == "1")
                     {
-
                         arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
                         DNR();
-
                     }
                     else
                     {
@@ -150,11 +149,10 @@ namespace SavarDrbV03DNR
             Debug.WriteLine(" Ivyko validacija Tikrintos raides A,T,C,G");
             return isDnrValid;
         }
-        public static void TreciasPasirinkimas(bool isDnrNormal, bool isDnrValid, ref string dnrGlobaliGrandine)
+        public static void TreciasPasirinkimas(bool arbuvonormalizuota, bool arGrandineValidi, ref string dnrGlobaliGrandine)
         {
-            bool arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-            bool arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
-
+            arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+            arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
 
             if (arbuvonormalizuota && arGrandineValidi)
             {
