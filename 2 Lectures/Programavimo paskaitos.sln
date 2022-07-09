@@ -51,7 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Belenkas1", "Belenkas1\Bele
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P014 Debuginimas", "P014 Debuginimas\P014 Debuginimas.csproj", "{753701B4-2099-47DB-827B-C222F8BA420B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavarDrbV03DNR", "SavarDrbV03DNR\SavarDrbV03DNR.csproj", "{AB41A689-47E5-4467-892B-92F37789E7F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavarDrbV03DNR", "SavarDrbV03DNR\SavarDrbV03DNR.csproj", "{AB41A689-47E5-4467-892B-92F37789E7F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P015 WhileDoCiklai", "P015 WhileDoCiklai\P015 WhileDoCiklai.csproj", "{37692106-1CC8-4FEB-BBCE-CDCB63E40961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,6 +157,10 @@ Global
 		{AB41A689-47E5-4467-892B-92F37789E7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB41A689-47E5-4467-892B-92F37789E7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB41A689-47E5-4467-892B-92F37789E7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37692106-1CC8-4FEB-BBCE-CDCB63E40961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37692106-1CC8-4FEB-BBCE-CDCB63E40961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37692106-1CC8-4FEB-BBCE-CDCB63E40961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37692106-1CC8-4FEB-BBCE-CDCB63E40961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
