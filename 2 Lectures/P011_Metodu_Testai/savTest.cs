@@ -18,7 +18,6 @@ namespace P011_Metodu_Testai
 
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
         public void DNR_Test_Valid()
         {
@@ -28,7 +27,6 @@ namespace P011_Metodu_Testai
 
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
         public void DNR_Test1()
         {
@@ -38,7 +36,6 @@ namespace P011_Metodu_Testai
 
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
         public void DNR_Test2()
         {
@@ -48,7 +45,6 @@ namespace P011_Metodu_Testai
 
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
         public void DNR_Test3()
         {
@@ -58,7 +54,6 @@ namespace P011_Metodu_Testai
 
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
         public void DNR_Test4()
         {

@@ -8,7 +8,6 @@ namespace SavarDrbV03DNR
         public static bool arbuvonormalizuota = false;
         public static bool arGrandineValidi = false;
         public static string dnrGlobaliGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";  //globalizacija 
-       // public static string ivestasSegmentas = "";
 
         static void Main(string[] args)
         {
@@ -52,19 +51,19 @@ namespace SavarDrbV03DNR
 
             if (meniu == "1")
             {
-                arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine); //startuoja normalizavimo metodas
                 Console.WriteLine(" Grandine buvo Normalizuota");
-                DNR();
+                DNR(); //gryztama i pagrindini meniu
             }
             else if (meniu == "2")
             {
-                arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
+                arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine); //startuoja validacija
                 Console.WriteLine($"Ar grandine Validi {arGrandineValidi.ToString()} ");
-                DNR();
+                DNR(); //gryztama i pagrindini meniu
             }
             else if (meniu == "3")
             {
-                if (arbuvonormalizuota || arGrandineValidi)
+                if (arbuvonormalizuota || arGrandineValidi)   // jei normalizuota arba validuota tada pateikiamas submeniu
                 {
                     Console.WriteLine($"Pasirinkite veiksma \n " +
                         $"1) GCT pakeisti į AGG \n " +
@@ -95,7 +94,7 @@ namespace SavarDrbV03DNR
                         case "5":
                             Console.WriteLine("Iveskite triju raidziu koda xxx kuris sudarytas is AGTC");
                             string ivestasSegmentas = Console.ReadLine();
-                            TreciasSub5(ivestasSegmentas, ref dnrGlobaliGrandine);
+                            TreciasSub5(ivestasSegmentas, ref dnrGlobaliGrandine);  //cia isivedame suvedimas kad galetume testuotis metodus
                             break;
                         case "6":
                             Console.WriteLine("Iveskite triju raidziu koda xxx kuris sudarytas is AGTC");
@@ -151,7 +150,7 @@ namespace SavarDrbV03DNR
         {
             dnrGlobaliGrandine = dnrGlobaliGrandine.Trim().ToUpper().Replace(" ", "");
             //Console.WriteLine("Po normalizavimo ! " + dnrGrandine);
-            Debug.WriteLine("Ivyko normalizacija pasalinti tarpai ir padarytos didziosios");
+            Debug.WriteLine("Ivyko normalizacija pasalinti tarpai ir padarytos didziosios raides");
             return true;
         }
         public static bool GrandinesValidavimas(ref string dnrGlobaliGrandine)
@@ -181,7 +180,7 @@ namespace SavarDrbV03DNR
             //3.2.3 
             //String[] reiksmes = dnrGrandine.Split("-");
             //Console.WriteLine($" trecios sekcijos reiksmes : {reiksmes[2]}  penktos sekcijos reiksmes : {reiksmes[4]}");
-            Console.WriteLine($" trecios sekcijos reiksmes : {dnrGlobaliGrandine.Substring(8, 3)}  penktos sekcijos reiksmes : {dnrGlobaliGrandine.Substring(16, 3)} ");
+            Console.WriteLine($" Trecios sekcijos reiksmes : {dnrGlobaliGrandine.Substring(8, 3)}  penktos sekcijos reiksmes : {dnrGlobaliGrandine.Substring(16, 3)} ");
             return dnrGlobaliGrandine.Substring(8, 3) + "-" + dnrGlobaliGrandine.Substring(16, 3);
 
         }
@@ -210,7 +209,7 @@ namespace SavarDrbV03DNR
                 dnrGlobaliGrandine = dnrGlobaliGrandine + "-" + ivestasSegmentas2;
                 Console.WriteLine($" Nauja grandine {dnrGlobaliGrandine}");
             }
-            else { Console.WriteLine("neteisingai ivestas elementas"); };
+            else { Console.WriteLine("Neteisingai ivestas elementas"); };
             return dnrGlobaliGrandine;
         }
         public static string TreciasSub7(string trinamasElementas, ref string dnrGlobaliGrandine)
@@ -218,7 +217,7 @@ namespace SavarDrbV03DNR
             //3.2.7
             trinamasElementas = trinamasElementas.ToUpper();
             dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(trinamasElementas, "");
-            Console.WriteLine($" grandine po valymo {dnrGlobaliGrandine}");
+            Console.WriteLine($" Grandine po valymo {dnrGlobaliGrandine}");
             return dnrGlobaliGrandine;
         }
         public static string TreciasSub8(string pasirinktasElementas, string ivestasElementas, ref string dnrGlobaliGrandine)
