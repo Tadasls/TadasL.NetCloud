@@ -53,7 +53,7 @@ namespace P011_Metodu_Testai
         public void DNR_Test3()
         {
             var fake = "TCG-TAC-GAC-TAC-CGT-CAG-ACT-TAA-CCA-GTC-CAT-AGA-GCT";
-            var expected = "GAC";
+            var expected = "GAC-CGT";
             var actual = SavarDrbV03DNR.Program.TreciasSub3(ref fake);
 
             Assert.AreEqual(expected, actual);

@@ -8,7 +8,7 @@ namespace SavarDrbV03DNR
         public static bool arbuvonormalizuota = false;
         public static bool arGrandineValidi = false;
         public static string dnrGlobaliGrandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";  //globalizacija 
-        public static string ivestasSegmentas = "";
+       // public static string ivestasSegmentas = "";
 
         static void Main(string[] args)
         {
@@ -124,11 +124,13 @@ namespace SavarDrbV03DNR
                 }
                 else
                 {
-                    Console.WriteLine("1 Normalizuoti Grandine  \n 2  Iseiti is programos ");
+                    Console.WriteLine("1) Normalizuoti Grandine  \n2) Iseiti is programos ");
                     string variantasB = Console.ReadLine();
                     if (variantasB == "1")
                     {
                         arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                        GrandinesNormalizavimas(ref dnrGlobaliGrandine);
+                        Console.WriteLine(" Grandine buvo Normalizuota");
                         DNR();
                     }
                     else
@@ -160,75 +162,6 @@ namespace SavarDrbV03DNR
             Debug.WriteLine(" Ivyko validacija Tikrintos raides A,T,C,G");
             return isDnrValid;
         }
-        //public static void TreciasPasirinkimas(bool arbuvonormalizuota, bool arGrandineValidi, ref string dnrGlobaliGrandine)
-        //{
-        //    arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-        //    arGrandineValidi = GrandinesValidavimas(ref dnrGlobaliGrandine);
-
-        //    if (arbuvonormalizuota && arGrandineValidi)
-        //    {
-        //        Console.WriteLine($"Pasirinkite veiksma \n " +
-        //            $"1) GCT pakeisti į AGG \n " +
-        //            $"2) Išvesti ar yra tekste CAT \n " +
-        //            $"3) 3 ir 5 grandinės segmentai\n " +
-        //            $"4) Raidžių kiekis tekste \n " +
-        //            $"5) Kiek kartų pasikartoja ivestas segmentas \n " +
-        //            $"6) Prie grandinės galo pridėti ivesta elementa \n " +
-        //            $"7) pašalinti pasirinką elementą\n " +
-        //            $"8) Pakeisti pasirinkti segmentą \n " +
-        //            $"9) Exit to meniu \n ");
-        //        string submeniu = Convert.ToString(Console.ReadLine());
-        //        switch (submeniu) //state machine
-        //        {
-        //            case "1":
-        //                TreciasSub1(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "2":
-        //                TreciasSub2(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "3":
-        //                TreciasSub3(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "4":
-        //                TreciasSub4(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "5":
-        //                TreciasSub5(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "6":
-        //                TreciasSub6(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "7":
-        //                TreciasSub7(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "8":
-        //                TreciasSub8(ref dnrGlobaliGrandine);
-        //                break;
-        //            case "9":
-        //                TreciasSub9(ref dnrGlobaliGrandine);
-        //                break;
-        //            default:
-        //                Console.WriteLine($" tokio meniu nera");
-        //                break;
-        //        };
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Normalizuoti Grandine - 1 \n arba Iseiti - 2 ");
-        //        string variantasB = Console.ReadLine();
-        //        if (variantasB == "1")
-        //        {
-        //            arbuvonormalizuota = GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-        //            GrandinesNormalizavimas(ref dnrGlobaliGrandine);
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Exit");
-        //            System.Environment.Exit(-1);
-        //        }
-        //    }
-
-        //}
         public static string TreciasSub1(ref string dnrGlobaliGrandine)
         {
             //3.2.1
@@ -240,7 +173,7 @@ namespace SavarDrbV03DNR
         public static bool TreciasSub2(ref string dnrGlobaliGrandine)
         {
             //3.2.2
-            Console.WriteLine($"  ar grandineje yra CAT  : {dnrGlobaliGrandine.Contains("CAT").ToString()} ");
+            Console.WriteLine($"  ar grandineje {dnrGlobaliGrandine} yra CAT  : {dnrGlobaliGrandine.Contains("CAT").ToString()} ");
             return dnrGlobaliGrandine.Contains("CAT");
         }
         public static string TreciasSub3(ref string dnrGlobaliGrandine)
@@ -249,7 +182,8 @@ namespace SavarDrbV03DNR
             //String[] reiksmes = dnrGrandine.Split("-");
             //Console.WriteLine($" trecios sekcijos reiksmes : {reiksmes[2]}  penktos sekcijos reiksmes : {reiksmes[4]}");
             Console.WriteLine($" trecios sekcijos reiksmes : {dnrGlobaliGrandine.Substring(8, 3)}  penktos sekcijos reiksmes : {dnrGlobaliGrandine.Substring(16, 3)} ");
-            return dnrGlobaliGrandine.Substring(8, 3); //testui tik viena dali grazinuosi
+            return dnrGlobaliGrandine.Substring(8, 3) + "-" + dnrGlobaliGrandine.Substring(16, 3);
+
         }
         public static int TreciasSub4(ref string dnrGlobaliGrandine)
         {
