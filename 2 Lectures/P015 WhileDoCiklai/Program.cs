@@ -8,13 +8,13 @@
             // WhileCikloPavyzdys();
             // WhileCikloZaidejoPavyzdys();
             // DoWhilePavyzdys();
-             PirmoSprendimoApskaiciavimas();
+            // PirmoSprendimoApskaiciavimas();
             // AntrasUzdavinys();
             // TreciasUzdavinys();
-            // MathRandomPavyzdys();
+            MathRandomPavyzdys4uzd();
             // SestaUzduotis();
-            
-          
+
+
 
         }
 
@@ -59,7 +59,7 @@
             int i = 0;
             int suma = 0;
           
-            Console.WriteLine("iveskite skaiciu sumai isgauti:");
+            Console.WriteLine("iveskite betkoki skaiciu, visu skaiciu sumai nuo 0 iki ivesto skaiciaus gauti");
             i = Convert.ToInt32(Console.ReadLine());
 
             while (i > 0)
@@ -83,7 +83,7 @@
         {
             int i = 0;
             int j = 0;
-            Console.WriteLine("iveskite skaiciu sumai isgauti:");
+            Console.WriteLine("iveskite betkoki skaiciu, kad gautute visus lyginius skaicius iki ivesto skaiciaus:");
             i = Convert.ToInt32(Console.ReadLine());
             while (j <= i)
             {
@@ -109,7 +109,7 @@
             do
             {
                 suma += ivestis;
-                Console.WriteLine("iveskite skaiciu sumai isgauti:");
+                Console.WriteLine("iveskite betkokius skaiciu ir gausite ju suma kai ivesite neigiama skaiciu:");
                 ivestis = Convert.ToInt32(Console.ReadLine());
 
             } while (ivestis > 0);
@@ -119,16 +119,16 @@
         /* penkta uzduotis
         5. Parasykite programa, kuri paklaustu naudotojo “skaicius ar herbas” ir naudotojas
             galetu zaisti iki kol pasieke arba 10 pergaliu arba 10 pralaimejimu */
-        public static void MathRandomPavyzdys()
+        public static void MathRandomPavyzdys4uzd()
         {
             Random random = new Random();
             int moneta = random.Next(1, 3);
             int i = 0;
             int laimejimai = 0;
             int pralaimejimai = 0;
-            int target = 9;
+            int target = 10;
 
-            while (laimejimai <= target && pralaimejimai <= target)
+            while (laimejimai != target && pralaimejimai != target)
             {
                 Console.WriteLine("pasirinkite - 1 - jei skaicius arba - 2 - jei herbas:");
                 int ivestis = int.Parse(Console.ReadLine());
@@ -138,16 +138,16 @@
                 if (moneta == ivestis)
                 {
                     laimejimai++;
-                    Console.WriteLine($"Atspeta laimejimas {laimejimai} is 10 ");
+                    Console.WriteLine($"Atspetas metimas {laimejimai} is 10 ");
                 }
                 else
                 {
                     pralaimejimai++;
-                    Console.WriteLine($"Neatspeta neatspejimas {pralaimejimai} is 10");
+                    Console.WriteLine($"Neatspetas metimas {pralaimejimai} is 10");
                 }
 
             } 
-              Console.WriteLine($"Laimeta kartu : {laimejimai}, Pralaimeta kartu : {pralaimejimai}");
+              Console.WriteLine($"Atspeti metimai: {laimejimai}, Neatspeti metimai: {pralaimejimai}");
 
 
         }
@@ -192,7 +192,7 @@
             }
             else if (prisijungimoStatusas == 1)
             {
-                Console.WriteLine("Prisijungta sekmingai!");
+                Console.WriteLine("Sveikinam! Prisijungete!");
             }
 
 
