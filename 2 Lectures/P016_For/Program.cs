@@ -1,6 +1,6 @@
 ﻿namespace P016_For
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -99,32 +99,27 @@
 
         public static bool DnrGrandinesValidacija_Replace(string dnr)
         {
-
             var s = dnr.Replace("-", "")
                 .Replace("A", "")
+                .Replace("T", "")
                 .Replace("C", "")
-                .Replace("G", "")
-                .Replace("T", "");
-                return s.Length == 0;
+                .Replace("G", "");
+            return s.Length == 0;
         }
-
         public static bool DnrGrandinesValidacija_For(string dnr)
         {
             for (int i = 0; i < dnr.Length; i++)
             {
-                if (dnr[i] != '-' 
-                    && dnr[i] != 'A' 
-                    && dnr[i] != 'T' 
-                    && dnr[i] != 'C' 
-                    && dnr[i] != 'G' ) 
+                if (dnr[i] != '-' &&
+                    dnr[i] != 'A' &&
+                    dnr[i] != 'T' &&
+                    dnr[i] != 'C' &&
+                    dnr[i] != 'G')
                 {
                     return false;
                 }
-                return true;
-
-
             }
-
+            return true;
         }
 
 
