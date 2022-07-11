@@ -1,4 +1,6 @@
-﻿namespace P016_For
+﻿using System.Text;
+
+namespace P016_For
 {
     public class Program
     {
@@ -123,10 +125,99 @@
         }
 
 
+        //----------------------------
 
+        public static int KiekKartuPasikartoja_For_Interpoliation(string dnr, string element)
+        {
+            var count = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                if ($"{dnr[i]}{dnr[i + 1]}{dnr[i + 2]}" == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static int KiekKartuPasikartoja_For_Composition(string dnr, string element)
+        {
+            var count = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                var s = string.Format("{0}{1}{2}", dnr[i], dnr[i + 1], dnr[i + 2]);
+                if (s == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static int KiekKartuPasikartoja_For_Concat(string dnr, string element)
+        {
+            var count = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                string s = "";
+                for (int j = 0; j < 3; j++)
+                {
+                    s += dnr[i + j].ToString();
+                }
+                if (s == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static int KiekKartuPasikartoja_For_StringBuilder(string dnr, string element)
+        {
+            var c = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                var sb = new StringBuilder();
+                for (int j = 0; j < 3; j++)
+                {
+                    sb.Append(dnr[i + j]);
+                }
+                if (sb.ToString() == element)
+                    c++;
+            }
+            return c;
+        }
+        public static int KiekKartuPasikartoja_For_StringConstructor(string dnr, string element)
+        {
+            var count = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                if (new string(new char[] { dnr[i], dnr[i + 1], dnr[i + 2] }) == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
 
+        public static int KiekKartuPasikartoja_For_Substring(string dnr, string element)
+        {
+            var count = 0;
+            for (int i = 0; i < dnr.Length; i += 4)
+            {
+                if (dnr.Substring(i, 3) == element)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static int KiekKartuPasikartoja_Replace(string dnr, string element)
+        {
+            return (dnr.Length - dnr.Replace(element, "").Length) / 3;
+        }
 
-
+        public static int KiekKartuPasikartoja_Split(string dnr, string element)
+        {
+            return dnr.Split(element).Length - 1;
+        }
 
     }
 }
