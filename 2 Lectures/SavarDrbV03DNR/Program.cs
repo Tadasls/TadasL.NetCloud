@@ -204,7 +204,7 @@ namespace SavarDrbV03DNR
         {
             //3.2.6
             ivestasSegmentas2 = ivestasSegmentas2.ToUpper();
-            if (ivestasSegmentas2.Length == 3 && ivestasSegmentas2.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0)
+            if (ivestasSegmentas2.Length == 3 && ivestasSegmentas2.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) // validacija
             {
                 dnrGlobaliGrandine = dnrGlobaliGrandine + "-" + ivestasSegmentas2;
                 Console.WriteLine($" Nauja grandine {dnrGlobaliGrandine}");
@@ -225,7 +225,7 @@ namespace SavarDrbV03DNR
             //3.2.8 
             pasirinktasElementas = pasirinktasElementas.ToUpper();
             ivestasElementas = ivestasElementas.ToUpper();
-            if ((pasirinktasElementas.Length == 3 && pasirinktasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (ivestasElementas.Length == 3 && ivestasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0))
+            if ((pasirinktasElementas.Length == 3 && pasirinktasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0) && (ivestasElementas.Length == 3 && ivestasElementas.Trim().Replace("A", "").Replace("C", "").Replace("T", "").Replace("G", "").Length == 0)) //validacija
             {
                 dnrGlobaliGrandine = dnrGlobaliGrandine.Replace(pasirinktasElementas, ivestasElementas);
                 Console.WriteLine($"Nauja grandine {dnrGlobaliGrandine}");

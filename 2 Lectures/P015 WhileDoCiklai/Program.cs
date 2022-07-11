@@ -46,6 +46,8 @@
 
             } while (zaidejuSkaicius < 1 || zaidejuSkaicius > 10);
         }
+    
+
 
 
         /* 1 uzdavinis
