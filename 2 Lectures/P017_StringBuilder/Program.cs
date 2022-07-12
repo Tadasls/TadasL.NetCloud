@@ -1,7 +1,7 @@
 ﻿using System.Text;
 namespace P017_StringBuilder
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {

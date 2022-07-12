@@ -19,6 +19,7 @@
     <ProjectReference Include="..\P014 Debuginimas\P014 Debuginimas.csproj" />
     <ProjectReference Include="..\P016_For\P016_For.csproj" />
     <ProjectReference Include="..\P017_ForUzduotys\P017_ForUzduotys.csproj" />
+    <ProjectReference Include="..\P017_StringBuilder\P017_StringBuilder.csproj" />
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
     <ProjectReference Include="..\SavarDrbV03DNR\SavarDrbV03DNR.csproj" />
   </ItemGroup>
