@@ -18,7 +18,7 @@
 
         }
 
-        public static void WhileCikloPavyzdys() // 
+        public static void WhileCikloPavyzdys() // tikrina  salyga pries pradedamas iteracijas (kartojimus)  
         {
             int skaicius = 1;
             while (skaicius <= 10)
@@ -27,7 +27,7 @@
                 skaicius++;
             }
         }
-        public static void WhileCikloZaidejoPavyzdys()  // tol kol nepatenkina salygos tol kartojamas
+        public static void WhileCikloZaidejoPavyzdys()  // tol kol nepatenkina salygos tol kartojamas  // pirmiausia padaro scope tik tada tikrina condicija , jei salyga true tada kartojiasi
         {
             int zaidejuSkaicius = 0;
             while (zaidejuSkaicius < 1 || zaidejuSkaicius > 10)
@@ -36,7 +36,7 @@
                 zaidejuSkaicius = Convert.ToInt32(Console.ReadLine());
             }
         }
-        public static void DoWhilePavyzdys()
+        public static void DoWhilePavyzdys() // 
         {
             int zaidejuSkaicius = 9;
             do
