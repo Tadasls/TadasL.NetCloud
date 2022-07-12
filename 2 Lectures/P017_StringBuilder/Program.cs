@@ -8,68 +8,61 @@ namespace P017_StringBuilder
             Console.WriteLine("Hello, StringBuilder!");
 
             //StringBuilder sukurimas
-            StringBuilder sb = new StringBuilder();   // be teksto
-            StringBuilder sb1 = new StringBuilder("Labas Pasauli");   // su tekstu sukurimo metu
-            StringBuilder sb2 = new StringBuilder(123456);   // sukurimo metu taip pat irasomas tekstas
+            StringBuilder sb = new StringBuilder(); //be teksto
+            StringBuilder sb1 = new StringBuilder("Labas pasauli"); //sukurimo metu irasomas tekstas
+            StringBuilder sb2 = new StringBuilder(123456); //sukurimo metu taip pat irasomas tekstas
 
-
-            // Teksto isgavimas is StringBuilder 
+            //Teksto isgavimas is StringBuilder
             Console.WriteLine(sb.ToString());
 
-            //teksto pridejimas per StringBuilder 
-
+            //Teksto pridejimas per StringBuilder
             sb.Append("Labas");
             sb.AppendLine("pasauli");
             sb.AppendLine("labas C#");
-            Console.WriteLine(sb1.ToString());
-
-            Console.WriteLine("------------");
-            //teksto iterpimas
-            sb.Insert(14, " AAAAAA ");
-
             Console.WriteLine(sb.ToString());
 
+            Console.WriteLine("-----------------------------");
+            //Teksto iterpimas
+            sb.Insert(14, " AAAAAA ");
+            Console.WriteLine(sb.ToString());
 
-            Console.WriteLine("------------");
-            //teksto pasalinimas
+            Console.WriteLine("-----------------------------");
+            //Teksto pasalinimas
             sb.Remove(6, 2);
             Console.WriteLine(sb.ToString());
 
-
-            Console.WriteLine("------------");
-            //teksto pakeitimas
-            sb.Replace("Labas", "Hellow");
+            Console.WriteLine("-----------------------------");
+            //Teksto pakeitimas
+            sb.Replace("labas", "Hellow");
             Console.WriteLine(sb.ToString());
-
         }
 
 
 
-            public static string For_ConCat()
+        public static string For_Concat()
+        {
+            string s = string.Empty;
+            for (int i = 0; i < 100; i++)
             {
-                string s = string.Empty;
-                for (int i = 0; i < 100; i++)
-                {
-                    s += 1;
-                }
-                return s;
+                s += i;
             }
-
-            public static string For_StringBuilder()
+            return s;
+        }
+        public static string For_StringBuilder()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 100; i++)
             {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < 100; i++)
-                {
-                    sb.Append(i);
-                }
-                return sb.ToString();
+                sb.Append(i);
             }
+            return sb.ToString();
+        }
 
 
 
 
 
 
-        
+
     }
 }
