@@ -111,7 +111,6 @@ namespace P017_ForUzduotys
                     }
 
 
-
                     break;
                 case "3":
                     Console.WriteLine("Exit");
