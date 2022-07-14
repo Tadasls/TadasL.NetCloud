@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NamuDarbasSkaiciuotuvas\SNamuDarbasSkaiciuotuvas.csproj" />
     <ProjectReference Include="..\P014 Debuginimas\P014 Debuginimas.csproj" />
     <ProjectReference Include="..\P016_For\P016_For.csproj" />
     <ProjectReference Include="..\P017_ForUzduotys\P017_ForUzduotys.csproj" />
