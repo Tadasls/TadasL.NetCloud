@@ -7,162 +7,173 @@ namespace P018_Masyvai
         {
             Console.WriteLine("Hello, Masyvai!");
 
-            // teorija
-            #region    
-            /*
+            // BinarinisTrikampis();
+            // AtbulineSeka();
+            // Lankomumas();
+            // StudentuVardaiIlgiausi();
+            // PasikartojantysSkaiciaiMasyve();
+            // MatricosSukurimasIrDuomenuSuvedimas();
+            // PasikartojantysSkaiciaiDvigubameMasyve();
+            // PasikartojantysZodziaiDvigubameMasyve();
 
-             //bool reiksme = false;
-             //Console.WriteLine($"{Convert.ToInt32(reiksme)}");
-             //var isWrong = false; //flag
+        }
 
-             //while(true)
-             //{
-             //    reiksme = !reiksme; //false true false true
-             //}
+        // teorija
+        #region    
+        /*
 
-             // BinarinisTrikampis();
-             // AtbulineSeka();
+         //bool reiksme = false;
+         //Console.WriteLine($"{Convert.ToInt32(reiksme)}");
+         //var isWrong = false; //flag
 
-             //trumpas budas kaip patikrinti validuoti ivedama skaiciu
+         //while(true)
+         //{
+         //    reiksme = !reiksme; //false true false true
+         //}
 
-             //int skaicius = SkaiciausTikrinimas(Console.ReadLine());
-             //static int SkaiciausTikrinimas(string? tekstas) => int.TryParse(tekstas, out int skaicius) ? skaicius : 0;
+         // BinarinisTrikampis();
+         // AtbulineSeka();
 
+         //trumpas budas kaip patikrinti validuoti ivedama skaiciu
 
-
-             // string[] dienos = new string[7] { "Pirmadienis", "Antradienis", "Treciadienis", "Ketvirtadienis", "Penktadienis", "Sestadienis", "Sekmadienis" };
-
-             //                         0            1                2               3                4            5               6 
-             string[] dienos = { "Pirmadienis", "Antradienis", "Treciadienis", "Ketvirtadienis", "Penktadienis", "Sestadienis", "Sekmadienis" };
-
-
-
-             string vardas = "Vardenis";
-             Console.WriteLine(vardas.Length); //ilgi parasys
-             Console.WriteLine(dienos[0]);
-             Console.WriteLine(dienos[1]);
-             Console.WriteLine(dienos[2]);
-             Console.WriteLine(dienos[3]);
-             Console.WriteLine(dienos[4]);
-             Console.WriteLine(dienos[5]);
-             Console.WriteLine(dienos[6]);
-               //  Console.WriteLine(dienos[7]); uzlinksta nes tokio nera adreso...
-
-
-             Console.WriteLine(dienos.Length);
+         //int skaicius = SkaiciausTikrinimas(Console.ReadLine());
+         //static int SkaiciausTikrinimas(string? tekstas) => int.TryParse(tekstas, out int skaicius) ? skaicius : 0;
 
 
 
+         // string[] dienos = new string[7] { "Pirmadienis", "Antradienis", "Treciadienis", "Ketvirtadienis", "Penktadienis", "Sestadienis", "Sekmadienis" };
+
+         //                         0            1                2               3                4            5               6 
+         string[] dienos = { "Pirmadienis", "Antradienis", "Treciadienis", "Ketvirtadienis", "Penktadienis", "Sestadienis", "Sekmadienis" };
 
 
-             int[] pazymiai = new int[10];
-             var pazymiai2 = new int[10];
 
-             // skaiciai
-             int skaicius1 = 100;
-             int skaicius2 = 95;
-             int skaicius3 = 92;
+         string vardas = "Vardenis";
+         Console.WriteLine(vardas.Length); //ilgi parasys
+         Console.WriteLine(dienos[0]);
+         Console.WriteLine(dienos[1]);
+         Console.WriteLine(dienos[2]);
+         Console.WriteLine(dienos[3]);
+         Console.WriteLine(dienos[4]);
+         Console.WriteLine(dienos[5]);
+         Console.WriteLine(dienos[6]);
+           //  Console.WriteLine(dienos[7]); uzlinksta nes tokio nera adreso...
 
-             //deklaravimas
-             int[] skaiciai = { 100, 95, 92 };
-             //tuscio masyvo deklaravimas
-             //int[] skaiciai2;
-             int[] skaiciai2 = null;
 
-             if (skaicius1 == skaicius2)
+         Console.WriteLine(dienos.Length);
+
+
+
+
+
+         int[] pazymiai = new int[10];
+         var pazymiai2 = new int[10];
+
+         // skaiciai
+         int skaicius1 = 100;
+         int skaicius2 = 95;
+         int skaicius3 = 92;
+
+         //deklaravimas
+         int[] skaiciai = { 100, 95, 92 };
+         //tuscio masyvo deklaravimas
+         //int[] skaiciai2;
+         int[] skaiciai2 = null;
+
+         if (skaicius1 == skaicius2)
+         {
+             skaiciai2 = new int[7];
+
+         }
+         //vietos iskyrimas
+         int[] skaiciai3 = new int[10];
+         string[] zodziai = new string[3];
+
+
+         //reiksmiu irasymas
+         skaiciai3[0] = 100;
+         skaiciai3[1] = 95;
+         skaiciai3[2] = 92;
+
+
+
+
+         //for (int i = 0; i < 4; i++)
+         //{
+         //    for (int i = 0; i < length; i++)
+         //    {
+         //       // dvimatisMasyvas[j, i];  // kiekvieno stulpelio kiekviena eilute
+         //       // dvimatisMasyvas[i,j]; //kiekvienos eilutes, iekvienas stulpelis
+         //    }
+         //}
+
+
+         // skaiciai3[99] = 999; // gauname klaida 
+
+
+         int[] intMasyvai1 = new int[] { 100, 95, 92, 87, 55, 50, 40 };
+         int[] intMasyvai2 = new [] { 100, 95, 92, 87, 55, 50, 40 };
+         int[] intMasyvai3 = new int[1] { 100 };                      // tik vienas elementas
+         int[] intMasyvai4 = { 100, 95, 92, 87, 55, 50, 40 };
+
+         //masyvo reiksmes gauti pagal indeksa
+         Console.WriteLine(intMasyvai1[5]); //uzlinks jei ivesim 8 nes tiek nera
+
+
+         char[] testinisZodisIsChar = { 't', 'e' };
+         string testinisZodis = "testinis";
+         for (int i = 0; i < testinisZodis.Length; i++)
+         {
+             Console.WriteLine(testinisZodis[i]);
+         }
+         // viso masyvo irasu atspausdinimas
+
+         for (int i = 0; i < dienos.Length; i++)
+         {
+             Console.WriteLine(dienos[i]);
+         }
+
+
+
+         //matricos/Dvimacio masyvo deklaravimas
+         int[,] dvimatisMasyvas = new int[4, 5];
+         int[][] dvimatisMasyvas2 = new int[4][];
+
+         // dvimacio masyvo iraso deklaravimas
+
+         int[,] dvimatisMasyvas3 = new int[,] { 
+               { 1, 2 }
+             , { 3, 4 }
+             , { 4, 5 } };
+
+
+         for (int i = 0; i < dvimatisMasyvas3.GetLength(0); i++)
+         {
+             for (int j = 0; j < dvimatisMasyvas3.GetLength(1); j++)
              {
-                 skaiciai2 = new int[7];
-
+                 Console.Write($"{dvimatisMasyvas3[i,j]} ");
              }
-             //vietos iskyrimas
-             int[] skaiciai3 = new int[10];
-             string[] zodziai = new string[3];
+             Console.WriteLine();
+         }
 
-
-             //reiksmiu irasymas
-             skaiciai3[0] = 100;
-             skaiciai3[1] = 95;
-             skaiciai3[2] = 92;
+         */
+        #endregion
 
 
 
+        // 1 uzdavinys
+        #region
 
-             //for (int i = 0; i < 4; i++)
-             //{
-             //    for (int i = 0; i < length; i++)
-             //    {
-             //       // dvimatisMasyvas[j, i];  // kiekvieno stulpelio kiekviena eilute
-             //       // dvimatisMasyvas[i,j]; //kiekvienos eilutes, iekvienas stulpelis
-             //    }
-             //}
+        /*
+          1.Parasykite programa, kuri atspausdintu sia figura pvz:
+           1
+           01
+           101
+           0101
+           10101
+            */
 
-
-             // skaiciai3[99] = 999; // gauname klaida 
-
-
-             int[] intMasyvai1 = new int[] { 100, 95, 92, 87, 55, 50, 40 };
-             int[] intMasyvai2 = new [] { 100, 95, 92, 87, 55, 50, 40 };
-             int[] intMasyvai3 = new int[1] { 100 };                      // tik vienas elementas
-             int[] intMasyvai4 = { 100, 95, 92, 87, 55, 50, 40 };
-
-             //masyvo reiksmes gauti pagal indeksa
-             Console.WriteLine(intMasyvai1[5]); //uzlinks jei ivesim 8 nes tiek nera
-
-
-             char[] testinisZodisIsChar = { 't', 'e' };
-             string testinisZodis = "testinis";
-             for (int i = 0; i < testinisZodis.Length; i++)
-             {
-                 Console.WriteLine(testinisZodis[i]);
-             }
-             // viso masyvo irasu atspausdinimas
-
-             for (int i = 0; i < dienos.Length; i++)
-             {
-                 Console.WriteLine(dienos[i]);
-             }
-
-
-
-             //matricos/Dvimacio masyvo deklaravimas
-             int[,] dvimatisMasyvas = new int[4, 5];
-             int[][] dvimatisMasyvas2 = new int[4][];
-
-             // dvimacio masyvo iraso deklaravimas
-
-             int[,] dvimatisMasyvas3 = new int[,] { 
-                   { 1, 2 }
-                 , { 3, 4 }
-                 , { 4, 5 } };
-
-
-             for (int i = 0; i < dvimatisMasyvas3.GetLength(0); i++)
-             {
-                 for (int j = 0; j < dvimatisMasyvas3.GetLength(1); j++)
-                 {
-                     Console.Write($"{dvimatisMasyvas3[i,j]} ");
-                 }
-                 Console.WriteLine();
-             }
-
-             */
-            #endregion
-
-
-
-            // 1 uzdavinys
-             #region
-
-            /*
-              1.Parasykite programa, kuri atspausdintu sia figura pvz:
-               1
-               01
-               101
-               0101
-               10101
-                */
-
-            static void BinarinisTrikampis()
+        static void BinarinisTrikampis()
             {
 
                 Console.Write("Kiek norite eiluciu: ");
@@ -383,38 +394,68 @@ namespace P018_Masyvai
                 }
             }
 
-            #endregion
+        #endregion
 
-            // 7 uzdavinys
-            #region
-            /*
-            7. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame dvimaciame masyve ir juos atvaizduotu ekrane
-                */
+        // 7 uzdavinys
+        #region
+        /* 7. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame dvimaciame masyve ir juos atvaizduotu ekrane */
 
+        static void PasikartojantysSkaiciaiDvigubameMasyve()
+        {
+            int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
 
+            for (int i = 0; i < array.Length; i++)
+            {
+                int count = 0;
+                for (int j = 0; j < array.Length; j++)
+                {
 
-
-
-            #endregion
-
-            // 8 uzdavinys
-            #region
-
-            /*
-            8. Parasykite programa, kuri rastu visus pasikartojancius vardus duotame dvimaciame masyve ir juos atvaizduotu ekrane
-            */
-
-
-
-
-            #endregion
-
-
- 
-
-
+                    if (array[i] == array[j])
+                        count = count + 1;
+                }
+                if (count > 1) Console.WriteLine("\t\n " + array[i] + " occurs " + count + " times");
+                else Console.Write("");
+            }
 
         }
+
+
+
+        #endregion
+
+        // 8 uzdavinys
+        #region
+
+        /* 8. Parasykite programa, kuri rastu visus pasikartojancius vardus duotame dvimaciame masyve ir juos atvaizduotu ekrane */
+
+        static void PasikartojantysZodziaiDvigubameMasyve()
+        {
+            int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                int count = 0;
+                for (int j = 0; j < array.Length; j++)
+                {
+
+                    if (array[i] == array[j])
+                        count = count + 1;
+                }
+                if (count > 1) Console.WriteLine("\t\n " + array[i] + " occurs " + count + " times");
+                else Console.Write("");
+            }
+
+        }
+
+
+        #endregion
+
+
+
+
+
+
+
 
 
 
