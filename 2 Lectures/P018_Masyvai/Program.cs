@@ -7,12 +7,15 @@ namespace P018_Masyvai
         {
             Console.WriteLine("Hello, Masyvai!");
 
-            // BinarinisTrikampis();
-            // AtbulineSeka();
-            // Lankomumas();
-            // StudentuVardaiIlgiausi();
-            // PasikartojantysSkaiciaiMasyve();
-            // MatricosSukurimasIrDuomenuSuvedimas();
+            //1 BinarinisTrikampis();
+            //1b Pyramid(5); // kolegos Tauro versija
+            //2 IsgautiAtvirksciaSkaiciu();
+            //3 Lankomumas();
+            //4 StudentuVardaiIlgiausi();
+            //5 PasikartojantysSkaiciaiMasyve();
+            //5b int[] skaiciuMasyvas = new int[8] { 1, 2, 2, 4, 2, 7, 6, 1 };
+            //5b Ieskotipasikartojimu(skaiciuMasyvas);
+            //6 MatricosSukurimasIrDuomenuSuvedimas();
             // PasikartojantysSkaiciaiDvigubameMasyve();
             // PasikartojantysZodziaiDvigubameMasyve();
 
@@ -31,9 +34,7 @@ namespace P018_Masyvai
          //    reiksme = !reiksme; //false true false true
          //}
 
-         // BinarinisTrikampis();
-         // AtbulineSeka();
-
+         
          //trumpas budas kaip patikrinti validuoti ivedama skaiciu
 
          //int skaicius = SkaiciausTikrinimas(Console.ReadLine());
@@ -160,20 +161,14 @@ namespace P018_Masyvai
         #endregion
 
 
-
-        // 1 uzdavinys
-        #region
-
-        /*
-          1.Parasykite programa, kuri atspausdintu sia figura pvz:
+        /* 1. uzdavinys Parasykite programa, kuri atspausdintu sia figura pvz:
            1
            01
            101
            0101
            10101
             */
-
-        static void BinarinisTrikampis()
+        public static void BinarinisTrikampis()
             {
 
                 Console.Write("Kiek norite eiluciu: ");
@@ -184,75 +179,83 @@ namespace P018_Masyvai
                     Console.WriteLine(sb.Insert(0, i % 2).ToString());
 
             }
-
-            #endregion
-
-            // 2 uzdavinys
-            #region
-            
-
-            /* 2. Parasykite programa, kuri paprasytu ivesti skaiciu ir ivesta skaiciu atspausdintu atvirkstine seka. Naudoti tik ciklus ir matematines operacijas.
-      Visi kintamieji yra integer tipo. Pvz:
-                  Ivedam- 12345 (int)
-                  Rezultatas-54321 (int)
-            */
-
-            static void AtbulineSeka()
+        public static void Pyramid(int count)
+        {
+            StringBuilder sb1 = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+            bool flag = true;
+            for (int i = 0; i < count; i++)
             {
-                int skaicius = 0,
-                 likutis,
+                if (flag)
+                {
+                    sb1.Insert(0, 1);
+                    flag = false;
+                }
+                else
+                {
+                    sb1.Insert(0, 0);
+                    flag = true;
+                }
+
+                sb2.Append(sb1).Append(Environment.NewLine);
+            }
+            Console.WriteLine(sb2.ToString());
+        }
+        
+        /* 2. uzdavinys. Parasykite programa, kuri paprasytu ivesti skaiciu ir ivesta skaiciu atspausdintu atvirkstine seka. Naudoti tik ciklus ir matematines operacijas.
+  Visi kintamieji yra integer tipo. Pvz:
+              Ivedam- 12345 (int)
+              Rezultatas-54321 (int)
+        */
+        public static void IsgautiAtvirksciaSkaiciu()
+        {
+            int skaicius = 0,
+                likutis,
                 rezultatas = 0;
 
-                bool validu = false;
+            bool validu = false;
 
-                while (!validu)
+            while (!validu)
+            {
+                Console.WriteLine("Iveskite skaicius:");
+                if (int.TryParse(Console.ReadLine(), out skaicius))
                 {
-                    Console.WriteLine("iveskite skaicius:");
-                    if (int.TryParse(Console.ReadLine(), out skaicius))
-                    {
-                        validu = true;
-                    }
-
+                    validu = true;
                 }
-                while (skaicius != 0)
-                {
-
-                    likutis = skaicius % 10;
-                    Console.WriteLine($" Likutis {likutis}");
-                    rezultatas = rezultatas % 10 + likutis; // 123 
-                    Console.WriteLine($"Rezultatas {rezultatas}");
-                    skaicius = skaicius / 10;
-                    Console.WriteLine($"skaicius {skaicius} ");
-
-                }
-                Console.WriteLine($"Rezultatas {rezultatas}");
-
-
             }
 
-            #endregion
+            while (skaicius != 0)
+            {
+                likutis = skaicius % 10;
+                Console.WriteLine($"Likutis: {likutis}");
+                rezultatas = rezultatas * 10 + likutis; // 123
+                Console.WriteLine($"Rezultatas: {rezultatas}");
+                skaicius = skaicius / 10;
+                Console.WriteLine($"Skaicius: {skaicius}");
+            }
 
-            // 3 uzdavinys
-            #region
+            Console.WriteLine($"Rezultatas: {rezultatas}");
+        }
 
-            /*  
-              3. Parasykite programa, kuri leistu ivesti kiek zmoniu siandiena atejo i pamoka.
-            Ivedus skaiciu programa prasytu ivesti visu atejusiu zmoniu vardus. 
-            Kada visi vardai buna ivesti programa turetu atspausdinti visu vardus atvirkstine seka.
-            Pvz: 
-            3
-            Edvinas
-            Jonas
-            Petras
-            Petras
-            Jonas
-            Edvinas
+        /* 3. Uzdavinys. Parasykite programa, kuri leistu ivesti kiek zmoniu siandiena atejo i pamoka.
+        Ivedus skaiciu programa prasytu ivesti visu atejusiu zmoniu vardus. 
+        Kada visi vardai buna ivesti programa turetu atspausdinti visu vardus atvirkstine seka.
+        Pvz: 
+        3
+        Edvinas
+        Jonas
+        Petras
+        Petras
+        Jonas
+        Edvinas
 
-             */
-            static void Lankomumas()
+         */
+        static void Lankomumas()
             {
                 Console.WriteLine("iveskite skaiciu kiek zmonių atejo i pamoka");
-                int dalyvaujaPaskaitoje = Convert.ToInt32(Console.ReadLine());
+               // int dalyvaujaPaskaitoje = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int dalyvaujaPaskaitoje);
+
                 string[] studentuVardai = new string[dalyvaujaPaskaitoje];
 
                 for (int i = 0; i < dalyvaujaPaskaitoje; i++)
@@ -267,73 +270,46 @@ namespace P018_Masyvai
                 }
             }
 
-            #endregion
+        /* 4. Uzdavinys. Parasykite programa, kuri leistu ivesti kiek zmoniu siandiena atejo i pamoka.
+            Ivedus skaiciu programa prasytu ivesti visu atejusiu zmoniu vardus. 
+            Kada visi vardai buna ivesti programa turetu atspausdinti ilgiausia varda ekrane.
+            Jei vardai yra vienodo ilgio turetu atspausdinti abu vardus.
+            Pvz: 
+            3            
+            Edvinas 
+            Jonas            
+            Petras
+            ---------------------            
+            Edvinas
+            */
+        static void StudentuVardaiIlgiausi()
+        {
 
-            // 4 uzdavinys
-            #region
+            int maxLength = 0;
+            Console.WriteLine("iveskite skaiciu kiek zmonių atejo i pamoka");
+            int.TryParse(Console.ReadLine(), out int dalyvaujaPaskaitoje2);
+            string[] studentuVardai2 = new string[dalyvaujaPaskaitoje2];
 
-            /*
-            4. Parasykite programa, kuri leistu ivesti kiek zmoniu siandiena atejo i pamoka.
-                Ivedus skaiciu programa prasytu ivesti visu atejusiu zmoniu vardus. 
-                Kada visi vardai buna ivesti programa turetu atspausdinti ilgiausia varda ekrane.
-                Jei vardai yra vienodo ilgio turetu atspausdinti abu vardus.
-                Pvz: 
-                3            
-                Edvinas 
-                Jonas            
-                Petras
-                ---------------------            
-                Edvinas
-                */
-
-            static void StudentuVardaiIlgiausi()
+            for (int i = 0; i < dalyvaujaPaskaitoje2; i++)
             {
-                Console.WriteLine("iveskite skaiciu kiek zmonių atejo i pamoka");
-                int dalyvaujaPaskaitoje2 = Convert.ToInt32(Console.ReadLine());
-                string[] studentuVardai2 = new string[dalyvaujaPaskaitoje2];
+                Console.WriteLine("iveskite atejusio Studento varda");
+                studentuVardai2[i] = Console.ReadLine();
 
-                for (int i = 0; i < dalyvaujaPaskaitoje2; i++)
-                {
-                    Console.WriteLine("iveskite atejusio Studento varda");
-                    studentuVardai2[i] = Console.ReadLine();
-                }
+                if (studentuVardai2[i].Length > maxLength) { maxLength = studentuVardai2[i].Length; }
 
-
-                int min = studentuVardai2[0].Length;
-                int max = studentuVardai2[0].Length;
-                string maxx = studentuVardai2[0];
-                string minn = studentuVardai2[0];
-                for (int i = 1; i <= studentuVardai2.Length; i++)
-                {
-                    int length = studentuVardai2[i].Length;
-                    if (length > max)
-                    {
-                        maxx = studentuVardai2[i];
-                        max = length;
-                    }
-                    if (length < min)
-                    {
-                        minn = studentuVardai2[i];
-                        min = length;
-                        Console.Write("Longest");
-                    }
-                }
-                Console.Write("Shortest:" + maxx);
-                Console.Write("Longest" + minn);
-                Console.ReadKey(true);
             }
-
-            #endregion
-
-            // 5 uzdavinys
-            #region
-            /*
-  5. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame masyve ir juos atvaizduotu ekrane
-  PVZ: 1,2,2,4,2,7,6,1
-  Pasikartojantys skaiciai: 1, 2
- */
-            
-            static void PasikartojantysSkaiciaiMasyve()
+            Console.WriteLine("-----------");
+            for (int i = 0; i < studentuVardai2.Length; i++)
+            {
+                if (studentuVardai2[i].Length == maxLength) { Console.WriteLine(studentuVardai2[i]); }
+            }
+        }
+   
+        /* 5. Uzdavinys. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame masyve ir juos atvaizduotu ekrane
+              PVZ: 1,2,2,4,2,7,6,1
+              Pasikartojantys skaiciai: 1, 2
+         */        
+        static void PasikartojantysSkaiciaiMasyve()
              {
                  int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
 
@@ -351,35 +327,42 @@ namespace P018_Masyvai
                  }
 
              }
-            
-            #endregion
+        public static string Ieskotipasikartojimu(int[] skaiciuMasyvas)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < skaiciuMasyvas.Length; i++)
+            {
+                for (int j = i; j < skaiciuMasyvas.Length; j++)
+                {
+                    if (skaiciuMasyvas[i] == skaiciuMasyvas[j] && !sb.ToString().Contains(skaiciuMasyvas[j].ToString()) && i != j) { sb.Append(skaiciuMasyvas[j]).Append(','); }
+                }
+            }
+            Console.WriteLine($"pasikartojantys skaiciai masyve: {sb.ToString()}");
+            return sb.ToString().Trim(',');
 
-            // 6 uzdavinys
-            #region
-            /*
-                6. Programa praso ivesti eiluciu ir stulpeliu kieki.Ivedus turetu sukurti masyva duoto dydzio, paprasyti ivesti kiekvieno elemento skaiciu/reiksme ir atspausdintu matrica is pateiktu skaiciu
-                   PVZ: Ivedame 2 2. Suvedame 1, 2, 2, 3
-                     1 2
-                       2 3
+        }
 
-            */
-
-            static void MatricosSukurimasIrDuomenuSuvedimas()
+        /* 6. Uzdavinys. Programa praso ivesti eiluciu ir stulpeliu kieki.Ivedus turetu sukurti masyva duoto dydzio, paprasyti ivesti kiekvieno elemento skaiciu/reiksme ir atspausdintu matrica is pateiktu skaiciu
+               PVZ: Ivedame 2 2. Suvedame 1, 2, 2, 3
+                 1 2
+                 2 3
+        */
+        static void MatricosSukurimasIrDuomenuSuvedimas()
             {
                 Console.WriteLine("Iveskite eiluciu kieki");
-                int eilutes = Convert.ToInt16(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int eilutes);
                 Console.WriteLine("Iveskite stulpeliu kieki");
-                int stulpeliai = Convert.ToInt16(Console.ReadLine());
-
+                int.TryParse(Console.ReadLine(), out int stulpeliai);
+                
                 int[,] masyvas2x2 = new int[eilutes, stulpeliai];
 
-
                 Console.WriteLine("suveskite duomenis");
+
                 for (int i = 0; i < stulpeliai; i++)
                 {
                     for (int j = 0; j < eilutes; j++)
                     {
-                        masyvas2x2[i, j] = Convert.ToInt16(Console.ReadLine());
+                        masyvas2x2[i, j] = int.Parse(Console.ReadLine());
                     }
                 }
 
@@ -394,94 +377,57 @@ namespace P018_Masyvai
                 }
             }
 
-        #endregion
-
-        // 7 uzdavinys
-        #region
-        /* 7. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame dvimaciame masyve ir juos atvaizduotu ekrane */
-
+        /* 7. Uzdavinys. Parasykite programa, kuri rastu visus pasikartojancius skaicius duotame dvimaciame masyve ir juos atvaizduotu ekrane */
         static void PasikartojantysSkaiciaiDvigubameMasyve()
         {
-            int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
+            int[,] skaiciuDvigumasMasyvas = new int[3, 3] {{ 1, 1, 2},{ 3, 4, 8},{ 5, 4, 7}};
+            int arrIndex = 0;
+            int[] oneDimesionNumbers = new int[skaiciuDvigumasMasyvas.Length];
 
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < skaiciuDvigumasMasyvas.GetLength(0); i++)  // getlength ?? 
             {
-                int count = 0;
-                for (int j = 0; j < array.Length; j++)
+                for (int j = 0; j < skaiciuDvigumasMasyvas.GetLength(1); j++)
                 {
-
-                    if (array[i] == array[j])
-                        count = count + 1;
+                    oneDimesionNumbers[arrIndex] = skaiciuDvigumasMasyvas[i, j];
+                    arrIndex++;
                 }
-                if (count > 1) Console.WriteLine("\t\n " + array[i] + " occurs " + count + " times");
-                else Console.Write("");
             }
 
+        Ieskotipasikartojimu(oneDimesionNumbers);
         }
 
-
-
-        #endregion
-
-        // 8 uzdavinys
-        #region
-
-        /* 8. Parasykite programa, kuri rastu visus pasikartojancius vardus duotame dvimaciame masyve ir juos atvaizduotu ekrane */
-
-        static void PasikartojantysZodziaiDvigubameMasyve()
+        /* 8. Uzdavinys. Parasykite programa, kuri rastu visus pasikartojancius vardus duotame dvimaciame masyve ir juos atvaizduotu ekrane */
+        public static string Ieskotipasikartojimu(string[] varduMasyvas)
         {
-            int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
-
-            for (int i = 0; i < array.Length; i++)
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < varduMasyvas.Length; i++)
             {
-                int count = 0;
-                for (int j = 0; j < array.Length; j++)
+                for (int j = i; j < varduMasyvas.Length; j++)
                 {
-
-                    if (array[i] == array[j])
-                        count = count + 1;
+                    if (varduMasyvas[i] == varduMasyvas[j] && !sb.ToString().Contains(varduMasyvas[j].ToString()) && i != j) { sb.Append(varduMasyvas[j]).Append(','); }
                 }
-                if (count > 1) Console.WriteLine("\t\n " + array[i] + " occurs " + count + " times");
-                else Console.Write("");
             }
-
+            return sb.ToString().Trim(',');
         }
+        public static void PasikartojantysZodziaiDvigubameMasyve()
+        {
+            string[,] varduMasyvas = new string[3, 3] {{ "Mantas", "Mantas", "Matas"},{ "Algirdas", "Titas", "Matas"},{ "Petras", "Tadas", "Povilas"}};
+            int masyvoIndeksas = 0;
+            string[] viengubasMasyvas = new string[varduMasyvas.Length];
 
+           // StringBuilder sb = new StringBuilder();
 
-        #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            for (int i = 0; i < varduMasyvas.GetLength(0); i++)
+            {
+                for (int j = 0; j < varduMasyvas.GetLength(1); j++)
+                {
+                    viengubasMasyvas[masyvoIndeksas] = varduMasyvas[i, j];
+                    masyvoIndeksas++;
+                }
+            }
+            Console.Write($"pasikartojantys vardai masyve: {Ieskotipasikartojimu(viengubasMasyvas)}");
+            
+        }
 
 
 
