@@ -11,13 +11,12 @@ namespace P011_Metodu_Testai
     {
       
         [TestMethod]
-        public void maziausioieskojimas()
+        public void PasikartojantysSkaiciaiMasyve_Test()
         {
-            int[] fake = new int[] { 5, 3, 7, 6, 8, -7, 10 };
-            string expected = "-7";
-            var actual = P020_Masyvu_Kartojimas.Program.MaziausioSkaiciausMasyvePaieska(fake);
+            int[] fake = new int[] { 1, 2, 2, 4, 2, 7, 6, 1 };
+            string expected = "1,2";
+            var actual = P018_Masyvai.Program.PasikartojantysSkaiciaiMasyve(fake);
             Assert.AreEqual(expected, actual);
-
         }
 
 
