@@ -250,6 +250,7 @@ namespace P018_Masyvai
         Edvinas
 
          */
+
         static void Lankomumas()
             {
                 Console.WriteLine("iveskite skaiciu kiek zmonių atejo i pamoka");
@@ -327,6 +328,28 @@ namespace P018_Masyvai
                  }
 
              }
+
+
+        public static string PasikartojantysSkaiciaiMasyve2(int[] mas)
+        {
+            
+            var sb = new StringBuilder();
+
+            var skaiciai = string.Join(",", mas);
+            for (int i = 0; i < mas.Length; i++)
+            {
+               var ind = skaiciai.IndexOf(mas[i].ToString());
+                var indLast = skaiciai.LastIndexOf(mas[i].ToString());
+               
+                if(ind != indLast)
+                {
+                    sb.Append(mas[i] + ",");
+                }
+            }
+        return sb.ToString().TrimEnd(',');
+        } 
+
+
         public static string Ieskotipasikartojimu(int[] skaiciuMasyvas)
         {
             StringBuilder sb = new StringBuilder();
