@@ -65,6 +65,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamuDarbasSkaiciuotuvas", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P018_Masyvai", "P018_Masyvai\P018_Masyvai.csproj", "{6C17378D-009D-4556-AF0B-6D143A45CAD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P020_Masyvu_Kartojimas", "P020_Masyvu_Kartojimas\P020_Masyvu_Kartojimas.csproj", "{10F251E0-3990-4754-B7BA-45487CD326D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +193,10 @@ Global
 		{6C17378D-009D-4556-AF0B-6D143A45CAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C17378D-009D-4556-AF0B-6D143A45CAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C17378D-009D-4556-AF0B-6D143A45CAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F251E0-3990-4754-B7BA-45487CD326D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F251E0-3990-4754-B7BA-45487CD326D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F251E0-3990-4754-B7BA-45487CD326D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F251E0-3990-4754-B7BA-45487CD326D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

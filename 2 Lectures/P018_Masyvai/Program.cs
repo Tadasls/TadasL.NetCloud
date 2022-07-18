@@ -310,7 +310,7 @@ namespace P018_Masyvai
               PVZ: 1,2,2,4,2,7,6,1
               Pasikartojantys skaiciai: 1, 2
          */        
-        static void PasikartojantysSkaiciaiMasyve()
+        static void PasikartojantysSkaiciaiMasyve1()
              {
                  int[] array = { 1, 2, 2, 4, 2, 7, 6, 1 };
 
@@ -330,27 +330,26 @@ namespace P018_Masyvai
              }
 
 
-        public static string PasikartojantysSkaiciaiMasyve2(int[] mas)
+        public static string PasikartojantysSkaiciaiMasyve(int[] mas)
         {
-            
             var sb = new StringBuilder();
 
-            var skaiciai = string.Join(",", mas);
+            var skaiciai = string.Join(";", mas);
             for (int i = 0; i < mas.Length; i++)
             {
-               var ind = skaiciai.IndexOf(mas[i].ToString());
+                var ind = skaiciai.IndexOf(mas[i].ToString());
                 var indLast = skaiciai.LastIndexOf(mas[i].ToString());
-               
-                if(ind != indLast)
+                if (ind != indLast)
                 {
                     sb.Append(mas[i] + ",");
                 }
+                skaiciai = skaiciai.Replace(mas[i].ToString(), string.Empty);
             }
-        return sb.ToString().TrimEnd(',');
-        } 
 
+            return sb.ToString().TrimEnd(',');
+        }
 
-        public static string Ieskotipasikartojimu(int[] skaiciuMasyvas)
+            public static string Ieskotipasikartojimu(int[] skaiciuMasyvas)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < skaiciuMasyvas.Length; i++)
@@ -448,7 +447,7 @@ namespace P018_Masyvai
                     masyvoIndeksas++;
                 }
             }
-            Console.Write($"pasikartojantys vardai masyve: {Ieskotipasikartojimu(viengubasMasyvas)}");
+           Console.Write($"pasikartojantys vardai masyve: {Ieskotipasikartojimu(viengubasMasyvas)}");
             
         }
 
