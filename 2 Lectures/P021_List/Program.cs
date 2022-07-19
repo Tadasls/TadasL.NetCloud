@@ -6,6 +6,8 @@
         {
             Console.WriteLine("Hello, List!");
 
+            #region
+
             List<string> stringSarasas = new List<string>() { "zodis", "zodis2", "........." };
             List<int>  intSarasas = new List<int> { 1, 22, 33 ,44, 5};
 
@@ -103,12 +105,65 @@
             int[] intMasyvas = new int[] {1,2,3, 4, 5};
             List<int> skaiciai = intMasyvas.ToList();
 
-    
+#endregion
 
 
 
+        }
+
+        /* 1   DIDŽIAUSIAS SĄRAŠE
+Duotas vienmatis sveikų skaičių sąrašas.
+Parašykite programą, kuri suranda didžiausią skaičių saraše
+{ 5, 1, 6, 8, 7 }
+rezultatas: 8 */
 
 
+        public static int DidziausiasSarase1(List<int> lst)
+        {
+            int max = lst[0];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                if (lst[i] > max)
+                {
+                    max = lst[i];
+                }
+            }
+            return max;
+        }
+
+        public static int DidziausiasSarase2(List<int> lst)
+        {
+            lst.Sort();                         
+            return lst[lst.Count -1];
+        }
+
+      /* 2 DIDESNIS UŽ DIDŽIAUSIĄ
+       Duotas vienmatis sveikų skaičių sąrašas.
+       Parašykite programą, kuri į sąrašo galą prideda vienetu didesnį skaičių už patį didžiausią
+
+       pvz:
+       { 5, 1, 6, 8, 7 }
+        rezultatas:  5, 1, 6, 8, 7, 9
+      */
+
+       
+        public static List<int> DidziausiasSarase3(List<int> lst)
+        {
+            var max = DidziausiasSarase1(lst);
+            lst.Add(max + 1);
+            return lst;
+        }
+
+ 
+        public static List <int> DidziausiasSarase4(List<int> lst)
+
+        {
+            List<int> tmp = new List<int>();
+            tmp.AddRange(lst);
+
+            var max = DidziausiasSarase2(lst);
+            lst.Add(max + 1);
+            return lst;
 
         }
 
@@ -117,7 +172,9 @@
 
 
 
-      //  sukelti i masyva?
+
+
+       
 
     }
 }
