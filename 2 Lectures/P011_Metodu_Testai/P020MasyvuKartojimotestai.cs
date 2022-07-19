@@ -55,5 +55,24 @@ namespace P011_Metodu_Testai
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Rikiuoti3raides_Test()
+        {
+            char[] fake = new char[] { 'C','D','B' };
+            char[] expected = new char[] { 'B', 'C', 'D' };
+            var actual = P020_Masyvu_Kartojimas.Program.RikiuotiTrisRaides(fake);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Rikiuoti4raides_Test()
+        {
+            string[] fake = new string[] { "C","A","B","E" };
+            string expected = "A-B-C-E";
+            var actual = P020_Masyvu_Kartojimas.Program.RikiuotiKeturiasraides(fake);
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }
