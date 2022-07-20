@@ -15,9 +15,9 @@ namespace P022_Foreach
             //AntrasKlasesUzdavinys();
             //TreciasKlasesUzdavinys();
 
-            SurikiuotiSkaiciusIsTeksto();
-            var rezultatas = IstrauktiSkaicius("1sd512sd5");
-            Console.WriteLine(rezultatas);
+            
+            var rezultatas = SurikiuotiSkaiciusIsTeksto(IstrauktiSkaicius("1sd512sd5"));
+            AtspausdintiSkaicius(rezultatas);
 
 
 
@@ -171,10 +171,9 @@ namespace P022_Foreach
           didejimo tvarka. SurikiuotiSkaiciusIsTeksto privalo panaudoti foreach, kad suformuotumet nauja List<int>:        
          PVZ: Ivedame: 1sd512sd5. Programa be rusiavimo grazina mums: 15125. Programa su rusiavimu grazina mums: 11255        
         */
-
-        public static int SkaiciausTikrinimas(string? tekstas) => int.TryParse(tekstas, out int skaicius) ? skaicius : 0;     
-
         
+        //PERPANAUDOJAMI METODAI
+        public static int SkaiciausTikrinimas(string? tekstas) => int.TryParse(tekstas, out int skaicius) ? skaicius : 0;     
 
 
         public static string IstrauktiSkaicius(string tekstas) 
@@ -185,7 +184,8 @@ namespace P022_Foreach
                 if (char.IsDigit(simbolis)) skaiciaiTekste.Append(simbolis); 
             } return skaiciaiTekste.ToString(); 
         }
-        public static List<int> SurikiuotiSkaiciusIsTeksto(string skaiciaiTekste) {
+        public static List<int> SurikiuotiSkaiciusIsTeksto(string skaiciaiTekste) 
+        {
             var skaiciai = new List<int>();
             foreach (var skaicius in skaiciaiTekste) 
             { 
@@ -194,7 +194,13 @@ namespace P022_Foreach
             skaiciai.Sort();
             return skaiciai;
         }
-        public static void AtspausdintiSkaicius(List<int> skaiciai) { foreach (var skaicius in skaiciai) { Console.Write(skaicius.ToString()); } }
+        public static void AtspausdintiSkaicius(List<int> skaiciai) 
+        { 
+            foreach (var skaicius in skaiciai) 
+            { 
+                Console.Write(skaicius.ToString()); 
+            } 
+        }
 
 
 

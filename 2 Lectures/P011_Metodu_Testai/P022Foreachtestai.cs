@@ -44,22 +44,33 @@ namespace P011_Metodu_Testai
         {
 
             var fake = "sd512sd5";
-            var expected = "518421";
+            var expected = "5125";
             var actual = P022_Foreach.Program.IstrauktiSkaicius(fake);
             Assert.AreEqual(expected, actual);
 
         }
 
         [TestMethod]
-        public void SurikiuotiSkaiciusIsTeksto()
+        public void SurikiuotiSkaiciusIsTeksto_Test()
         {
-
             var fake = "518421";
-            var expected = new List<int>() {1,1,2,4,5,8 };
+            var expected = new List<int>() { 1, 1, 2, 4, 5, 8 };
             var actual = P022_Foreach.Program.SurikiuotiSkaiciusIsTeksto(fake);
-            Assert.AreEqual(expected, actual);
 
+            CollectionAssert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void IstrauktiSkaiciusIrSurikiuotiSkaiciusIsTeksto_Test()
+        {
+            var fake = P022_Foreach.Program.IstrauktiSkaicius("sdfg51sd84as21");
+            var expected = new List<int>() { 1, 1, 2, 4, 5, 8 };
+            var actual = P022_Foreach.Program.SurikiuotiSkaiciusIsTeksto(fake);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
 
     }
 
