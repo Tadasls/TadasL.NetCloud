@@ -24,8 +24,10 @@
     <ProjectReference Include="..\P018_Masyvai\P018_Masyvai.csproj" />
     <ProjectReference Include="..\P020_Masyvu_Kartojimas\P020_Masyvu_Kartojimas.csproj" />
     <ProjectReference Include="..\P021_List\P021_List.csproj" />
+    <ProjectReference Include="..\P022_Foreach\P022_Foreach.csproj" />
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
     <ProjectReference Include="..\SavarDrbV03DNR\SavarDrbV03DNR.csproj" />
+    <ProjectReference Include="..\SavNamuDarbasSuperSkaiciuotuvas\SavNamuDarbasSuperSkaiciuotuvas.csproj" />
   </ItemGroup>
 
 </Project>

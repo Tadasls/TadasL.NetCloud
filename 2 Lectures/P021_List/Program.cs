@@ -111,14 +111,14 @@
 
         }
 
-        /* 1   DIDŽIAUSIAS SĄRAŠE
-Duotas vienmatis sveikų skaičių sąrašas.
-Parašykite programą, kuri suranda didžiausią skaičių saraše
-{ 5, 1, 6, 8, 7 }
-rezultatas: 8 */
+                    /* 1   DIDŽIAUSIAS SĄRAŠE
+            Duotas vienmatis sveikų skaičių sąrašas.
+            Parašykite programą, kuri suranda didžiausią skaičių saraše
+            { 5, 1, 6, 8, 7 }
+            rezultatas: 8 */
 
 
-        public static int DidziausiasSarase1(List<int> lst)
+        public static int DidziausiasSarase(List<int> lst)
         {
             int max = lst[0];
             for (int i = 0; i < lst.Count; i++)
@@ -131,7 +131,7 @@ rezultatas: 8 */
             return max;
         }
 
-        public static int DidziausiasSarase2(List<int> lst)
+        public static int DidziausiasSarase_SuSort(List<int> lst)
         {
             lst.Sort();                         
             return lst[lst.Count -1];
@@ -147,21 +147,21 @@ rezultatas: 8 */
       */
 
        
-        public static List<int> DidziausiasSarase3(List<int> lst)
+        public static List<int> DidesnisUzDidziausia(List<int> lst)
         {
-            var max = DidziausiasSarase1(lst);
+            var max = DidziausiasSarase(lst);
             lst.Add(max + 1);
             return lst;
         }
 
  
-        public static List <int> DidziausiasSarase4(List<int> lst)
+        public static List <int> DidesnisUzDidziausia_SuSort(List<int> lst)
 
         {
             List<int> tmp = new List<int>();
             tmp.AddRange(lst);
 
-            var max = DidziausiasSarase2(lst);
+            var max = DidziausiasSarase_SuSort(lst);
             lst.Add(max + 1);
             return lst;
 
@@ -169,12 +169,38 @@ rezultatas: 8 */
 
 
 
+                /*  3. MAŽIAUSIAS NEREIKALINGAS
+        Duotas vienmatis sveikų skaičių sąrašas. 
+        Parašykite programą, kuri iš sąrašo pašalina mažiausią skaičių
+        pvz:
+        { 5, 1, 6, 8, 7 }
+        rezultatas:  5, 6, 8, 7
+        */
+
+
+        /* 4. ## DU PO DU ##
+      Duotas vienmatis sveikų skaičių sąrašas. 
+      Parašykite programą, kuri skaičiaus 2 įterpia dar vieną skaičių 2
+      pvz: 
+        { 5, 1, 2, 6, 8, 7 }
+      rezultatas:  { 5, 1, 2, 2, 6, 8, 7 }
+      */
+
+
+
+        /* 5. ## DIDESNIS ŠALIA ##
+       Duotas vienmatis sveikų skaičių sąrašas. 
+       Parašykite programą, kuri prie kiekvieno skaičiaus sąraše iš dešinės pusės pideda vienetu didesnį skaičių
+       pvz:
+         { 5, 1, 6, 8, 7 }
+       rezultatas:  {  5, 6, 1, 2, 6, 7, 8, 9, 7, 8}
+       */
 
 
 
 
 
-       
+
 
     }
 }

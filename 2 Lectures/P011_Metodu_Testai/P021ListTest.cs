@@ -10,43 +10,43 @@ namespace P011_Metodu_Testai
     public class P021ListTestai
     {
         [TestMethod]
-        public void DidziausiasSkaicius_test()
+        public void DidziausiasSarase()
         {
 
             var fake = new List<int> { 5, 1, 6, 8, 7 };
             int expected = 8;
-            var actual = P021_List.Program.DidziausiasSarase1(fake);
+            var actual = P021_List.Program.DidziausiasSarase(fake);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void DidziausiasSkaicius_test2()
+        public void DidziausiasSarase_SuSort()
         {
 
             var fake = new List<int> { 5, 1, 6, 8, 7 };
             int expected = 8;
-            var actual = P021_List.Program.DidziausiasSarase2(fake);
+            var actual = P021_List.Program.DidziausiasSarase_SuSort(fake);
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void DidziausiasSkaicius_test3()
+        public void DidesnisUzDidziausia()
         {
 
             var fake = new List<int> { 5, 1, 6, 8, 7 };
             var expected = new List<int> { 5, 1, 6, 8, 7, 9 };
-            var actual = P021_List.Program.DidziausiasSarase3(fake);
+            var actual = P021_List.Program.DidesnisUzDidziausia(fake);
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void DidziausiasSkaicius_test4()
-        {
+        //[TestMethod]
+        //public void DidesnisUzDidziausia_SuSort()
+        //{
 
-            var fake = new List<int> { 5, 1, 6, 8, 7 };
-            var expected = new List<int> { 5, 1, 6, 8, 7, 9 };
-            var actual = P021_List.Program.DidziausiasSarase4(fake);
-            CollectionAssert.AreEqual(expected, actual);
-        }
+        //    var fake = new List<int> { 5, 1, 6, 8, 7 };
+        //    var expected = new List<int> { 5, 1, 6, 8, 7, 9 };
+        //    var actual = P021_List.Program.DidesnisUzDidziausia_SuSort(fake);
+        //    CollectionAssert.AreEqual(expected, actual);
+        //}
 
 
     }
