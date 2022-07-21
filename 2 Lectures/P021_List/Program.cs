@@ -68,7 +68,7 @@
             bool arYraBmw = automobiliai.Contains("BMW");
             Console.WriteLine("Ar yra BMW?" + arYraBmw);
 
-            //saraso sikiavimas sort
+            //saraso rikiavimas sort
             automobiliai.Sort();
             Console.WriteLine(string.Join(", ", automobiliai));
 
