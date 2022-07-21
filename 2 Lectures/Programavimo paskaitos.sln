@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P010 Metodai", "P10 Metodai
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testai", "Testai", "{E906DC24-D340-4306-9A1A-A1C9D41D2A4D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P011_Metodu_Testai", "P011_Metodu_Testai\P011_Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metodu_Testai", "P011_Metodu_Testai\Metodu_Testai.csproj", "{57DBF8CA-C87A-4E18-B5E5-B4A3EE0E2999}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Belenkas1", "Belenkas1\Belenkas1.csproj", "{AA91DC78-70A5-4364-A72F-D6E426496CBA}"
 EndProject
@@ -69,9 +69,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P020_Masyvu_Kartojimas", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P021_List", "P021_List\P021_List.csproj", "{2085FF1D-CB2C-41EE-95B1-6655CBA8DE95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P022_Foreach", "P022_Foreach\P022_Foreach.csproj", "{36CD73D5-78DC-47E9-BB47-BEC6893DFFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P022_Foreach", "P022_Foreach\P022_Foreach.csproj", "{36CD73D5-78DC-47E9-BB47-BEC6893DFFB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavNamuDarbasSuperSkaiciuotuvas", "SavNamuDarbasSuperSkaiciuotuvas\SavNamuDarbasSuperSkaiciuotuvas.csproj", "{50BB9515-DD4D-469E-AF0B-23FB991762B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavNamuDarbasSuperSkaiciuotuvas", "SavNamuDarbasSuperSkaiciuotuvas\SavNamuDarbasSuperSkaiciuotuvas.csproj", "{50BB9515-DD4D-469E-AF0B-23FB991762B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P023_Dictionaries", "P023_Dictionaries\P023_Dictionaries.csproj", "{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +217,10 @@ Global
 		{50BB9515-DD4D-469E-AF0B-23FB991762B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50BB9515-DD4D-469E-AF0B-23FB991762B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50BB9515-DD4D-469E-AF0B-23FB991762B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
