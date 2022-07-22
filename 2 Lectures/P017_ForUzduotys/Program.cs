@@ -239,76 +239,7 @@ namespace P017_ForUzduotys
         }
 
 
-        //BANDYMAS PER PASKAITA REFACTORINTI
-        //
-        //public static void SKaiciuuTrikmapis()
-        //{
-        //    var input1 = string.Empty;
-
-        //    var skaicius = 0;
-        //    var arValidu = ArValidu(out input1, out skaicius);
-
-        //}
-        //public static string SudeliotiSakini(int skaicius)
-        //{
-        //    var builder = new StringBuilder();
-        //    for (int i =0; i< skaicius; i++)
-        //    {
-
-        //    }
-        //    return builder;
-        //}
-
-        //public static bool ArValidu(out string input1, out int skaicius)
-        //{
-        //    while (true)
-        //    {
-        //        input1 = Console.ReadLine();
-        //        var arTeiginga = int.TryParse(input1, out skaicius);
-
-
-        //        if (skaicius <= 9 && skaicius >= 1)
-        //        {
-        //          break;
-        //        }
-
-        //    }
-        //    return builder;
-        //}
-
-
-        //public static string SkaiciuTrikampis()
-        //{
-        //    Console.WriteLine("iveskite nuo 1 iki 9");
-        //    bool arSkaiciusTeisingas = false;
-        //    int skaiciusVartotojo = Convert.ToInt32(Console.ReadLine());
-
-        //    while (!arSkaiciusTeisingas)
-        //    {
-        //        skaiciusVartotojo = Console.ReadLine();
-        //        arSkaiciusTeisingas = int.TryParse(skaiciusVartotojo, out skaicius6);
-        //        if (!arSkaiciusTeisingas) Console.WriteLine("Ivestas neteisingas skaicius, bandykite dar");
-        //    }
-
-
-        //    StringBuilder sb1 = new StringBuilder();
-
-        //    for (int i = 1; i < skaiciusVartotojo; i++)
-        //    {
-
-        //        for (int j = 1; j < i + 1; j++)
-        //        {
-        //            sb1.Append(skaiciusVartotojo);
-        //        }
-        //        sb1.AppendLine();
-
-
-        //        Console.WriteLine(sb1);
-
-        //    }
-
-        //    return sb1.ToString();
-        //}
+       
 
         /* laipsniu kelimo metodas salyga
                 Sukurti metodą PakeltiLaipsniu , kuris duotą skaičių pakelia nurodytu
@@ -341,13 +272,13 @@ namespace P017_ForUzduotys
             return rezultatas;
         }
 
-        /*  IntegerToBinary 
-Sukurti metodą IntegerToBinary, 
-kuris gautą teigiamą sveikąjį skaičių paverstų į dvejetainį formatą.Reikšmę grąžintų kaip simbolių eilutę.
-2 --> 10
-7 --> 111
-45 --> 101101 
-*/
+                    /*  IntegerToBinary 
+            Sukurti metodą IntegerToBinary, 
+            kuris gautą teigiamą sveikąjį skaičių paverstų į dvejetainį formatą.Reikšmę grąžintų kaip simbolių eilutę.
+            2 --> 10
+            7 --> 111
+            45 --> 101101 
+            */
 
         public static string IntegerToBinary(int integerNumber)
         {
@@ -360,14 +291,14 @@ kuris gautą teigiamą sveikąjį skaičių paverstų į dvejetainį formatą.Re
             return binaryNumber;
         }
 
-        /* UŽDUOTIS 1.
-Sukurti metodą ReadIntNumber, 
-kuris paprašo vartotojo įvesti sveikąjį skaičių ir tą skaičių grąžina.
-Jeigu vartotojas įveda blogą skaičių, tai programa turi informuoti, kad
-įvestas blogas skaičius ir prašyti įvesti vėl. Kol vartotojas
-neįveda tinkamo skaičiaus metodas turi vis prašyti įvesti.
-(Hint) -> Panaudoti int.TryParse metodą ir while ciklą.
-*/
+                    /* UŽDUOTIS 1.
+            Sukurti metodą ReadIntNumber, 
+            kuris paprašo vartotojo įvesti sveikąjį skaičių ir tą skaičių grąžina.
+            Jeigu vartotojas įveda blogą skaičių, tai programa turi informuoti, kad
+            įvestas blogas skaičius ir prašyti įvesti vėl. Kol vartotojas
+            neįveda tinkamo skaičiaus metodas turi vis prašyti įvesti.
+            (Hint) -> Panaudoti int.TryParse metodą ir while ciklą.
+            */
 
         public static int ReadIntNumber()
         {
