@@ -105,9 +105,14 @@
             int[] intMasyvas = new int[] {1,2,3, 4, 5};
             List<int> skaiciai = intMasyvas.ToList();
 
-#endregion
+            #endregion
 
-
+            //var skaiciai2 = new List<int>() { 5, 1, 6, 8, 7 };
+            //MaziausiasSaraseIrPasalinimas(skaiciai2);
+            var skaiciai3 = new List<int>() { 5, 1, 2, 6, 8, 7 };
+            Skaiciaus2IterpimasPoSkaiciaus2(skaiciai3);
+            var skaiciai4= new List<int>() { 5, 1, 6, 8, 7 };
+            PrieKiekvienoSkaiciausPridedaVienetuDidesni(skaiciai4);
 
         }
 
@@ -169,22 +174,63 @@
 
 
 
-                /*  3. MAŽIAUSIAS NEREIKALINGAS
-        Duotas vienmatis sveikų skaičių sąrašas. 
-        Parašykite programą, kuri iš sąrašo pašalina mažiausią skaičių
-        pvz:
-        { 5, 1, 6, 8, 7 }
-        rezultatas:  5, 6, 8, 7
-        */
+        /*  3. MAŽIAUSIAS NEREIKALINGAS
+Duotas vienmatis sveikų skaičių sąrašas. 
+Parašykite programą, kuri iš sąrašo pašalina mažiausią skaičių
+pvz:
+{ 5, 1, 6, 8, 7 }
+rezultatas:  5, 6, 8, 7
+*/
+
+        public static List<int> MaziausiasSaraseIrPasalinimas(List<int> lst)
+        {
+            int min = lst[0];
+            int minIndex = 0;
+            for (int i = 0; i < lst.Count; i++)
+            {
+                if (lst[i] < min)
+                {
+                    min = lst[i];
+                    minIndex = i;
+
+                }
+            }
+
+
+            lst.RemoveAt(minIndex);
+            Console.WriteLine(string.Join(", ", lst));
+            return lst;
+        }
+
 
 
         /* 4. ## DU PO DU ##
       Duotas vienmatis sveikų skaičių sąrašas. 
-      Parašykite programą, kuri skaičiaus 2 įterpia dar vieną skaičių 2
+      Parašykite programą, kuri skaičiaus po 2 įterpia dar vieną skaičių 2
       pvz: 
         { 5, 1, 2, 6, 8, 7 }
       rezultatas:  { 5, 1, 2, 2, 6, 8, 7 }
       */
+
+
+        public static List<int> Skaiciaus2IterpimasPoSkaiciaus2(List<int> skaiciai3)
+        {
+           
+            for (int i = 0; i < skaiciai3.Count; i++)
+            {
+                if (skaiciai3[i] == 2)
+                {
+                    skaiciai3.Insert(i+1, 2);
+                    i++;
+
+                }
+            }
+
+
+        
+            Console.WriteLine(string.Join(", ", skaiciai3));
+            return skaiciai3;
+        }
 
 
 
@@ -195,6 +241,22 @@
          { 5, 1, 6, 8, 7 }
        rezultatas:  {  5, 6, 1, 2, 6, 7, 8, 9, 7, 8}
        */
+
+
+        public static List<int> PrieKiekvienoSkaiciausPridedaVienetuDidesni(List<int> skaiciai4)
+        {
+
+            for (int i = 0; i < skaiciai4.Count; i++)
+            {
+
+                skaiciai4.Insert(i + 1, skaiciai4[i] + 1);
+                    i++;
+           
+            }
+
+            Console.WriteLine(string.Join(", ", skaiciai4));
+            return skaiciai4;
+        }
 
 
 

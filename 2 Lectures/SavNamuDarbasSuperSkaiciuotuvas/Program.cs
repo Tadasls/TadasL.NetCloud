@@ -15,7 +15,8 @@
             Console.WriteLine("Hello, Skaiciuotuve!");
             PirmasMainMeniu();
         }
-        static string ReadLineFake() {
+        static string ReadLineFake() 
+        {
             if (ivestys.Count <= 0) { return Console.ReadLine(); }
             if (ivestys.Count > i)  { return ivestys[i++]; }
             return "-1";
@@ -24,8 +25,6 @@
         public static void SuperSkaiciuotuvas(string ivedimas)
         {
             ivestys.Add(ivedimas);
-
-
         }
 
         public static void SkaiciuIvedimoMetodas()
