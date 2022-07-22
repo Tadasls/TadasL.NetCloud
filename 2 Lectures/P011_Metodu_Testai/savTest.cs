@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P011_Methods_Tests
+namespace P011_Metodu_Testai
 {
     [TestClass]
     public class savTest01

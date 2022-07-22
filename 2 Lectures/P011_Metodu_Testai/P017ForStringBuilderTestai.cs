@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace P011_Methods_Tests
+namespace P011_Metodu_Testai
 {
     [TestClass]
     public class P017_StringBuilder_Tests
