@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-              Console.WriteLine("Tadas!");
-              Console.WriteLine("iveskime varda" + Console.ReadLine());
+             Console.WriteLine("Tadas!");
+             Console.WriteLine("iveskime varda" + Console.ReadLine());
              Console.WriteLine ("    iveskime varda" + (int)Console.ReadKey().KeyChar);
 
 
@@ -18,9 +18,7 @@
 
             //Konkatinacija
 
-            
-
-            Console.WriteLine(" (1) Pirkti \n (2) Parduoti \n (3) Likuciai");
+             Console.WriteLine(" (1) Pirkti \n (2) Parduoti \n (3) Likuciai");
             // Console.WriteLine("   Koks jusu pasirinkimas ?  \"   \"   : {0}", Console.ReadKey().KeyChar-48);
              Console.WriteLine($"  \" pasirinkimas : {Console.ReadLine()} \" ");
 

@@ -52,27 +52,27 @@
             Console.WriteLine("ivestas simbolis {0}",(int)key.KeyChar);
             Console.WriteLine("ivestas simbolis {0}", Console.ReadKey().KeyChar);
             Console.WriteLine("ivestas simbolis {0}", (int)Console.ReadKey().KeyChar);
-               
-
-            // Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
-            //Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
 
 
-            //Console.ReadKey();
+            Console.WriteLine("Įveskite savo vardą, ir to vardo pirma raide bus:");
+            Console.WriteLine("suvesto vardo pirma raide yra \"" + Console.ReadLine()[0] + "\"");
 
 
-            /*
-             Console.WriteLine("eilute 1" + 
+            Console.ReadKey();
+
+
+
+            Console.WriteLine("eilute 1" + 
                Environment.NewLine + "Eilute 2" + 
                 Environment.NewLine + "Eilute 3" );
-            */
+            
 
-            /*
+            
                         Console.WriteLine(@"    ""tekstas kabutese""  \ \ \ \ \ \ \ \ 
             Eilute pirma
             eilute antra
             eilute trecia  ");
-            */
+            
 
             
 
@@ -129,7 +129,7 @@
 
 
 
-            /*
+            
             Console.WriteLine(
         "(C) Currency: . . . . . . . . {0:C}\n" +
         "(D) Decimal:. . . . . . . . . {0:D}\n" +
@@ -164,7 +164,7 @@
                 "(Y) Year: . . . . . . . . . . {0:Y}\n",
                 DateTime.Now);
 
-            */
+            
 
 
 

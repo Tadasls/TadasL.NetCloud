@@ -18,10 +18,10 @@ namespace P017_ForUzduotys
             // PirmasUzdavinysSkaiciuEile();
             // DaugybosLentele();
             // KetvirtaUzduotis();
-           //  FigurosMetodas();
+            //  FigurosMetodas();
 
             // AtbulineSeka();
-
+            Piramide();
 
 
             //Console.WriteLine("iveskite skaiciu");
@@ -33,7 +33,7 @@ namespace P017_ForUzduotys
 
 
 
-         
+
 
         }
 
@@ -96,7 +96,7 @@ namespace P017_ForUzduotys
                 sb.Clear();
             }
         }
-        
+
 
 
 
@@ -112,6 +112,23 @@ namespace P017_ForUzduotys
     22
     1
     */
+
+
+
+
+        public static void Piramide(int skaiciusaukstu = 4) 
+        {
+            int eiliu = skaiciusaukstu * 2 - 1;
+            int isestis = 1;      
+            for (int i = 0;i <=eiliu;i++)
+            {
+                string tekstas = new string(isestis.ToString()[0], isestis);
+                Console.WriteLine(tekstas);
+                isestis = (i < skaiciusaukstu-1) ? isestis += 1 : isestis -= 1;
+
+            }
+       
+        } 
 
         //  DidejanciuSkaiciuPiramide 5555 uzdavinio sprendimas kolegos
 
