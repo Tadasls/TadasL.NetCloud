@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NamuDarbasSkaiciuotuvas\SNamuDarbasSkaiciuotuvas.csproj" />
+    <ProjectReference Include="..\NamuDarbasSkaiciuotuvas\SNamDrb Skaiciuotuvas.csproj" />
     <ProjectReference Include="..\P014 Debuginimas\P014 Debuginimas.csproj" />
     <ProjectReference Include="..\P016_For\P016_For.csproj" />
     <ProjectReference Include="..\P017_ForUzduotys\P017_ForUzduotys.csproj" />
@@ -27,7 +27,7 @@
     <ProjectReference Include="..\P022_Foreach\P022_Foreach.csproj" />
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
     <ProjectReference Include="..\SavarDrbV03DNR\SavarDrbV03DNR.csproj" />
-    <ProjectReference Include="..\SavNamuDarbasSuperSkaiciuotuvas\SavNamuDarbasSuperSkaiciuotuvas.csproj" />
+    <ProjectReference Include="..\SavNamuDarbasSuperSkaiciuotuvas\SNamu Darbas SuperSkaiciuotuvas.csproj" />
   </ItemGroup>
 
 </Project>

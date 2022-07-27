@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P001 Ivadas", "P1 ivadas\P0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P002 Consoles uzduotys", "P2 Consoles uzduotys\P002 Consoles uzduotys.csproj", "{92D9E3FF-5A3C-482A-8C83-0B872102CE9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "savarDrbV02Termometras", "savarankiskasDarbasV02T\savarDrbV02Termometras.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamDrb Termometras", "savarankiskasDarbasV02T\SNamDrb Termometras.csproj", "{C791CD7B-EA60-483E-9648-0E834762CD9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P007 IF", "P7 IF\P007 IF.csproj", "{935AF535-513C-49FC-8BCF-7C2EDCF28703}"
 EndProject
@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P017_ForUzduotys", "P017_Fo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P017_StringBuilder", "P017_StringBuilder\P017_StringBuilder.csproj", "{84525254-133C-4B09-80AE-2A378FFC80BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamuDarbasSkaiciuotuvas", "NamuDarbasSkaiciuotuvas\SNamuDarbasSkaiciuotuvas.csproj", "{3FEFF536-6F35-48B7-BA7A-4CDBFE159B09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamDrb Skaiciuotuvas", "NamuDarbasSkaiciuotuvas\SNamDrb Skaiciuotuvas.csproj", "{3FEFF536-6F35-48B7-BA7A-4CDBFE159B09}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P018_Masyvai", "P018_Masyvai\P018_Masyvai.csproj", "{6C17378D-009D-4556-AF0B-6D143A45CAD8}"
 EndProject
@@ -71,13 +71,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P021_List", "P021_List\P021
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P022_Foreach", "P022_Foreach\P022_Foreach.csproj", "{36CD73D5-78DC-47E9-BB47-BEC6893DFFB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SavNamuDarbasSuperSkaiciuotuvas", "SavNamuDarbasSuperSkaiciuotuvas\SavNamuDarbasSuperSkaiciuotuvas.csproj", "{50BB9515-DD4D-469E-AF0B-23FB991762B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNamu Darbas SuperSkaiciuotuvas", "SavNamuDarbasSuperSkaiciuotuvas\SNamu Darbas SuperSkaiciuotuvas.csproj", "{50BB9515-DD4D-469E-AF0B-23FB991762B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P023_Dictionaries", "P023_Dictionaries\P023_Dictionaries.csproj", "{87BC8ACC-E857-4380-A19D-53FCCA2CAC19}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P024_Random", "P024_Random\P024_Random.csproj", "{6CC79227-6C87-4D86-ABBD-0EAFE0C729BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P025_BasicKartojimas", "P025_BasicKartojimas\P025_BasicKartojimas.csproj", "{DE9E66CE-9C7D-4725-B9F2-825DC232451C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P025_BasicKartojimas", "P025_BasicKartojimas\P025_BasicKartojimas.csproj", "{DE9E66CE-9C7D-4725-B9F2-825DC232451C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNamDrb Kartuves", "SNamDrb Kartuves\SNamDrb Kartuves.csproj", "{0DB2CBB3-7C0C-4BE5-92C9-34E0EDF1EB37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -233,6 +235,10 @@ Global
 		{DE9E66CE-9C7D-4725-B9F2-825DC232451C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9E66CE-9C7D-4725-B9F2-825DC232451C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9E66CE-9C7D-4725-B9F2-825DC232451C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB2CBB3-7C0C-4BE5-92C9-34E0EDF1EB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB2CBB3-7C0C-4BE5-92C9-34E0EDF1EB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB2CBB3-7C0C-4BE5-92C9-34E0EDF1EB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB2CBB3-7C0C-4BE5-92C9-34E0EDF1EB37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
