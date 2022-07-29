@@ -91,7 +91,7 @@
         {
             string ivedimas;
           
-            spejamosRaides = zodisSpejimui.ToCharArray();
+            spejamosRaides = zodisSpejimui.ToLower().ToCharArray();
             //rodomosRaides = Enumerable.Repeat(false, spejamosRaides.Length).ToArray();   
             rodomosRaides = new bool[spejamosRaides.Length];
 
@@ -110,7 +110,7 @@
 
                     Console.WriteLine();
                     Console.WriteLine(" Iveskite spėjamą raidę arba spėkite žodį: ");
-                    ivedimas = Console.ReadLine(); 
+                    ivedimas = Console.ReadLine().ToLower(); 
                     Console.Clear();
 
 
@@ -229,7 +229,7 @@
             Console.WriteLine($" |        {p1} {p2} {p3}     ");
             Console.WriteLine($" |        {p4}                 ");
             Console.WriteLine($" |            {p5}             ");
-            Console.WriteLine($" |         {p6}    {p7}              ");
+            Console.WriteLine($" |         {p6}    {p7}       ");
             Console.WriteLine($" |_____________                 ");
 
 
