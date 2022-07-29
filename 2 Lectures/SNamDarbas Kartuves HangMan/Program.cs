@@ -14,18 +14,14 @@ namespace SNamDrb_Kartuves
 
         public static string[] piesiamasKunas = new string[kunoPiesinys.Length];
 
-
         public static List<string> varduSarasas = varduMasyvas.ToList();
         public static List<string> miestuSarasas = miestuMasyvas.ToList();
         public static List<string> valstybiuSarasas = valstybiuMasyvas.ToList();
         public static List<string> kitasSarasas = kitasMasyvas.ToList();
         public static List<string> temuSarasas = temuMasyvas.ToList();
 
-
         public static List<char> atspetosRaides = new List<char>();
         public static List<char> neatspetosRaides = new List<char>();
-
-
 
         public static char[] spejamosRaides;
         public static char[] tusciosRaides;
@@ -153,8 +149,6 @@ namespace SNamDrb_Kartuves
                 //   Console.WriteLine();
 
 
-
-
             }
             TemuPabaigosMetodas();
 
@@ -211,9 +205,6 @@ namespace SNamDrb_Kartuves
             }
 
         }
-
-
-
 
 
         public static void Sveikinimai()
@@ -312,9 +303,7 @@ namespace SNamDrb_Kartuves
 
 
 
-
-
-        /*  Instructions
+        /*  Instructions todo
     - Naudotojas pasirenka iš temų: VARDAI, LIETUVOS MIESTAI, VALSTYBES, KITA. 
     (ne mažiau kaip 10 žodžių kiekvienoje grupėje)
     - Žodis iš pasirinktos grupės parenkamas atsitiktine tvarka.
