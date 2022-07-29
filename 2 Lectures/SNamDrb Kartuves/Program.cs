@@ -139,7 +139,6 @@
 
         }
 
-
         
 
         public static void ZodzioSpejimoTikrinimas(string ivedimas)
