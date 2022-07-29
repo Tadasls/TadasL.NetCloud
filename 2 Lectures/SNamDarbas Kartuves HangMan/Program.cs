@@ -314,7 +314,6 @@ namespace SNamDrb_Kartuves
 
 
 
-
         /*  Instructions
     - Naudotojas pasirenka iš temų: VARDAI, LIETUVOS MIESTAI, VALSTYBES, KITA. 
     (ne mažiau kaip 10 žodžių kiekvienoje grupėje)
