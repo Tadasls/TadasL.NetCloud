@@ -40,6 +40,7 @@ namespace SNamDrb_Kartuves
 
         #endregion
 
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1200);
