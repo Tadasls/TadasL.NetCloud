@@ -128,9 +128,10 @@ namespace SNamDrb_Kartuves
             {
                 do
                 {
-                    
-                    Console.WriteLine(" Spėkite raidę ar žodį: ");
-                    ivedimas = Console.ReadLine().ToLower(); 
+
+                    Console.WriteLine();
+                    Console.WriteLine(" Iveskite spėjamą raidę arba spėkite žodį: ");
+                    ivedimas = Console.ReadLine(); 
                     Console.Clear();
 
                     if (ivedimas.Length == 1)
@@ -143,15 +144,14 @@ namespace SNamDrb_Kartuves
                         if (pakartotaNeatspetaRaide || pakartotaAtspetaRaide) Console.Write($"raide {ivedimas[0]} jau buvo ivesta, veskite kita raide");
                     }
                     ZodzioSpejimoTikrinimas(ivedimas);
-                    
-                  
-                } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai) ;
-                                
-                RaidziuSpejimoTikrinimas(ivedimas);
-                VaizdavimasEkrane();
-                //   Console.WriteLine();
-               
-                
+                    Isvestis();
+
+
+            }
+            PabaigosMetodas();
+
+
+
 
                 
 
@@ -159,7 +159,8 @@ namespace SNamDrb_Kartuves
             TemuPabaigosMetodas();
 
 
-        }
+        
+
         public static void ZodzioSpejimoTikrinimas(string ivedimas)
         {
             if (ivedimas.Length > 1)
@@ -215,48 +216,78 @@ namespace SNamDrb_Kartuves
 
 
 
-        
-        public static void Sveikinimai()
-        {
-            Console.WriteLine($"!!! Sveikinimai !!! \n  Atspėjote žodį !!! \n Zodis buvo {zodisSpejimui.ToUpper()}");
-            Console.ReadLine();// kad nebugintu
-            TemuPabaigosMetodas();
         }
-        public static void TemuPabaigosMetodas()
+
+
+
+        public static void Isvestis()
         {
-            if (varduSarasas.Count == 0)
-            {
-                Console.WriteLine($"Išnaudojote visus Temos Vardai zodzius ");
-                temuSarasas.RemoveAt(0);
-            }
-            if (miestuSarasas.Count == 0)
-            {
-                Console.WriteLine($"Išnaudojote visus Temos Miestai zodzius");
-                temuSarasas.RemoveAt(1);
-            }
-            if (valstybiuSarasas.Count == 0)
+            string p0;
+            string p1;
+            string p2;
+            string p3;
+            string p4;
+            string p5;
+            string p6;
+            string p7;
+            string p9;
+
+
+             if (likeBandymai > 1) { p0 = " ";}
+             if (likeBandymai > 2) { p1 = "0"; }
+             if (likeBandymai > 3) { p2 = "\" "; }
+             if (likeBandymai > 4) { p3 = "| "; }
+             if (likeBandymai > 5) { p4 = "/ "; }
+             if (likeBandymai > 6) { p5 = "0 "; }
+             if (likeBandymai > 7) { p6 = "/ "; }
+             if (likeBandymai > 8) { p7 = " \""; }
+             if (likeBandymai > 9) { p7 = " \""; }
+
+
+            Console.WriteLine($" |--------| {p0}         "); 
+            Console.WriteLine($" |        {p1} {p2} {p3}     ");
+            Console.WriteLine($" |        {p4}                 ");
+            Console.WriteLine($" |            {p5}             ");
+            Console.WriteLine($" |         {p6}    {p7}              ");
+            Console.WriteLine($" |_____________                 ");
+
+
+
+
+            
+
+           
+
+            
+
+            for (int i = 0; i < spejamosRaides.Length; i++)
             {
                 Console.WriteLine($"Išnaudojote visus Temos Valstybes zodzius");
                 temuSarasas.RemoveAt(2);
             }
-            if (kitasSarasas.Count == 0)
-            {
-                Console.WriteLine($"Išnaudojote visus Temos KitosTemos  zodzius");
-                temuSarasas.RemoveAt(3);
-            }
-            if (temuSarasas.Count == 0)
-            {
-                Console.WriteLine("Išnaudojote visas Temas - GameOver )");
-                Environment.Exit(1);
-            }
+
+            if (pakartotaNeatspetaRaide || pakartotaAtspetaRaide) Console.WriteLine("raide jau buvo ivesta");
+        }
+
+
+
+
+
+
+
+
+
+        public static void Sveikinimai()
+        {
+            Console.WriteLine($"!!! Sveikinimai !!! \n  Atspėjote žodį !!! \n Zodis buvo {zodisSpejimui}");
+            Console.ReadLine();
             PabaigosMetodas();
         }
         public static void PabaigosMetodas()
         {
             Console.WriteLine();
             Console.WriteLine("Zaidimas Baigtas, ar Norite testi? T/N ");
-              string tesimas = Console.ReadLine().ToUpper();
-
+            string tesimas = Console.ReadLine();
             if (tesimas == "T" || tesimas == "t")
             {
                 
