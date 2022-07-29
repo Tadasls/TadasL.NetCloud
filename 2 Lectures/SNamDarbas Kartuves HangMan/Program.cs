@@ -26,6 +26,7 @@ namespace SNamDrb_Kartuves
         public static List<char> neatspetosRaides = new List<char>();
 
 
+
         public static char[] spejamosRaides;
         public static char[] tusciosRaides;
         public static bool[] rodomosRaides;
