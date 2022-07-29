@@ -60,6 +60,7 @@ namespace SNamDrb_Kartuves
                 Console.Clear();
             } while (temosNr != 1 && temosNr != 2 && temosNr != 3 && temosNr != 4);
 
+
             switch (temosNr)
             {
                 case 1:
