@@ -127,7 +127,7 @@
                 } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 ) ;
 
                     ZodzioSpejimoTikrinimas(ivedimas);
-                    Isvestis();
+                vaizdasIEkrana();
 
 
             }
@@ -200,7 +200,7 @@
 
 
 
-        public static void Isvestis()
+        public static void vaizdasIEkrana()
         {
             string p0;
             string p1;
@@ -262,7 +262,7 @@
         public static void Sveikinimai()
         {
             Console.WriteLine($"!!! Sveikinimai !!! \n  Atspėjote žodį !!! \n Zodis buvo {zodisSpejimui}");
-            Console.ReadLine();
+            Console.ReadLine(); // kad nebugintu 
             PabaigosMetodas();
         }
 
@@ -272,7 +272,7 @@
         {
             Console.WriteLine();
             Console.WriteLine("Zaidimas Baigtas, ar Norite testi? T/N ");
-            string tesimas = Console.ReadLine();
+            string tesimas = Console.ReadLine().ToUpper();
             if (tesimas == "T" || tesimas == "t")
             {
                 Console.Clear();
