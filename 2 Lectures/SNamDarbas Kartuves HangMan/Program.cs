@@ -27,7 +27,6 @@ namespace SNamDarbas_Kartuves_HangMan
         public static bool atspetasZodis = false;
         public static bool pakartotaNeatspetaRaide = false;
         public static bool pakartotaAtspetaRaide = false;
-       
 
         public static List<char> atspetosRaides = new List<char>();
         public static List<char> neatspetosRaides = new List<char>();
@@ -45,23 +44,8 @@ namespace SNamDarbas_Kartuves_HangMan
             Console.InputEncoding = Encoding.GetEncoding(1200);
             PasirinkimasTemu();   //zaidimo pradzia
         }
-
-        public static string AtsitiktineGeneracija(List<string> varduSarasas, List<string> miestuSarasas, List<string> valstybiuSarasas, List<string> kitasSarasas) 
-        {
-            int indexRandom;
-            Random rand = new Random();
-            indexRandom = rand.Next(0, varduSarasas.Count - 1);   // klausimas kaip overloadinant paduoti akirtinga sarasa
-            zodisSpejimui = varduSarasas[indexRandom];
-            varduSarasas.RemoveAt(indexRandom);
-            return zodisSpejimui; //sugeneruoja viena atsitiktini zody is saraso
-        }
-
-
         public static void PasirinkimasTemu()
         {
-            int indexRandom;
-            Random rand = new Random();
-
             do
             {
                 Console.WriteLine("Pasirenkite vieną iš temų:\n" + string.Join("", temuSarasas));
@@ -70,35 +54,32 @@ namespace SNamDarbas_Kartuves_HangMan
             } while (temosNr != 1 && temosNr !=2 && temosNr != 3 && temosNr != 4); // ciklas neleidzia nieko ivesti iskyrus 1,2,3,4
             switch (temosNr)
             {
-                case 1:                
-                    indexRandom = rand.Next(0, varduSarasas.Count - 1); // random atrenkamas i rpriskiriamas zodis is saraso
-                    zodisSpejimui = varduSarasas[indexRandom];
-                    varduSarasas.RemoveAt(indexRandom); // pasalininamas atrinkamas zodis is saraso sekantiems zaidimams
+                case 1:
+                    AtsitiktineGeneracija(varduSarasas);
                     break;
                 case 2:
-                    indexRandom = rand.Next(0, miestuSarasas.Count - 1);
-                    zodisSpejimui = miestuSarasas[indexRandom];
-                    miestuSarasas.RemoveAt(indexRandom);
-                    
+                    AtsitiktineGeneracija(miestuSarasas);
                     break;
                 case 3:
-                    indexRandom = rand.Next(0, valstybiuSarasas.Count - 1);
-                    zodisSpejimui = valstybiuSarasas[indexRandom];
-                    valstybiuSarasas.RemoveAt(indexRandom);
-                    
+                    AtsitiktineGeneracija(valstybiuSarasas);
                     break;
                 case 4:
-                    indexRandom = rand.Next(0, kitasSarasas.Count - 1);
-                    zodisSpejimui = kitasSarasas[indexRandom];
-                    kitasSarasas.RemoveAt(indexRandom);
-                    
+                    AtsitiktineGeneracija(kitasSarasas);
                     break;
                 default:
                     Console.WriteLine("Toks Meniu pasirinkimas neįmanomas");
                     break;
             }
             ZaidimasKartuves(zodisSpejimui);
-
+        }
+        public static string AtsitiktineGeneracija(List<string> zodziuSarasas)
+        {
+            int indexRandom;
+            Random rand = new Random();
+            indexRandom = rand.Next(0, zodziuSarasas.Count - 1);  
+            zodisSpejimui = varduSarasas[indexRandom];
+            varduSarasas.RemoveAt(indexRandom);
+            return zodisSpejimui; //sugeneruoja viena atsitiktini zody is saraso
         }
         public static void ZaidimasKartuves(string zodisSpejimui)
         {
@@ -145,7 +126,6 @@ namespace SNamDarbas_Kartuves_HangMan
             {
                 piesiamasKunas[i] = kunoPiesinys[i];
             }
-
             Console.WriteLine("| - - - - - - |");
             Console.WriteLine("|             {0}", piesiamasKunas[6]);
             Console.WriteLine("|            {0}{1}{2}", piesiamasKunas[5], piesiamasKunas[4], piesiamasKunas[3]);
@@ -153,7 +133,6 @@ namespace SNamDarbas_Kartuves_HangMan
             Console.WriteLine("|            {0} {1}", piesiamasKunas[1], piesiamasKunas[0]);
             Console.WriteLine("|");
             Console.WriteLine("|_ _ _ _");
-
          }
         public static List<char> RaidziuTikrinimas(string ivedimas) //testavimui grazini boolyna ar raide atspeta
         {
