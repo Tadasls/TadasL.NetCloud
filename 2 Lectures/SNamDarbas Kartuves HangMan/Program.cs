@@ -1,18 +1,36 @@
 ﻿using System.Text;
 
-namespace SNamDrb_Kartuves
+namespace SNamDarbas_Kartuves_HangMan
 {
     public class Program
     {
         #region // Kintamieji
-        public static string[] varduMasyvas = new string[] { "Akvile", "Titas", "Tadas", "Kristijonas", "Dainius", "Sauleja", "Mikas", "Merunas", "Augustinas", "Justinas" };
+        public static string[] varduMasyvas = new string[] { "Akvile", "Titas", "Tadas", "Kristina", "Dainius", "Stasys", "Lina", "Merunas", "Jolanta", "Justinas" };
         public static string[] miestuMasyvas = new string[] { "Kaunas", "Vilnius", "Klaipeda", "Mazeikiai", "Šiauliai", "Panevezys", "Alytus", "Marijampole", "Palanga", "Nida" };
         public static string[] valstybiuMasyvas = new string[] { "Lietuva", "Lenkija", "Ukraina", "Rusija", "Vengrija", "Norvegija", "Svedija", "Anglija", "Prancuzija", "Belgija" };
         public static string[] kitasMasyvas = new string[] { "kitkas" };
         public static string[] temuMasyvas = new string[] { "1. VARDAI, \n", "2. LIETUVOS MIESTAI, \n", "3. VALSTYBES, \n", "4. KITA. " };
         public static string[] kunoPiesinys = new string[] { "\\", "/", "0", "/", "|", "\\", "o" };
-
         public static string[] piesiamasKunas = new string[kunoPiesinys.Length];
+
+        public static char[] spejamosRaides;
+        public static char[] tusciosRaides;
+        public static bool[] rodomosRaides;
+        public static string laistinosRaides = "AaĄąBbCcČčDdEeĘęĖėFfGgHhIiĮįYyJjKkLlMmNnOoPpRrSsŠšTtUuŲųŪūVvZzŽž";
+        public static string zodisSpejimui;
+
+        public static int spejimoBandymai = 7;
+        public static int temosNr;
+        public static string tesimas;
+
+        public static bool galimiSimboliai = false;
+        public static bool atspetasZodis = false;
+        public static bool pakartotaNeatspetaRaide = false;
+        public static bool pakartotaAtspetaRaide = false;
+       
+
+        public static List<char> atspetosRaides = new List<char>();
+        public static List<char> neatspetosRaides = new List<char>();
 
         public static List<string> varduSarasas = varduMasyvas.ToList();
         public static List<string> miestuSarasas = miestuMasyvas.ToList();
@@ -20,165 +38,125 @@ namespace SNamDrb_Kartuves
         public static List<string> kitasSarasas = kitasMasyvas.ToList();
         public static List<string> temuSarasas = temuMasyvas.ToList();
 
-        public static List<char> atspetosRaides = new List<char>();
-        public static List<char> neatspetosRaides = new List<char>();
-
-        public static char[] spejamosRaides;
-        public static char[] tusciosRaides;
-        public static bool[] rodomosRaides;
-
-
-        public static string zodisSpejimui;
-
-        public static int spejimoBandymai = 7;
-        public static int temosNr;
-
-        public static bool galimiSimboliai = false;
-        public static bool atspetasZodis = false;
-        public static bool pakartotaNeatspetaRaide = false;
-        public static bool pakartotaAtspetaRaide = false;
-
         #endregion
-
-
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
-            PradinisPasirinkimasTemu();
+            PasirinkimasTemu();   //zaidimo pradzia
         }
-        public static void PradinisPasirinkimasTemu()
+
+        public static string AtsitiktineGeneracija(List<string> varduSarasas, List<string> miestuSarasas, List<string> valstybiuSarasas, List<string> kitasSarasas) 
         {
             int indexRandom;
-            Random random = new Random();
+            Random rand = new Random();
+            indexRandom = rand.Next(0, varduSarasas.Count - 1);   // klausimas kaip overloadinant paduoti akirtinga sarasa
+            zodisSpejimui = varduSarasas[indexRandom];
+            varduSarasas.RemoveAt(indexRandom);
+            return zodisSpejimui; //sugeneruoja viena atsitiktini zody is saraso
+        }
+
+
+        public static void PasirinkimasTemu()
+        {
+            int indexRandom;
+            Random rand = new Random();
 
             do
             {
-                //Console.WriteLine("Pasirenkite vieną iš temų: \n 1) VARDAI, \n 2) LIETUVOS MIESTAI,\n 3) VALSTYBES,\n 4) KITA.");
                 Console.WriteLine("Pasirenkite vieną iš temų:\n" + string.Join("", temuSarasas));
                 int.TryParse(Console.ReadLine(), out temosNr);
                 Console.Clear();
-            } while (temosNr != 1 && temosNr != 2 && temosNr != 3 && temosNr != 4);
-
-
+            } while (temosNr != 1 && temosNr !=2 && temosNr != 3 && temosNr != 4); // ciklas neleidzia nieko ivesti iskyrus 1,2,3,4
             switch (temosNr)
             {
-                case 1:
-                    indexRandom = random.Next(0, varduSarasas.Count - 1);
+                case 1:                
+                    indexRandom = rand.Next(0, varduSarasas.Count - 1); // random atrenkamas i rpriskiriamas zodis is saraso
                     zodisSpejimui = varduSarasas[indexRandom];
-                    varduSarasas.RemoveAt(indexRandom);
-                    ZaidimasKartuves(zodisSpejimui);
+                    varduSarasas.RemoveAt(indexRandom); // pasalininamas atrinkamas zodis is saraso sekantiems zaidimams
                     break;
                 case 2:
-                    indexRandom = random.Next(0, miestuSarasas.Count - 1);
+                    indexRandom = rand.Next(0, miestuSarasas.Count - 1);
                     zodisSpejimui = miestuSarasas[indexRandom];
                     miestuSarasas.RemoveAt(indexRandom);
-                    ZaidimasKartuves(zodisSpejimui);
-
+                    
                     break;
                 case 3:
-                    indexRandom = random.Next(0, valstybiuSarasas.Count - 1);
+                    indexRandom = rand.Next(0, valstybiuSarasas.Count - 1);
                     zodisSpejimui = valstybiuSarasas[indexRandom];
                     valstybiuSarasas.RemoveAt(indexRandom);
-                    ZaidimasKartuves(zodisSpejimui);
-
+                    
                     break;
                 case 4:
-                    indexRandom = random.Next(0, kitasSarasas.Count - 1);
+                    indexRandom = rand.Next(0, kitasSarasas.Count - 1);
                     zodisSpejimui = kitasSarasas[indexRandom];
                     kitasSarasas.RemoveAt(indexRandom);
-                    ZaidimasKartuves(zodisSpejimui);
+                    
                     break;
                 default:
-                    Console.WriteLine("Wrong Meniu");
+                    Console.WriteLine("Toks Meniu pasirinkimas neįmanomas");
                     break;
-
             }
+            ZaidimasKartuves(zodisSpejimui);
+
         }
         public static void ZaidimasKartuves(string zodisSpejimui)
         {
-            string ivedimas;
-
+            string ivedimas;      
+            spejamosRaides = zodisSpejimui.ToLower().ToCharArray();
+            string tusciosRaides = new string('-', (int)spejamosRaides.Length);
+            rodomosRaides = new bool[spejamosRaides.Length];
 
             Console.WriteLine($"pasirinkta Tema: {temuSarasas[temosNr - 1]}");
-            Console.WriteLine("|-------|");
-            Console.WriteLine("|           {0}", piesiamasKunas[6]);
-            Console.WriteLine("|          {0}{1}{2}", piesiamasKunas[5], piesiamasKunas[4], piesiamasKunas[3]);
-            Console.WriteLine("|           {0}", piesiamasKunas[2]);
-            Console.WriteLine("|          {0} {1}", piesiamasKunas[1], piesiamasKunas[0]);
-            Console.WriteLine("|           ");
-            Console.WriteLine("|____       ");
-
-            spejamosRaides = zodisSpejimui.ToLower().ToCharArray();
-            rodomosRaides = new bool[spejamosRaides.Length];
-            //rodomosRaides = Enumerable.Repeat(false, spejamosRaides.Length).ToArray();  
-
-            string laistinosRaides = "AaĄąBbCcČčDdEeĘęĖėFfGgHhIiĮįYyJjKkLlMmNnOoPpRrSsŠšTtUuŲųŪūVvZzŽž";
-            string tusciosRaides = new string('-', (int)spejamosRaides.Length);
+            KartuviuPiesimas();                 
             Console.WriteLine($"Zodis:  {tusciosRaides} ");
-
 
             for (int i = 0; i < spejamosRaides.Length; i++)
             {
                 rodomosRaides[i] = false;
             }
-
-            while (spejimoBandymai != 0)
+            
+                while (spejimoBandymai != 0)
             {
                 do
                 {
-
-                    Console.WriteLine(" Spėkite raidę ar žodį: ");
+                    Console.WriteLine();
+                    Console.WriteLine("Spėkite raidę ar žodį: ");
                     ivedimas = Console.ReadLine().ToLower();
                     Console.Clear();
 
-                    if (ivedimas.Length == 1)
-                    {
-                        pakartotaNeatspetaRaide = neatspetosRaides.Contains(ivedimas[0]);
-                        pakartotaAtspetaRaide = atspetosRaides.Contains(ivedimas[0]);
-                        galimiSimboliai = laistinosRaides.Contains(ivedimas[0]);
-
-                        if (!galimiSimboliai) Console.WriteLine($"simbolis {ivedimas[0]} negalimas ");
-                        if (pakartotaNeatspetaRaide || pakartotaAtspetaRaide) Console.Write($"raide {ivedimas[0]} jau buvo ivesta, veskite kita raide");
-                    }
+                    NeleistinoSimbolioIrRaidesPasikartojimoValidacija(ivedimas);
                     ZodzioSpejimoTikrinimas(ivedimas);
 
-
-                } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai);
-
-                RaidziuSpejimoTikrinimas(ivedimas);
-                VaizdavimasEkrane();
-                //   Console.WriteLine();
+                } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai); // ciklas neleidzia vesti pasikartojimu ir neleistinu simboliu
+                                
+                KartuviuPiesimas();
+                RaidziuTikrinimas(ivedimas);
+                RaidziuRodymas();
 
 
             }
             TemuPabaigosMetodas();
-
-
+            PabaigosMetodas();
         }
-        public static void ZodzioSpejimoTikrinimas(string ivedimas)
-        {
-            if (ivedimas.Length > 1)
+        public static void KartuviuPiesimas()
+         {
+            for (int i = 6; i >= spejimoBandymai; i--)
             {
-                if (ivedimas == zodisSpejimui.ToLower())
-                {
-                    Sveikinimai();
-
-                }
-
-                else
-                {
-                    Console.WriteLine($"Neatspejote zodzio: {zodisSpejimui.ToUpper()}  - Zaidimas baigtas nes Jusu spejimas buvo {ivedimas.ToUpper()} ");
-                    Environment.Exit(1);
-                }
-
-
+                piesiamasKunas[i] = kunoPiesinys[i];
             }
-        }
-        public static void RaidziuSpejimoTikrinimas(string ivedimas)
+
+            Console.WriteLine("| - - - - - - |");
+            Console.WriteLine("|             {0}", piesiamasKunas[6]);
+            Console.WriteLine("|            {0}{1}{2}", piesiamasKunas[5], piesiamasKunas[4], piesiamasKunas[3]);
+            Console.WriteLine("|             {0}", piesiamasKunas[2]);
+            Console.WriteLine("|            {0} {1}", piesiamasKunas[1], piesiamasKunas[0]);
+            Console.WriteLine("|");
+            Console.WriteLine("|_ _ _ _");
+
+         }
+        public static List<char> RaidziuTikrinimas(string ivedimas) //testavimui grazini boolyna ar raide atspeta
         {
-
-
             bool raidesSpejimas = false;
             for (int i = 0; i < spejamosRaides.Length; i++)
             {
@@ -188,34 +166,70 @@ namespace SNamDrb_Kartuves
                     raidesSpejimas = true;
                 }
             }
-
-
-            if (!raidesSpejimas)
+            if (raidesSpejimas)
+            {
+                atspetosRaides.Add(ivedimas[0]);
+            }
+            else
             {
                 spejimoBandymai--;
                 neatspetosRaides.Add(ivedimas[0]);
             }
-            else
-            {
-                atspetosRaides.Add(ivedimas[0]);
-            }
-
             if (!rodomosRaides.Contains(false))
             {
                 atspetasZodis = true;
                 Sveikinimai();
             }
-
+            return atspetosRaides;
         }
+        public static char[] RaidziuRodymas() //grazinuosi char masyva 
+        {
+            Console.WriteLine($"Spetos raides: {string.Join(", ", neatspetosRaides)}");
+            Console.Write("Zodis: ");
+            for (int i = 0; i < spejamosRaides.Length; i++)
+            {
+                if (rodomosRaides[i]) Console.Write($" {spejamosRaides[i]}");
+                else { Console.Write(" _ "); }
+            }
+            Console.WriteLine();
+            return spejamosRaides;
+        }
+        public static void NeleistinoSimbolioIrRaidesPasikartojimoValidacija(string ivedimas)
+        {
+            if (ivedimas.Length == 1)
+            {
+                pakartotaNeatspetaRaide = neatspetosRaides.Contains(ivedimas[0]);
+                pakartotaAtspetaRaide = atspetosRaides.Contains(ivedimas[0]);
+                galimiSimboliai = laistinosRaides.Contains(ivedimas[0]);
 
-
+                if (!galimiSimboliai) Console.WriteLine($"simbolis {ivedimas[0]} negalimas ");
+                if (pakartotaNeatspetaRaide || pakartotaAtspetaRaide) Console.Write($"raide {ivedimas[0]} jau buvo ivesta, veskite kita raide");
+            }
+        }
+        public static string ZodzioSpejimoTikrinimas(string ivedimas) //testavimui grazinu spejama zody
+        {
+            if (ivedimas.Length > 1)
+            {
+                if (ivedimas == zodisSpejimui.ToLower())
+                {
+                    Sveikinimai();
+                }
+                else
+                {
+                    Console.WriteLine($"Neatspejote zodzio: {zodisSpejimui.ToUpper()}  - Zaidimas baigtas nes Jusu spejimas buvo {ivedimas.ToUpper()} ");
+                    Environment.Exit(1);
+                }             
+            }
+             return zodisSpejimui;
+        }
         public static void Sveikinimai()
         {
             Console.WriteLine($"!!! Sveikinimai !!! \n  Atspėjote žodį !!! \n Zodis buvo {zodisSpejimui.ToUpper()}");
-            Console.ReadLine();// kad nebugintu
+            Console.ReadLine();// tiesiog kad nebugintu
             TemuPabaigosMetodas();
-        }
-        public static void TemuPabaigosMetodas()
+            PabaigosMetodas();
+        }// teisingu spejimu  atveju
+        public static string[] TemuPabaigosMetodas() //grazinuosi temu masyva
         {
             if (varduSarasas.Count == 0)
             {
@@ -242,27 +256,31 @@ namespace SNamDrb_Kartuves
                 Console.WriteLine("Išnaudojote visas Temas - GameOver )");
                 Environment.Exit(1);
             }
-            PabaigosMetodas();
+            return temuMasyvas;
         }
-        public static void PabaigosMetodas()
+        public static void PabaigosMetodas() //restartuoja pagal pasirinkima
         {
-            Console.WriteLine();
-            Console.WriteLine("Zaidimas Baigtas, ar Norite testi? T/N ");
-            string tesimas = Console.ReadLine().ToUpper();
-
-            if (tesimas == "T" || tesimas == "t")
+            do
             {
+                Console.WriteLine();
+                Console.WriteLine("Zaidimas Baigtas, ar Norite testi? T/N ");
 
-                Reset();
-                Console.Clear();
-                PradinisPasirinkimasTemu();
-            }
-            else
-            {
-                Environment.Exit(1);
-            };
+                string tesimas = Console.ReadLine().ToUpper();
+
+                if (tesimas == "T" || tesimas == "t")
+                {
+                    Reset();
+                    Console.Clear();
+                    PasirinkimasTemu();
+                }
+                else
+                {
+                    Environment.Exit(1);
+                };
+            } while (tesimas == "T" || tesimas == "t" || tesimas == "N" || tesimas == "n"); // ciklas neleidzia nieko ivesti iskyrus 1,2,3,4
+
         }
-        public static void Reset()
+        public static void Reset() //nusinulina reiksmes ir piesimai
         {
             atspetosRaides = new List<char>();
             neatspetosRaides = new List<char>();
@@ -275,36 +293,7 @@ namespace SNamDrb_Kartuves
             Array.Clear(piesiamasKunas, 0, kunoPiesinys.Length);
 
         }
-        public static void VaizdavimasEkrane()
-        {
-            for (int i = 6; i >= spejimoBandymai; i--)
-            {
-                piesiamasKunas[i] = kunoPiesinys[i];
-            }
-
-            Console.WriteLine("|-------|");
-            Console.WriteLine("|       {0}", piesiamasKunas[6]);
-            Console.WriteLine("|      {0}{1}{2}", piesiamasKunas[5], piesiamasKunas[4], piesiamasKunas[3]);
-            Console.WriteLine("|       {0}", piesiamasKunas[2]);
-            Console.WriteLine("|      {0} {1}", piesiamasKunas[1], piesiamasKunas[0]);
-            Console.WriteLine("|           ");
-            Console.WriteLine("|____       ");
-
-            Console.WriteLine($"Spetos raides: {string.Join(", ", neatspetosRaides)}");
-
-
-            Console.Write("Zodis: ");
-            for (int i = 0; i < spejamosRaides.Length; i++)
-            {
-                if (rodomosRaides[i]) Console.Write($" {spejamosRaides[i]}");
-                else { Console.Write(" _ "); }
-            }
-            Console.WriteLine();
-
-        }
-
-
-
+      
         /*  Instructions todo
     - Naudotojas pasirenka iš temų: VARDAI, LIETUVOS MIESTAI, VALSTYBES, KITA. 
     (ne mažiau kaip 10 žodžių kiekvienoje grupėje)
@@ -322,8 +311,5 @@ namespace SNamDrb_Kartuves
     - negalima naudoti OOP ir LINQ
 
         */
-
-
-
     }
 }
