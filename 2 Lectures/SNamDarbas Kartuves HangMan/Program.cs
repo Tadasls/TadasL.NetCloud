@@ -8,7 +8,7 @@ namespace SNamDarbas_Kartuves_HangMan
         public static string[] varduMasyvas = new string[] { "Akvile", "Titas", "Tadas", "Kristina", "Dainius", "Stasys", "Lina", "Merunas", "Jolanta", "Justinas" };
         public static string[] miestuMasyvas = new string[] { "Kaunas", "Vilnius", "Klaipeda", "Mazeikiai", "Šiauliai", "Panevezys", "Alytus", "Marijampole", "Palanga", "Nida" };
         public static string[] valstybiuMasyvas = new string[] { "Lietuva", "Lenkija", "Ukraina", "Rusija", "Vengrija", "Norvegija", "Svedija", "Anglija", "Prancuzija", "Belgija" };
-        public static string[] kitasMasyvas = new string[] { "kitkas" };
+        public static string[] kitasMasyvas = new string[] { "kitkas", "niekas" };
         public static string[] temuMasyvas = new string[] { "1. VARDAI, \n", "2. LIETUVOS MIESTAI, \n", "3. VALSTYBES, \n", "4. KITA. " };
         public static string[] kunoPiesinys = new string[] { "\\", "/", "0", "/", "|", "\\", "o" };
         public static string[] piesiamasKunas = new string[kunoPiesinys.Length];
