@@ -28,6 +28,7 @@
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
     <ProjectReference Include="..\SavarDrbV03DNR\HW 3 DNR.csproj" />
     <ProjectReference Include="..\SavNamuDarbasSuperSkaiciuotuvas\HW 6 SuperSkaiciuotuvas.csproj" />
+    <ProjectReference Include="..\SNamDarbas Kartuves HangMan\HW 7 Kartuves HangMan.csproj" />
   </ItemGroup>
 
 </Project>
