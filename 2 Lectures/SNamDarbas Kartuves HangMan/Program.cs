@@ -227,30 +227,26 @@ namespace SNamDarbas_Kartuves_HangMan
         }// teisingu spejimu  atveju
         public static void TemuPabaigosMetodas() 
         {
+           
             if (varduSarasas.Count == 0)
             {
                 Console.WriteLine($"Išnaudojote visus Temos Vardai zodzius ");
-                temuSarasas[0]= "      ";
+                temuSarasas[0]= " ";
             }
             if (miestuSarasas.Count == 0)
             {
                 Console.WriteLine($"Išnaudojote visus Temos Miestai zodzius");
-                temuSarasas[1] = "      ";
+                temuSarasas[1] = " ";
             }
             if (valstybiuSarasas.Count == 0)
             {
                 Console.WriteLine($"Išnaudojote visus Temos Valstybes zodzius");
-                temuSarasas[2]= "     ";
+                temuSarasas[2]= " ";
             }
             if (kitasSarasas.Count == 0)
             {
                 Console.WriteLine($"Išnaudojote visus Temos KitosTemos  zodzius");
-                temuSarasas[3] = "     ";
-            }
-            if (temuSarasas.Count == 0)
-            {
-                Console.WriteLine("Išnaudojote visas Temas - GameOver )");
-                Environment.Exit(1);
+                temuSarasas[3] = " ";
             }
        
         }
