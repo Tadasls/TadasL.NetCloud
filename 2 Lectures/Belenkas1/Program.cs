@@ -1,232 +1,341 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HangmanDemo
+﻿namespace TicTacToe
 {
     internal class Program
     {
-        public static List<string> Zodziai1 = new List<string>{ "Kaunas", "Vilnius", "Klaipeda","mazeikiai","Šiauliai","Panevezys","Alytus","Marijampole" };
-        public static List<string> Zodziai2 = new List<string> { "Akvile", "Titas", "Tadas", "Kristijonas", "Dainius", "Sauleja", "Mikas", "Merunas","Augustinas","justinas","Mykolas" };
-        public static List<string> Zodziai3 = new List<string> { "Lietuva", "Lenkija", "Ukraina", "Rusija", "Vengrija", "Norvegija", "Svedija", "Anglija", "Prancuzija", "Belgija", "Kongas" };
-        public static int Lives = 9;
-        public static bool Laimejo = false;
-        public static char[] raides;
-        public static bool[] rodomos;
-        public static string zod;
-        public static string tema = "";
-        public static List<char> spetosRaidesNeteisingos;
-        public static List<char> spetosRaidestesingos;
-        public static string[] Deadman = {
-                                            @" |      |      ",
-                                            @" |      |      ",
-                                            @" |      O      ",
-                                            @" |   ---|---   ",
-                                            @" |      |      ",
-                                            @" |     /\      ",
-                                            @" |    /  \     ",
-                                            @" |   _|  |_    ",
-                                            @"_______________" };
-        public static string[] Alive = {                                          
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @" |             ",
-                                            @"_______________" };
-
-
-        static void Main()
+        public static string playerAvatar;
+        public static string botAvatar;
+        public static bool playerMove = false;
+        public static int difficulty = 50;
+        static void Main(string[] args)
         {
-            Lives = 9;
-            Laimejo = false;
-            spetosRaidesNeteisingos = new List<char>();
+            string[,] board = new string[3, 3] { { " ", " ", " " }, { " ", " ", " " }, { " ", " ", " " } };
 
-            spetosRaidestesingos = new List<char>();
-
-            Console.Clear();
-            Console.WriteLine("Pasirinkite Tema  \n 1. jei norite Miestu \n 2. Vardai \n 3. Salys ");
-            string ivestis = "";
-             ivestis = Console.ReadLine();
-            Console.Clear();
-            int rand_num;
-            Random rd = new Random();
-            switch (ivestis)
-            {
-                case "1":
-                   
-                     rand_num = rd.Next(0, Zodziai1.Count - 1); ;
-                    zod = Zodziai1[rand_num];
-                    zod = zod.ToLower();
-                    Zodziai1.RemoveAt(rand_num);
-                    tema = "Miestai";
-                    zaidimas();                   
-                    break;
-                case "2":
-                    
-                     rand_num = rd.Next(0, Zodziai2.Count - 1); ;
-                    zod = Zodziai2[rand_num];
-                    zod = zod.ToLower();
-                    Zodziai2.RemoveAt(rand_num);
-                    tema = "Vardai";
-                    zaidimas();
-                    break;
-                case "3":
-
-                    rand_num = rd.Next(0, Zodziai3.Count - 1); ;
-                    zod = Zodziai3[rand_num];
-                    zod = zod.ToLower();
-                    Zodziai3.RemoveAt(rand_num);
-                    tema = "Salys";
-                    zaidimas();
-                    break;
-
-                default:
-                    Console.WriteLine("Ivestas neteisingas pasirinkimas bandykite dar karta ");
-                    Console.Clear();
-                    gameover();
-                    break;
-            }
-            
-            Console.ReadLine();
+            TicTacToe(board);
         }
-        static void zaidimas() 
+        public static void TicTacToe(string[,] board)
         {
-            Console.WriteLine($"Sveikinu pradejus zaidima jusu pasirinkta kategorija {tema}");
-            Console.WriteLine("Pradekime ? ");
-            Console.ReadLine();
-        
-            
-             
-            raides = zod.ToCharArray();
-            rodomos = Enumerable.Repeat(false, raides.Length).ToArray();
-            
+            var random = new Random();
+            var choice = Console.ReadLine();
+            var coin = random.Next(0, 2);
+
+
+
+            if (choice == coin.ToString())
+            {
+                playerMove = true;
+                playerAvatar = "X";
+                botAvatar = "O";
+            }
+            else
+            {
+                playerMove = false;
+                playerAvatar = "O";
+                botAvatar = "X";
+            }
+
+            Console.WriteLine("Jus esate: {0}", playerAvatar);
+            PrintBoard(board);
+            Console.WriteLine("Isridenta: {0}", coin);
 
             while (true)
             {
-                Console.Clear();
-                if (Lives <= 0) { gameover(); }
-                string ivestasSpejimas;
-                bool kartojas = false;
-                bool kartojasGerose = false;
-                do
+
+
+                if (playerMove)
                 {
-                    Console.WriteLine(@"-------- | ");
-                    for (int i = 0; i < Deadman.Length; i++)
-                    {
-                        if (9 - i >= Lives)
-                        { Console.WriteLine(Deadman[i].ToString()); }
-                        else
-                        { Console.WriteLine(Alive[i].ToString()); }
-
-
-                    }
-                    Console.WriteLine();
-
-                    Console.WriteLine("Spekite raide ,arba zodi jai jauciates drasus ");
-                    ivestasSpejimas = Console.ReadLine();
-                    if (ivestasSpejimas.Length == 1) {
-                        kartojas = spetosRaidesNeteisingos.Contains(ivestasSpejimas[0]);
-                        kartojasGerose = spetosRaidestesingos.Contains(ivestasSpejimas[0]);
-                        Console.Clear();
-                        if (kartojas || kartojasGerose ) Console.WriteLine("raide kartojas");
-                        
-                    }
-
-                } while (kartojas || kartojasGerose || ivestasSpejimas.Length ==0);
-                
-                
-                SpejimoTikrinimas(ivestasSpejimas);
-
-                Vaizdavimas();
-
-            }
-
-           
-            
-        }
-
-        static void SpejimoTikrinimas(string spejimas)
-        {
-            if (spejimas.Length > 1)
-            {
-                if (spejimas.ToLower().Equals(zod) )
-                {
-                    Console.WriteLine($"Sveikinai laimejote zodis buvo {zod}");
-                    Console.ReadLine();
-                    gameover();
+                    PlayerMove(board, playerAvatar);
                 }
-                else { Lives = 0;
-                    Console.WriteLine($"Mirete zodis buvo {zod}");
-                    Console.ReadLine();
-                    gameover();
-
-
-                }
-            }
-            else {
-
-                bool aratspejo =  false;
-                for (int i = 0; i < raides.Length; i++) 
-                {
-                    if (raides[i] == spejimas[0]) { rodomos[i] = true; aratspejo = true; }
-                
-                }
-                if (!aratspejo) { Lives += -1; spetosRaidesNeteisingos.Add(spejimas[0]); }
-                else { spetosRaidestesingos.Add(spejimas[0]); }
-                if (!rodomos.Contains(false)) { 
-                    Laimejo = true;
-                    Console.WriteLine($"Sveikinai laimejote zodis buvo {zod}");
-                    Console.ReadLine();
-                    gameover();
-                }
-
-            }
-        
-        
-                
-        }
-        static void Vaizdavimas() 
-        {
-            Console.Clear();
-            Console.WriteLine(@"-------- | ");
-            for (int i = 0; i < Deadman.Length; i++)
-            {
-                if (9-i >= Lives) 
-                { Console.WriteLine(Deadman[i].ToString()); }
                 else
-                { Console.WriteLine(Alive[i].ToString()); }
+                {
+                    BotMove(board, botAvatar);
+                }
 
+                Console.Clear();
+                Console.WriteLine("Jus esate: {0}", playerAvatar);
+                PrintBoard(board);
 
+                if (CheckIfWon(board, playerAvatar))
+                {
+                    Console.WriteLine("Pergale: {0}", playerAvatar);
+                    break;
+                }
+                else if (CheckIfWon(board, botAvatar))
+                {
+                    Console.WriteLine("Pergale: {0}", botAvatar);
+                    break;
+                }
+                else if (CheckIfDraw(board))
+                {
+                    Console.WriteLine("Lygiosios");
+                    break;
+                }
+
+                playerMove = !playerMove;
             }
-            Console.WriteLine();
 
+        }
+        public static string[,] BotMove(string[,] board, string avatar)
+        {
+            Random random = new Random();
+            var decision = random.Next(0, 101);
+            var coordinates = new int[2];
 
-            for (int i = 0; i < raides.Length; i++)
+            if (BotFinisher(ref board))
             {
-                if (rodomos[i]) Console.Write($" {raides[i]}" );
-                else { Console.Write(" _ "); }
-
-
+                return board;
             }
-            
-            Console.WriteLine($"  \n  Gyvybes : {Lives} \n  Netspetos raides : { string.Join(" ",spetosRaidesNeteisingos.ToArray()) }");
+            if (BotDefence(ref board))
+            {
+                return board;
+            }
 
-        }
-        static void gameover() {
-            Console.WriteLine("Game Over");
-            Console.WriteLine($" zodis buvo {zod}");
-            Console.WriteLine("Ar norite testi ? Y/n");
-            string arnoritesti = Console.ReadLine();
-            if (arnoritesti.ToLower() == "y") { Main(); }
-            Environment.Exit(0);
-        
-        }
 
+            if (decision > difficulty)
+            {
+                while (board[coordinates[0], coordinates[1]] != " ")
+                {
+                    coordinates[0] = random.Next(0, 3);
+                    coordinates[1] = random.Next(0, 3);
+                }
+                board[coordinates[0], coordinates[1]] = avatar;
+            }
+            else
+            {
+                while (board[coordinates[0], coordinates[1]] != " ")
+                {
+                    coordinates[0] = random.Next(0, 3);
+                    coordinates[1] = random.Next(0, 3);
+                }
+                board[coordinates[0], coordinates[1]] = avatar;
+            }
+
+
+            return board;
+        }
+        public static bool BotDefence(ref string[,] board)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == " " && board[i, 1] == playerAvatar && board[i, 2] == playerAvatar)
+                {
+                    board[i, 0] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == playerAvatar && board[i, 1] == " " && board[i, 2] == playerAvatar)
+                {
+                    board[i, 1] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == playerAvatar && board[i, 1] == playerAvatar && board[i, 2] == " ")
+                {
+                    board[i, 2] = botAvatar;
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == " " && board[1, i] == playerAvatar && board[2, i] == playerAvatar)
+                {
+                    board[0, i] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == playerAvatar && board[1, i] == " " && board[2, i] == playerAvatar)
+                {
+                    board[1, i] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == playerAvatar && board[1, i] == playerAvatar && board[2, i] == " ")
+                {
+                    board[2, i] = botAvatar;
+                    return true;
+                }
+            }
+
+            if (board[0, 0] == " " && board[1, 1] == playerAvatar && board[2, 2] == playerAvatar)
+            {
+                board[0, 0] = botAvatar;
+                return true;
+            }
+            if (board[0, 0] == playerAvatar && board[1, 1] == " " && board[2, 2] == playerAvatar)
+            {
+                board[1, 1] = botAvatar;
+                return true;
+            }
+            if (board[0, 0] == playerAvatar && board[1, 1] == playerAvatar && board[2, 2] == " ")
+            {
+                board[2, 2] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == playerAvatar && board[1, 1] == playerAvatar && board[0, 2] == " ")
+            {
+                board[0, 2] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == playerAvatar && board[1, 1] == " " && board[0, 2] == playerAvatar)
+            {
+                board[1, 1] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == " " && board[1, 1] == playerAvatar && board[0, 2] == playerAvatar)
+            {
+                board[2, 0] = botAvatar;
+                return true;
+            }
+
+            return false;
+        }
+        public static bool BotFinisher(ref string[,] board)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == " " && board[i, 1] == botAvatar && board[i, 2] == botAvatar)
+                {
+                    board[i, 0] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == botAvatar && board[i, 1] == " " && board[i, 2] == botAvatar)
+                {
+                    board[i, 1] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == botAvatar && board[i, 1] == botAvatar && board[i, 2] == " ")
+                {
+                    board[i, 2] = botAvatar;
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == " " && board[1, i] == botAvatar && board[2, i] == botAvatar)
+                {
+                    board[0, i] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == botAvatar && board[1, i] == " " && board[2, i] == botAvatar)
+                {
+                    board[1, i] = botAvatar;
+                    return true;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == botAvatar && board[1, i] == botAvatar && board[2, i] == " ")
+                {
+                    board[2, i] = botAvatar;
+                    return true;
+                }
+            }
+
+            if (board[0, 0] == " " && board[1, 1] == botAvatar && board[2, 2] == botAvatar)
+            {
+                board[0, 0] = botAvatar;
+                return true;
+            }
+            if (board[0, 0] == botAvatar && board[1, 1] == " " && board[2, 2] == botAvatar)
+            {
+                board[1, 1] = botAvatar;
+                return true;
+            }
+            if (board[0, 0] == botAvatar && board[1, 1] == botAvatar && board[2, 2] == " ")
+            {
+                board[2, 2] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == botAvatar && board[1, 1] == botAvatar && board[0, 2] == " ")
+            {
+                board[0, 2] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == botAvatar && board[1, 1] == " " && board[0, 2] == botAvatar)
+            {
+                board[1, 1] = botAvatar;
+                return true;
+            }
+            if (board[2, 0] == " " && board[1, 1] == botAvatar && board[0, 2] == botAvatar)
+            {
+                board[2, 0] = botAvatar;
+                return true;
+            }
+
+            return false;
+        }
+        public static bool CheckIfWon(string[,] board, string avatar)
+        {
+            if ((board[0, 0] == avatar && board[0, 1] == avatar && board[0, 2] == avatar) // eilutes
+             || (board[1, 0] == avatar && board[1, 1] == avatar && board[1, 2] == avatar)
+             || (board[2, 0] == avatar && board[2, 1] == avatar && board[2, 2] == avatar)
+
+             || (board[0, 0] == avatar && board[1, 0] == avatar && board[2, 0] == avatar) // stulpeliai
+             || (board[0, 1] == avatar && board[1, 1] == avatar && board[2, 1] == avatar)
+             || (board[0, 2] == avatar && board[1, 2] == avatar && board[2, 2] == avatar)
+
+             || (board[0, 0] == avatar && board[1, 1] == avatar && board[2, 2] == avatar) // istrizaines
+             || (board[2, 0] == avatar && board[1, 1] == avatar && board[0, 2] == avatar))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static bool CheckIfDraw(string[,] board)
+        {
+            if (board[0, 0] != " " && board[0, 1] != " " && board[0, 2] != " "
+             && board[1, 0] != " " && board[1, 1] != " " && board[1, 2] != " "
+             && board[2, 0] != " " && board[2, 1] != " " && board[2, 2] != " ")
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static string[,] PlayerMove(string[,] board, string avatar)
+        {
+            while (true)
+            {
+                Console.WriteLine("Iveskite koordinates.(#,#)");
+                var move = Console.ReadLine();
+                var coordinates = move.Split(',');
+
+                if (board[int.Parse(coordinates[0]) - 1, int.Parse(coordinates[1]) - 1] == " ")
+                {
+                    board[int.Parse(coordinates[0]) - 1, int.Parse(coordinates[1]) - 1] = avatar;
+                    break;
+                }
+            }
+
+            return board;
+        }
+        public static void PrintBoard(string[,] board)
+        {
+
+            Console.WriteLine("{0}|{1}|{2}              1,1|1,2|1,3", board[0, 0], board[0, 1], board[0, 2]);
+            Console.WriteLine("-----              -----------");
+            Console.WriteLine("{0}|{1}|{2}              2,1|2,2|2,3", board[1, 0], board[1, 1], board[1, 2]);
+            Console.WriteLine("-----              -----------");
+            Console.WriteLine("{0}|{1}|{2}              3,1|3,2|3,3", board[2, 0], board[2, 1], board[2, 2]);
+        }
     }
 }

@@ -15,9 +15,9 @@ namespace Metodu_Testai
         [TestMethod]
         public void AtsitiktineGeneracija()
         {
-            var fakeWords  = new List<string> { "Akvile", "Titas", "Tadas", "Kristina", "Dainius", "Stasys", "Lina", "Merunas", "Jolanta", "Justinas" };
+            var fakeWords = new List<string> { "Akvile", "Titas", "Tadas", "Kristina", "Dainius", "Stasys", "Lina", "Merunas", "Jolanta", "Justinas" };
             var fakeRandom = new Random(1);
-            var expected = fakeWords[fakeRandom.Next(0, fakeWords.Count-1)];
+            var expected = fakeWords[fakeRandom.Next(0, fakeWords.Count)];
             var actual = Program.AtsitiktineGeneracija(fakeWords);
             Assert.AreEqual(expected, actual);
         }
