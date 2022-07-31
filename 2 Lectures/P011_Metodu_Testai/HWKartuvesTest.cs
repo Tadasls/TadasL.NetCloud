@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SNamDarbas_Kartuves_HangMan;
+using HangMan;
 
 
 namespace Metodu_Testai
@@ -44,7 +44,7 @@ namespace Metodu_Testai
         {
             var fake = "W";
             var expected = false;
-            var actual = SNamDarbas_Kartuves_HangMan.Program.NeleistinoSimbolioIrRaidesPasikartojimoValidacija(fake);
+            var actual =Program.NeleistinoSimbolioIrRaidesPasikartojimoValidacija(fake);
             Assert.AreEqual(expected, actual);
         }
 [       TestMethod]

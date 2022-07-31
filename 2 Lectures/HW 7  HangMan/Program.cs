@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SNamDarbas_Kartuves_HangMan
+namespace HangMan
 {
     public class Program
     {

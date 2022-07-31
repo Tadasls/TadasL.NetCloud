@@ -16,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NamuDarbasSkaiciuotuvas\HW 5 Skaiciuotuvas.csproj" />
+    <ProjectReference Include="..\HW 3 DNR\HW 3 DNR.csproj" />
+    <ProjectReference Include="..\HW 5 Skaiciuotuvas\HW 5 Skaiciuotuvas.csproj" />
+    <ProjectReference Include="..\HW 6 SuperSkaiciuotuvas\HW 6 SuperSkaiciuotuvas.csproj" />
+    <ProjectReference Include="..\HW 7  HangMan\HW 7 Kartuves HangMan.csproj" />
     <ProjectReference Include="..\P014 Debuginimas\P014 Debuginimas.csproj" />
     <ProjectReference Include="..\P016_For\P016_For.csproj" />
     <ProjectReference Include="..\P017_ForUzduotys\P017_ForUzduotys.csproj" />
@@ -26,9 +29,6 @@
     <ProjectReference Include="..\P021_List\P021_List.csproj" />
     <ProjectReference Include="..\P022_Foreach\P022_Foreach.csproj" />
     <ProjectReference Include="..\P10 Metodai\P010 Metodai.csproj" />
-    <ProjectReference Include="..\SavarDrbV03DNR\HW 3 DNR.csproj" />
-    <ProjectReference Include="..\SavNamuDarbasSuperSkaiciuotuvas\HW 6 SuperSkaiciuotuvas.csproj" />
-    <ProjectReference Include="..\SNamDarbas Kartuves HangMan\HW 7 Kartuves HangMan.csproj" />
   </ItemGroup>
 
 </Project>
