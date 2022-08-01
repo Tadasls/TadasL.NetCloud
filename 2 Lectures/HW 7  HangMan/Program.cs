@@ -72,7 +72,7 @@ namespace HangMan
                     Console.WriteLine("Toks Meniu pasirinkimas neįmanomas");
                     break;
             }
-            ZaidimasKartuves(zodisSpejimui);
+            ZaidimoStruktura(zodisSpejimui);
         }
         public static string AtsitiktineGeneracija(List<string> zodziuSarasas)
         {
@@ -83,46 +83,52 @@ namespace HangMan
             zodziuSarasas.RemoveAt(indexRandom);
             return zodisSpejimui; //sugeneruoja viena atsitiktini zody is saraso
         }
-        public static void ZaidimasKartuves(string zodisSpejimui)
+        public static void ZaidimoStruktura(string zodisSpejimui)
         {
-            string ivedimas;      
-            spejamosRaides = zodisSpejimui.ToLower().ToCharArray();
-            string tusciosRaides = new string('-', (int)spejamosRaides.Length);
-            rodomosRaides = new bool[spejamosRaides.Length];
+            string ivedimas;
+            Console.WriteLine($"pasirinkta Tema: {temuSarasas[temosNr - 1]}"); //zaidimo pradzioje parodo Temos pavadinima
+            KartuviuPiesimas();
+            SukuriasIrUzpildoSpejamuRaidziuMasyva(zodisSpejimui);
+            PavaizduojaSpejamoZodzioIlgiBruksneliais(spejamosRaides);
 
-            Console.WriteLine($"pasirinkta Tema: {temuSarasas[temosNr - 1]}");
-            KartuviuPiesimas();                 
-            Console.WriteLine($"Zodis:  {tusciosRaides} ");
-
-            for (int i = 0; i < spejamosRaides.Length; i++)
+            while (spejimoBandymai != 0)
             {
-                rodomosRaides[i] = false;
-            }
-            
-                while (spejimoBandymai != 0)
+                do
                 {
-                    do
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Spėkite raidę ar žodį: ");
-                        ivedimas = Console.ReadLine().ToLower();
-                        Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine("Spėkite raidę ar žodį: ");
+                    ivedimas = Console.ReadLine().ToLower();
+                    Console.Clear();
 
-                        NeleistinoSimbolioIrRaidesPasikartojimoValidacija(ivedimas);
-                        ZodzioSpejimoTikrinimas(ivedimas);
+                    NeleistinoSimbolioIrRaidesPasikartojimoValidacija(ivedimas);
+                    ZodzioSpejimoTikrinimas(ivedimas);
 
-                    } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai); // ciklas neleidzia vesti pasikartojimu ir neleistinu simboliu
-                                
+                } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai); // ciklas neleidzia vesti pasikartojimu ir neleistinu simboliu
+
                 KartuviuPiesimas();
                 RaidziuTikrinimas(ivedimas);
                 NeatspetuRaidziuRodymas();
-                AtspetuRaidziuRodymas();
-                
+                AtspetuRaidziuRodymas(spejamosRaides, rodomosRaides);
 
-
-                }
+            }
             TemuPabaigosMetodas();
             PabaigosMetodas();
+        }
+        public static string SukuriasIrUzpildoSpejamuRaidziuMasyva(string zodisSpejimui)
+        {
+            spejamosRaides = zodisSpejimui.ToLower().ToCharArray(); //sumazina ir pavercia masyvu
+            rodomosRaides = new bool[spejamosRaides.Length];
+            for (int i = 0; i < spejamosRaides.Length; i++) //uzpildo spejamu raidziu masyva false reiksmemis
+            {
+                rodomosRaides[i] = false;
+            }
+            return string.Join(", ", rodomosRaides);
+        }
+        public static string PavaizduojaSpejamoZodzioIlgiBruksneliais(char[] spejamosRaides) 
+        {
+            string tusciosRaides = new string('-', (int)spejamosRaides.Length);
+            Console.WriteLine($"Zodis:  {tusciosRaides} ");
+            return tusciosRaides;
         }
         public static void KartuviuPiesimas()
          {
@@ -137,8 +143,6 @@ namespace HangMan
             Console.WriteLine("|            {0} {1}", piesiamasKunas[1], piesiamasKunas[0]);
             Console.WriteLine("|");
             Console.WriteLine("|_ _ _ _");
-
-
          }
         public static void RaidziuTikrinimas(string ivedimas) 
         {
@@ -171,7 +175,7 @@ namespace HangMan
         {
             Console.WriteLine($"Spetos raides: {string.Join(", ", neatspetosRaides)}");
         }
-        public static bool[] AtspetuRaidziuRodymas() //grazinuosi char masyva 
+        public static bool[] AtspetuRaidziuRodymas(char[] spejamosRaides, bool[] rodomosRaides) 
         {
             Console.Write("Zodis: ");
             for (int i = 0; i < spejamosRaides.Length; i++)
@@ -198,25 +202,23 @@ namespace HangMan
             }
             return galimiSimboliai;
         }
-        public static bool ZodzioSpejimoTikrinimas(string ivedimas ) //testavimui grazinu spejama zody
+        public static bool ZodzioSpejimoTikrinimas(string ivedimas) 
         {
+            bool arAtspeta = false;
             if (ivedimas.Length > 1)
             {
                 if (ivedimas == zodisSpejimui.ToLower())
                 {
-                    Sveikinimai();
-                    return true;
+                   arAtspeta = true;
+                   Sveikinimai(); 
                 }
                 else
                 {
-                    return false;
                     Console.WriteLine($"Neatspejote zodzio: {zodisSpejimui.ToUpper()}  - Zaidimas baigtas nes Jusu spejimas buvo {ivedimas.ToUpper()} ");
                     Environment.Exit(1);
-                    
                 }
-               return true;
             }
-            return true;
+            return arAtspeta;
         }
         public static void Sveikinimai()
         {
@@ -285,7 +287,7 @@ namespace HangMan
             pakartotaAtspetaRaide = false;
             Array.Clear(piesiamasKunas, 0, kunoPiesinys.Length);
 
-        }
+    }
       
         /*  Instructions todo
     - Naudotojas pasirenka iš temų: VARDAI, LIETUVOS MIESTAI, VALSTYBES, KITA. 

@@ -18,6 +18,7 @@ namespace Metodu_Testai
             var fakeWords = new List<string> { "Akvile", "Titas", "Tadas", "Kristina", "Dainius", "Stasys", "Lina", "Merunas", "Jolanta", "Justinas" };
             var fakeRandom = new Random(1);
             var expected = fakeWords[fakeRandom.Next(0, fakeWords.Count)];
+
             var actual = Program.AtsitiktineGeneracija(fakeWords);
             Assert.AreEqual(expected, actual);
         }
@@ -47,19 +48,40 @@ namespace Metodu_Testai
             var actual =Program.NeleistinoSimbolioIrRaidesPasikartojimoValidacija(fake);
             Assert.AreEqual(expected, actual);
         }
-[       TestMethod]
-        public void ZodzioSpejimoTikrinimas()
+        [TestMethod]
+        public void ZodzioSpejimoTikrinimas_Test()
         {
-            Program.zodisSpejimui = "tadas";
-            var fake = "linas";
+            var fake = "a";
             var expected = false;
             var actual = Program.ZodzioSpejimoTikrinimas(fake);
             Assert.AreEqual(expected, actual);
         }
-
-
-    
-
+        [TestMethod]
+        public void PavaizduojaSpejamoZodzioIlgiBruksneliais()
+        {
+            char[] fake = { 't', 'a', 'd', 'a', 's' };
+            string expected = "-----";
+            var actual = Program.PavaizduojaSpejamoZodzioIlgiBruksneliais(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void SukuriasIrUzpildoSpejamuRaidziuMasyva_Test()
+        {
+            var fake = "Tadas" ;
+            var expected = "False, False, False, False, False";
+            var actual = Program.SukuriasIrUzpildoSpejamuRaidziuMasyva(fake);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void AtspetuRaidziuRodymas_Test()
+        {
+            char[] fake = { 't', 'a', 'd', 'a', 's' };
+            bool[] fake2 = { true, true, true, true, true };
+            bool[] expected = { true, true, true, true, true };
+            var actual = Program.AtspetuRaidziuRodymas(fake, fake2);
+            CollectionAssert.AreEqual(expected, actual);    
+          
+        }
 
 
 
