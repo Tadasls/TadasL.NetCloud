@@ -105,11 +105,10 @@ namespace HangMan
 
                 } while (pakartotaNeatspetaRaide || pakartotaAtspetaRaide || ivedimas.Length == 0 || !galimiSimboliai); // ciklas neleidzia vesti pasikartojimu ir neleistinu simboliu
 
-                KartuviuPiesimas();
                 RaidziuTikrinimas(ivedimas);
+                KartuviuPiesimas();
                 NeatspetuRaidziuRodymas();
                 AtspetuRaidziuRodymas(spejamosRaides, rodomosRaides);
-
             }
             TemuPabaigosMetodas();
             PabaigosMetodas();
@@ -191,7 +190,6 @@ namespace HangMan
         {
             if (ivedimas.Length == 1)
             {
-                
                 pakartotaNeatspetaRaide = neatspetosRaides.Contains(ivedimas[0]);
                 pakartotaAtspetaRaide = atspetosRaides.Contains(ivedimas[0]);
                 galimiSimboliai = laistinosRaides.Contains(ivedimas[0]);
@@ -229,7 +227,6 @@ namespace HangMan
         }// teisingu spejimu  atveju
         public static void TemuPabaigosMetodas() 
         {
-           
             if (varduSarasas.Count == 0)
             {
                 Console.WriteLine($"Išnaudojote visus Temos Vardai zodzius ");
