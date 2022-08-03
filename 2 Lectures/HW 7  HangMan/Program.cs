@@ -23,7 +23,6 @@ namespace HangMan
         public static int temosNr;
         public static string tesimas;
 
-
         public static bool galimiSimboliai = false;
         public static bool atspetasZodis = false;
         public static bool pakartotaNeatspetaRaide = false;
@@ -255,7 +254,6 @@ namespace HangMan
             {
                 Console.WriteLine();
                 Console.WriteLine("Zaidimas Baigtas, ar Norite testi? T/N ");
-
                 string tesimas = Console.ReadLine().ToUpper();
 
                 if (tesimas == "T" || tesimas == "t")
