@@ -30,12 +30,14 @@
             zmogus.megstamiausiasHobis = "Keliones";
             zmogus.augintinis = new Augintinis()
             {
-                Budas = "zaismingas",
+                Budas = "Zaismingas",
                 GimimoMetai = 2021,
-                Vardas = "Babsis",
+                Rusis = "Suo",
+                Vardas = "Bapsis"
             };
 
-            Console.WriteLine($"informacija apie {zmogus.vardas}\n amogaus augitinis{zmogus.augintinis.Vardas}" );
+
+            Console.WriteLine($"Informacija apie {zmogus.vardas} zmogaus augintini:\n---------------------\nVardas: {zmogus.augintinis.Vardas}\nRusis: {zmogus.augintinis.Rusis}\nGimimo metai: {zmogus.augintinis.GimimoMetai}\nBudas: {zmogus.augintinis.Budas}");
 
             Zmogus zmogus2 = new Zmogus();
             zmogus.akiuSpalva = "Melyna";
@@ -44,61 +46,57 @@
             zmogus.pareigos = "Aktorius";
             zmogus.megstamiausiasHobis = "Keliones";
 
-            Console.WriteLine($"zmogaus megstamiausias Hobis  { zmogus.megstamiausiasHobis} \n  vardas {zmogus.vardas}  \n ");
+            Console.WriteLine($"zmogus.akiuSpalva:{zmogus.akiuSpalva}\nzmogus.vardas:{zmogus.vardas}\nzmogus.pavarde:{zmogus.pavarde}\nzmogus.pareigos:{zmogus.pareigos}\nzmogus.megstamiausiasHobis:{zmogus.megstamiausiasHobis}");
 
             var masina = new Masina()
             {
-                Modelis = "Colora",
+                Modelis = "Corolla",
                 Gamintojas = "Toyota",
-                arDrausta = true,
-                VariklioGalia = 150,
-                DidziausiasGreitis = 200,
-                Spalva = "zalia",
-
-                ApsaugosSistema = new Apsaugossistema()
+                ArDrausta = true,
+                DidziausiasGreitis = 180,
+                EmisijuKiekis = 0,
+                KedziuKiekis = 4,
+                Spalva = "Raudona",
+                VariklioTipas = "Elektrinis",
+                ApsaugosSistema = new ApsaugosSistema()
                 {
-                    Gamintojas = "secure",
+                    Gamintojas = "SecurCo",
                     Lygis = 9,
-                    Pavadinimas = "pro",
-                    //Rusis = "Blokojantis",
+                    Pavadinimas = "ProSecure",
+                    Rusis = "Blokuojanti, garsine"
                 }
-
             };
 
 
             var masinos = new List<Masina>()
             {
-                new Masina() { },  // galima apsirasyti masinas 
-                 new Masina(),
-                  new Masina(),
-                   new Masina(),
-                    new Masina(),
-
+                new Masina(),
+                new Masina(),
+                new Masina(),
+                new Masina(),
+                new Masina()
             };
 
-            Console.WriteLine($"modelis  {masina.Modelis} \n spalva {masina.Spalva} \n didziasias greitis {masina.DidziausiasGreitis}  ");
-            Console.WriteLine($"modelis  {masina.Modelis} \n spalva {masina.Spalva} \n didziasias greitis {masina.DidziausiasGreitis}  ");
-            var ismaniejiTelefonai = new Dictionary<int, Telefonas>();
-            var samsung = new Telefonas()
+            Console.WriteLine($"Modelis:{masina.Modelis}\nmasina.Gamintojas:{masina.Gamintojas}\nmasina.DidziausiasGreitis:{masina.DidziausiasGreitis}\nmasina.Spalva:{masina.Spalva}\n------------------------\nSaugos sistema:\nPavadinimas: {masina.ApsaugosSistema.Pavadinimas}\nGamintojas: {masina.ApsaugosSistema.Gamintojas}");
+
+            var ismaniejiTelefonai = new Dictionary<int, IsmanusisTelefonas>();
+            var samsung = new IsmanusisTelefonas()
             {
                 OperacineSistema = "Android",
                 Gamintojas = "Samsung",
-                Modelis ="Galaxy",
+                Modelis = "Galaxy S22",
                 Dekliukas = new Dekliukas()
-
             };
             samsung.Dekliukas.Gamintojas = "NewCore";
-            //samsung.Dekliukas.Medziaga = "guminis";
+            samsung.Dekliukas.Medziaga = "Guminis";
             samsung.Dekliukas.Kaina = 9.99;
-
-            var iPhone = new Telefonas();
-
+            var iPhone = new IsmanusisTelefonas();
             ismaniejiTelefonai.Add(1, samsung);
             ismaniejiTelefonai.Add(2, iPhone);
 
             Console.WriteLine(ismaniejiTelefonai[1].Dekliukas.Gamintojas);
-           // Console.WriteLine(ismaniejiTelefonai[1].Dekliukas.Medziaga);
-            Console.WriteLine(ismaniejiTelefonai[1].Dekliukas.Kaina);
+            Console.WriteLine(ismaniejiTelefonai[1].Dekliukas.Medziaga);
+            Console.WriteLine(ismaniejiTelefonai[1].Dekliukas.Kaina + "$");
 
 
 
@@ -147,23 +145,24 @@
 
         class PavyzdineKlase
         {
-            //kontraktas/interfeisas - Visi public dalykai esantys klaseje. 
-            public string vardas;  // laukas /field vadinsime fieldais
-            public string pavarde; // fieldas verte reikme
+            // Kontraktas/intefeisas - Visi public dalykai esantys klaseje
+            #region Atributai - Sudaroma is fields ir properties
+            public string vardas; // Laukas/Field. Vadinsime fieldais.
+            public string pavarde;
 
             public string PilnasVardas
             {
-                get { return vardas + " " + pavarde; }  // properties
+                get { return vardas + " " + pavarde; }
             }
 
-            #region Atributai - sudaroma is fields ir properties
-            //public int Taskai { get; set; } // savybe/property vadisime properciais 
+            //public int Taskai { get; set; } // Savybe/Property. Vadinsime properciais.
+
             private int taskai;
 
             public int Taskai
             {
-                get { return taskai; }  //duomenu reikesmes isgavimui galima delioti skritinga logiks seka
-                set { taskai = value; } // steris duomenu reikems nustatymui galima delioti skirtinga seka
+                get { return taskai; } // Duomenu/reiksmes isgavimui. Galima delioti skirtinga logikos seka.
+                set { taskai = value + 100; } // Duomenu/reiksmes nustatymui. Galima delioti skirtinga logikos seka.
             }
             #endregion
 

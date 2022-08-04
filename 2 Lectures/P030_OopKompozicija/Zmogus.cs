@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace P030_OopKompozicija
 {
-
-    // "class Zmogus" == "internal class Zmogus" 
-    // "klase" yra taspats kas yra "modelis"
-    internal class Zmogus  
+    // "class Zmogus" yra tas pats kas "internal class Zmogus"
+    // "Klase" yra tas pats kas "Modelis"
+    internal class Zmogus
     {
-        //klase aprasoma public fieldais
-       public string vardas;
-       public string pavarde;
-       public int gimimoMetai;
-       public string pareigos;
-       public string asmenybesTipas;
-       public int lytis;
-       public string akiuSpalva;
-       public string megstamiausiasHobis;
-       public double pigigai;
-       public string issilaviniimas;
-       public List<string> masinos;
-
-
-       public Augintinis augintinis;
-
+        // Klase aprasome tik public fieldais
+        public string vardas;
+        public string pavarde;
+        public int gimimoMetai;
+        public string pareigos;
+        public string asmenybesTipas;
+        public string akiuSpalva;
+        public string lytis;
+        public string gimimoSalis;
+        public string megstamiausiasHobis;
+        public double pinigai;
+        public string issilavinimas;
+        public List<string> masinos;
+        public Augintinis augintinis;
     }
 }

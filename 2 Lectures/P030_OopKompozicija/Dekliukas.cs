@@ -16,21 +16,21 @@ namespace P030_OopKompozicija
             set { gamintojas = value; }
         }
 
-        private int kaina;
+        private string medziaga;
 
-        public int Kaina
+        public string Medziaga
+        {
+            get { return medziaga; }
+            set { medziaga = value; }
+        }
+
+        private double kaina;
+
+        public double Kaina
         {
             get { return kaina; }
             set { kaina = value; }
         }
-
-
-
-
-
-
-       
-
 
     }
 }

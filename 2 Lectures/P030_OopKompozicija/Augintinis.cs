@@ -10,7 +10,7 @@ namespace P030_OopKompozicija
     {
         public string Vardas { get; set; }
         public int GimimoMetai { get; set; }
-        public string rusis { get; set; }
+        public string Rusis { get; set; }
         public string Budas { get; set; }
     }
 }

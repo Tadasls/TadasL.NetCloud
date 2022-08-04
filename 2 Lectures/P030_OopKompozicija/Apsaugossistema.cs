@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace P030_OopKompozicija
 {
-    internal class Apsaugossistema
+    internal class ApsaugosSistema
     {
-        public int Lygis { get; set; }  
-        public string Pavadinimas { get; set; }  
-        public string Gamintojas { get; set; }  
+        public int Lygis { get; set; }
+        public string Pavadinimas { get; set; }
+        public string Gamintojas { get; set; }
+        public string Rusis { get; set; }
     }
 }

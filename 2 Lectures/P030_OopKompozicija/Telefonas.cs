@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace P030_OopKompozicija
 {
-    internal class Telefonas
+    internal class IsmanusisTelefonas
     {
-        // aprasome tik public fully describeb properties
-
+        // Klase aprasome tik public fully described properciais
         private string dimensija;
 
         public string Dimensija
@@ -26,17 +25,17 @@ namespace P030_OopKompozicija
             set { svoris = value; }
         }
 
-        private int stiklas;
+        private string stiklas;
 
-        public int Stiklas
+        public string Stiklas
         {
             get { return stiklas; }
             set { stiklas = value; }
         }
 
-        private int rezoliucija;
+        private string rezoliucija;
 
-        public int Rezoliucija
+        public string Rezoliucija
         {
             get { return rezoliucija; }
             set { rezoliucija = value; }
@@ -50,6 +49,38 @@ namespace P030_OopKompozicija
             set { atmintis = value; }
         }
 
+        private string modelis;
+
+        public string Modelis
+        {
+            get { return modelis; }
+            set { modelis = value; }
+        }
+
+        private string operacineSistema;
+
+        public string OperacineSistema
+        {
+            get { return operacineSistema; }
+            set { operacineSistema = value; }
+        }
+
+        private int baterija;
+
+        public int Baterija
+        {
+            get { return baterija; }
+            set { baterija = value; }
+        }
+
+        private string kamera;
+
+        public string Kamera
+        {
+            get { return kamera; }
+            set { kamera = value; }
+        }
+
         private string gamintojas;
 
         public string Gamintojas
@@ -58,26 +89,6 @@ namespace P030_OopKompozicija
             set { gamintojas = value; }
         }
 
-
-
-        private int baterija;
-
-    public int Baterija
-{
-    get { return baterija; }
-    set { baterija = value; }
-}
-
-
-private string kamera;
-
-public string Kamera
-{
-    get { return kamera; }
-    set { kamera = value; }
-}
-
-
         private Dekliukas dekliukas;
 
         public Dekliukas Dekliukas
@@ -85,7 +96,6 @@ public string Kamera
             get { return dekliukas; }
             set { dekliukas = value; }
         }
-
 
     }
 }
