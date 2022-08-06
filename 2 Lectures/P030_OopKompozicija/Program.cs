@@ -80,6 +80,7 @@
             Console.WriteLine($"Modelis:{masina.Modelis}\nmasina.Gamintojas:{masina.Gamintojas}\nmasina.DidziausiasGreitis:{masina.DidziausiasGreitis}\nmasina.Spalva:{masina.Spalva}\n------------------------\nSaugos sistema:\nPavadinimas: {masina.ApsaugosSistema.Pavadinimas}\nGamintojas: {masina.ApsaugosSistema.Gamintojas}");
 
             var ismaniejiTelefonai = new Dictionary<int, IsmanusisTelefonas>();
+
             var samsung = new IsmanusisTelefonas()
             {
                 OperacineSistema = "Android",
@@ -87,10 +88,13 @@
                 Modelis = "Galaxy S22",
                 Dekliukas = new Dekliukas()
             };
+
             samsung.Dekliukas.Gamintojas = "NewCore";
             samsung.Dekliukas.Medziaga = "Guminis";
             samsung.Dekliukas.Kaina = 9.99;
+
             var iPhone = new IsmanusisTelefonas();
+
             ismaniejiTelefonai.Add(1, samsung);
             ismaniejiTelefonai.Add(2, iPhone);
 
@@ -110,19 +114,50 @@
                 Autorius = "tolkien",
                 Kaina = 9.99,
                 Svoris = 1.1,
+                Paveiksliukai = new Paveiksliukai()
+                {
+                    Autorius = "Mikelandzelas",
+                    Spalvos = 6,
+                    Pavadinimas = "Venera",
+                    Dydis = "5px",
+
+                }
+
+
+
 
             };
-
-
-
-
+            var gimtiNamai = new Namas()
+            {
+                Spalva = "balta",
+                Aukstai = 2,
+                Plotas = 88,
+                Langai = 5,
+                Adresas = "ziglos g",
+                KvadraturaGyvenama = 55,
+                Garazas = new Garazas()
+                {
+                    Spalva ="red",
+                    Aukstis = 6,
+                    Talpa = 10,
+                }
+            };
         }
 
+        /*  Namų darbas savaitgaliui.
+
+         Susikurti “Kambarys” klasę ir aprašyti bent 10 objektų esančių jūsų kambaryje
+        arba objektų kurie galėtų egzistuoti kambaryje kaip klases.
+        Visos naujais aprašytos klasės turėtų turėti bent po 5 atributus 
+        (Kontraktas/interfeisas) ir turėtų būti priskirtos kaip properties(savybe)
+        “Kambarys” klasei.Bent 2 iš aprašytų klasių turėtų turėti kompoziciją su kitomis klasėmis
+        pvz:”Kambarys” turi “Spinta”, kuri gali turėti List<Drabuzis>
+
+        */
 
 
-        /*
 
-        Uzduotis 2: 
+        /*        Uzduotis 2: 
             Parasyti kiekvienai is klasiu bent po 1 kompozicijos atributa
             (Naujas atributas turetu buti naujai sukurta klase su bent 3 naujais atributais).
             Kompozicijos atributas yra atributas su kitos klases duomenu tipu kintamuosiuose.
@@ -131,8 +166,7 @@
 
 
 
-        /*
-         Uzduotis 1: Apsirašykite klases, kurios atributų pagalba apibūdintų:
+        /*         Uzduotis 1: Apsirašykite klases, kurios atributų pagalba apibūdintų:
         Žmogų++
         Mašiną+
         Namą(Savarankiskai)
@@ -169,6 +203,6 @@
 
         }
 
-
+         
     }
 }

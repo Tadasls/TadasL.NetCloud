@@ -17,5 +17,16 @@ namespace P030_OopKompozicija
         public double Kaina { get; set; }
         public double Svoris { get; set; }
 
+        public Paveiksliukai Paveiksliukai { get; set; }
+
+
+        //private Paveiksliukai paveiksliukai;
+
+        //public Paveiksliukai Paveiksliukai
+        //{
+        //    get { return paveiksliukai; }
+        //    set { paveiksliukai = value; }
+        //}
+
     }
 }

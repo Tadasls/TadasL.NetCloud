@@ -25,6 +25,6 @@ namespace P030_OopKompozicija
         public double Plotis { get; set; }
         public double Ilgis { get; set; }
         public int KedziuKiekis { get; set; }
-        public ApsaugosSistema ApsaugosSistema { get; set; }
+        public ApsaugosSistema ApsaugosSistema { get; set; } = new ApsaugosSistema(); // galima nurodyti tusdefault
     }
 }

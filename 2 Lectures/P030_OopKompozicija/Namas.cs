@@ -45,8 +45,16 @@ namespace P030_OopKompozicija
             set { kvadraturaGyvenama = value; }
         }
 
+        private Garazas garazas;
 
+        public Garazas Garazas
+        {
+            get { return garazas; }
+            set { garazas = value; }
+        }
 
 
     }
+
+ 
 }

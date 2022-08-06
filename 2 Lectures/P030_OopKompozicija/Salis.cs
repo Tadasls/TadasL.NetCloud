@@ -16,5 +16,6 @@ namespace P030_OopKompozicija
         public int ikurimoMetai;
         public double populiacija;
         public List<string> vartojamosKalbos;
+        public Valiuta valiuta;
     }
 }
