@@ -24,6 +24,7 @@ namespace P033_OopMetodai
             // ProduktoMetodas(); // 3uzd
             // SkaiciuVidurkioSkaiciavimai(); // 4 uzd
 
+
         }
 
         private static void SkaiciuVidurkioSkaiciavimai()
