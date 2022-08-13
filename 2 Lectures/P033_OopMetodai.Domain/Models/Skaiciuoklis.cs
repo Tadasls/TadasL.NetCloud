@@ -19,6 +19,7 @@ namespace P033_OopMetodai.Domain.Models
            this.skaicius = skaicius;
         }
 
+
         private int skaicius;
         private int Skaicius { get; set; } // propertys
 
