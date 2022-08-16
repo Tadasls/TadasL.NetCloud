@@ -27,8 +27,8 @@ namespace P033_OopMetodai.Domain.Models
         //private int Skaicius
         //{
         //    get { return skaicius; }
-        //    set { skaicius = value; }
-        //}
+        //    set { skaicius1 = value; }
+    //}
 
         public void Didinti()
         {

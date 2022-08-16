@@ -20,9 +20,9 @@ namespace P033_OopMetodai
 
             //namu darbai
 
-            Skaiciuoklis(); //2 uzd  neveikia resetas !!!!!!!!
-            // ProduktoMetodas(); // 3uzd
-            // SkaiciuVidurkioSkaiciavimai(); // 4 uzd
+            Skaiciuoklis(); //2 uzd 
+            ProduktoMetodas(); // 3uzd
+            SkaiciuVidurkioSkaiciavimai(); // 4 uzd
 
 
         }
