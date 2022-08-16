@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P034_Enum", "P034_Enum\P034_Enum.csproj", "{5CC4461B-BBA8-43C9-880F-33249B2218F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P034_Praktika", "P034_Praktika\P034_Praktika.csproj", "{E3502EBD-1E5E-4F2B-882E-D301D047D15B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CC4461B-BBA8-43C9-880F-33249B2218F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC4461B-BBA8-43C9-880F-33249B2218F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC4461B-BBA8-43C9-880F-33249B2218F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC4461B-BBA8-43C9-880F-33249B2218F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3502EBD-1E5E-4F2B-882E-D301D047D15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3502EBD-1E5E-4F2B-882E-D301D047D15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3502EBD-1E5E-4F2B-882E-D301D047D15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3502EBD-1E5E-4F2B-882E-D301D047D15B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3CAE27C-6E73-4BAD-B2EE-05E5D2F950C5}
+	EndGlobalSection
+EndGlobal

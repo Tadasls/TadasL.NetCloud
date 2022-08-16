@@ -14,7 +14,6 @@ namespace P033_OopMetodai
             //var plotas = ApskaiciuotiPlota(10, 10);
 
             // paskaitoje
-
             // StaciakampioSkaiciavimas();
             // GyvunuKalbejimas();
 

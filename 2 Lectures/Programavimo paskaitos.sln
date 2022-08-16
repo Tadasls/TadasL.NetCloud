@@ -103,6 +103,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P033_OopMetodai", "P033_Oop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P033_OopMetodai.Domain", "P033_OopMetodai.Domain\P033_OopMetodai.Domain.csproj", "{37AB86A1-DBDC-47FB-8BE1-492EDB0345FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P034_Enum", "P034_Enum\P034_Enum.csproj", "{92C2B7A6-943C-4E93-A882-A54A4C203397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -293,6 +295,10 @@ Global
 		{37AB86A1-DBDC-47FB-8BE1-492EDB0345FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37AB86A1-DBDC-47FB-8BE1-492EDB0345FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37AB86A1-DBDC-47FB-8BE1-492EDB0345FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C2B7A6-943C-4E93-A882-A54A4C203397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C2B7A6-943C-4E93-A882-A54A4C203397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C2B7A6-943C-4E93-A882-A54A4C203397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C2B7A6-943C-4E93-A882-A54A4C203397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
