@@ -10,59 +10,50 @@ namespace P034_Praktika.Models
 {
     public class Society
     {
-        public List<Person> People { get; set; }
+        public List<Person> People { get; set; } = new List<Person>();  // 1 uzd
 
-        public void FillPeople()
-        { 
-         List<Person> people = PersonInitialData.DataSeed.ToList();
+        public void FillPeople(List<Person> people) => People = people;
+      
 
-        }
 
-        public List<Person> senukai  // visus pries 2001
+        public List<Person> OldPeople  // visus pries 2001
         {
             get
             {
-                var senukai = new List<Person>();
+                List<Person> oldPeople = new List<Person>();
                 foreach (var person in People)
                 {
+                    
                     if (person.BirthDate < new DateTime(2001, 1, 1))
 
-                        senukai.Add(person);
+                        oldPeople.Add(person);
                 }
-                return senukai;
-            }
-           
-           
+                return oldPeople;
+            }          
         }
 
 
 
+        public List<Person> Men { get; set; } = new List<Person>();
 
-
-        public List<Person> Vyrai { get; set; }
-
-        public static void FillMen()
+        public void FillMen(List<Person> people)
         {
-            var vyrai = new List<Person>();
-            foreach (var person in PersonInitialData.DataSeed)
+            Men = new List<Person>();
+            foreach (var person in people)
             {
-                if (person.Gender == (int)EGenderType.MALE)
-
-                    vyrai.Add(person);
+                if (person.Gender == EGenderType.MALE)
+                    Men.Add(person);
             }
-            
         }
 
-        public List<Person> Woman { get; set; }
-
-        public static void FillWoman()
+        public List<Person> Woman { get; set; } = new List<Person>();
+        public void FillWoman()
         {
-            var moterys = new List<Person>();
             foreach (var person in PersonInitialData.DataSeed)
             {
                 if(person.Gender == EGenderType.FEMALE)
                 {
-                    moterys.Add(person);
+                   Woman.Add(person);
                 }
 
             }
@@ -72,19 +63,60 @@ namespace P034_Praktika.Models
         {
 
         }
+        //public Society SortByFirtName()
+        //{
+        //    sortBy = ESocietySortBy.LastName;
+        //    return this;
+        //}
 
-        public static void SortByLasttName()
+        //public void Asc()
+        //{
+        //    switch (sortBy)
+        //    {
+        //        case ESocietySortBy.FirstName:
+        //            People.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
+        //            break;
+
+        //        case ESocietySortBy.LastName:
+        //            People.Sort((a, b) => a.LastName.CompareTo(b.LastName));
+        //            break;
+        //                default:
+        //                break;
+        //    }
+        //}
+
+      
+
+        //6- sukurkite metodą SortByAge(), kuris Men ir Women sąrašuose esančius asmenis surikiuotu pagal amžių nuo jauniausio iki vyriausio. (unit-test)
+        public void SortByAge()
         {
-
+            Men.Sort((a, b) => a.BirthDate >= b.BirthDate ? 1 : -1);
+            Woman.Sort((a, b) => a.BirthDate >= b.BirthDate ? 1 : -1);
         }
-        public static void SortAsc()
+
+
+        public void SortByAge2(List<Person> list)
         {
-
+            Person tempPerson;
+            for (int j = 0; j <= list.Count; j++)
+            {
+                for (int i = 0; i < list.Count - 1; i++)
+                {
+                    if (list[i].BirthDate < list[i + 1].BirthDate)
+                    {
+                        tempPerson = list[i + 1];
+                        list[i + 1] = list[i];
+                        list[i] = tempPerson;
+                    }
+                }
+            }
         }
-        public static void SortDsc()
-        {
 
-        }
+
+
+  
+
+
 
 
 
