@@ -61,10 +61,5 @@ namespace P034_Praktika_Tests
 
             Assert.AreEqual(expected, actual);
         }
-
-
-
-
-
     }
 }

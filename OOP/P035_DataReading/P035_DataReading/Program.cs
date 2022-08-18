@@ -12,13 +12,17 @@ namespace P035_DataReading
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Data Reading!");
-            //string path = Environment.CurrentDirectory;
-            //SakninioFolderioSuradimas(path);
-            SkaitymasIsTxtFailoEilutemisAtskirai();
+            //PirmasEnumUzdavinys();
+
+            string path = Environment.CurrentDirectory;
+            SakninioFolderioSuradimas(path);
+            // SkaitymasIsIvesties();
+            // SkaitymasIsStaticKlases();
+            // SkaitymasIsTxtFailo();
+            SkaitymasIsTxtFailoEilutemis();
         }
 
-        /*
-         Sukurkite klasę Society
+        /*         Sukurkite klasę Society
           1- Sukurkite propertį People (List of persons) +
           2- sukurkite metodą FillPeople kuris užpildys People sąrašą iš klasės PersonInitialData. +
           3- Sukurkite propertį OldPeople (List of persons). Grąžinkite visus asmenis iš People kurie gimė prieš 2001m. (unit-test) +
@@ -31,6 +35,7 @@ namespace P035_DataReading
                              SortByLastName().Desc()
             <hint> return this
          */
+
         static void PirmasEnumUzdavinys()
         {
             Society society = new Society();
@@ -38,7 +43,8 @@ namespace P035_DataReading
 
             foreach (Person person in society.People)
             {
-                Console.WriteLine($"Vardas: {person.FirstName}");
+                Console.WriteLine($"Vardas: {person.FirstName}  - Pavarde: {person.LastName}");
+                
             }
         }
 
@@ -47,6 +53,8 @@ namespace P035_DataReading
         {
             //string rootDirectoryPath = new DirectoryInfo(path).Parent.Parent.FullName;
             Console.WriteLine($"Sakninis katalogas yra {path}");
+
+            // C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\P035_DataReading\P035_DataReading\bin\Debug\net6.0
         }
 
         public static void SkaitymasIsIvesties()
@@ -119,7 +127,9 @@ namespace P035_DataReading
             int animalColumnCount = 2;
             List<Animal> animals = new List<Animal>();
             //string filePath = "C:\\Users\\Edvinas\\source\\repos\\CA.NET2\\OOP\\P035_DataReading\\P035_DataReading\\InitialData\\AnimalData.txt";
-            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+            string filePath = "C:\\Users\\tadas\\source\\repos\\Tadasls\\TadasL.NetCloud\\OOP\\P035_DataReading\\P035_DataReading\\InitialData\\AnimalData.txt";
+
+           // string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
             Console.WriteLine(filePath);
             string text = File.ReadAllText(filePath);
             string[] animalStringData = text.Split(Environment.NewLine);
