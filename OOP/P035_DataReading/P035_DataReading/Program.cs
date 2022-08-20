@@ -1,4 +1,5 @@
 ﻿using P035_DataReading.Domain.Models;
+using P035_DataReading.Domain.Services;
 using P035_DataReading_Apsirasymas.InitalData;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,35 @@ namespace P035_DataReading
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Data Reading!");
-            //PirmasEnumUzdavinys();
-
             string path = Environment.CurrentDirectory;
             SakninioFolderioSuradimas(path);
-            // SkaitymasIsIvesties();
-            // SkaitymasIsStaticKlases();
-            // SkaitymasIsTxtFailo();
-            SkaitymasIsTxtFailoEilutemis();
+            //SkaitymasIsTxtFailoEilutemisAtskiraiSuUsing();
+            FileService animalFileService = new FileService(Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt");
+            List<Animal> animals = animalFileService.FetchAnimalTxtRecords();
+            animalFileService.ReadStreamSymbolsFromFile();
+
+
+            FileService basicUserFileService = new FileService(Environment.CurrentDirectory + "\\InitialData\\UserFirstNameBaseData1.csv");
+            Console.WriteLine(basicUserFileService.ExtractBasicUserCsvHeaders());
+            PrintAllBasicUsers(basicUserFileService.FetchBasicUserCsvRecords());
+
+
         }
 
-        /*         Sukurkite klasę Society
+
+        public static void PrintAllBasicUsers(List<User> basicUsers)
+        {
+            foreach (var user in basicUsers)
+            {
+                Console.WriteLine($" {user.Id}  {user.Name} ");
+            }
+        }
+     
+            
+
+
+
+        /*      Sukurkite klasę Society
           1- Sukurkite propertį People (List of persons) +
           2- sukurkite metodą FillPeople kuris užpildys People sąrašą iš klasės PersonInitialData. +
           3- Sukurkite propertį OldPeople (List of persons). Grąžinkite visus asmenis iš People kurie gimė prieš 2001m. (unit-test) +
@@ -35,7 +54,6 @@ namespace P035_DataReading
                              SortByLastName().Desc()
             <hint> return this
          */
-
         static void PirmasEnumUzdavinys()
         {
             Society society = new Society();
@@ -43,8 +61,7 @@ namespace P035_DataReading
 
             foreach (Person person in society.People)
             {
-                Console.WriteLine($"Vardas: {person.FirstName}  - Pavarde: {person.LastName}");
-                
+                Console.WriteLine($"Vardas: {person.FirstName}");
             }
         }
 
@@ -53,8 +70,6 @@ namespace P035_DataReading
         {
             //string rootDirectoryPath = new DirectoryInfo(path).Parent.Parent.FullName;
             Console.WriteLine($"Sakninis katalogas yra {path}");
-
-            // C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\P035_DataReading\P035_DataReading\bin\Debug\net6.0
         }
 
         public static void SkaitymasIsIvesties()
@@ -73,7 +88,7 @@ namespace P035_DataReading
 
                 if (userData.Length < userColumnCount) break;
 
-                User newUser = new User(Convert.ToInt32(userData[0]), userData[1]);
+               User newUser = new User(Convert.ToInt32(userData[0]), userData[1]);
                 users.Add(newUser);
             }
 
@@ -127,9 +142,7 @@ namespace P035_DataReading
             int animalColumnCount = 2;
             List<Animal> animals = new List<Animal>();
             //string filePath = "C:\\Users\\Edvinas\\source\\repos\\CA.NET2\\OOP\\P035_DataReading\\P035_DataReading\\InitialData\\AnimalData.txt";
-            string filePath = "C:\\Users\\tadas\\source\\repos\\Tadasls\\TadasL.NetCloud\\OOP\\P035_DataReading\\P035_DataReading\\InitialData\\AnimalData.txt";
-
-           // string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
             Console.WriteLine(filePath);
             string text = File.ReadAllText(filePath);
             string[] animalStringData = text.Split(Environment.NewLine);
@@ -189,18 +202,76 @@ namespace P035_DataReading
             // IDisposable resursai butu elementai kaip: Streamai, Listeneriai, duombazes komunikacijos repositorijos, webiniai iskvietimai ir t.t.
             StreamReader sr = new StreamReader(filePath);
 
-            string line = sr.ReadLine();
-            Console.WriteLine(line);
-            string line2 = sr.ReadLine();
-            Console.WriteLine(line2);
+            string animalLine;
+            //Console.WriteLine(line);
+            //string line2 = sr.ReadLine();
+            //Console.WriteLine(line2);
+
+            while ((animalLine = sr.ReadLine()) != null)
+            {
+                string[] animalData = animalLine.Split(',');
+
+                if (animalData.Length != animalColumnCount) break;
+
+                Animal newAnimal = new Animal(animalData);
+                animals.Add(newAnimal);
+            }
 
             // Su .Close() mes pasakome GarbageCollector, kad reikia isvalyti duomenis priklausancius siam objektui
             sr.Close();
 
-            //foreach (Animal animal in animals)
-            //{
-            //    Console.WriteLine(animal.Name);
-            //}
+            foreach (Animal animal in animals)
+            {
+                Console.WriteLine(animal.Name);
+            }
         }
+
+        public static void SkaitymasIsTxtFailoEilutemisAtskiraiSuUsing()
+        {
+            int animalColumnCount = 2;
+            List<Animal> animals = new List<Animal>();
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+
+            using StreamReader sr = new StreamReader(filePath);
+                string animalLine;
+
+
+            while ((animalLine = sr.ReadLine()) != null)
+            {
+                string[] animalData = animalLine.Split(',');
+
+                if (animalData.Length != animalColumnCount) break;
+
+                Animal newAnimal = new Animal(animalData);
+                animals.Add(newAnimal);
+            }
+            foreach (Animal animal in animals)
+            {
+                Console.WriteLine(animal.Name);
+            }
+
+        }
+
+
+
+
+        /*     Uzduotis 1– Sukurkite programa, kuri moketu nuskaityti UserData1.csv failą. UserData1.csv galite pasiimti iš Teams pamokos Files sekcijos. Atvaizduokite kiekvieno naudotojo duomenis tokiu formatu:”55. Petras Petraitis (Vyras) – petras@petramail.lt”.
+Headeri turetu atspausdinti pirmoje eiluteje.
+PAGALBA: Tam, kad turėtumėt patogų priėjimu visiems duomenims jums reikės susikurti naują <User> klasę.
+       Uzduotis 2 – Sukurkite nauja <Hotel> klase, kuri savyje gali laikyti sarasa <User> (Hoteliu data importuokite is HotelData1.csv).
+Sukurkite nauja <HotelManager> klase, kuri savyje laiko sarasa hoteliu.
+Naujai sukurtai klasei <HotelManager> sukurkite metoda [AllocateUsersToHotels(users)], kuris priskirs kiekviena vartotoja atsitiktiniam (Random) hoteliui.
+Sukurkite atskleidziama <Hotel> property, AverageClientSalary, kuris grazintu besilankanciu klientu vidutine sumuota alga. Turi buti Unit Test Coverage.
+       Uzduotis 3- Sukurkite isskleista property <HotelManager> AverageRating, kuris grazintu vidutini hoteliu ivertinima + unit test.
+Sukurkite <HotelManager> klasei isskleidziama property NewHotels, kuris grazintu sarasa visu hoteliu, kurie buvo pastatyti veliau nei 2010-01-01.
+Sukurkite <HotelManager> klasei metoda [AllocateUsersToLuxHotels(users)], kuris turetu naudotojus priskirti tik i hotelius, kuriu ivertinimas yra auksciau 3 ir yra NewHotels sarase.
+Sukurkite <Hotel> klasei [MenVisitors] ir [WomenVisitors] isskleidziamus property, kurie turetu grazinti besilankancius vyrus ir moteris individualiai.
+ 
+         
+         */
+
+
+
+
     }
 }

@@ -16,7 +16,7 @@ namespace P035_DataReading.Domain.Models
         {
         }
 
-        public Person(EGenderType gender)
+        public Person(EGender gender)
         {
             Gender = gender;
         }
@@ -50,7 +50,7 @@ namespace P035_DataReading.Domain.Models
         }
 
         public string FullName => $"{FirstName} {LastName}";
-        public EGenderType Gender { get; set; }
+        public EGender Gender { get; set; }
         public DateTime? BirthDate { get; set; }
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
@@ -69,7 +69,7 @@ namespace P035_DataReading.Domain.Models
             return new DateTime(ts.Ticks).Year - 1;
         }
 
-        public void ChangeGender(EGenderType gender)
+        public void ChangeGender(EGender gender)
         {
             Gender = gender;
         }

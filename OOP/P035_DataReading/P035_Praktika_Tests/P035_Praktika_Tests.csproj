@@ -16,11 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\P034_Praktika\P034_Praktika.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\P035_DataReading.Domain\P035_DataReading.Domain.csproj" />
   </ItemGroup>
 
 </Project>

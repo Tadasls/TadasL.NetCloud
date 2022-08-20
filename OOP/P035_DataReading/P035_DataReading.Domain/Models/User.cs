@@ -8,11 +8,24 @@ namespace P035_DataReading.Domain.Models
 {
     public class User
     {
+
+        public User()
+        {
+
+        }
+
         public User(int id, string name)
         {
             Id = id;
             Name = name;
         }
+
+        public User(string[] userData)
+        {
+            Id = Convert.ToInt32(userData[0]);
+            Name = userData[1];
+        }
+
 
         public int Id { get; set; }
         public string Name { get; set; }

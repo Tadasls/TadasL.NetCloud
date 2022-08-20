@@ -47,7 +47,7 @@ namespace P035_DataReading.Domain.Models
             Men = new List<Person>();
             foreach (var person in people)
             {
-                if (person.Gender == Enums.EGenderType.MALE)
+                if (person.Gender == Enums.EGender.MALE)
                 {
                     Men.Add(person);
                 }
@@ -59,7 +59,7 @@ namespace P035_DataReading.Domain.Models
             Women = new List<Person>();
             foreach (var person in people)
             {
-                if (person.Gender == Enums.EGenderType.FEMALE)
+                if (person.Gender == Enums.EGender.FEMALE)
                 {
                     Women.Add(person);
                 }
@@ -73,8 +73,7 @@ namespace P035_DataReading.Domain.Models
             Women.Sort((a, b) => a.BirthDate >= b.BirthDate ? 1 : -1);
         }
 
-        /*
-         7- Padarykite metodą kuris People, Men ir Women properčiuose esančius asmenis  rikiuos nuo A iki Z arba nuo Z iki A.  (unit-test)
+        /*  7- Padarykite metodą kuris People, Men ir Women properčiuose esančius asmenis  rikiuos nuo A iki Z arba nuo Z iki A.  (unit-test)
              Pagal Vardą arba Pavardę
              tokiu principu: SortByFirstName().Asc()
                              SortByLastName().Desc()
