@@ -74,19 +74,8 @@ namespace P038_Integerence.Models
             Gender = gender;
         }
 
-        public virtual void ChooseProfesion1()
-        {
- //           Profesion = ProfessionInitialData.DataSeed;
 
- //ProfessionInitialData.DataSeedCsvComma arba
- //               ProfessionInitialData.DataSeedCsvSemicolon.
-
-        }
-
-          
-
-
-
+   
 
     }
 }

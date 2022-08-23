@@ -1,4 +1,5 @@
 ﻿using P038_Integerence.Models;
+using P038_Praktika.Models;
 
 namespace P038_Integerence
 {

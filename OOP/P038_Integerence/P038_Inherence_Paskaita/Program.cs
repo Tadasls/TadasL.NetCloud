@@ -48,7 +48,9 @@
     //Derived Classes
     public class Triangle : Polygon
     {
-        public Triangle() : base(3) { }
+        public Triangle() : base(3)
+        {
+        }
 
         public override double GetPerimeter()
         {
@@ -90,7 +92,7 @@
             {
                 Console.WriteLine("Size in polygon1 =" + ((Square)polygon1).Size);
             }
-
+            Console.WriteLine("----------------------------------");
 
             List<Polygon> polygons = new List<Polygon>();
             polygons.Add(square);
@@ -98,13 +100,14 @@
             polygons.Add(square2);
             foreach (var item in polygons)
             {
-                Console.WriteLine(item.NumberOfAngles);
+                Console.WriteLine($" {item.GetType().Name} NumberOfAngles = " + item.NumberOfAngles);
                 if (item is Square)
                 {
-                    Console.WriteLine("Size" + ((Square)item).Size);
+                    Console.WriteLine("Size in item =" + ((Square)item).Size);
                 }
-            }
+                Console.WriteLine("GetPerimeter() in item =" + item.GetPerimeter());
 
+            }
 
 
         }

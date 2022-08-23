@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P038_Integerence.Models
+﻿namespace P038_Praktika.Models
 {
     public class Hobby
     {
         public Hobby()
         {
-
         }
 
         public Hobby(int id, string text, string textLt)
@@ -24,12 +17,12 @@ namespace P038_Integerence.Models
         public string Text { get; set; }
         public string TextLt { get; set; }
 
-
-
-        public void EncodeCsv(string value)
+        public void UzpildytiHobioProperties(string value)
         {
+            int stulpeliuSkLaikmenoje = 3;
+
             var arr = value.Split(",");
-            if (arr.Length < 3)
+            if (arr.Length != stulpeliuSkLaikmenoje)
             {
                 return;
             }
@@ -44,8 +37,6 @@ namespace P038_Integerence.Models
 
         }
 
-
-
-
+        public string GetCsv() => String.Join(",", Id, Text, TextLt);
     }
 }

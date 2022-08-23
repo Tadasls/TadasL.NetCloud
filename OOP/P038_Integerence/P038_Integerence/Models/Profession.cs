@@ -17,9 +17,20 @@ namespace P038_Integerence.Models
         {
             Id = id;
         }
+
+        public Profession(string[] parts)
+        {
+            Id = Convert.ToInt32(parts[0]);
+            Text = parts[1];
+            TextLt = parts[2];
+        }
+
         public int Id { get; set; } // readonly kai neturi seterio
         public string Text { get; set; } // tik is vidaus irasoma kada set private
         public string TextLt { get; set; }
+
+        public string GetCsv() => String.Join(",", Id, Text, TextLt);
+
 
     }
 }
