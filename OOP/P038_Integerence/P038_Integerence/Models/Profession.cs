@@ -32,5 +32,25 @@ namespace P038_Integerence.Models
         public string GetCsv() => String.Join(",", Id, Text, TextLt);
 
 
+
+        public void EncodeCsv(string value)
+        {
+            int stulpeliuSkLaikmenoje = 3;
+
+            var arr = value.Split(",");
+            if (arr.Length != stulpeliuSkLaikmenoje)
+            {
+                return;
+            }
+            if (!int.TryParse(arr[0], out int id))
+            {
+                return;
+            }
+
+            Id = id;
+            Text = arr[1];
+            TextLt = arr[2];
+
+        }
     }
 }

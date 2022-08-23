@@ -17,7 +17,7 @@
         public string Text { get; set; }
         public string TextLt { get; set; }
 
-        public void UzpildytiHobioProperties(string value)
+        public void EncodeCsv(string value)
         {
             int stulpeliuSkLaikmenoje = 3;
 
