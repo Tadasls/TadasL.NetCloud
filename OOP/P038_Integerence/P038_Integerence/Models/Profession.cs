@@ -29,7 +29,7 @@ namespace P038_Integerence.Models
         public string Text { get; set; } // tik is vidaus irasoma kada set private
         public string TextLt { get; set; }
 
-        public string GetCsv() => String.Join(",", Id, Text, TextLt);
+        public string Get_Csv() => String.Join(",", Id, Text, TextLt);
 
 
 

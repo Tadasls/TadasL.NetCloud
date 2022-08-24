@@ -10,10 +10,10 @@ namespace P038_Integerence.Models
 {
     public class UniversityPerson : Person
     {     
-        public Profession Profession { get; set; }
+        public virtual Profession Profession { get; set; }
         public List<Hobby>Hobbies { get; set; } // = new List<Hobby>(); //inicilizuojame konstruktoriuje
 
-        private Random _rnd; // neinicilizuojame kad nebutu klase ir galetume testoti
+        protected Random _rnd; // neinicilizuojame kad nebutu klase ir galetume testoti
         public UniversityPerson()  //metode iniciliacuojame random kad nebutu klase
         {
             _rnd = new Random();
@@ -25,7 +25,7 @@ namespace P038_Integerence.Models
         public void SetHobbies(string[] data)
         {
 
-           // string[] data = HobbyInitialData.DataSeedCsv.ToList(); sutvarkyti pagal irasa
+           // string[] data = HobbyInitialData.DataSeedCsv.ToList(); //sutvarkyti pagal irasa
 
             Hobbies = new List<Hobby>();
             List<int> indexesTaken = new List<int>(); //masyvas loginantis kokie hobiu indeksai jau buvo paimti
@@ -56,23 +56,7 @@ namespace P038_Integerence.Models
             }
         }
 
-        //public void PaimaHobiuSarasaIrPriskiriaAtsitiktinius4HobiusIProperties(int hobbiesCount) 
-        //{
-        //    List<string> hobbyDuomenuSarasas = HobbyInitialData.DataSeedCsv.ToList();
-
-        //    Random rnd = new Random();
-        //    int numberOfHobbies = hobbiesCount; //rnd.Next(0, 5);
-
-        //    for (int i = 0; i <= numberOfHobbies; i++)
-        //    {
-        //        Hobby hobby = new Hobby();
-
-        //        int rndIndx = rnd.Next(hobbyDuomenuSarasas.Count);
-        //        hobby.EncodeCsv(hobbyDuomenuSarasas[rndIndx]);
-        //        hobbyDuomenuSarasas.RemoveAt(rndIndx);
-        //        Hobbies.Add(hobby);
-        //    }
-        //}
+      
 
         public void SetProfession(Profession[] data)
         {
@@ -89,10 +73,8 @@ namespace P038_Integerence.Models
 
 
 
-        public string GetCsv()
+        public virtual string GetCsv()
         {
-
-
             return $"{Id},{FirstName},{LastName},{Gender},{BirthDate},{Weight},{Height},{Profession.Id}" +
                 $",{(Hobbies.Count > 0 ? Hobbies[0].Id : "")}" +
                 $",{(Hobbies.Count > 1 ? Hobbies[1].Id : "")}" +
@@ -123,9 +105,9 @@ namespace P038_Integerence.Models
                 Profession = new Profession(randomProfession.Split(","));
             }
         }
-        public string GetCSV()
+        public string Get_CSV()
         {
-            var text = new StringBuilder(Profession.GetCsv());
+            var text = new StringBuilder(Profession.Get_Csv());
 
             foreach (var hobby in Hobbies)
             {
