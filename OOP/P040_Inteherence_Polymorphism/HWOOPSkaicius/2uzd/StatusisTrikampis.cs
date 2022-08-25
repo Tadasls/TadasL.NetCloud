@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace HWOOPSkaiciavimas._2uzd
 {
-    public class Kvadratas : Figura, IGeometrija
+    public class StatusisTrikampis : Figura, IGeometrija
     {
+
         public int KrastinesIlgis { get; }
     }
 }

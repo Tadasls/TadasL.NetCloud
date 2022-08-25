@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HWOOPSkaiciavimas
+namespace HWOOPSkaiciavimas._2uzd
 {
-    internal class Staciakampis
+    public class Staciakampis : Figura, IGeometrija
     {
+        public int TrumposiosKrastinesIlgis { get; }
+        public int IlgosiosKrastinesIlgis { get; }
     }
 }

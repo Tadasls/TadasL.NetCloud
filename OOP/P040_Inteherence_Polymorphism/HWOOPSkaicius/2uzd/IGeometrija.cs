@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HWOOPSkaiciavimas
+namespace HWOOPSkaiciavimas._2uzd
 {
-    public class IGeometrija
+    public interface IGeometrija
     {
         public double Plotas(int skaicius)
         {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HWOOPSkaiciavimas
+namespace HWOOPSkaiciavimas._2uzd
 {
-    public class Figura
+    public class Apskritimas : Figura, IGeometrija
     {
+        public int SpinfulioIlgis { get; }
 
-        public string Name { get; }
     }
 }
