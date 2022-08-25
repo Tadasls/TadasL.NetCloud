@@ -10,5 +10,14 @@ namespace HWOOPSkaiciavimas._2uzd
     {
         public int SpinfulioIlgis { get; }
 
+        public double Perimetras()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Plotas()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

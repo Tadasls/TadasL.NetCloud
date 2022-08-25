@@ -10,5 +10,15 @@ namespace HWOOPSkaiciavimas._2uzd
     {
 
         public int KrastinesIlgis { get; }
+
+        public double Perimetras()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Plotas()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
