@@ -34,12 +34,19 @@ namespace HWOOPSkaiciavimas._4uzd
 
         public string GetHobbyInformation()
         {
-            throw new NotImplementedException();
+            string info = $"This Song genre is  {Genre} and this rating is: {Rating} ";
+            return info;
         }
 
         public string GetHobbyName()
         {
-            throw new NotImplementedException();
+            return nameof(Music);
         }
-    }
+
+
+
+    }  
 }
+
+    
+
