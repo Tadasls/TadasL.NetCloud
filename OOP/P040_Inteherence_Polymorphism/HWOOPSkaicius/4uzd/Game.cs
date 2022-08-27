@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HWOOPSkaiciavimas._4uzd
 {
-    public class Game
+    public class Game : IHobby
     {
         public Game()
         {
@@ -24,5 +24,22 @@ namespace HWOOPSkaiciavimas._4uzd
         public int Platform { get; set; }
         public bool IsMultiplayer { get; set; }
 
+        public string Name => throw new NotImplementedException();
+
+        public string Publisher => throw new NotImplementedException();
+
+        public string Genre => throw new NotImplementedException();
+
+        public int Rating => throw new NotImplementedException();
+
+        public string GetHobbyInformation()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetHobbyName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
