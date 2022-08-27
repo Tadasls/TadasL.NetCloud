@@ -16,10 +16,14 @@
         o   String Publisher get
         o   String Genre get
         o   Int Rating get
-        o   String GetHobbyName() -> Turetu grazinti atgal ar tai filmas, daina ar zaidimas
-        o String GetHobbyInformation() -> Turetu grazinti atgal informacija apie pati hobi pvz, kad tai filmas kazkokio zanro, kurio ivertinimas yra X/Y
-        -	Sukurti<Person> klase, kuri turetu savyje laikyti sarasa megstamiausiu dalyku.Turetume galeti programos eigoje prideti i ta pati sarasa bet koki Hobby t.y Movie, Music, Game
-        -	Sukurti<IPerson>
+        o   String GetHobbyName() -> Turetu grazinti atgal ar tai filmas, daina ar zaidimas+
+        o String GetHobbyInformation() -> Turetu grazinti atgal informacija apie pati hobi pvz, kad tai filmas kazkokio zanro, kurio ivertinimas yra X/Y+
+
+        -	Sukurti<Person> klase, kuri turetu savyje laikyti sarasa megstamiausiu dalyku.
+          Turetume galeti programos eigoje prideti i ta pati sarasa bet koki Hobby t.y Movie, Music, Game +
+
+
+        -	Sukurti<IPerson>+
         o   Void Interact(<IHobby>) -> Turetu atspausdinti i ekrana informacija apie tai kas ivyksta kada vartotojas nusprendzia uzsiimti paduota veikla.Pvz jei buna paduodamas filmas i ekrana turetu isvesti “<UserName> will now watch a<MovieName> which is a<Genre> movie.
         o   string GetFavoriteHobbyType() -> Turetu gauti hobio tipa (pvz Movie). Atspausdinti apie tai informacija I ekrana ir grazinti atgal hobio pavadinima
         o   IHobby GetFavoriteHobby() -> Turetu grazinti megstamiausios rusies hobio auksciausia ivertinima turincio iraso informacija
