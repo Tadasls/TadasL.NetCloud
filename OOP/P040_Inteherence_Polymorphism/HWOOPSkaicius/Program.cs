@@ -8,9 +8,9 @@
 
 
           /*  uzd 4
-        - Sukurti < Movie > klase(Id, CreationDate)
-        - Sukurti < Music > klase(Id, Length, ArtistName)
-        - Sukurti < Game > klase(Id, Platform, IsMultiplayer)
+        - Sukurti < Movie > klase(Id, CreationDate) +
+        - Sukurti < Music > klase(Id, Length, ArtistName) + 
+        - Sukurti < Game > klase(Id, Platform, IsMultiplayer) + 
         - Sukurti < IHobby > interface ir visoms sukurtoms klasems sukurti interface implementacijas :
         o   String Name get
         o   String Publisher get
