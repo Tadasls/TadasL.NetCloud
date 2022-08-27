@@ -13,8 +13,8 @@ namespace HWOOPSkaiciavimas
         int Atimti(int skaicius);
         int Padauginti(int skaicius);
         double Padalinti(int skaicius);
-        int PakeltiKvadratu(int skaicius);
-        int PakeltiKubu(int skaicius);
+        int PakeltiKvadratu();
+        int PakeltiKubu();
     }
 
 }

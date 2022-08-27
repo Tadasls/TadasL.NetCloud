@@ -12,11 +12,11 @@ namespace HWOOPSkaiciavimas.Tests
     public class Skaicius_tests
     {
         [TestMethod]
-        public void DefaultConstruktorTest()
+       public void UzdavinioTestas()
         {
-            var actual = new Skaicius();
-            int expected = 0;
-            Assert.AreEqual(expected, actual.Reiksme);
+            var actual = new Skaicius(3);
+            var expected = 3;
+            Assert.AreEqual(actual.Reiksme, expected);
         }
 
         [TestMethod]
@@ -27,34 +27,7 @@ namespace HWOOPSkaiciavimas.Tests
             Assert.AreEqual(expected, actual.Reiksme);
         }
 
-        [TestMethod]
-        public void Atimti_test()
-        {
-            var actual = new Skaicius(5);
 
-            int expected = 3;
-            Assert.AreEqual(expected, actual.Atimti(2));
-        }
-
-        [TestMethod]
-        public void Padalinti_test()
-        {
-            var actual = new Skaicius(10);
-
-            int expected = 5;
-            // 10 / 2 = 5
-            Assert.AreEqual(expected, actual.Padalinti(2));
-        }
-
-        [TestMethod]
-        public void Padauginti_test()
-        {
-            var actual = new Skaicius(10);
-
-            int expected = 20;
-            // 10 * 2 = 20
-            Assert.AreEqual(expected, actual.Padauginti(2));
-        }
 
         [TestMethod]
         public void PakeltiKubu_test()
@@ -77,14 +50,44 @@ namespace HWOOPSkaiciavimas.Tests
         }
 
         [TestMethod]
-        public void Prideti_test()
+        public void Sumos_test()
         {
-            var actual = new Skaicius(10);
+            int expected = 10;
+            Skaicius penketukas = new Skaicius(5);
+            int actual = penketukas.Prideti(5);
 
-            int expected = 15;
-            // 10 + 5 = 15
-            Assert.AreEqual(expected, actual.Prideti(5));
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void Skirtumo_test()
+        {
+            int expected = 7;
+            IMatematika penketukas = new Skaicius(10);
+            int actual = penketukas.Atimti(3);
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Dalybos_test()
+        {
+            int expected = 2;
+            Skaicius penketukas = new Skaicius(8);
+            double actual = penketukas.Padalinti(4);
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Daugybos_test()
+        {
+            int expected = 25;
+            Skaicius penketukas = new Skaicius(5);
+            double actual = penketukas.Padauginti(5);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
 
     }
 }

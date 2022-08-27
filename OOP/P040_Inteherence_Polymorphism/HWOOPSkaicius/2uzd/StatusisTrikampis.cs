@@ -8,17 +8,24 @@ namespace HWOOPSkaiciavimas._2uzd
 {
     public class StatusisTrikampis : Figura, IGeometrija
     {
-
-        public int KrastinesIlgis { get; }
-
-        public double Perimetras()
+        public StatusisTrikampis()
         {
-            throw new NotImplementedException();
+
         }
 
-        public double Plotas()
+        public StatusisTrikampis(int aKrastinesIlgis, int bKrastinesIlgis, int cKrastinesIlgis) : base("Stat_Trikampis")
         {
-            throw new NotImplementedException();
+            AKrastinesIlgis = aKrastinesIlgis;
+            BKrastinesIlgis = bKrastinesIlgis;
+            CKrastinesIlgis = cKrastinesIlgis;
         }
+
+        public int AKrastinesIlgis { get; }
+        public int BKrastinesIlgis { get; }
+        public int CKrastinesIlgis { get; }
+
+        public double Perimetras() => AKrastinesIlgis + BKrastinesIlgis + CKrastinesIlgis;
+
+        public double Plotas() => (AKrastinesIlgis * BKrastinesIlgis )/ 2;
     }
 }

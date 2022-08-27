@@ -8,6 +8,16 @@ namespace HWOOPSkaiciavimas._2uzd
 {
     public class Figura
     {
+        public Figura()
+        {
+
+        }
+
+        public Figura(string name)
+        {
+            Name = name;
+        }
+
         public string Name { get; }
     }
 }

@@ -8,16 +8,22 @@ namespace HWOOPSkaiciavimas._2uzd
 {
     public class Apskritimas : Figura, IGeometrija
     {
+        public Apskritimas()
+        {
+
+        }
+
+        public Apskritimas(int spinfulioIlgis) : base("Apskritimas")
+        {
+            SpinfulioIlgis = spinfulioIlgis;
+        }
+
         public int SpinfulioIlgis { get; }
 
-        public double Perimetras()
-        {
-            throw new NotImplementedException();
-        }
+        public double Perimetras() => 2*3.14 * SpinfulioIlgis;
+       
 
-        public double Plotas()
-        {
-            throw new NotImplementedException();
-        }
+        public double Plotas() => (SpinfulioIlgis * SpinfulioIlgis) * 3.14;
+          
     }
 }

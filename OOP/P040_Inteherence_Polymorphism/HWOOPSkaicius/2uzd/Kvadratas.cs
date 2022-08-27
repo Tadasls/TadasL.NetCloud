@@ -8,18 +8,20 @@ namespace HWOOPSkaiciavimas._2uzd
 {
     public class Kvadratas : Figura, IGeometrija
     {
+        public Kvadratas()
+        {
+
+        }
+
+        public Kvadratas(int krastinesIlgis) : base("Kvadratas")
+        {
+            KrastinesIlgis = krastinesIlgis;
+        }
+
         public int KrastinesIlgis { get; }
 
-        public double Perimetras()
-        {
-            double perimetras = 2*(KrastinesIlgis + KrastinesIlgis);
-            return perimetras;
-        }
-
-        public double Plotas()
-        {
-            double plotas = KrastinesIlgis * KrastinesIlgis;
-            return plotas;
-        }
+        public double Perimetras() => KrastinesIlgis*4;
+        public double Plotas() => KrastinesIlgis* KrastinesIlgis;
+        
     }
 }
