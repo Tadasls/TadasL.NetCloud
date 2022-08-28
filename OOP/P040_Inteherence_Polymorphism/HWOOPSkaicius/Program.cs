@@ -1,33 +1,74 @@
-﻿namespace HWOOPSkaiciavimas
+﻿using HWOOPSkaiciavimas._4uzd;
+using System.Collections.Generic;
+
+namespace HWOOPSkaiciavimas
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Skaicius!");
+            Console.WriteLine("Hello, 4 uzd!");
+            Person person = new Person(1, "Antanas", "Antanaitis");
+            Movie filmas = new Movie()
+            {
+                Id = 1,
+                Name = "Matrix",
+                Genre = "Fantasy",
+                Publisher ="Disney",
+                Rating = 9,
+                CreationDate = DateTime.Now,
+            };
+            Music daina = new Music()
+            {
+                Name = "Let it Be",
+                Genre = "Pop",
+
+            };
+            Game zaidimas = new Game()
+            {
+                Name = "WOT",
+                Genre = "PPS",
+
+            };
+            List<IHobby> MegstamiDalykai = new List<IHobby>() { filmas, daina, zaidimas };
+
+            person.Interact(daina);
+            person.GetFavoriteHobbyType(filmas);
+            person.GetFavoriteHobby(MegstamiDalykai);
 
 
-          /*  uzd 4
-        - Sukurti < Movie > klase(Id, CreationDate) +
-        - Sukurti < Music > klase(Id, Length, ArtistName) + 
-        - Sukurti < Game > klase(Id, Platform, IsMultiplayer) + 
-        - Sukurti < IHobby > interface ir visoms sukurtoms klasems sukurti interface implementacijas :
-        o   String Name get
-        o   String Publisher get
-        o   String Genre get
-        o   Int Rating get
-        o   String GetHobbyName() -> Turetu grazinti atgal ar tai filmas, daina ar zaidimas+
-        o String GetHobbyInformation() -> Turetu grazinti atgal informacija apie pati hobi pvz, kad tai filmas kazkokio zanro, kurio ivertinimas yra X/Y+
+            //-> Turetu grazinti megstamiausios rusies hobio auksciausia ivertinima turincio iraso informacija
 
-        -	Sukurti<Person> klase, kuri turetu savyje laikyti sarasa megstamiausiu dalyku.
-          Turetume galeti programos eigoje prideti i ta pati sarasa bet koki Hobby t.y Movie, Music, Game +
+            #region
+            /*  uzd 4
+                   - Sukurti < Movie > klase(Id, CreationDate) +
+                   - Sukurti < Music > klase(Id, Length, ArtistName) + 
+                   - Sukurti < Game > klase(Id, Platform, IsMultiplayer) + 
+                   - Sukurti < IHobby > interface ir visoms sukurtoms klasems sukurti interface implementacijas :
+                   o   String Name get
+                   o   String Publisher get
+                   o   String Genre get
+                   o   Int Rating get
+                   o   String GetHobbyName() -> Turetu grazinti atgal ar tai filmas, daina ar zaidimas+
+                   o String GetHobbyInformation() -> Turetu grazinti atgal informacija apie pati hobi pvz, kad tai filmas kazkokio zanro, kurio ivertinimas yra X/Y+
+                   -	Sukurti<Person> klase, kuri turetu savyje laikyti sarasa megstamiausiu dalyku.
+                     Turetume galeti programos eigoje prideti i ta pati sarasa bet koki Hobby t.y Movie, Music, Game +
 
-
-        -	Sukurti<IPerson>+
-        o   Void Interact(<IHobby>) -> Turetu atspausdinti i ekrana informacija apie tai kas ivyksta kada vartotojas nusprendzia uzsiimti paduota veikla.Pvz jei buna paduodamas filmas i ekrana turetu isvesti “<UserName> will now watch a<MovieName> which is a<Genre> movie.
-        o   string GetFavoriteHobbyType() -> Turetu gauti hobio tipa (pvz Movie). Atspausdinti apie tai informacija I ekrana ir grazinti atgal hobio pavadinima
-        o   IHobby GetFavoriteHobby() -> Turetu grazinti megstamiausios rusies hobio auksciausia ivertinima turincio iraso informacija
+                   -	Sukurti<IPerson>+
+                   o   Void Interact(<IHobby>) -> Turetu atspausdinti i ekrana informacija apie tai kas ivyksta kada vartotojas nusprendzia uzsiimti paduota veikla.+
+           Pvz jei buna paduodamas filmas i ekrana turetu isvesti “<UserName> will now watch a<MovieName> which is a<Genre> movie.
+                string GetFavoriteHobbyType() -> Turetu gauti hobio tipa (pvz Movie). Atspausdinti apie tai informacija I ekrana ir grazinti atgal hobio pavadinima+
+              o   IHobby GetFavoriteHobby() -> Turetu grazinti megstamiausios rusies hobio auksciausia ivertinima turincio iraso informacija +/-
+            
+             
+             */
+            #endregion
+            /*
+          
+       
         o List<IHobby> GetFavoriteFromEachHobby() -> Turetu grazinti auksciausio ivertinimo irasa is kiekvienos rusies hobio
+
+
         o   String GetFavoriteMusicGenre() -> Turetu grazinti megstamiausia dazniausiai pasikartojanti muzikos zanra zmogaus hobiuose
         o   Dictionary<string, int> GetEachHobbyAvgRating() -> Grazina dictionary su irasais kuriuose key yra hobio tipas pvz filmas, o value yra vidurkis
         o Void ShareHobbies(<Person>) -> Pasidalina hobiais su paduotu zmogumi ir tie hobiai prisideda prie perduoto zmogaus hobiu
@@ -41,6 +82,6 @@
 
             */
 
-    }
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace P040_InterfacesPolymorphism
         {
             // Klases kontrakto dalis yra VISKAS KAS YRA PUBLIC
             public string Color { get; set; } // Klases kontrakto dalis
+
             private List<INameable> _items = new List<INameable>();
             public void AddItem(INameable itemWithName) // Klases kontrakto dalis
             {

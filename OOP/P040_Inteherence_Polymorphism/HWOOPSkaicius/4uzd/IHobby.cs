@@ -18,5 +18,10 @@ namespace HWOOPSkaiciavimas._4uzd
         string GetHobbyInformation();
 
 
+
+       
+
+
+
     }
 }

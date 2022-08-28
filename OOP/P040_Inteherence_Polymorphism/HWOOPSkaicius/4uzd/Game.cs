@@ -12,29 +12,24 @@ namespace HWOOPSkaiciavimas._4uzd
         {
 
         }
-
         public Game(int id, int platform, bool isMultiplayer)
         {
             Id = id;
             Platform = platform;
             IsMultiplayer = isMultiplayer;
         }
-
         public int Id { get; set; }
         public int Platform { get; set; }
         public bool IsMultiplayer { get; set; }
 
-        public string Name => throw new NotImplementedException();
-
-        public string Publisher => throw new NotImplementedException();
-
-        public string Genre => throw new NotImplementedException();
-
-        public int Rating => throw new NotImplementedException();
+        public string Name { get; set; }
+        public string Publisher { get; set; }
+        public string Genre { get; set; }
+        public int Rating { get; set; }
 
         public string GetHobbyInformation()
         {
-            string info = $"This Game genre is  {Genre} and this rating is: {Rating} ";
+            string info = $"This Game genre is  {Genre} and this rating is: {Rating} made by {Publisher}";
             return info;
         }
 

@@ -24,17 +24,14 @@ namespace HWOOPSkaiciavimas._4uzd
         public int Length { get; set; }
         public string ArtistName { get; set; }
 
-        public string Name => throw new NotImplementedException();
-
-        public string Publisher => throw new NotImplementedException();
-
-        public string Genre => throw new NotImplementedException();
-
-        public int Rating => throw new NotImplementedException();
+        public string Name { get; set; }
+        public string Publisher { get; set; }
+        public string Genre { get; set; }
+        public int Rating { get; set; }
 
         public string GetHobbyInformation()
         {
-            string info = $"This Song genre is  {Genre} and this rating is: {Rating} ";
+            string info = $"This Company {Publisher} made Song which genre is {Genre} and this rating is: {Rating} ";
             return info;
         }
 
