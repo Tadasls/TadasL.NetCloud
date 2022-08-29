@@ -38,7 +38,7 @@ namespace HWOOPSkaiciavimas._4uzd
         }
         public string GetFavoriteHobby(List<IHobby> MegstamiDalykai)
         {
-            MegstamiDalykai.Sort((h1, h2) => h1.Rating.CompareTo(h2.Rating));
+            MegstamiDalykai.Sort((h1, h2) => h2.Rating.CompareTo(h1.Rating));
             return MegstamiDalykai[0].GetHobbyInformation(); 
         } 
 
@@ -209,7 +209,7 @@ namespace HWOOPSkaiciavimas._4uzd
 
             return sutampantysZanrai;
         }
-        void AddRandomToCheckList(Person person2) 
+        public void AddRandomToCheckList(Person person2) 
         {
             List<IHobby> skirtingiHobiai = new List<IHobby>();
             foreach (IHobby hobis in this.MegstamiDalykai)

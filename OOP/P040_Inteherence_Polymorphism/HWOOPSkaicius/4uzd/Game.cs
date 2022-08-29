@@ -18,6 +18,15 @@ namespace HWOOPSkaiciavimas._4uzd
             Platform = platform;
             IsMultiplayer = isMultiplayer;
         }
+
+        public Game(int id, int platform, bool isMultiplayer, string name, string publisher, string genre, int rating) : this(id, platform, isMultiplayer)
+        {
+            Name = name;
+            Publisher = publisher;
+            Genre = genre;
+            Rating = rating;
+        }
+
         public int Id { get; set; }
         public int Platform { get; set; }
         public bool IsMultiplayer { get; set; }

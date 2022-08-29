@@ -64,11 +64,8 @@ namespace HWOOPSkaiciavimas
              */
             #endregion
             /*
-          
-       
+
         o List<IHobby> GetFavoriteFromEachHobby() -> Turetu grazinti auksciausio ivertinimo irasa is kiekvienos rusies hobio
-
-
         o   String GetFavoriteMusicGenre() -> Turetu grazinti megstamiausia dazniausiai pasikartojanti muzikos zanra zmogaus hobiuose
         o   Dictionary<string, int> GetEachHobbyAvgRating() -> Grazina dictionary su irasais kuriuose key yra hobio tipas pvz filmas, o value yra vidurkis
         o Void ShareHobbies(<Person>) -> Pasidalina hobiais su paduotu zmogumi ir tie hobiai prisideda prie perduoto zmogaus hobiu
