@@ -101,30 +101,30 @@ namespace HWOOPSkaiciavimas._4uzd
                 { "Movie", 0 },
                 { "Music", 0 }
             };
-            int[] count = new int[3];
+            int[] skaiciuokle = new int[3];
 
             foreach (IHobby hobis in MegstamiDalykai)
             {
                 if (hobis.GetHobbyName() == "Game")
                 {
                     vidIvertinimas["Game"] += hobis.Rating;
-                    count[0]++;
+                    skaiciuokle[0]++;
                 }
                 else if (hobis.GetHobbyName() == "Movie")
                 {
                     vidIvertinimas["Movie"] += hobis.Rating;
-                    count[1]++;
+                    skaiciuokle[1]++;
                 }
                 else if (hobis.GetHobbyName() == "Music")
                 {
                     vidIvertinimas["Music"] += hobis.Rating;
-                    count[2]++;
+                    skaiciuokle[2]++;
                 }
             }
 
-            vidIvertinimas["Game"] += vidIvertinimas["Game"] / count[0];
-            vidIvertinimas["Movie"] += vidIvertinimas["Movie"] / count[0];
-            vidIvertinimas["Music"] += vidIvertinimas["Music"] / count[0];
+            vidIvertinimas["Game"] += vidIvertinimas["Game"] / skaiciuokle[0];
+            vidIvertinimas["Movie"] += vidIvertinimas["Movie"] / skaiciuokle[1];
+            vidIvertinimas["Music"] += vidIvertinimas["Music"] / skaiciuokle[2];
 
             return vidIvertinimas;
         } // -> Grazina dictionary su irasais kuriuose key yra hobio tipas pvz filmas, o value yra vidurkis
