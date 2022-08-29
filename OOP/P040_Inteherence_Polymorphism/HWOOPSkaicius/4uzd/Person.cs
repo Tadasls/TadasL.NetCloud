@@ -41,7 +41,6 @@ namespace HWOOPSkaiciavimas._4uzd
             MegstamiDalykai.Sort((h1, h2) => h2.Rating.CompareTo(h1.Rating));
             return MegstamiDalykai[0].GetHobbyInformation(); 
         } 
-
         public List<IHobby> GetFavoriteFromEachHobby()
         {
             List<IHobby> megstamiausiHobiai = new List<IHobby>(3);
@@ -128,7 +127,6 @@ namespace HWOOPSkaiciavimas._4uzd
 
             return vidIvertinimas;
         } // -> Grazina dictionary su irasais kuriuose key yra hobio tipas pvz filmas, o value yra vidurkis
-
         public void ShareHobbies(Person person2)
         {
             person2.MegstamiDalykai.AddRange(MegstamiDalykai);
@@ -156,7 +154,6 @@ namespace HWOOPSkaiciavimas._4uzd
             person2.MegstamiDalykai.AddRange(naujiFilmai);
 
         }
-
         public List<IHobby> FindSimilarHobbies(Person person2) 
         {
            List<IHobby> sutampantysHobiai = new List<IHobby>();

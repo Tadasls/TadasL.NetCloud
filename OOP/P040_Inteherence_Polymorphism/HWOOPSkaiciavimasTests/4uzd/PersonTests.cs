@@ -29,11 +29,8 @@ namespace HWOOPSkaiciavimas._4uzd.Tests
             string actual1 = fakePerson.GetFavoriteHobbyType(fakeFilmas);
             Assert.AreEqual(expected1, actual1);
 
-           
-
         }
 
-        
 
         [TestMethod()]
         public void GetFavoriteHobbyTest()
@@ -65,15 +62,17 @@ namespace HWOOPSkaiciavimas._4uzd.Tests
             };
             List<IHobby> MegstamiDalykai = new List<IHobby>() { filmas, daina, zaidimas };
 
-
-
             string actual1 = fakePerson.GetFavoriteHobby(MegstamiDalykai);
             Assert.AreEqual(expected1, actual1);
-          
-
 
         }
 
-      
+       
+
+   
+
+
+
+
     }
 }
