@@ -67,9 +67,33 @@ namespace HWOOPSkaiciavimas._4uzd.Tests
 
         }
 
-       
+        //[TestMethod]
+        //public void GetFavoriteFromEachHobby_Test()
+        //{
+        //    var fakeHobiai = new List<IHobby>()
+        //    {
+        //        new Music(),
+        //        new Game(),
+        //        new Movie(),
+        //    };
 
-   
+        //    var fakePerson = new Person(5, "Billas", "Geitsas");
+            
+
+        //    var expected = new List<IHobby>()
+        //    {
+        //        new Music(),
+        //        new Game(),
+        //        new Movie(),
+        //    };
+        //    fakePerson.MegstamiDalykai = fakeHobiai;
+
+        //    var actual = fakePerson.GetFavoriteFromEachHobby();
+
+        //    CollectionAssert.AreEqual(expected, actual);
+        //}
+
+        
 
 
 
