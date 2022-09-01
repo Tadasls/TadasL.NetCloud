@@ -11,6 +11,6 @@ namespace P042_Praktika.Models.Interface
     public interface IBookHtmlService
     {
         Dictionary<BookType, List<Book>>Decode(string dataSeed);
-        string Encode(Dictionary<BookType, List<Book>> books);
+        string Encode(List<Book> books);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using P042_Praktika.Enums;
 using P042_Praktika.Models.Abstract;
-using P042_Praktika.Models.Concreate;
+using P042_Praktika.Models.Concrete;
 using P042_Praktika.Models.Interface;
+using P043_Uzduotys.Models.Concrete;
+using P043_Uzduotys.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,9 +132,23 @@ namespace P042_Praktika.Services
             return bs;
         }
 
-        public string Encode(Dictionary<BookType, List<Book>> books)
+        public string Encode(List<Book> books)
         {
-            throw new NotImplementedException();
+            List<BookHtml> res = new List<BookHtml>();
+            books.Sort((x, y) => x.Title.CompareTo(y.Title));
+            string lastTitle = "";
+            foreach (var book in books)
+            {
+                if (lastTitle != book.Title)
+                {
+                    res.Add(new BookHtml());
+                }
+                book.SetDataTo(res[res.Count - 1]);
+                lastTitle = book.Title;
+            }
+
+            return res.ToHtml();
         }
     }
 }
+
