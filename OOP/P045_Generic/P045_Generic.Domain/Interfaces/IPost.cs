@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace P045_Generics.Domain.Interfaces
 {
-    public interface IEntityRepository<T>
+    public interface IPost
     {
-        void Add(T entity);
-        void Remove(T entity);
-        void Print();
-        List<T> Fetch();
     }
 }

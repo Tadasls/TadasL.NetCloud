@@ -7,26 +7,13 @@ using System.Threading.Tasks;
 
 namespace P045_Generics.Domain.Models
 {
-    public class PrivateClient : IEntityRepository
+    public class PrivateClient : IUser
     {
-        public void Add()
+        public PrivateClient()
         {
-            throw new NotImplementedException();
-        }
 
-        public void Fetch()
-        {
-            throw new NotImplementedException();
         }
-
-        public void Print()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove()
-        {
-            throw new NotImplementedException();
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

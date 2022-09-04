@@ -7,26 +7,15 @@ using System.Threading.Tasks;
 
 namespace P045_Generics.Domain.Models
 {
-    public class BusinessClient : IEntityRepository
+    public class BusinessClient : IUser
     {
-        public void Add()
+
+        public BusinessClient()
         {
-            throw new NotImplementedException();
+                
         }
 
-        public void Fetch()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Print()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove()
-        {
-            throw new NotImplementedException();
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

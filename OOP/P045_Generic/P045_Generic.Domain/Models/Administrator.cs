@@ -7,26 +7,17 @@ using System.Threading.Tasks;
 
 namespace P045_Generics.Domain.Models
 {
-    public class Administrator : IEntityRepository
+    public class Administrator : IUser
     {
-        public void Add()
+
+        public Administrator()
         {
-            throw new NotImplementedException();
+
         }
 
-        public void Fetch()
-        {
-            throw new NotImplementedException();
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-        public void Print()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove()
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

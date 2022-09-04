@@ -10,7 +10,13 @@ namespace P045_Generics
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Generics!");
-            BasicGenericExamples();
+            // BasicGenericExamples();
+
+            IUser administrator = new Administrator();
+            IUser businessClient = new BusinessClient();
+            IUser privateClient = new PrivateClient();
+
+
         }
         #region PIRMI_PAVYZDZIAI
 
@@ -139,6 +145,13 @@ namespace P045_Generics
             NodeListFilterU<Fork, Tool> forkToolNodeList = new NodeListFilterU<Fork, Tool>();
             // NodeListFilterU priima tik klases, kurios paveldeja is U (Antro perduoto duomenu tipo)
             // NodeListFilterU<Fork, Keyboard> toolForkNodeList = new NodeListFilterU<Fork, Keyboard>();
+
+            //Fork fork3 = new Fork();
+            //Generic methotd = new Generic();
+            //methotd.Print("Hello");
+            //methotd.Print(fork3);
+
+
         }
 
         #endregion
