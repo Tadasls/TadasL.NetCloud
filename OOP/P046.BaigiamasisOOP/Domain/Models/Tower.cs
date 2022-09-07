@@ -14,14 +14,14 @@ namespace Domain.Models
         public List<Disk> cTower { get; set; } = new List<Disk>();
 
 
-        public List<Disk> Pole { get; set; }
-        public int Position { get; set; }
+        //public List<Disk> Pole { get; set; }
+        //public int Position { get; set; }
 
-        public Tower(int discs, int posistion)
-        {
-            Pole = new List<Disk>();
-            Position = posistion;
-        }
+        //public Tower(int discs, int posistion)
+        //{
+        //    Pole = new List<Disk>();
+        //    Position = posistion;
+        //}
 
 
 

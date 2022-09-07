@@ -100,7 +100,7 @@ namespace P046.BaigiamasisOOP
 
 
             #endregion
-            #region
+            #region // uzdavinio salyga
 
 
             /*
@@ -257,7 +257,7 @@ APRIBOJIMAI:
 
 
             #endregion
-            Hanoi();
+            
         }
 
         static void Hanoi()
