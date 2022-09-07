@@ -17,10 +17,41 @@ namespace P046.BaigiamasisOOP
 
             List<Disk> aTower = new List<Disk>() { };
 
-            List<Disk> bTower = new List<Disk>() { };
-            List<Disk> cTower = new List<Disk>() { };
-            List<List<Disk>> abcTowers = new List<List<Disk>>() { aTower, bTower, cTower };
+            aTower.Add(new Disk(0));
+            aTower.Add(new Disk(1));
+            aTower.Add(new Disk(2));
+            aTower.Add(new Disk(3));
+            aTower.Add(new Disk(4));
 
+
+            List<Disk> bTower = new List<Disk>() { };
+            bTower.Add(new Disk(0));
+            bTower.Add(new Disk(0));
+            bTower.Add(new Disk(0));
+            bTower.Add(new Disk(0));
+            bTower.Add(new Disk(0));
+
+            List<Disk> cTower = new List<Disk>() { };
+
+            cTower.Add(new Disk(0));
+            cTower.Add(new Disk(0));
+            cTower.Add(new Disk(0));
+            cTower.Add(new Disk(0));
+            cTower.Add(new Disk(0));
+            cTower.Add(new Disk(0));
+
+            List<List<Disk>> abcTowers = new List<List<Disk>>() { aTower, bTower, cTower };
+            
+            Game zaidimas = new Game();
+
+
+
+           
+
+
+
+            DrawHanoi(abcTowers);
+            Console.WriteLine();
 
 
             do
@@ -50,13 +81,10 @@ namespace P046.BaigiamasisOOP
                         Console.Write(" padėkite ant bokšto Nr: ");
                         moveTo = Console.ReadKey().KeyChar;
 
-                        DrawHanoi(abcTowers);
-
-                        //MoveDisc(Disk disc, inputA, moveTo)
-                        //{
-                        //    abcTowers[inputA - 1].Remove(disc);
-                        //    abcTowers[moveTo - 1].Add(disc);
-                        //}
+                        
+                         abcTowers[inputA].Remove(abcTowers[inputA][0]);
+                         abcTowers[moveTo].Add(abcTowers[moveTo][0]);
+                       
 
 
                         break;
@@ -69,7 +97,6 @@ namespace P046.BaigiamasisOOP
                         moveTo = Console.ReadKey().KeyChar;
 
 
-
                         break;
 
 
@@ -79,6 +106,7 @@ namespace P046.BaigiamasisOOP
                         Console.Write(" padėkite ant bokšto Nr: ");
                         moveTo = Console.ReadKey().KeyChar;
                         break;
+
                     case 'H':
                         Console.WriteLine("Prasoma Pagalba Help");
                         Console.Write(" padėkite ant bokšto Nr: ");
@@ -106,8 +134,7 @@ namespace P046.BaigiamasisOOP
                 if (abcTowers[2].Count == 3 && abcTowers[1].Count == 0 && abcTowers[0].Count == 0)
                 {
 
-                    DrawHanoi(abcTowers);
-                    Console.WriteLine(Environment.NewLine + "You won in " + sekosLogeris.ToString() + " moves, congratulations!");
+                     Console.WriteLine(Environment.NewLine + "You won in " + sekosLogeris.ToString() + " moves, congratulations!");
                     
                 }
 
@@ -116,21 +143,22 @@ namespace P046.BaigiamasisOOP
 
 
 
-            static void DrawHanoi(List<List<Disk>> towers)
+            static void DrawHanoi(List<List<Disk>> abcTowers)
             {
 
-                for (int a = 0; a < towers.Count; a++)
-                {
-                    Console.WriteLine("Tower " + (a + 1).ToString() + ":");
-                    for (int i = towers[a].Count - 1; i >= 0; i--)
-                    {
-                        Disk d = towers[a][i];
-                        string discString = new string(' ', d.Size) + d.Number + new string(' ', d.Size);
-                        Console.Write(new string(' ', d.Number));
-                        Console.Write(discString);
-                        Console.Write(new string(' ', d.Number));
 
-                    }
+
+
+                for (int i = 0; i < abcTowers.Count; i++)
+                {
+                    Console.WriteLine("Tower " + (i + 1).ToString() + " : ");
+
+
+                    Console.WriteLine($"{abcTowers[0][0].DiskoMatmuo}");
+                    Console.WriteLine($"{abcTowers[0][1].DiskoMatmuo}");
+                    Console.WriteLine($"{abcTowers[0][2].DiskoMatmuo}");
+
+
 
 
                 }

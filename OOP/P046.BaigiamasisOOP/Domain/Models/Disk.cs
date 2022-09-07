@@ -21,9 +21,9 @@ namespace Domain.Models
             Color = color;
         }
 
-        public Disk(int location, int diskoMatmuo)
+        public Disk(int diskoMatmuo)
         {
-            Location = location;
+            
             DiskoMatmuo = diskoMatmuo;
         }
 

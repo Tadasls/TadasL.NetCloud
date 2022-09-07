@@ -17,7 +17,10 @@ namespace Domain.Models
 
         public List<Disk> DiskuSarasas { get; set; } = new List<Disk>()
         {
-            new Disk() { Location = 0, DiskoMatmuo = 4 },
+            new Disk() { Location = 1, DiskoMatmuo = 1 },
+            new Disk() { Location = 2, DiskoMatmuo = 2 },
+            new Disk() { Location = 3, DiskoMatmuo = 3 },
+            new Disk() { Location = 4, DiskoMatmuo = 4 },
         };
        
 

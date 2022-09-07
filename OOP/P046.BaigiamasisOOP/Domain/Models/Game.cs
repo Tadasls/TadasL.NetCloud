@@ -19,10 +19,10 @@ namespace Domain.Models
         public DateTime ZaidimoData { get; set; }
 
                
-        public List<Tower> abcTowers { get; set; } 
+        public List<Tower> abcTowers { get; set; }
+
 
        
-
 
 
 
