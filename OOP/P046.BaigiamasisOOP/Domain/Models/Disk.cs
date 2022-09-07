@@ -21,11 +21,19 @@ namespace Domain.Models
             Color = color;
         }
 
-        public int Number;
-        public int Size;
-        public ConsoleColor Color;
+        public Disk(int location, int diskoMatmuo)
+        {
+            Location = location;
+            DiskoMatmuo = diskoMatmuo;
+        }
 
-        public List<int> DiskoDydis { get; set; } = new List<int>() { 0, 1, 2, 3, 4 };
+        public int Location { get; set; }
+        public int Number { get; set; }
+        public int Size { get; set; }
+        public ConsoleColor Color { get; set; }
+        public int DiskoMatmuo { get; set; }
+
+       // public List<int> DiskoMatmuo { get; set; } = new List<int>() { 0, 1, 2, 3, 4 };
         public List<string> DiskoDydisString { get; set; } = new List<string>() { "      |      ", "     #|#     ", "    ##|##    ", "   ###|###   ", "  ####|####  " };
 
 
