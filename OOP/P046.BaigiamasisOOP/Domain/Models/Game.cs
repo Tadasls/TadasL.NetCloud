@@ -18,7 +18,11 @@ namespace Domain.Models
 
         public DateTime ZaidimoData { get; set; }
 
-               
+
+
+        public List<Disk> aTower { get; set; } = new List<Disk>();
+        public List<Disk> bTower { get; set; } = new List<Disk>();
+        public List<Disk> cTower { get; set; } = new List<Disk>();
 
         public List<Tower> abcTowers { get; set; } 
        

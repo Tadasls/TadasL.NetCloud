@@ -9,9 +9,7 @@ namespace Domain.Models
     public class Tower
     {
                        
-        public List<Disk> aTower { get; set; } = new List<Disk>();
-        public List<Disk> bTower { get; set; } = new List<Disk>();
-        public List<Disk> cTower { get; set; } = new List<Disk>();
+       
 
 
         //public List<Disk> Pole { get; set; }
