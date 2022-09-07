@@ -9,102 +9,100 @@ namespace P046.BaigiamasisOOP
             Console.WriteLine("Hello, TOWER OF HANOI!");
             #region    
 
-            //string D0 = "      |      ";
-            //string D1 = "     #|#     ";
-            //string D2 = "    ##|##    ";
-            //string D3 = "   ###|###   ";
-            //string D4 = "  ####|####  ";
-            //string aEil = "       ----1stulp-------2stulp-------3stulp----";
+            string D0 = "      |      ";
+            string D1 = "     #|#     ";
+            string D2 = "    ##|##    ";
+            string D3 = "   ###|###   ";
+            string D4 = "  ####|####  ";
+            string aEil = "       ----1stulp-------2stulp-------3stulp----";
 
 
 
-            //string L0 = $"{D0}{D0}{D0}";
-            //string L1 = $"{D1}{D0}{D0}";
-            //string L2 = $"{D2}{D0}{D0}";
-            //string L3 = $"{D3}{D0}{D0}";
-            //string L4 = $"{D4}{D0}{D0}";
+            string L0 = $"{D0}{D0}{D0}";
+            string L1 = $"{D1}{D0}{D0}";
+            string L2 = $"{D2}{D0}{D0}";
+            string L3 = $"{D3}{D0}{D0}";
+            string L4 = $"{D4}{D0}{D0}";
 
-            //List<string> C1 = new List<string>() { D0, D0, D0 };
-            //List<string> C2 = new List<string>() { D0, D0, D0 };
-            //List<string> C3 = new List<string>() { D0, D0, D0 };
-
-
-
-            //Console.WriteLine($"1eil. {L0}");
-            //Console.WriteLine($"2eil. {L1}");
-            //Console.WriteLine($"3eil. {L2}");
-            //Console.WriteLine($"4eil. {L3}");
-            //Console.WriteLine($"5eil. {L4}");
-            //Console.WriteLine(aEil);
-
-            //int sekosLogeris = 0;
-            //ConsoleKeyInfo input;
+            List<string> C1 = new List<string>() { D0, D0, D0 };
+            List<string> C2 = new List<string>() { D0, D0, D0 };
+            List<string> C3 = new List<string>() { D0, D0, D0 };
 
 
 
-            //do
-            //{
+            Console.WriteLine($"1eil. {L0}");
+            Console.WriteLine($"2eil. {L1}");
+            Console.WriteLine($"3eil. {L2}");
+            Console.WriteLine($"4eil. {L3}");
+            Console.WriteLine($"5eil. {L4}");
+            Console.WriteLine(aEil);
 
-
-            //    do
-            //    {
-
-            //        Console.WriteLine("Pasirenkite vieną iš 3 stulpelių");
-            //        input = Console.ReadKey();
-            //        if (input.Key == ConsoleKey.Escape)
-            //        {
-            //            Environment.Exit(0);
-            //        }
-
-            //    } while ( input.KeyChar == '1' && input.KeyChar == '2' && input.KeyChar == '3' && input.KeyChar == 'H' && input.KeyChar == 'h'  ); 
+            int sekosLogeris = 0;
+            ConsoleKeyInfo input;
 
 
 
-            //    switch (input.Key)
-            //    {
-
-            //        case ConsoleKey.NumPad1:
-            //            Console.WriteLine("pirmas stulpelis");
-            //            sekosLogeris++;
+            do
+            {
 
 
+                do
+                {
 
-            //            break;
+                    Console.WriteLine("Pasirenkite vieną iš 3 stulpelių");
+                    input = Console.ReadKey();
+                    if (input.Key == ConsoleKey.Escape)
+                    {
+                        Environment.Exit(0);
+                    }
 
-            //        case ConsoleKey.NumPad2:
-            //            Console.WriteLine("antras stulpelis");
-            //            sekosLogeris++;
-            //            break;
-
-
-            //        case ConsoleKey.NumPad3:
-            //            Console.WriteLine("trecias stulpelis");                      
-            //            sekosLogeris++;
-
-            //            break;
-            //        case ConsoleKey.H:
-            //            Console.WriteLine("Help");
+                } while (input.KeyChar == '1' && input.KeyChar == '2' && input.KeyChar == '3' && input.KeyChar == 'H' && input.KeyChar == 'h');
 
 
-            //            break;
 
-            //        default:
-            //            Console.WriteLine("NETEISINGA ĮVESTIS");
-            //            break;
-            //    }
+                switch (input.Key)
+                {
+
+                    case ConsoleKey.NumPad1:
+                        Console.WriteLine("pirmas stulpelis");
+                        sekosLogeris++;
 
 
-            //    Console.WriteLine("Ėjimas " + sekosLogeris);
-            //    Console.WriteLine("Diskas rankoje: " + input); //todo
-            //} while (true);
+
+                        break;
+
+                    case ConsoleKey.NumPad2:
+                        Console.WriteLine("antras stulpelis");
+                        sekosLogeris++;
+                        break;
+
+
+                    case ConsoleKey.NumPad3:
+                        Console.WriteLine("trecias stulpelis");
+                        sekosLogeris++;
+
+                        break;
+                    case ConsoleKey.H:
+                        Console.WriteLine("Help");
+
+
+                        break;
+
+                    default:
+                        Console.WriteLine("NETEISINGA ĮVESTIS");
+                        break;
+                }
+
+
+                Console.WriteLine("Ėjimas " + sekosLogeris);
+                Console.WriteLine("Diskas rankoje: " + input); //todo
+            } while (true);
 
 
             #endregion
-            #region
-
+            #region  // salyga zaidimo
 
             /*
-
               Ėjimas 0
 
               Diskas rankoje: 
@@ -257,7 +255,7 @@ APRIBOJIMAI:
 
 
             #endregion
-            Hanoi();
+
         }
 
         static void Hanoi()
@@ -289,7 +287,7 @@ APRIBOJIMAI:
                 char moveTo = Console.ReadKey().KeyChar;
                 UpdateHanoi(ref abcTowers, itemToMove, moveTo, ref keepPlaying, ref numberOfMoves);
             }
-        }
+        } // spalvoti hanoi
         static void UpdateHanoi(ref List<List<Disk>> towers, char itemToMove, char moveTo, ref bool keepPlaying, ref int numberOfMoves)
         {
             int itemToMoveParse;
@@ -319,7 +317,6 @@ APRIBOJIMAI:
                 }
             }
         }
-
         static Disk getDisc(List<List<Disk>> towers, int discNumber)
         {
             foreach (List<Disk> tower in towers)
@@ -334,7 +331,6 @@ APRIBOJIMAI:
             }
             return new Disk(0, 0, ConsoleColor.Black);
         }
-
         static bool discFree(List<Disk> tower, int discNumber)
         {
             if (tower.Last().Number == discNumber)
@@ -343,7 +339,6 @@ APRIBOJIMAI:
             }
             return false;
         }
-
         static int findTower(List<List<Disk>> towers, int discNumber)
         {
             int t = 0;
@@ -360,7 +355,6 @@ APRIBOJIMAI:
             }
             return 1;
         }
-
         static bool movePossible(List<List<Disk>> towers, Disk disc, int moveToParse)
         {
             int i = 0;
@@ -377,16 +371,11 @@ APRIBOJIMAI:
             }
             return false;
         }
-
-
         static void MoveDisc(Disk disc, ref List<List<Disk>> towers, int moveTo)
         {
             towers[findTower(towers, disc.Number) - 1].Remove(disc);
             towers[moveTo - 1].Add(disc);
         }
-
-
-
         static void DrawHanoi(List<List<Disk>> towers)
         {
             Console.WriteLine("Move all discs to tower 3" + Environment.NewLine);
@@ -422,10 +411,8 @@ APRIBOJIMAI:
         static void Game()  // sprendimui rasti metodas
             {
                 Tower tower = new Tower(); // naujas objektas sukuriamas
-                string cnumdiscs;
-
                 Console.Write("Enter the number of discs: ");
-                cnumdiscs = Console.ReadLine();
+                string cnumdiscs = Console.ReadLine();
                 tower.numdiscs = Convert.ToInt32(cnumdiscs);
                 tower.movetower(tower.numdiscs, 1, 3, 2);
                 Console.ReadLine();

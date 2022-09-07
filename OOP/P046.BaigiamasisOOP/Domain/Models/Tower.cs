@@ -14,10 +14,10 @@ namespace Domain.Models
         public List<Disk> cTower { get; set; } = new List<Disk>();
 
 
-        public List<Disk> Pole { get; set; }
-        public int Position { get; set; }
+        public List<Disk> Pole { get; set; }  // viengubas??
+        public int Position { get; set; } //viengubas su pozicija
 
-        public Tower(int discs, int posistion)
+        public Tower(int discs, int posistion) // viengubo konstruktorius
         {
             Pole = new List<Disk>();
             Position = posistion;
@@ -25,7 +25,7 @@ namespace Domain.Models
 
 
 
-
+        // sprendimas kad surasti trumpiausia kelia
 
         int m_numdiscs;
         public Tower()

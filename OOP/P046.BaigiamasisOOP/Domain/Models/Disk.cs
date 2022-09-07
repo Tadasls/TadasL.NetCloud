@@ -24,17 +24,13 @@ namespace Domain.Models
         public int Number;
         public int Size;
         public ConsoleColor Color;
-               
         
 
+        List<int> DiskoDydis { get; set; }  = new List<int>() { 0, 1, 2, 3, 4 };
+        List<string> DiskoDydisStringais { get; set; } = new List<string>() { "      |      ","     #|#     ","    ##|##    ","   ###|###   ","  ####|####  "};
 
 
 
-        //string D0 = "      |      ";
-        //string D1 = "     #|#     ";
-        //string D2 = "    ##|##    ";
-        //string D3 = "   ###|###   ";
-        //string D4 = "  ####|####  "
 
 
 
