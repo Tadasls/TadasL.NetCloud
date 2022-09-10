@@ -15,11 +15,15 @@ namespace Domain.Models
 
         }
 
+        public Game(List<Tower> abcTowers)
+        {
+            AbcTowers = abcTowers;
+        }
 
         public DateTime ZaidimoData { get; set; }
 
                
-        public List<Tower> abcTowers { get; set; }
+        public List<Tower> AbcTowers { get; set; }
 
 
        

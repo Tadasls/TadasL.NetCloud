@@ -12,16 +12,17 @@ namespace Domain.Models
         {
 
         }
+
+        public Tower(List<Disk> diskuSarasas)
+        {
+            DiskuSarasas = diskuSarasas;
+        }
+        
+
         public int Height { get; set; }
         public int NameID { get; set; }
 
-        public List<Disk> DiskuSarasas { get; set; } = new List<Disk>()
-        {
-            new Disk() { Location = 1, DiskoMatmuo = 1 },
-            new Disk() { Location = 2, DiskoMatmuo = 2 },
-            new Disk() { Location = 3, DiskoMatmuo = 3 },
-            new Disk() { Location = 4, DiskoMatmuo = 4 },
-        };
+        public List<Disk> DiskuSarasas { get; set; }
        
 
 

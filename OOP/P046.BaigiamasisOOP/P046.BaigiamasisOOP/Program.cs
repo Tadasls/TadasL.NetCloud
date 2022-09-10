@@ -8,7 +8,7 @@ namespace P046.BaigiamasisOOP
 
         public static int sekosLogeris = 0;
         public static char inputA;
-        public static char moveTo;
+        public static char inputB;
 
         public static void Main(string[] args)
         {
@@ -17,28 +17,28 @@ namespace P046.BaigiamasisOOP
 
             List<Disk> aTower = new List<Disk>() { };
 
-            aTower.Add(new Disk(0));
-            aTower.Add(new Disk(1));
-            aTower.Add(new Disk(2));
-            aTower.Add(new Disk(3));
-            aTower.Add(new Disk(4));
-
+            aTower.Add(new Disk("      |      "));
+            aTower.Add(new Disk("     #|#     "));
+            aTower.Add(new Disk("    ##|##    "));
+            aTower.Add(new Disk("   ###|###   "));
+            aTower.Add(new Disk("  ####|####  "));
+            
 
             List<Disk> bTower = new List<Disk>() { };
-            bTower.Add(new Disk(0));
-            bTower.Add(new Disk(0));
-            bTower.Add(new Disk(0));
-            bTower.Add(new Disk(0));
-            bTower.Add(new Disk(0));
+            bTower.Add(new Disk("      |      "));
+            bTower.Add(new Disk("      |      "));
+            bTower.Add(new Disk("      |      "));
+            bTower.Add(new Disk("      |      "));
+            bTower.Add(new Disk("      |      "));
 
             List<Disk> cTower = new List<Disk>() { };
 
-            cTower.Add(new Disk(0));
-            cTower.Add(new Disk(0));
-            cTower.Add(new Disk(0));
-            cTower.Add(new Disk(0));
-            cTower.Add(new Disk(0));
-            cTower.Add(new Disk(0));
+            cTower.Add(new Disk("      |      "));
+            cTower.Add(new Disk("      |      "));
+            cTower.Add(new Disk("      |      "));
+            cTower.Add(new Disk("      |      "));
+            cTower.Add(new Disk("      |      "));
+         
 
             List<List<Disk>> abcTowers = new List<List<Disk>>() { aTower, bTower, cTower };
             
@@ -79,11 +79,16 @@ namespace P046.BaigiamasisOOP
                         sekosLogeris++;
 
                         Console.Write(" padėkite ant bokšto Nr: ");
-                        moveTo = Console.ReadKey().KeyChar;
+                        inputB = Console.ReadKey().KeyChar;
 
+                        // todo rankoje yra diskas paimtas is pasirinkto towerio pats virsutinis ?
+
+                        Disk tempString = abcTowers[inputA][0];
+                        Console.Write($"rankoje yra : {tempString}"); 
                         
-                         abcTowers[inputA].Remove(abcTowers[inputA][0]);
-                         abcTowers[moveTo].Add(abcTowers[moveTo][0]);
+
+                        abcTowers[inputA].Remove(abcTowers[inputA][0]); // virsutinis ?
+                        abcTowers[inputB].Add(tempString);  // ant virsaus ?
                        
 
 
@@ -94,7 +99,7 @@ namespace P046.BaigiamasisOOP
                         sekosLogeris++;
 
                         Console.Write(" padėkite ant bokšto Nr: ");
-                        moveTo = Console.ReadKey().KeyChar;
+                        inputB = Console.ReadKey().KeyChar;
 
 
                         break;
@@ -104,13 +109,13 @@ namespace P046.BaigiamasisOOP
                         Console.WriteLine("pasirinktas trecias stulpelis");
                         sekosLogeris++;
                         Console.Write(" padėkite ant bokšto Nr: ");
-                        moveTo = Console.ReadKey().KeyChar;
+                        inputB = Console.ReadKey().KeyChar;
                         break;
 
                     case 'H':
                         Console.WriteLine("Prasoma Pagalba Help");
                         Console.Write(" padėkite ant bokšto Nr: ");
-                        moveTo = Console.ReadKey().KeyChar;
+                        inputB = Console.ReadKey().KeyChar;
 
                         break;
 
@@ -121,7 +126,7 @@ namespace P046.BaigiamasisOOP
 
 
                 Console.WriteLine("Ėjimas " + sekosLogeris);
-                Console.WriteLine("Diskas rankoje: " + inputA); //todo
+                Console.WriteLine("Diskas rankoje: " + inputA); //todo virsutinis diskas is pasirinkto towerio
             } while (true);
 
 
@@ -146,22 +151,20 @@ namespace P046.BaigiamasisOOP
             static void DrawHanoi(List<List<Disk>> abcTowers)
             {
 
+              
+
+                //for (int i = 0; i < abcTowers.Count; i++)
+                //{
+                //    Console.WriteLine("Tower " + (i + 1).ToString() + " : ");
 
 
+                    Console.WriteLine($"{abcTowers[0][0].DiskoDydisString} {abcTowers[1][0].DiskoDydisString} {abcTowers[2][0].DiskoDydisString}");
+                    Console.WriteLine($"{abcTowers[0][1].DiskoDydisString} {abcTowers[1][1].DiskoDydisString} {abcTowers[2][1].DiskoDydisString}");
+                    Console.WriteLine($"{abcTowers[0][2].DiskoDydisString} {abcTowers[1][2].DiskoDydisString} {abcTowers[2][2].DiskoDydisString}");
+                    Console.WriteLine($"{abcTowers[0][3].DiskoDydisString} {abcTowers[1][3].DiskoDydisString} {abcTowers[2][3].DiskoDydisString}");
+                    Console.WriteLine($"{abcTowers[0][4].DiskoDydisString} {abcTowers[1][4].DiskoDydisString} {abcTowers[2][4].DiskoDydisString}");
 
-                for (int i = 0; i < abcTowers.Count; i++)
-                {
-                    Console.WriteLine("Tower " + (i + 1).ToString() + " : ");
-
-
-                    Console.WriteLine($"{abcTowers[0][0].DiskoMatmuo}");
-                    Console.WriteLine($"{abcTowers[0][1].DiskoMatmuo}");
-                    Console.WriteLine($"{abcTowers[0][2].DiskoMatmuo}");
-
-
-
-
-                }
+               // }
             }
 
 
