@@ -2,6 +2,7 @@
 using Domain.Services;
 using System.Data;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace P046.BaigiamasisOOP
 {
@@ -11,40 +12,44 @@ namespace P046.BaigiamasisOOP
 
         public static int sekosLogeris = 0;
         public static char inputA;
+        public static bool gameOver = false;
 
 
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
 
-            Loger log = new Loger();
+            Console.OutputEncoding = Encoding.GetEncoding(1200);
+            Console.InputEncoding = Encoding.GetEncoding(1200);
+
+
+            Loger zaidimoLogas = new Loger();
 
             Tower b1 = new Tower();
             Tower b2 = new Tower();
             Tower b3 = new Tower();
 
-            b1.UzpildytiBokstaDuomenis();
+            b1.UzpildytiBokstaDuomenis();  //uzpildomas tik pirmas bokstas, nes kiti tusti
 
-            Tower[] Game = new Tower[] { b1, b2, b3 };
+            Tower[] bokstai = new Tower[] { b1, b2, b3 };
           
-            DrawHanoi(Game);
-
-
+            DrawHanoi(bokstai); // pradinis piesinys
             Console.WriteLine();
 
-            bool gameOver = false;
+            
             DateTime pradziosdata = DateTime.Now;
+
             do
             {
                 bool ivestas = false;
                 int paimtasdiskas = -1;
-                int isi = -1;
-                int i = -1;
+                int isKurPaimtas = -1;
+                int iKurPadetas = -1;
                 do
                 {
-                    DrawHanoi(Game);
-                    isi = ivestis("Prasome pasirinkti boksta:");
-                    paimtasdiskas = Game[isi - 1].SurastiVirsutinioDiskoIndeksa();
+                    DrawHanoi(bokstai);
+                    isKurPaimtas = ivestis("Prasome pasirinkti boksta:");
+                    paimtasdiskas = bokstai[isKurPaimtas - 1].SurastiVirsutinioDiskoIndeksa();
                     if (paimtasdiskas != -1) { ivestas = true; 
                     }else
                     {
@@ -61,48 +66,58 @@ namespace P046.BaigiamasisOOP
                 bool idetas = false;
                 do
                 {
-                    DrawHanoi(Game, i, paimtasdiskas);
-                    i = ivestis($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasdiskas}");
-                    idetas = Game[i-1].PadetiDiskaINaujaVieta(paimtasdiskas);
-                    if (idetas) { sekosLogeris++;
+                    DrawHanoi(bokstai, iKurPadetas, paimtasdiskas);
 
-
-                        log.WriteLog(isi, paimtasdiskas, i, Game, pradziosdata,sekosLogeris);
+                    iKurPadetas = ivestis($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasdiskas}");
+                    idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasdiskas);
+                    if (idetas) 
+                    {
+                        sekosLogeris++;
+                        zaidimoLogas.WriteLog(isKurPaimtas, paimtasdiskas, iKurPadetas, bokstai, pradziosdata,sekosLogeris);
                     }
-                    else {
+                    else 
+                    {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
                         Console.ForegroundColor = ConsoleColor.White;
                         Thread.Sleep(1000);
-
                     }
 
                 } while (!idetas);
 
                 
-                DrawHanoi(Game);
-                //zaidimo pabaigos check
-                if (Game[2].Bokstas[1] == 1) { gameOver = true;
-                    
-                    log.WriteLog(isi, paimtasdiskas, i, Game, pradziosdata, sekosLogeris, true );
+                DrawHanoi(bokstai);
 
+                //zaidimo pabaigos check
+                
+                if (bokstai[2].Bokstas[1] == 1) 
+                {
+                    gameOver = true;
+                    zaidimoLogas.WriteLog(isKurPaimtas, paimtasdiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris, true );
                 }
             } while (!gameOver);
 
-            Console.WriteLine($"žaidimas baigtas per {sekosLogeris}");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.White;
+
+
+
         }
-        static void DrawHanoi(Tower[] Game,int bokstas = -1,int diskas = -1)
+        static void DrawHanoi(Tower[] bokstai,int bokstas = -1,int diskas = -1)
         {
             Console.Clear();
-            Console.WriteLine($"Ejimas {sekosLogeris}");
+            Console.WriteLine($"Ejimas : {sekosLogeris}");
             Console.WriteLine();
+
             for (int i = 0; i < 5; i++)
             {
-                string eilute = $"Eilute {i+1} ";
+                string eilute = $"Eilutė {i+1} ";
                 for (int j = 0; j < 3; j++)
                 {
-                    string diskosonas = new string('#', Game[j].Bokstas[i]);
-                    string tusciadalis = new string(' ', 4 - Game[j].Bokstas[i]);
+                    string diskosonas = new string('#', bokstai[j].Bokstas[i]);
+                    string tusciadalis = new string(' ', 4 - bokstai[j].Bokstas[i]);
                     eilute += $"  {tusciadalis}{diskosonas}|{diskosonas}{tusciadalis}  ";
 
                 }

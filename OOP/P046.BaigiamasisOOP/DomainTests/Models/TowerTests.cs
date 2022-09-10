@@ -59,19 +59,40 @@ namespace Domain.Models.Tests
         }
 
         [TestMethod()]
-        public void PadetiDiskaINaujaVietaTest()
+        public void PadetiDiskaINaujaVietaTestSuTusciaisLaukais()
         {
-            var expected = false;
+            var expected = true;
 
-
-            Tower fakeBokstas = new Tower(new int[] { 4, 4, 4, 4, 4 });
+            Tower fakeBokstas = new Tower(new int[] { 0, 0, 0, 3, 4 });
 
             // Act
-            var actual = fakeBokstas.PadetiDiskaINaujaVieta(3);
+            var actual = fakeBokstas.PadetiDiskaINaujaVieta(1);
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void PadetiDiskaINaujaVietaTestPilnasBokstas()
+        {
+            var expected = false;
+
+
+            Tower fakeBokstas = new Tower(new int[] { 0, 1, 2, 3, 4 });
+
+            // Act
+            var actual = fakeBokstas.PadetiDiskaINaujaVieta(1);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
+
+
     }
 
 }
