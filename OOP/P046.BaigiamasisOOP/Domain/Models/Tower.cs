@@ -13,9 +13,12 @@ namespace Domain.Models
             Bokstas = new int[] { 0, 0, 0, 0, 0 }; 
         }
 
-       
+        public Tower(int[] bokstas)
+        {
+            Bokstas = bokstas;
+        }
 
-        public void SetFirstTower() {
+        public void UzpildytiBokstaDuomenis() {
             
            for (int i=0; i <= 4; i++)
             {
@@ -25,14 +28,15 @@ namespace Domain.Models
         }
 
 
-        public int takeFirst() {
+        public int SurastiVirsutinioDiskoIndeksa() {
 
             int m = -1;
             for (int i = 0; i <= 4; i++)
             {
-                if (Bokstas[i] != 0) {
-                    m = Bokstas[i];
-                    Bokstas[i] = 0;
+                if (Bokstas[i] != 0) // kai bokstas pilnas
+                {
+                    m = Bokstas[i]; // paima indeksus
+                    Bokstas[i] = 0; //uzpildo 
 
                     return m;
                 }
@@ -45,25 +49,25 @@ namespace Domain.Models
 
 
 
-        public bool place(int disk) {
+        public bool PadetiDiskaINaujaVieta(int disk) {
             int m = 0;
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= Bokstas.Length-1; i++)
             {
-                if (Bokstas[i]==0 ){ m = i; }
+                if (Bokstas[i]==0 ){ m = i; } // eina per visus boksto aukstus ir paskutinio tuscio disko vieta indeksuojasi
 
             }
 
             if (m == 4) {
-                Bokstas[m] = disk;
-                    return true; 
+                Bokstas[m] = disk; //jei bokstas tuscias, iskarto padeda i apacia
+                    return true;  // grazina statusa kad padejo
             }
 
-            if (Bokstas[m + 1] > disk) { Bokstas[m] = disk;
-                return true;
+            if (Bokstas[m + 1] > disk) { Bokstas[m] = disk; // jei apatinis diskas yra didesnis, tada einama vieta uzpildo disku
+                return true;// grazina statusa kad padejo
             }
 
 
-            return false;
+            return false; // grazina statusa kad nepadejo (galima jei bokstas pilnas/arba apatinis diskas mazesnis
         }
 
         public int [] Bokstas { get; set; }

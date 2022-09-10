@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Services;
 using System.Data;
 using System.Security.Cryptography;
 
@@ -15,11 +16,15 @@ namespace P046.BaigiamasisOOP
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
+
             Loger log = new Loger();
+
             Tower b1 = new Tower();
             Tower b2 = new Tower();
             Tower b3 = new Tower();
-            b1.SetFirstTower();
+
+            b1.UzpildytiBokstaDuomenis();
+
             Tower[] Game = new Tower[] { b1, b2, b3 };
           
             DrawHanoi(Game);
@@ -39,7 +44,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(Game);
                     isi = ivestis("Prasome pasirinkti boksta:");
-                    paimtasdiskas = Game[isi - 1].takeFirst();
+                    paimtasdiskas = Game[isi - 1].SurastiVirsutinioDiskoIndeksa();
                     if (paimtasdiskas != -1) { ivestas = true; 
                     }else
                     {
@@ -58,7 +63,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(Game, i, paimtasdiskas);
                     i = ivestis($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasdiskas}");
-                    idetas = Game[i-1].place(paimtasdiskas);
+                    idetas = Game[i-1].PadetiDiskaINaujaVieta(paimtasdiskas);
                     if (idetas) { sekosLogeris++;
 
 
@@ -155,108 +160,11 @@ namespace P046.BaigiamasisOOP
 
 
 
-        //do
-        //{
-        //    while (inputA == '1' && inputA == '2' && inputA == '3' && inputA == 'H' && inputA == 'h') ;
-        //    {
+     
 
-        //        Console.WriteLine("Paimkite diska iš: ");
-        //        inputA = Console.ReadKey().KeyChar;
-        //        if (inputA == '\u001b')
-        //        {
-        //            Environment.Exit(0);
-        //        }
-
-        //    }
+    
 
 
-        //    switch (inputA)
-        //    {
-
-        //        case '1':
-
-        //            int moveFrom = ((int)inputA - 48);
-        //            Console.WriteLine(" - Pasirinktas pirmas stulpelis");
-        //            sekosLogeris++;
-        //            Console.WriteLine("Ėjimas " + sekosLogeris);
-        //            Disk tempDisk = abcTowers[moveFrom - 1].First();
-        //            Console.WriteLine($"rankoje yra : {tempDisk.DiskoDydisString}");
-
-        //            Console.Write(" padėkite ant bokšto Nr: ");
-        //            var ivestisB = Console.ReadLine();
-        //            Int32.TryParse(ivestisB, out int moveTo);
-
-
-
-
-        //            for (int i = 0; i < abcTowers[moveFrom - 1].Count; i++)
-        //            {
-        //                if (abcTowers[moveFrom - 1].Contains(tempDisk))
-        //                    abcTowers[moveFrom - 1][i] = new Disk("      |      ");
-        //                abcTowers[moveTo - 1].Remove(abcTowers[moveTo - 1][0]);
-        //                abcTowers[moveTo - 1][3] = tempDisk;
-
-
-        //            }
-
-
-
-        //            DrawHanoi(abcTowers);
-
-        //            break;
-
-        //        case '2':
-        //            moveFrom = ((int)inputA - 48);
-        //            Console.WriteLine(" - Pasirinktas pirmas stulpelis");
-        //            sekosLogeris++;
-
-        //            Console.Write(" padėkite ant bokšto Nr: ");
-        //            ivestisB = Console.ReadLine();
-        //            Int32.TryParse(ivestisB, out moveTo);
-
-        //            tempDisk = abcTowers[moveFrom - 1].First();
-        //            Console.WriteLine($"rankoje yra : {tempDisk.DiskoDydisString}");
-
-        //            abcTowers[moveFrom - 1].Remove(abcTowers[moveFrom - 1].First());
-        //            abcTowers[moveTo - 1].Add(tempDisk);
-
-        //            break;
-
-
-        //        case '3':
-        //            moveFrom = ((int)inputA - 48);
-        //            Console.WriteLine(" - Pasirinktas pirmas stulpelis");
-        //            sekosLogeris++;
-
-        //            Console.Write(" padėkite ant bokšto Nr: ");
-        //            ivestisB = Console.ReadLine();
-        //            Int32.TryParse(ivestisB, out moveTo);
-
-        //            tempDisk = abcTowers[moveFrom - 1].First();
-        //            Console.WriteLine($"rankoje yra : {tempDisk.DiskoDydisString}");
-
-        //            abcTowers[moveFrom - 1].Remove(abcTowers[moveFrom - 1].First());
-        //            abcTowers[moveTo - 1].Add(tempDisk);
-
-        //            break;
-
-        //        case 'H':
-        //            Console.WriteLine("Prasoma Pagalba Help");
-
-        //            //todo startuoja logo tikrinimo metodai ir isvedamas sekantis galimas ejimas
-
-
-        //            break;
-
-        //        default:
-        //            Console.WriteLine("NETEISINGA ĮVESTIS");
-        //            break;
-        //    }
-
-
-
-
-        //} while (true);
 
 
 
