@@ -14,13 +14,7 @@ namespace Domain.Models
 
         }
 
-        public Disk(int number, int size, ConsoleColor color)
-        {
-            Number = number;
-            Size = size;
-            Color = color;
-        }
-
+       
         public Disk(int diskoMatmuo) // skaiciai
         {
             
@@ -33,16 +27,15 @@ namespace Domain.Models
             DiskoDydisString = diskoDydis;
         }
 
-        public int Location { get; set; }
-        public int Number { get; set; }
-        public int Size { get; set; }
+             
+       
         public ConsoleColor Color { get; set; }
         public int DiskoMatmuo { get; set; }
         public string DiskoDydisString { get; set; }
 
 
-        // public List<int> DiskoMatmuo { get; set; } = new List<int>() { 0, 1, 2, 3, 4 };
-        // public List<string> DiskoDydisString { get; set; } = new List<string>() { "      |      ", "     #|#     ", "    ##|##    ", "   ###|###   ", "  ####|####  " };
+       
+        
 
 
 

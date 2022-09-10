@@ -10,19 +10,63 @@ namespace Domain.Models
     {
         public Tower()
         {
-
+            Bokstas = new int[] { 0, 0, 0, 0, 0 }; 
         }
 
-        public Tower(List<Disk> diskuSarasas)
-        {
-            DiskuSarasas = diskuSarasas;
-        }
+       
+
+        public void SetFirstTower() {
+            
+           for (int i=0; i <= 4; i++)
+            {
+                Bokstas[i] = i ;
+            }
         
+        }
 
-        public int Height { get; set; }
-        public int NameID { get; set; }
 
-        public List<Disk> DiskuSarasas { get; set; }
+        public int takeFirst() {
+
+            int m = -1;
+            for (int i = 0; i <= 4; i++)
+            {
+                if (Bokstas[i] != 0) {
+                    m = Bokstas[i];
+                    Bokstas[i] = 0;
+
+                    return m;
+                }
+
+
+            }
+
+            return -1;
+        }
+
+
+
+        public bool place(int disk) {
+            int m = 0;
+            for (int i = 0; i <= 4; i++)
+            {
+                if (Bokstas[i]==0 ){ m = i; }
+
+            }
+
+            if (m == 4) {
+                Bokstas[m] = disk;
+                    return true; 
+            }
+
+            if (Bokstas[m + 1] > disk) { Bokstas[m] = disk;
+                return true;
+            }
+
+
+            return false;
+        }
+
+        public int [] Bokstas { get; set; }
        
 
 
