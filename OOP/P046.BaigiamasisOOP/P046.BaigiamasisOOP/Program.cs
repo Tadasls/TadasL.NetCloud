@@ -6,27 +6,23 @@ using System.Text;
 
 namespace P046.BaigiamasisOOP
 {
-
     public class Program
     {
-
         public static char input;
         public static bool gameOver = false;
-        public static bool ivestas = false;
-        public static bool idetas = false;
-
         public static int sekosLogeris = 0;
-        public static int paimtasDiskas = -1;
-        public static int isKurPaimtas = -1;
-        public static int iKurPadetas = -1;
 
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
+
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
 
             Loger zaidimoLogas = new Loger();
+            Statistika zaidimoStatistika = new Statistika();
+
+
 
             Tower b1 = new Tower();
             Tower b2 = new Tower();
@@ -43,6 +39,10 @@ namespace P046.BaigiamasisOOP
 
             do
             {
+                int isKurPaimtas = -1;
+                int paimtasDiskas = -1;
+                bool ivestas = false;
+
                 do
                 {
                     DrawHanoi(bokstai); //pirmos ivesties piesinys
@@ -54,20 +54,18 @@ namespace P046.BaigiamasisOOP
                     {
                         ivestas = true;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("STULPELYJE NĖRA DISKO");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(1000);
-
+                    else 
+                    { 
+                        TuscioDiskoKlaidosPranesimas();
                     }
 
                 } while (!ivestas);
 
+                int iKurPadetas = -1;
+                bool idetas = false;
                 do
                 {
-                    DrawHanoi(bokstai); //antros ivesties piesinys
+                    DrawHanoi(bokstai,isKurPaimtas,paimtasDiskas); //antros ivesties piesinys
 
                     iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
                     idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
@@ -78,10 +76,7 @@ namespace P046.BaigiamasisOOP
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(1000);
+                        DiskoDydzioKlaidosPranesimas();
                     }
 
                 } while (!idetas);
@@ -94,32 +89,62 @@ namespace P046.BaigiamasisOOP
 
             } while (!gameOver);
 
-            GameOwerScreen();
+            DrawHanoi(bokstai); //finalinis piesimas
+
+            ZaidimoPabaigosPranesimas();
         }
-      
-        static void GameOwerScreen()
+
+
+
+        static void TuscioDiskoKlaidosPranesimas()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("STULPELYJE NĖRA DISKO");
             Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
         }
-        static void KlaidosPranesimas()
+        static void DiskoDydzioKlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
+        static void IvestiesKlaidosPranesimas()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("NETEISINGA ĮVESTIS");
             Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(1000);
         }
+        static void ZaidimoPabaigosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
 
         static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
         {
             Console.Clear();
             Console.WriteLine($"Ejimas : {sekosLogeris}");
-            Console.WriteLine();
+           
+            if (diskas > 0) {
+                string diskoSonas = new string('#', diskas);
+
+                Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
+
+            }
+            else
+            {
+                Console.WriteLine();
+            } 
 
             for (int i = 0; i < 5; i++)
             {
                 string eilute = $"Eilutė {i + 1} ";
+
                 for (int j = 0; j < 3; j++)
                 {
                     string diskoSonas = new string('#', bokstai[j].Bokstas[i]);
@@ -156,9 +181,24 @@ namespace P046.BaigiamasisOOP
                 }
                 if (input.ToString().ToLower().Equals("h"))
                 {
-                    Environment.Exit(0); // todo Helpo metodus
-                }
+                   FileReader skaitymas = new FileReader();
+                   var duomenys = skaitymas.LoadCSV(); // todo Helpo metodus
 
+                    foreach (Statistika item in duomenys)
+                    {
+                        if (item.Laimejimas == false)
+                        {
+                            duomenys.Remove(item);
+                        }
+
+                    }
+                    //foreach (Statistika item in duomenys)
+                    //{
+
+                    //}
+
+
+                }
 
                 string testas = input.ToString().ToLower();
 
@@ -168,24 +208,17 @@ namespace P046.BaigiamasisOOP
                 }
                 else
                 {
-                    KlaidosPranesimas();
+                    IvestiesKlaidosPranesimas();
                 }
 
 
-
             } while (input != '1' && input != '2' && input != '3');
-
             return -1;
 
-
-
-            //bugas nes grazina ne meniu pasirinkimo klaidos koda kas sugriauna koda, reikia validacijos
         }
        
         #region // uzdavinio salyga
-
-
-        /*
+                /*
 
           Ėjimas 0
 
