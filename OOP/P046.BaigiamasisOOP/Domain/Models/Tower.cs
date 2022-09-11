@@ -18,7 +18,7 @@ namespace Domain.Models
         }
         public void UzpildytiBokstaDuomenis() {
             
-           for (int i=0; i <= 4; i++)
+           for (int i=0; i <= Bokstas.Length - 1; i++)
             {
                 Bokstas[i] = i ;
             }

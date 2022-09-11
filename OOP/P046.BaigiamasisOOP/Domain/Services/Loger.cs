@@ -29,9 +29,13 @@ namespace Domain.Services
                     }
                 }
             }
+          
 
+            string csvlogpath = Environment.CurrentDirectory + "\\Logcsv.csv";
 
-            string csvlogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
+         
+
+            //string csvlogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
 
             using (var w = new StreamWriter(csvlogpath, true))
             {
@@ -41,7 +45,9 @@ namespace Domain.Services
 
             //html Loginimas
 
-            string htmllogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\LogHtml.html";
+            string htmllogpath = Environment.CurrentDirectory + "\\LogHtml.html";
+
+            //string htmllogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\LogHtml.html";
 
             using (var h = new StreamWriter(htmllogpath, true))
             {
@@ -59,7 +65,9 @@ namespace Domain.Services
               $" {ikurpadetas.ToString().Replace("1", "pirma").Replace("2", "antra").Replace("3", "trecia")}";
 
 
-            string txtlogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\LogTxt.txt";
+            string txtlogpath = Environment.CurrentDirectory + "\\LogTxt.tx";
+
+            //string txtlogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\LogTxt.txt";
 
             using (StreamWriter writer = new StreamWriter(txtlogpath, true))
             {

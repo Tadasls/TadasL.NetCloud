@@ -6,19 +6,11 @@ using System.Text;
 
 namespace P046.BaigiamasisOOP
 {
-
     public class Program
     {
-
         public static char input;
         public static bool gameOver = false;
-        public static bool ivestas = false;
-        public static bool idetas = false;
-
         public static int sekosLogeris = 0;
-        public static int paimtasDiskas = -1;
-        public static int isKurPaimtas = -1;
-        public static int iKurPadetas = -1;
 
         public static void Main(string[] args)
         {
@@ -43,6 +35,10 @@ namespace P046.BaigiamasisOOP
 
             do
             {
+                int isKurPaimtas = -1;
+                int paimtasDiskas = -1;
+                bool ivestas = false;
+
                 do
                 {
                     DrawHanoi(bokstai); //pirmos ivesties piesinys
@@ -54,17 +50,15 @@ namespace P046.BaigiamasisOOP
                     {
                         ivestas = true;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("STULPELYJE NĖRA DISKO");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(1000);
-
+                    else 
+                    { 
+                        TuscioDiskoKlaidosPranesimas();
                     }
 
                 } while (!ivestas);
 
+                int iKurPadetas = -1;
+                bool idetas = false;
                 do
                 {
                     DrawHanoi(bokstai); //antros ivesties piesinys
@@ -78,10 +72,7 @@ namespace P046.BaigiamasisOOP
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Thread.Sleep(1000);
+                        DiskoDydzioKlaidosPranesimas();
                     }
 
                 } while (!idetas);
@@ -94,22 +85,43 @@ namespace P046.BaigiamasisOOP
 
             } while (!gameOver);
 
+            DrawHanoi(bokstai); //finalinis piesimas
+
             GameOwerScreen();
         }
-      
-        static void GameOwerScreen()
+
+
+
+        static void TuscioDiskoKlaidosPranesimas()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("STULPELYJE NĖRA DISKO");
             Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
         }
-        static void KlaidosPranesimas()
+        static void DiskoDydzioKlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
+        static void IvestiesKlaidosPranesimas()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("NETEISINGA ĮVESTIS");
             Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(1000);
         }
+        static void GameOwerScreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+
+
 
         static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
         {
@@ -168,7 +180,7 @@ namespace P046.BaigiamasisOOP
                 }
                 else
                 {
-                    KlaidosPranesimas();
+                    IvestiesKlaidosPranesimas();
                 }
 
 
@@ -179,7 +191,7 @@ namespace P046.BaigiamasisOOP
 
 
 
-            //bugas nes grazina ne meniu pasirinkimo klaidos koda kas sugriauna koda, reikia validacijos
+           
         }
        
         #region // uzdavinio salyga
