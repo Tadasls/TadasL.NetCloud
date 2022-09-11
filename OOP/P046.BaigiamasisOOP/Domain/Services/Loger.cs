@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Interfaces;
@@ -30,12 +31,8 @@ namespace Domain.Services
 
 
 
-
-
-
             //Csv Loginimas
             string csvlogpath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
-
             //string csvlogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
             using (var w = new StreamWriter(csvlogpath, true))
             {
@@ -61,7 +58,7 @@ namespace Domain.Services
 
 
             //html Loginimas
-           // string htmllogpath = Environment.CurrentDirectory + "\\LogHtml.html";
+          
             string htmllogpath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\LogHtml.html";
             using (var h = new StreamWriter(htmllogpath, true))
             {
@@ -91,14 +88,14 @@ namespace Domain.Services
 
             }
 
-                           
 
-         
 
-           
 
-              
-            
+
+
+
+       
+
 
 
 

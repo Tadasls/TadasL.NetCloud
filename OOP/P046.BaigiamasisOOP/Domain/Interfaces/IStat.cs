@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Enums
+namespace Domain.Interfaces
 {
-    public enum Enums
+    public interface IStat
     {
-
-
+        void DuomenuPridejimas(int[] linija);
     }
 }

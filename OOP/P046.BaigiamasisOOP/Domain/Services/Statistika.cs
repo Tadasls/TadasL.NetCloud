@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Services
 {
     public class Statistika
     {
@@ -14,13 +14,10 @@ namespace Domain.Models
             Laimejimas = false;
             ZaidimuDuomenys = new List<int[]>();
         }
-    
 
-
- 
 
         public string ZaidimoPradziodata { get; set; }
-        public int EjimuSkaicius { get; set; } 
+        public int EjimuSkaicius { get; set; }
         public bool Laimejimas { get; set; }
         public List<int[]> ZaidimuDuomenys { get; set; }
 
@@ -28,13 +25,12 @@ namespace Domain.Models
         {
             EjimuSkaicius++;
             ZaidimuDuomenys.Add(linija);
-            if (linija[1] == 3 || linija[2] == 3 || linija[2] == 3 || linija[2] == 3)
-            { 
-                Laimejimas = true; 
+            if (linija[1] == 3 && linija[2] == 3 && linija[3] == 3 && linija[4] == 3)
+            {
+                Laimejimas = true;
             }
 
         }
-        
 
 
     }

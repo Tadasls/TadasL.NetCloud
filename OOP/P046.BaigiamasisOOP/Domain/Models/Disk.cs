@@ -27,7 +27,6 @@ namespace Domain.Models
             DiskoDydisString = diskoDydis;
         }
 
-             
        
         public ConsoleColor Color { get; set; }
         public int DiskoMatmuo { get; set; }

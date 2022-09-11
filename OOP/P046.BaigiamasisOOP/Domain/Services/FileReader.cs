@@ -3,71 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
+using Domain.Interfaces;
 
 namespace Domain.Services
 {
-    public class FileReader
+    public class FileReader : IServis
     {
-
-        public string GetFilePath(string fileName)
-        {
-       
-            Console.WriteLine(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\" + fileName);
-            return new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\" + fileName;
-        }
-
-
-
-
         public List<Statistika> LoadCSV()
         {
-            string filename = new  DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
-            // Get the file's text.
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent.FullName + "\\P046.BaigiamasisOOP\\Domain\\Logs\\Logcsv.csv";
             string whole_file = File.ReadAllText(filename);
 
-            // Split into lines.
             whole_file = whole_file.Replace('\n', '\r');
-            string[] lines = whole_file.Split(new char[] { '\r' },
-                StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = whole_file.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // See how many rows and columns there are.
-            int num_rows = lines.Length;
-            int num_cols = lines[0].Split(',').Length;
+            int eiluciuSkaicius = lines.Length;
+            int StulpeiuSkaicius = lines[0].Split(',').Length;
 
-            // Allocate the data array.
-            string[,] values = new string[num_rows, num_cols];
+            string[,] values = new string[eiluciuSkaicius, StulpeiuSkaicius];
 
-            List<Statistika> statiskuObjektasBuveZaidimai = new List<Statistika>();
-            Statistika buvesZaidimas = new Statistika();
-            buvesZaidimas.ZaidimoPradziodata = lines[0].Split(',')[0];
-            // Load the array.
-
-
-            for (int r = 0; r < num_rows; r++)
+            List<Statistika> buvusiuZaidimuDuomenuSarasas = new List<Statistika>();
+            Statistika vienoZaidimoStatistiniaiDuomenys = new Statistika();
+            vienoZaidimoStatistiniaiDuomenys.ZaidimoPradziodata = lines[0].Split(',')[0];
+            
+            for (int r = 0; r < eiluciuSkaicius; r++)
             {
-                string[] line_r = lines[r].Split(',');
+                string[] eiluitesMasyvas = lines[r].Split(',');
 
+                int[] linijosDuomenys = { Convert.ToInt32(eiluitesMasyvas[1]), Convert.ToInt32(eiluitesMasyvas[2]), Convert.ToInt32(eiluitesMasyvas[3]), Convert.ToInt32(eiluitesMasyvas[4]), Convert.ToInt32(eiluitesMasyvas[5]) };
 
-                int[] linijos = { Convert.ToInt32(line_r[1]), Convert.ToInt32(line_r[2]), Convert.ToInt32(line_r[3]), Convert.ToInt32(line_r[4]), Convert.ToInt32(line_r[5]) };
-
-                if (line_r[0] == buvesZaidimas.ZaidimoPradziodata.ToString())
+                if (eiluitesMasyvas[0] == vienoZaidimoStatistiniaiDuomenys.ZaidimoPradziodata.ToString())
                 {
-                    buvesZaidimas.DuomenuPridejimas(linijos);
+                    vienoZaidimoStatistiniaiDuomenys.DuomenuPridejimas(linijosDuomenys);
                 } else
                 {
-                    statiskuObjektasBuveZaidimai.Add(buvesZaidimas);
-                    buvesZaidimas = new Statistika();
-                    buvesZaidimas.ZaidimoPradziodata = line_r[0];
+                    buvusiuZaidimuDuomenuSarasas.Add(vienoZaidimoStatistiniaiDuomenys);
+                    vienoZaidimoStatistiniaiDuomenys = new Statistika();
+                    vienoZaidimoStatistiniaiDuomenys.ZaidimoPradziodata = eiluitesMasyvas[0];
+                    vienoZaidimoStatistiniaiDuomenys.DuomenuPridejimas(linijosDuomenys);
+
                 }
-
-
-              
-              
             }
+            buvusiuZaidimuDuomenuSarasas.Add(vienoZaidimoStatistiniaiDuomenys);
 
-            
-           return statiskuObjektasBuveZaidimai;
+
+            return buvusiuZaidimuDuomenuSarasas;
         }
 
 

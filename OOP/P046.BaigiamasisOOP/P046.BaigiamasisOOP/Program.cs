@@ -20,8 +20,7 @@ namespace P046.BaigiamasisOOP
             Console.InputEncoding = Encoding.GetEncoding(1200);
 
             Loger zaidimoLogas = new Loger();
-            Statistika zaidimoStatistika = new Statistika();
-
+            //Statistika zaidimoStatistika = new Statistika();
 
 
             Tower b1 = new Tower();
@@ -47,7 +46,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(bokstai); //pirmos ivesties piesinys
 
-                    isKurPaimtas = IvestisSuMeniu("Prasome pasirinkti boksta:");
+                    isKurPaimtas = IvestisSuMeniu("Prasome pasirinkti boksta:",bokstai);
                     paimtasDiskas = bokstai[isKurPaimtas - 1].SurastiVirsutinioDiskoIndeksa(); // need fix 
 
                     if (paimtasDiskas != -1)
@@ -67,7 +66,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(bokstai,isKurPaimtas,paimtasDiskas); //antros ivesties piesinys
 
-                    iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
+                    iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}", bokstai);
                     idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
                     if (idetas)
                     {
@@ -84,7 +83,7 @@ namespace P046.BaigiamasisOOP
                 if (bokstai[2].Bokstas[1] == 1)//zaidimo pabaigos check
                 {
                     gameOver = true;
-                    zaidimoLogas.WriteLog(isKurPaimtas, paimtasDiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris, true);
+                    //zaidimoLogas.WriteLog(isKurPaimtas, paimtasDiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris, true);
                 }
 
             } while (!gameOver);
@@ -124,6 +123,8 @@ namespace P046.BaigiamasisOOP
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        
+
 
         static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
         {
@@ -132,9 +133,7 @@ namespace P046.BaigiamasisOOP
            
             if (diskas > 0) {
                 string diskoSonas = new string('#', diskas);
-
                 Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
-
             }
             else
             {
@@ -144,7 +143,6 @@ namespace P046.BaigiamasisOOP
             for (int i = 0; i < 5; i++)
             {
                 string eilute = $"Eilutė {i + 1} ";
-
                 for (int j = 0; j < 3; j++)
                 {
                     string diskoSonas = new string('#', bokstai[j].Bokstas[i]);
@@ -161,13 +159,12 @@ namespace P046.BaigiamasisOOP
                 string bokstas3 = (bokstas == 3) ? $"__^^^[{3}]^^^__" : $"_____[{3}]_____";
                 Console.WriteLine($"Eilute {6} {bokstas1}{bokstas2}{bokstas3}");
                 string diskoSonas = new string('#', diskas);
-
                 Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
             }
             else { Console.WriteLine($"Eilute {6} {$"_____[{1}]_____"}{$"_____[{2}]_____"}{$"_____[{3}]_____"}"); }
 
         }
-        static int IvestisSuMeniu(string koklaust)
+        static int IvestisSuMeniu(string koklaust,Tower[] bokstai)
         {
             do
             {
@@ -179,24 +176,112 @@ namespace P046.BaigiamasisOOP
                 {
                     Environment.Exit(0);
                 }
-                if (input.ToString().ToLower().Equals("h"))
+                if (input == 'h' || input == 'H')
                 {
-                   FileReader skaitymas = new FileReader();
-                   var duomenys = skaitymas.LoadCSV(); // todo Helpo metodus
-
-                    foreach (Statistika item in duomenys)
+                    
+                    FileReader skaitymas = new FileReader();
+                    var duomenys = skaitymas.LoadCSV();
+                    List<Statistika> sekmingiZaidimai = new List<Statistika>();
+                    foreach (Statistika anyGame in duomenys)
                     {
-                        if (item.Laimejimas == false)
+                        if(anyGame.Laimejimas == true)
                         {
-                            duomenys.Remove(item);
+                            sekmingiZaidimai.Add(anyGame);
+                        } 
+                    }
+                    int[] busenos = new int[4];
+                    for (int i = 0; i < bokstai.Length; i++)
+                    {
+                        for (int j = 0; j < bokstai[i].Bokstas.Length; j++)
+                        {
+                            if (bokstai[i].Bokstas[j] != 0)
+                            {
+                                busenos[bokstai[i].Bokstas[j] - 1] = i + 1;
+                            }
                         }
+                    }
+                    int zaidimaskuristurisprendima = -1;
+                    int maziausiaiejimu = int.MaxValue;
+                    int dabartinioejimoindexas = -1;
+                    int x = 0;
+                    foreach (Statistika item in sekmingiZaidimai)
+                    {
+                        
+                        for (int i = 0; i < item.ZaidimuDuomenys.Count; i++)
+                        {
+                            if(item.ZaidimuDuomenys[i][1] == busenos[0] && item.ZaidimuDuomenys[i][2] == busenos[1] && item.ZaidimuDuomenys[i][3] == busenos[2] && item.ZaidimuDuomenys[i][4] == busenos[3])
+                            {
+                                if(item.EjimuSkaicius - i< maziausiaiejimu){
+                                    zaidimaskuristurisprendima = x;
+                                    maziausiaiejimu = item.EjimuSkaicius - i;
+                                    dabartinioejimoindexas = i;
+                                }
+                            }
+
+                        }
+                        x++;
+                    }
+                    if(zaidimaskuristurisprendima > -1){
+                        int[] sekantis = sekmingiZaidimai[zaidimaskuristurisprendima].ZaidimuDuomenys[dabartinioejimoindexas + 1];
+                        Console.WriteLine($" {String.Join(",", busenos)} /n{String.Join(",", sekantis)}");
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (busenos[i] != sekantis[i + 1])
+                            {
+                                Console.WriteLine($" Diskas{i + 1}perkeliamas is boksto {busenos[i]} i {sekantis[i + 1]}");
+
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Pagalbos Nėra"); 
+                    }
+                   
+
+                }
+                if (input.ToString().ToLower().Equals("s"))
+                {
+                    Console.WriteLine("ar atvaizduoti su extra Statistika? ");
+                    bool pilnaStatistika = false;
+                    char uzklausa = Console.ReadKey().KeyChar;
+                    if (uzklausa == 't' || uzklausa == 'T')
+                    {
+                        pilnaStatistika = true;
+                    }
+
+
+
+                   FileReader skaitymas = new FileReader();
+                   var duomenys = skaitymas.LoadCSV(); 
+                    string neb = "N/B";
+                        int paskutinislaimetas = -1;
+                    for (int i = 0; i < duomenys.Count; i++)
+                    {
+                        
+                        
+                        string rez = (duomenys[i].Laimejimas) ? ((pilnaStatistika)?duomenys[i].EjimuSkaicius-15: duomenys[i].EjimuSkaicius).ToString() : "N/B";
+                        string pokytis = "N/G";
+                        if (paskutinislaimetas != -1)
+                        {
+                            int skirtumas = duomenys[paskutinislaimetas].EjimuSkaicius - duomenys[i].EjimuSkaicius;
+                            string skirt = (skirtumas > 0) ? "+" + skirtumas.ToString() : skirtumas.ToString();
+                             pokytis = (duomenys[i].Laimejimas) ? skirt : "N/G";
+                            
+                        }
+                        paskutinislaimetas = (duomenys[i].Laimejimas) ? i : paskutinislaimetas;
+                        Console.WriteLine($"{duomenys[i].ZaidimoPradziodata} |  {rez}   |  {pokytis}      " );
+
+                       
+
 
                     }
-                    //foreach (Statistika item in duomenys)
-                    //{
 
-                    //}
 
+
+
+                    
 
                 }
 
@@ -217,8 +302,8 @@ namespace P046.BaigiamasisOOP
 
         }
        
-        #region // uzdavinio salyga
-                /*
+
+        /*  uzdavinio salyga 
 
           Ėjimas 0
 
@@ -368,7 +453,7 @@ APRIBOJIMAI:
 - TAIKYTI "Single-responsibility principle". t.y. KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES 
         */
 
-        #endregion
+       
 
 
 
