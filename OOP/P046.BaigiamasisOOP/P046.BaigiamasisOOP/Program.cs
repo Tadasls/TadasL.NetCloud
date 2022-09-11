@@ -10,10 +10,10 @@ namespace P046.BaigiamasisOOP
     public class Program
     {
 
-
         public static char input;
         public static bool gameOver = false;
         public static bool ivestas = false;
+        public static bool idetas = false;
 
         public static int sekosLogeris = 0;
         public static int paimtasDiskas = -1;
@@ -23,10 +23,8 @@ namespace P046.BaigiamasisOOP
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
-
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
-
 
             Loger zaidimoLogas = new Loger();
 
@@ -41,16 +39,13 @@ namespace P046.BaigiamasisOOP
             DrawHanoi(bokstai); // pradinis piesinys
             Console.WriteLine();
 
-
             DateTime pradziosdata = DateTime.Now;
 
             do
             {
-
-
                 do
                 {
-                    DrawHanoi(bokstai);
+                    DrawHanoi(bokstai); //pirmos ivesties piesinys
 
                     isKurPaimtas = IvestisSuMeniu("Prasome pasirinkti boksta:");
                     paimtasDiskas = bokstai[isKurPaimtas - 1].SurastiVirsutinioDiskoIndeksa(); // need fix 
@@ -70,11 +65,9 @@ namespace P046.BaigiamasisOOP
 
                 } while (!ivestas);
 
-
-                bool idetas = false;
                 do
                 {
-                    DrawHanoi(bokstai, iKurPadetas, paimtasDiskas);
+                    DrawHanoi(bokstai); //antros ivesties piesinys
 
                     iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
                     idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
@@ -93,41 +86,32 @@ namespace P046.BaigiamasisOOP
 
                 } while (!idetas);
 
-
-                DrawHanoi(bokstai);
-
-                //zaidimo pabaigos check
-                
-
-                if (bokstai[2].Bokstas[1] == 1)
+                if (bokstai[2].Bokstas[1] == 1)//zaidimo pabaigos check
                 {
                     gameOver = true;
                     zaidimoLogas.WriteLog(isKurPaimtas, paimtasDiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris, true);
                 }
 
-
             } while (!gameOver);
 
             GameOwerScreen();
-
-
         }
       
-
-
-
-
         static void GameOwerScreen()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
             Console.ForegroundColor = ConsoleColor.White;
         }
+        static void KlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NETEISINGA ĮVESTIS");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
 
-
-
-
-        static void DrawHanoi(Tower[] bokstai,int bokstas = -1,int diskas = -1)
+        static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
         {
             Console.Clear();
             Console.WriteLine($"Ejimas : {sekosLogeris}");
@@ -135,39 +119,33 @@ namespace P046.BaigiamasisOOP
 
             for (int i = 0; i < 5; i++)
             {
-                string eilute = $"Eilutė {i+1} ";
+                string eilute = $"Eilutė {i + 1} ";
                 for (int j = 0; j < 3; j++)
                 {
                     string diskoSonas = new string('#', bokstai[j].Bokstas[i]);
                     string tusciaDalis = new string(' ', 4 - bokstai[j].Bokstas[i]);
                     eilute += $"  {tusciaDalis}{diskoSonas}|{diskoSonas}{tusciaDalis}  ";
-
                 }
                 Console.WriteLine(eilute);
             }
-            
+
             if (diskas > 0)
             {
-               
                 string bokstas1 = (bokstas == 1) ? $"__^^^[{1}]^^^__" : $"_____[{1}]_____";
                 string bokstas2 = (bokstas == 2) ? $"__^^^[{2}]^^^__" : $"_____[{2}]_____";
                 string bokstas3 = (bokstas == 3) ? $"__^^^[{3}]^^^__" : $"_____[{3}]_____";
                 Console.WriteLine($"Eilute {6} {bokstas1}{bokstas2}{bokstas3}");
                 string diskoSonas = new string('#', diskas);
-               
+
                 Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
             }
             else { Console.WriteLine($"Eilute {6} {$"_____[{1}]_____"}{$"_____[{2}]_____"}{$"_____[{3}]_____"}"); }
-           
-
 
         }
-
         static int IvestisSuMeniu(string koklaust)
         {
             do
             {
-
                 List<string> skaiciai = new List<string> { "1", "2", "3" };
                 Console.WriteLine(koklaust);
 
@@ -178,13 +156,11 @@ namespace P046.BaigiamasisOOP
                 }
                 if (input.ToString().ToLower().Equals("h"))
                 {
-
                     Environment.Exit(0); // todo Helpo metodus
                 }
 
 
                 string testas = input.ToString().ToLower();
-
 
                 if (skaiciai.Contains(input.ToString()))
                 {
@@ -193,7 +169,6 @@ namespace P046.BaigiamasisOOP
                 else
                 {
                     KlaidosPranesimas();
-                   
                 }
 
 
@@ -206,22 +181,7 @@ namespace P046.BaigiamasisOOP
 
             //bugas nes grazina ne meniu pasirinkimo klaidos koda kas sugriauna koda, reikia validacijos
         }
-
-    
-        static void KlaidosPranesimas()
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("NETEISINGA ĮVESTIS");
-            Console.ForegroundColor = ConsoleColor.White;
-            Thread.Sleep(1000);
-        }
-
-
-     
-
-    
-
-
+       
         #region // uzdavinio salyga
 
 
