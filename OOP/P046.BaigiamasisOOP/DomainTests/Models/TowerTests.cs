@@ -41,6 +41,7 @@ namespace Domain.Models.Tests
 
         }
 
+
         [TestMethod()]
         public void SurastiVirsutinioDiskoIndeksa_TestPilnoBoksto()
         {
