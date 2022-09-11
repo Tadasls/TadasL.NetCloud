@@ -52,7 +52,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(bokstai);
 
-                    isKurPaimtas = Ivestis("Prasome pasirinkti boksta:");
+                    isKurPaimtas = IvestisSuMeniu("Prasome pasirinkti boksta:");
                     paimtasDiskas = bokstai[isKurPaimtas - 1].SurastiVirsutinioDiskoIndeksa(); // need fix 
 
                     if (paimtasDiskas != -1)
@@ -76,7 +76,7 @@ namespace P046.BaigiamasisOOP
                 {
                     DrawHanoi(bokstai, iKurPadetas, paimtasDiskas);
 
-                    iKurPadetas = Ivestis($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
+                    iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
                     idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
                     if (idetas)
                     {
@@ -163,36 +163,48 @@ namespace P046.BaigiamasisOOP
 
         }
 
-        static int Ivestis(string koklaust)
+        static int IvestisSuMeniu(string koklaust)
         {
-            List<string> skaiciai = new List<string> { "1", "2", "3" };
-            Console.WriteLine(koklaust);
-
-            input = Console.ReadKey().KeyChar;
-            if (input == '\u001b')
+            do
             {
-                Environment.Exit(0);
-            }
-            if (input.ToString().ToLower().Equals("h")) {
-              
-                Environment.Exit(0); // todo Helpo metodus
-            }
 
-            string testas = input.ToString().ToLower();
-           
+                List<string> skaiciai = new List<string> { "1", "2", "3" };
+                Console.WriteLine(koklaust);
 
-            if (skaiciai.Contains(input.ToString()))
-            {
-                return Convert.ToInt32(input.ToString());
-            }
+                input = Console.ReadKey().KeyChar;
+                if (input == '\u001b')
+                {
+                    Environment.Exit(0);
+                }
+                if (input.ToString().ToLower().Equals("h"))
+                {
+
+                    Environment.Exit(0); // todo Helpo metodus
+                }
+
+
+                string testas = input.ToString().ToLower();
+
+
+                if (skaiciai.Contains(input.ToString()))
+                {
+                    return Convert.ToInt32(input.ToString());
+                }
+                else
+                {
+                    KlaidosPranesimas();
+                   
+                }
 
 
 
-            KlaidosPranesimas();
+            } while (input != '1' && input != '2' && input != '3');
 
-           
+            return -1;
 
-            return -1;  //bugas nes grazina ne meniu pasirinkimo klaidos koda kas sugriauna koda, reikia validacijos
+
+
+            //bugas nes grazina ne meniu pasirinkimo klaidos koda kas sugriauna koda, reikia validacijos
         }
 
     

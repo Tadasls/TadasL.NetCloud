@@ -27,15 +27,15 @@ namespace Domain.Models
         public int SurastiVirsutinioDiskoIndeksa() {
 
             int m = -1;
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= Bokstas.Length - 1; i++)
             {
-                if (Bokstas[i] != 0) // kai bokstas pilnas
+                if (Bokstas[i] != 0) // kai bokstas uzpildytas
                 {
-                    m = Bokstas[i]; // paima indeksus
-                    Bokstas[i] = 0; //uzpildo 
+                    m = Bokstas[i]; // paima indeksus ir priskiria
+                    Bokstas[i] = 0; //suradus diska, iztustina joo vieta 
 
-                    return m;
-                }
+                    return m; // grazinia virsutinio disko indexa
+                } 
 
 
             }

@@ -12,20 +12,20 @@ namespace Domain.Services
     public class Loger : ILog
     {
 
-        public void WriteLog(int iskurpaimtas, int diskas, int ikurpadetas, Tower[] Game, DateTime pradziosdata, int ejimonr, bool baigtas = false)
+        public void WriteLog(int iskurpaimtas, int diskas, int ikurpadetas, Tower[] bokstai, DateTime pradziosdata, int ejimonr, bool baigtas = false)
         {
 
            
 
 
             int[] busenos = new int[4];
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < bokstai.Length; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < bokstai[i].Bokstas.Length; j++)
                 {
-                    if (Game[i].Bokstas[j] != 0)
+                    if (bokstai[i].Bokstas[j] != 0)
                     {
-                        busenos[Game[i].Bokstas[j] - 1] = i + 1;
+                        busenos[bokstai[i].Bokstas[j] - 1] = i + 1;
                     }
                 }
             }
@@ -38,6 +38,18 @@ namespace Domain.Services
                 w.WriteLine($"{pradziosdata},{ejimonr},{busenos[0]},{busenos[1]},{busenos[2]},{busenos[3]}");
 
             }
+
+            //html Loginimas
+
+            string htmllogpath = "C:\\Users\\tadas\\Source\\Repos\\Tadasls\\TadasL.NetCloud\\OOP\\P046.BaigiamasisOOP\\Domain\\Logs\\LogHtml.html";
+
+            using (var h = new StreamWriter(htmllogpath, true))
+            {
+                h.WriteLine($"{pradziosdata},{ejimonr},{busenos[0]},{busenos[1]},{busenos[2]},{busenos[3]}");
+
+            }
+
+
 
             //txt Loginimas
 
@@ -53,6 +65,16 @@ namespace Domain.Services
             {
                 writer.WriteLine(TxtLog);
             }
+
+
+
+
+
+
+
+
+
+
         }
 
 
