@@ -15,10 +15,14 @@ namespace P046.BaigiamasisOOP
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
+
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
 
             Loger zaidimoLogas = new Loger();
+            Statistika zaidimoStatistika = new Statistika();
+
+
 
             Tower b1 = new Tower();
             Tower b2 = new Tower();
@@ -61,7 +65,7 @@ namespace P046.BaigiamasisOOP
                 bool idetas = false;
                 do
                 {
-                    DrawHanoi(bokstai); //antros ivesties piesinys
+                    DrawHanoi(bokstai,isKurPaimtas,paimtasDiskas); //antros ivesties piesinys
 
                     iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}");
                     idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
@@ -87,7 +91,7 @@ namespace P046.BaigiamasisOOP
 
             DrawHanoi(bokstai); //finalinis piesimas
 
-            GameOwerScreen();
+            ZaidimoPabaigosPranesimas();
         }
 
 
@@ -113,7 +117,7 @@ namespace P046.BaigiamasisOOP
             Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(1000);
         }
-        static void GameOwerScreen()
+        static void ZaidimoPabaigosPranesimas()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
@@ -121,17 +125,26 @@ namespace P046.BaigiamasisOOP
         }
 
 
-
-
         static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
         {
             Console.Clear();
             Console.WriteLine($"Ejimas : {sekosLogeris}");
-            Console.WriteLine();
+           
+            if (diskas > 0) {
+                string diskoSonas = new string('#', diskas);
+
+                Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
+
+            }
+            else
+            {
+                Console.WriteLine();
+            } 
 
             for (int i = 0; i < 5; i++)
             {
                 string eilute = $"Eilutė {i + 1} ";
+
                 for (int j = 0; j < 3; j++)
                 {
                     string diskoSonas = new string('#', bokstai[j].Bokstas[i]);
@@ -168,9 +181,24 @@ namespace P046.BaigiamasisOOP
                 }
                 if (input.ToString().ToLower().Equals("h"))
                 {
-                    Environment.Exit(0); // todo Helpo metodus
-                }
+                   FileReader skaitymas = new FileReader();
+                   var duomenys = skaitymas.LoadCSV(); // todo Helpo metodus
 
+                    foreach (Statistika item in duomenys)
+                    {
+                        if (item.Laimejimas == false)
+                        {
+                            duomenys.Remove(item);
+                        }
+
+                    }
+                    //foreach (Statistika item in duomenys)
+                    //{
+
+                    //}
+
+
+                }
 
                 string testas = input.ToString().ToLower();
 
@@ -184,20 +212,13 @@ namespace P046.BaigiamasisOOP
                 }
 
 
-
             } while (input != '1' && input != '2' && input != '3');
-
             return -1;
 
-
-
-           
         }
        
         #region // uzdavinio salyga
-
-
-        /*
+                /*
 
           Ėjimas 0
 
