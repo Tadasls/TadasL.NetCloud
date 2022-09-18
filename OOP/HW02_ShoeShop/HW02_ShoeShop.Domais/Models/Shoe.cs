@@ -20,7 +20,7 @@ namespace HW02_ShoeShop.Domais.Models
         [Required]
         public double Price { get; set; }
 
-
+        public virtual ShoeSize ShoeSize { get; set; }
 
 
     }

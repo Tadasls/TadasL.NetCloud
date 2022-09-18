@@ -23,7 +23,7 @@ namespace HW02_ShoeShop.Domais.Models
 
 
         public int ShoesId { get; set; }
-        public virtual IList<Shoe> Shoe { get; set; }
+        public virtual IList<Shoe> Shoes { get; set; }
 
     }
 }
