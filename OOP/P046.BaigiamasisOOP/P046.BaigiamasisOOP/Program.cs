@@ -1,125 +1,327 @@
 ﻿using Domain.Models;
+using Domain.Services;
+using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace P046.BaigiamasisOOP
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static char input;
+        public static bool gameOver = false;
+        public static int sekosLogeris = 0;
+
+        public static void Main(string[] args)
         {
             Console.WriteLine("Hello, TOWER OF HANOI!");
-            #region    
 
-            string D0 = "      |      ";
-            string D1 = "     #|#     ";
-            string D2 = "    ##|##    ";
-            string D3 = "   ###|###   ";
-            string D4 = "  ####|####  ";
-            string aEil = "       ----1stulp-------2stulp-------3stulp----";
+            Console.OutputEncoding = Encoding.GetEncoding(1200);
+            Console.InputEncoding = Encoding.GetEncoding(1200);
+
+            Loger zaidimoLogas = new Loger();
+            //Statistika zaidimoStatistika = new Statistika();
 
 
+            Tower b1 = new Tower();
+            Tower b2 = new Tower();
+            Tower b3 = new Tower();
 
-            string L0 = $"{D0}{D0}{D0}";
-            string L1 = $"{D1}{D0}{D0}";
-            string L2 = $"{D2}{D0}{D0}";
-            string L3 = $"{D3}{D0}{D0}";
-            string L4 = $"{D4}{D0}{D0}";
+            b1.UzpildytiBokstaDuomenis();  //uzpildomas tik pirmas bokstas, nes kiti tusti
 
-            List<string> C1 = new List<string>() { D0, D0, D0 };
-            List<string> C2 = new List<string>() { D0, D0, D0 };
-            List<string> C3 = new List<string>() { D0, D0, D0 };
+            Tower[] bokstai = new Tower[] { b1, b2, b3 };
 
+            DrawHanoi(bokstai); // pradinis piesinys
+            Console.WriteLine();
 
-
-            Console.WriteLine($"1eil. {L0}");
-            Console.WriteLine($"2eil. {L1}");
-            Console.WriteLine($"3eil. {L2}");
-            Console.WriteLine($"4eil. {L3}");
-            Console.WriteLine($"5eil. {L4}");
-            Console.WriteLine(aEil);
-
-            int sekosLogeris = 0;
-            ConsoleKeyInfo input;
-
-
+            DateTime pradziosdata = DateTime.Now;
 
             do
             {
-
+                int isKurPaimtas = -1;
+                int paimtasDiskas = -1;
+                bool ivestas = false;
 
                 do
                 {
+                    DrawHanoi(bokstai); //pirmos ivesties piesinys
 
-                    Console.WriteLine("Pasirenkite vieną iš 3 stulpelių");
-                    input = Console.ReadKey();
-                    if (input.Key == ConsoleKey.Escape)
+                    isKurPaimtas = IvestisSuMeniu("Prasome pasirinkti boksta:",bokstai);
+                    paimtasDiskas = bokstai[isKurPaimtas - 1].SurastiVirsutinioDiskoIndeksa(); // need fix 
+
+                    if (paimtasDiskas != -1)
                     {
-                        Environment.Exit(0);
+                        ivestas = true;
+                    }
+                    else 
+                    { 
+                        TuscioDiskoKlaidosPranesimas();
                     }
 
-                } while (input.KeyChar == '1' && input.KeyChar == '2' && input.KeyChar == '3' && input.KeyChar == 'H' && input.KeyChar == 'h');
+                } while (!ivestas);
 
-
-
-                switch (input.Key)
+                int iKurPadetas = -1;
+                bool idetas = false;
+                do
                 {
+                    DrawHanoi(bokstai,isKurPaimtas,paimtasDiskas); //antros ivesties piesinys
 
-                    case ConsoleKey.NumPad1:
-                        Console.WriteLine("pirmas stulpelis");
+                    iKurPadetas = IvestisSuMeniu($"Prasome pasirinkti boksta i kuri padesite diska : {paimtasDiskas}", bokstai);
+                    idetas = bokstai[iKurPadetas - 1].PadetiDiskaINaujaVieta(paimtasDiskas);
+                    if (idetas)
+                    {
                         sekosLogeris++;
+                        zaidimoLogas.WriteLog(isKurPaimtas, paimtasDiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris);
+                    }
+                    else
+                    {
+                        DiskoDydzioKlaidosPranesimas();
+                    }
+
+                } while (!idetas);
+
+                if (bokstai[2].Bokstas[1] == 1)//zaidimo pabaigos check
+                {
+                    gameOver = true;
+                    //zaidimoLogas.WriteLog(isKurPaimtas, paimtasDiskas, iKurPadetas, bokstai, pradziosdata, sekosLogeris, true);
+                }
+
+            } while (!gameOver);
+
+            DrawHanoi(bokstai); //finalinis piesimas
+
+            ZaidimoPabaigosPranesimas();
+        }
 
 
 
-                        break;
+        static void TuscioDiskoKlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("STULPELYJE NĖRA DISKO");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
+        static void DiskoDydzioKlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
+        static void IvestiesKlaidosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NETEISINGA ĮVESTIS");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1000);
+        }
+        static void ZaidimoPabaigosPranesimas()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"žaidimas baigtas per {sekosLogeris} ėjimų");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
-                    case ConsoleKey.NumPad2:
-                        Console.WriteLine("antras stulpelis");
-                        sekosLogeris++;
-                        break;
+        
 
 
-                    case ConsoleKey.NumPad3:
-                        Console.WriteLine("trecias stulpelis");
-                        sekosLogeris++;
+        static void DrawHanoi(Tower[] bokstai, int bokstas = -1, int diskas = -1)
+        {
+            Console.Clear();
+            Console.WriteLine($"Ejimas : {sekosLogeris}");
+           
+            if (diskas > 0) {
+                string diskoSonas = new string('#', diskas);
+                Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
+            }
+            else
+            {
+                Console.WriteLine();
+            } 
 
-                        break;
-                    case ConsoleKey.H:
-                        Console.WriteLine("Help");
+            for (int i = 0; i < 5; i++)
+            {
+                string eilute = $"Eilutė {i + 1} ";
+                for (int j = 0; j < 3; j++)
+                {
+                    string diskoSonas = new string('#', bokstai[j].Bokstas[i]);
+                    string tusciaDalis = new string(' ', 4 - bokstai[j].Bokstas[i]);
+                    eilute += $"  {tusciaDalis}{diskoSonas}|{diskoSonas}{tusciaDalis}  ";
+                }
+                Console.WriteLine(eilute);
+            }
+
+            if (diskas > 0)
+            {
+                string bokstas1 = (bokstas == 1) ? $"__^^^[{1}]^^^__" : $"_____[{1}]_____";
+                string bokstas2 = (bokstas == 2) ? $"__^^^[{2}]^^^__" : $"_____[{2}]_____";
+                string bokstas3 = (bokstas == 3) ? $"__^^^[{3}]^^^__" : $"_____[{3}]_____";
+                Console.WriteLine($"Eilute {6} {bokstas1}{bokstas2}{bokstas3}");
+                string diskoSonas = new string('#', diskas);
+                Console.WriteLine($"Pasirinktas {diskoSonas}|{diskoSonas} dydzio diskas");
+            }
+            else { Console.WriteLine($"Eilute {6} {$"_____[{1}]_____"}{$"_____[{2}]_____"}{$"_____[{3}]_____"}"); }
+
+        }
+        static int IvestisSuMeniu(string koklaust,Tower[] bokstai)
+        {
+            do
+            {
+                List<string> skaiciai = new List<string> { "1", "2", "3" };
+                Console.WriteLine(koklaust);
+
+                input = Console.ReadKey().KeyChar;
+                if (input == '\u001b')
+                {
+                    Environment.Exit(0);
+                }
+                if (input == 'h' || input == 'H')
+                {
+                    
+                    FileReader skaitymas = new FileReader();
+                    var duomenys = skaitymas.LoadCSV();
+                    List<Statistika> sekmingiZaidimai = new List<Statistika>();
+                    foreach (Statistika anyGame in duomenys)
+                    {
+                        if(anyGame.Laimejimas == true)
+                        {
+                            sekmingiZaidimai.Add(anyGame);
+                        } 
+                    }
+                    int[] busenos = new int[4];
+                    for (int i = 0; i < bokstai.Length; i++)
+                    {
+                        for (int j = 0; j < bokstai[i].Bokstas.Length; j++)
+                        {
+                            if (bokstai[i].Bokstas[j] != 0)
+                            {
+                                busenos[bokstai[i].Bokstas[j] - 1] = i + 1;
+                            }
+                        }
+                    }
+                    int zaidimaskuristurisprendima = -1;
+                    int maziausiaiejimu = int.MaxValue;
+                    int dabartinioejimoindexas = -1;
+                    int x = 0;
+                    foreach (Statistika item in sekmingiZaidimai)
+                    {
+                        
+                        for (int i = 0; i < item.ZaidimuDuomenys.Count; i++)
+                        {
+                            if(item.ZaidimuDuomenys[i][1] == busenos[0] && item.ZaidimuDuomenys[i][2] == busenos[1] && item.ZaidimuDuomenys[i][3] == busenos[2] && item.ZaidimuDuomenys[i][4] == busenos[3])
+                            {
+                                if(item.EjimuSkaicius - i< maziausiaiejimu){
+                                    zaidimaskuristurisprendima = x;
+                                    maziausiaiejimu = item.EjimuSkaicius - i;
+                                    dabartinioejimoindexas = i;
+                                }
+                            }
+
+                        }
+                        x++;
+                    }
+                    if(zaidimaskuristurisprendima > -1){
+                        int[] sekantis = sekmingiZaidimai[zaidimaskuristurisprendima].ZaidimuDuomenys[dabartinioejimoindexas + 1];
+                        Console.WriteLine($" {String.Join(",", busenos)} /n{String.Join(",", sekantis)}");
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (busenos[i] != sekantis[i + 1])
+                            {
+                                Console.WriteLine($" Diskas{i + 1}perkeliamas is boksto {busenos[i]} i {sekantis[i + 1]}");
+
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Pagalbos Nėra"); 
+                    }
+                   
+
+                }
+                if (input.ToString().ToLower().Equals("s"))
+                {
+                    Console.WriteLine("ar atvaizduoti su extra Statistika? ");
+                    bool pilnaStatistika = false;
+                    char uzklausa = Console.ReadKey().KeyChar;
+                    if (uzklausa == 't' || uzklausa == 'T')
+                    {
+                        pilnaStatistika = true;
+                    }
 
 
-                        break;
 
-                    default:
-                        Console.WriteLine("NETEISINGA ĮVESTIS");
-                        break;
+                   FileReader skaitymas = new FileReader();
+                   var duomenys = skaitymas.LoadCSV(); 
+                    string neb = "N/B";
+                        int paskutinislaimetas = -1;
+                    for (int i = 0; i < duomenys.Count; i++)
+                    {
+                        
+                        
+                        string rez = (duomenys[i].Laimejimas) ? ((pilnaStatistika)?duomenys[i].EjimuSkaicius-15: duomenys[i].EjimuSkaicius).ToString() : "N/B";
+                        string pokytis = "N/G";
+                        if (paskutinislaimetas != -1)
+                        {
+                            int skirtumas = duomenys[paskutinislaimetas].EjimuSkaicius - duomenys[i].EjimuSkaicius;
+                            string skirt = (skirtumas > 0) ? "+" + skirtumas.ToString() : skirtumas.ToString();
+                             pokytis = (duomenys[i].Laimejimas) ? skirt : "N/G";
+                            
+                        }
+                        paskutinislaimetas = (duomenys[i].Laimejimas) ? i : paskutinislaimetas;
+                        Console.WriteLine($"{duomenys[i].ZaidimoPradziodata} |  {rez}   |  {pokytis}      " );
+
+                       
+
+
+                    }
+
+
+
+
+                    
+
+                }
+
+                string testas = input.ToString().ToLower();
+
+                if (skaiciai.Contains(input.ToString()))
+                {
+                    return Convert.ToInt32(input.ToString());
+                }
+                else
+                {
+                    IvestiesKlaidosPranesimas();
                 }
 
 
-                Console.WriteLine("Ėjimas " + sekosLogeris);
-                Console.WriteLine("Diskas rankoje: " + input); //todo
-            } while (true);
+            } while (input != '1' && input != '2' && input != '3');
+            return -1;
+
+        }
+       
+
+        /*  uzdavinio salyga 
+
+          Ėjimas 0
+
+          Diskas rankoje: 
+
+          1eil.       |            |            |
+          2eil.      #|#           |            |      
+          3eil.     ##|##          |            |      
+          4eil.    ###|###         |            |      
+          5eil.   ####|####        |            |      
+               ---- -[1]----------[2]----------[3]------
+
+          Norėdami išeiti paspauskite 'Esc'
+          Pagalbai paspauskite 'H'
+          Pasirinkite stulpelį iš kurio paimti
 
 
-            #endregion
-            #region  // salyga zaidimo
-
-            /*
-              Ėjimas 0
-
-              Diskas rankoje: 
-
-              1eil.       |            |            |
-              2eil.      #|#           |            |      
-              3eil.     ##|##          |            |      
-              4eil.    ###|###         |            |      
-              5eil.   ####|####        |            |      
-                   ---- -[1]----------[2]----------[3]------
-
-              Norėdami išeiti paspauskite 'Esc'
-              Pagalbai paspauskite 'H'
-              Pasirinkite stulpelį iš kurio paimti
-
-            
-             ŽAIDIMO TAISYKLĖS:
+         ŽAIDIMO TAISYKLĖS:
 - ŽAIDŽIAMAS 4 DISKŲ IR 3 STULPELIŲ ŽAIDIMAS
 - NUDOTOJAS ĮVEDA STULPELIO NR IŠ KURIO PAIMTI VIRŠUTINĮ DISKĄ
 - PAIMTI GALIMA TIK VIENĄ IR TIK VIRŠUTINĮ DISKĄ
@@ -188,13 +390,13 @@ NAUDOTOJAS PASIRENKA KOKIOS FORMOS ATASKAITA NORI MATYTI
 - JEI SITUACIJA NEBUVO RASTA, IŠVEDAMAS PRANEŠIMAS 'PAGALBA NEGALIMA' (UNIT-TEST)
 - JEI BUVO RASTOS KELIOS TOKIOS SITUACIJOS ATRENKAMA TAS ĖJIMAS KURIS GREIČIAUSIAI PRIVEDĖ PRIE LAIMĖJIMO (UNIT-TEST)
 - BŪTINAS UNIT-TEST AR TEISINGAI PADEDAMA, IR AR TIKRAI PARENKAMA GERIAUSIA ĮRAŠYTA PAGALBA              
-        ↑↑↑↑↑        ↓↓↓↓↓
+    ↑↑↑↑↑        ↓↓↓↓↓
 1eil.       |            |            |      
 2eil.      #|#           |            |      
 3eil.     ##|##          |            |      
 4eil.    ###|###         |            |      
 5eil.   ####|####        |            |      
-    -----[1]----------[2]----------[3]------
+-----[1]----------[2]----------[3]------
 <pagalba> - paimkite diską iš pirmo stulpelio ir padėkite į antrą
 Norėdami išeiti paspauskite 'Esc' 
 Pagalbai paspauskite 'H' 
@@ -249,188 +451,15 @@ PVZ:
 APRIBOJIMAI:
 - TAIKYTI "Dependency inversion principle". t.y. VISI SERVISAI TURI BŪTI KONSTRUOJAMI Į INTERFACE
 - TAIKYTI "Single-responsibility principle". t.y. KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES 
-
-
-            */
-
-
-            #endregion
-
-        }
-
-        static void Hanoi()
-        {
-
-
-            List<Disk> aTower = new List<Disk>();
-            aTower.Add(new Disk(1, 3, ConsoleColor.Green));//bottom
-            aTower.Add(new Disk(2, 2, ConsoleColor.White));//mid
-            aTower.Add(new Disk(3, 1, ConsoleColor.Red));//top
-            List<Disk> bTower = new List<Disk>();
-            List<Disk> cTower = new List<Disk>();
-            List<List<Disk>> abcTowers = new List<List<Disk>>();
-            abcTowers.Add(aTower);
-            abcTowers.Add(bTower);
-            abcTowers.Add(cTower);
-
-            bool keepPlaying = true;
-
-            int numberOfMoves = 0;
-
-            while (keepPlaying)
-            {
-                Console.Clear();
-                DrawHanoi(abcTowers);
-                Console.Write("Paimkite diska iš: ");
-                char itemToMove = Console.ReadKey().KeyChar;
-                Console.Write(" padėkite ant bokšto: ");
-                char moveTo = Console.ReadKey().KeyChar;
-                UpdateHanoi(ref abcTowers, itemToMove, moveTo, ref keepPlaying, ref numberOfMoves);
-            }
-        } // spalvoti hanoi
-        static void UpdateHanoi(ref List<List<Disk>> towers, char itemToMove, char moveTo, ref bool keepPlaying, ref int numberOfMoves)
-        {
-            int itemToMoveParse;
-            int moveToParse;
-            Int32.TryParse(itemToMove.ToString(), out itemToMoveParse);
-            Int32.TryParse(moveTo.ToString(), out moveToParse);
-            if (Int32.TryParse(itemToMove.ToString(), out itemToMoveParse) && Int32.TryParse(moveTo.ToString(), out moveToParse))
-            {
-                Disk disc = getDisc(towers, itemToMoveParse);
-                if (discFree(towers[findTower(towers, itemToMoveParse) - 1], itemToMoveParse) && movePossible(towers, disc, moveToParse))
-                {
-                    numberOfMoves++;
-                    MoveDisc(disc, ref towers, moveToParse);
-                    if (towers[2].Count == 3 && towers[1].Count == 0 && towers[0].Count == 0)
-                    {
-                        keepPlaying = false;
-                        Console.Clear();
-                        DrawHanoi(towers);
-                        Console.WriteLine(Environment.NewLine + "You won in " + numberOfMoves.ToString() + " moves, congratulations!");
-                        Console.ReadKey();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine(Environment.NewLine + "Illegal move");
-                    Console.ReadKey();
-                }
-            }
-        }
-        static Disk getDisc(List<List<Disk>> towers, int discNumber)
-        {
-            foreach (List<Disk> tower in towers)
-            {
-                foreach (Disk disc in tower)
-                {
-                    if (disc.Number == discNumber)
-                    {
-                        return disc;
-                    }
-                }
-            }
-            return new Disk(0, 0, ConsoleColor.Black);
-        }
-        static bool discFree(List<Disk> tower, int discNumber)
-        {
-            if (tower.Last().Number == discNumber)
-            {
-                return true;
-            }
-            return false;
-        }
-        static int findTower(List<List<Disk>> towers, int discNumber)
-        {
-            int t = 0;
-            foreach (List<Disk> tower in towers)
-            {
-                t++;
-                foreach (Disk d in tower)
-                {
-                    if (d.Number == discNumber)
-                    {
-                        return t;
-                    }
-                }
-            }
-            return 1;
-        }
-        static bool movePossible(List<List<Disk>> towers, Disk disc, int moveToParse)
-        {
-            int i = 0;
-            foreach (List<Disk> tower in towers)
-            {
-                i++;
-                if (moveToParse == i)
-                {
-                    if (tower.Count == 0 || (tower.Count > 0 && tower.Last() != null && tower.Last().Size > disc.Size))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        static void MoveDisc(Disk disc, ref List<List<Disk>> towers, int moveTo)
-        {
-            towers[findTower(towers, disc.Number) - 1].Remove(disc);
-            towers[moveTo - 1].Add(disc);
-        }
-        static void DrawHanoi(List<List<Disk>> towers)
-        {
-            Console.WriteLine("Move all discs to tower 3" + Environment.NewLine);
-            for (int a = 0; a < towers.Count; a++)
-            {
-                Console.WriteLine("Tower " + (a + 1).ToString() + ":");
-                for (int i = towers[a].Count - 1; i >= 0; i--)
-                {
-                    Disk d = towers[a][i];
-                    string discString = new string(' ', d.Size) + d.Number + new string(' ', d.Size);
-
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(new string(' ', d.Number));
-
-                    Console.BackgroundColor = d.Color;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write(discString);
-
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(new string(' ', d.Number));
-
-                    Console.WriteLine();
-                }
-                Console.WriteLine();
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-        }
-
-
-        static void Game()  // sprendimui rasti metodas
-            {
-                Tower tower = new Tower(); // naujas objektas sukuriamas
-                Console.Write("Enter the number of discs: ");
-                string cnumdiscs = Console.ReadLine();
-                tower.numdiscs = Convert.ToInt32(cnumdiscs);
-                tower.movetower(tower.numdiscs, 1, 3, 2);
-                Console.ReadLine();
-                
-            }
-
-
-        
+        */
 
        
-        
 
 
 
 
-
-      
 
 
     }
+    
 }

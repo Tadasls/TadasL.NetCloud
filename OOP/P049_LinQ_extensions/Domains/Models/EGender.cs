@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Domains.Models
 {
-    internal class Atvaizdavimas
+    public enum EGender
     {
-
-
+        Male, Female
     }
 }

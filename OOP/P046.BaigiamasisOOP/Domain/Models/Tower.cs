@@ -14,64 +14,60 @@ namespace Domain.Models
         public List<Disk> cTower { get; set; } = new List<Disk>();
 
 
-        public List<Disk> Pole { get; set; }  // viengubas??
-        public int Position { get; set; } //viengubas su pozicija
+        public List<Disk> Pole { get; set; }
+        public int Position { get; set; }
 
-        public Tower(int discs, int posistion) // viengubo konstruktorius
+        public Tower(int discs, int posistion)
         {
-            Pole = new List<Disk>();
-            Position = posistion;
+            Bokstas = new int[] { 0, 0, 0, 0, 0 }; 
         }
-
-
-
-        // sprendimas kad surasti trumpiausia kelia
-
-        int m_numdiscs;
-        public Tower()
+        public Tower(int[] bokstas)
         {
-            numdiscs = 0;
+            Bokstas = bokstas;
         }
-        public Tower(int newval)
-        {
-            numdiscs = newval;
-        }
-        public int numdiscs
-        {
-            get
+        public void UzpildytiBokstaDuomenis() 
+        {  
+           for (int i=0; i <= Bokstas.Length - 1; i++)
             {
-                return m_numdiscs;
+                Bokstas[i] = i ;
             }
-            set
-            {
-                if (value > 0)
-                    m_numdiscs = value;
-            }
+        
         }
-        public void movetower(int n, int from, int to, int other )
-        {
-            if (n > 0)
+        public int SurastiVirsutinioDiskoIndeksa() {
+            int m = -1;
+            for (int i = 0; i <= Bokstas.Length - 1; i++)
             {
-                movetower(n - 1, from, other, to);
-                Console.WriteLine("Move disk {0} from tower {1} to tower {2}", n, from, to);
-                movetower(n - 1, other, to, from);
-            }
-            
-        }
-
-        private static void Move(int discs, Stack<int> fromPeg, Stack<int> toPeg, Stack<int> otherPeg)
-        {
-            if (discs == 0)
-            {
-                return;
+                if (Bokstas[i] != 0) // kai bokstas uzpildytas
+                {
+                    m = Bokstas[i]; // paima indeksus ir priskiria
+                    Bokstas[i] = 0; //suradus diska, iztustina joo vieta 
+                    return m; // grazinia virsutinio disko indexa
+                } 
             }
 
-            Move(discs - 1, fromPeg, otherPeg, toPeg);
-
-            toPeg.Push(fromPeg.Pop());
-
-            Move(discs - 1, otherPeg, toPeg, fromPeg);
+            return -1;
         }
+        public bool PadetiDiskaINaujaVieta(int disk) {
+            int m = 0;
+            for (int i = 0; i <= Bokstas.Length-1; i++)
+            {
+                if (Bokstas[i]==0 ){ m = i; } // eina per visus boksto aukstus ir paskutinio tuscio disko vieta indeksuojasi
+            }
+
+            if (m == Bokstas.Length - 1) {
+                Bokstas[m] = disk; //jei bokstas tuscias, iskarto padeda i apacia
+                return true;  // grazina statusa kad padejo
+            }
+
+            if (Bokstas[m + 1] > disk) { Bokstas[m] = disk; // jei apatinis diskas yra didesnis, tada einama vieta uzpildo disku
+                return true;// grazina statusa kad padejo
+            }
+
+
+            return false; // grazina statusa kad nepadejo (galima jei bokstas pilnas/arba apatinis diskas mazesnis
+        }
+        public int [] Bokstas { get; set; }
+       
 
 
     }
