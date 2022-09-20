@@ -1,35 +1,16 @@
-﻿using P054_DB_Mutation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using P054_DB_Mutation.Database.Models;
 
-namespace Domains.Models
+namespace P054_DB_Mutation.Database.Models
 {
-    [Table("Blog")]
     public class Blog
     {
-        [Column(Order = 0)]
-        public int BlogId { get; set; }
+        public virtual int BlogId { get; set; }
+        public virtual string Name { get; set; }
+        public virtual decimal Rating { get; set; }
 
+        public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>(); //Lazy loading
 
-        [Column(Order = 2)]
-        public decimal Rating { get; set; }
-
-
-
-        [Column("BlogName", Order = 1)]
-        public string Name { get; set; }
-        
-        public virtual List<Post> Posts { get; set; }   
-        public virtual IList<AuthorBlog> AuthorBlogs { get; set; }
-
-
-       
-
-
-
+        public virtual IList<AuthorBlog> AuthorBlog { get; set; }
     }
 }

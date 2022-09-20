@@ -1,53 +1,48 @@
-﻿using Domains.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using P054_DB_Mutation.Database.Models;
 
-namespace P054_DB_Mutation
+namespace P054_DB_Mutation.Database
 {
     public class BloggingContext : DbContext
     {
+        public BloggingContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public BloggingContext()
         {
-            // %LOCALAPPDATA%
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            ConnectionString = Path.Join(path, "QueringBloggingDB.db");
         }
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBlog> AuthorBlogs { get; set; }
-
-
-        public string ConnectionString { get; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-
-            optionsBuilder.UseSqlite($"Data Source = {ConnectionString}");
-            optionsBuilder.UseLazyLoadingProxies();
-
-
+            if (!optionsBuilder.IsConfigured) //reikalinga testams
+            {
+                optionsBuilder.UseSqlite(@"Data Source=Blogging.db");
+                optionsBuilder.UseLazyLoadingProxies(); /* Užtikriname kad EF palaikytu lazy loading instaliuojam package Microsoft.EntityFrameworkCore.Proxies */
+            }
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<AuthorBlog>()
-                        .HasKey(ab => new { ab.AuthorId, ab.BlogId});
+            modelBuilder.Entity<AuthorBlog>().HasKey(sc => new { sc.AuthorId, sc.BlogId });
 
             modelBuilder.Entity<AuthorBlog>()
-                .HasOne<Author>(ab => ab.Author)
-                .WithMany(ab => ab.AuthorBlogs)
-                .HasForeignKey(ab => ab.AuthorId);
+                .HasOne(sc => sc.Author)
+                .WithMany(s => s.AuthorBlog)
+                .HasForeignKey(sc => sc.AuthorId);
+
 
             modelBuilder.Entity<AuthorBlog>()
-           .HasOne<Blog>(ab => ab.Blog)
-           .WithMany(ab => ab.AuthorBlogs)
-           .HasForeignKey(ab => ab.BlogId);
+                .HasOne(sc => sc.Blog)
+                .WithMany(s => s.AuthorBlog)
+                .HasForeignKey(sc => sc.BlogId);
         }
-
-
     }
 }

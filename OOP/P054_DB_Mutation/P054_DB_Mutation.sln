@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P054_DB_Mutation", "P054_DB_Mutation\P054_DB_Mutation.csproj", "{86027A2E-32D8-4569-BAFD-229421DA77EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P054_DB_MutationTests", "P054_DB_MutationTests\P054_DB_MutationTests.csproj", "{78013BC2-4D85-4211-AA8F-54C4DACAAB6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{86027A2E-32D8-4569-BAFD-229421DA77EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86027A2E-32D8-4569-BAFD-229421DA77EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86027A2E-32D8-4569-BAFD-229421DA77EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78013BC2-4D85-4211-AA8F-54C4DACAAB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78013BC2-4D85-4211-AA8F-54C4DACAAB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78013BC2-4D85-4211-AA8F-54C4DACAAB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78013BC2-4D85-4211-AA8F-54C4DACAAB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

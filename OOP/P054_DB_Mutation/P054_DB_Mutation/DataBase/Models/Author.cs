@@ -1,27 +1,23 @@
-﻿using Domains.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using P054_DB_Mutation.Database.Models;
 
-namespace P054_DB_Mutation
-{ 
-
+namespace P054_DB_Mutation.Database.Models
+{
     [Table("Author")]
     public class Author
     {
         [Key]
         public int AuthorId { get; set; }
+
         [MaxLength(150)]
         [Required]
         public string FirstName { get; set; }
+
         [MaxLength(150)]
         public string LastName { get; set; }
-        public virtual IList<AuthorBlog> AuthorBlogs { get; set; }   
 
-
+        public virtual IList<AuthorBlog> AuthorBlog { get; set; }
     }
 }
