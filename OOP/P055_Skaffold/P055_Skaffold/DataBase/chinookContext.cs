@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using P055_Skaffold.Models;
 
 namespace P055_Skaffold.DataBase
 {
-    public partial class chinookContext : DbContext
+    public partial class ChinookContext : DbContext
     {
-        public chinookContext()
+        public ChinookContext()
         {
         }
 
-        public chinookContext(DbContextOptions<chinookContext> options)
+        public ChinookContext(DbContextOptions<ChinookContext> options)
             : base(options)
         {
         }
