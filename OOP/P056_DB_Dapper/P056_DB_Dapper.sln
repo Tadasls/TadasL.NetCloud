@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P056_DB_Dapper", "P056_DB_Dapper\P056_DB_Dapper.csproj", "{E163C650-FEA8-451B-A207-8071A7E9E4F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteBook_App", "NoteBook_App\NoteBook_App.csproj", "{0AC426A5-8F40-4BAD-B064-796A9AC4ADEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E163C650-FEA8-451B-A207-8071A7E9E4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E163C650-FEA8-451B-A207-8071A7E9E4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E163C650-FEA8-451B-A207-8071A7E9E4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E163C650-FEA8-451B-A207-8071A7E9E4F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC426A5-8F40-4BAD-B064-796A9AC4ADEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC426A5-8F40-4BAD-B064-796A9AC4ADEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC426A5-8F40-4BAD-B064-796A9AC4ADEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC426A5-8F40-4BAD-B064-796A9AC4ADEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21455D49-3632-4BE3-9F46-DC78FBB49D82}
+	EndGlobalSection
+EndGlobal
