@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
 using NoteBook_App.DataBase.Dapper;
+using NoteBook_App.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

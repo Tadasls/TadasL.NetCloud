@@ -1,5 +1,6 @@
 ﻿using NoteBook_App.DataBase;
 using NoteBook_App.DataBase.Dapper;
+using NoteBook_App.Interfaces;
 using NoteBook_App.Models;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,10 @@ namespace NoteBook_App.Services
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("1. Add Product");
-                Console.WriteLine("2. List Products");
-                Console.WriteLine("3. Remove Products with name");
+                Console.WriteLine("1. Add NoteBook");
+                Console.WriteLine("2. List NoteBooks");
+                Console.WriteLine("3. Remove NoteBooks with name");
+                Console.WriteLine("4. Update");
                 Console.WriteLine("q. Quit");
 
                 selection = Console.ReadKey().KeyChar;
@@ -37,15 +39,20 @@ namespace NoteBook_App.Services
                 switch (selection)
                 {
                     case '1':
-                        AddProduct();
+                        AddNotebook();
                         break;
                     case '2':
-                        DisplayProducts();
+                        ShowNotebooks();
                         break;
                     case '3':
-                        RemoveProduct();
+                        DeleteNotebooks();
+                        break;
+                    case '4':
+                        UpdateNoteBook();
                         break;
                     case 'q':
+                        return;
+                    case 'Q':
                         return;
                     default:
                         break;
@@ -55,29 +62,53 @@ namespace NoteBook_App.Services
             }
         }
 
-        public void DisplayProducts()
+        public void UpdateNoteBook()
         {
-            var products = _noteBookRepository.Get();
+            Console.WriteLine(" pasirinkite ka updatinti");
+            ShowNotebooks();
+                int updateNotebookId = Convert.ToInt32(Console.ReadLine());
+            NoteBook notebook = _noteBookRepository.Get(updateNotebookId);
+            if(notebook == null)
+            {
+                Console.WriteLine($"nera tokio {notebook?.Id}");
+                return;
+            }
+            Console.WriteLine("\n\nPlease enter new name of the NoteBook:");
+            notebook.Name = Console.ReadLine();
+            Console.WriteLine("\n\nPlease enter new description of the NoteBook:");
+            notebook.Description = Console.ReadLine();
+
+            _noteBookRepository.UpdateNoteBook(notebook);
+
+            Console.WriteLine($"\n{notebook.Id} - {notebook.Name} - {notebook.Description}  added to the database\n");
+
+        }
+
+        public void ShowNotebooks()
+        {
+            IEnumerable<NoteBook> notebooks = _noteBookRepository.Get();
 
             Console.WriteLine();
 
-            foreach (var product in products)
+            foreach (NoteBook notebook in notebooks)
             {
-                Console.WriteLine($"{product.Id}. {product.Name} - {product.Description}");
+                Console.WriteLine($"{notebook.Id}. {notebook.Name} - {notebook.Description}");
             }
         }
 
-        public void AddProduct()
+        public void AddNotebook()
         {
-            var newProduct = new NoteBook();
-            Console.WriteLine("\n\nPlease enter name of the product:");
-            newProduct.Name = Console.ReadLine();
-            Console.WriteLine("\n\nPlease enter description of the product:");
-            newProduct.Description = Console.ReadLine();
+            NoteBook NewNoteBook = new NoteBook();
+            Console.WriteLine("\n\nPlease enter name of the NoteBook:");
+            NewNoteBook.Name = Console.ReadLine();
+            Console.WriteLine("\n\nPlease enter description of the NoteBook:");
+            NewNoteBook.Description = Console.ReadLine();
+            Console.WriteLine("\n\nPlease enter Priority of the NoteBook:");
+            NewNoteBook.Priority = Console.ReadLine();
 
-            _noteBookRepository.Create(newProduct);
+            _noteBookRepository.Create(NewNoteBook);
 
-            Console.WriteLine($"\n{newProduct.Name} - {newProduct.Description} added to the database\n");
+            Console.WriteLine($"\n{NewNoteBook.Name} - {NewNoteBook.Description} - {NewNoteBook.Priority}  added to the database\n");
         }
 
         private void PauseScreen()
@@ -86,14 +117,14 @@ namespace NoteBook_App.Services
             Console.ReadKey();
         }
 
-        public void RemoveProduct()
+        public void DeleteNotebooks()
         {
-            Console.WriteLine("\n\nPlease enter name of the product that should be deleted:");
-            string productNameToDelete = Console.ReadLine();
+            Console.WriteLine("\n\nPlease enter name of the NoteBook that should be deleted:");
+            string NOteBpookNameToDelete = Console.ReadLine();
 
-            int productsDeletedCount = _noteBookRepository.Delete(productNameToDelete);
+            int noteBooksDeletedCount = _noteBookRepository.Delete(NOteBpookNameToDelete);
 
-            Console.WriteLine($"\n{productsDeletedCount} called {productNameToDelete} were removed.\n");
+            Console.WriteLine($"\n{noteBooksDeletedCount} called {NOteBpookNameToDelete} were removed.\n");
         }
     }
 }

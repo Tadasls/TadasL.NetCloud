@@ -1,7 +1,9 @@
-﻿namespace NoteBook_App.Services
+﻿namespace NoteBook_App.Interfaces
 {
     public interface INoteBookService
     {
         public void Run();
+
+        
     }
 }

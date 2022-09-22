@@ -1,5 +1,6 @@
 ﻿using NoteBook_App.DataBase;
 using NoteBook_App.DataBase.Dapper;
+using NoteBook_App.Interfaces;
 using NoteBook_App.Services;
 
 namespace NoteBook_App
