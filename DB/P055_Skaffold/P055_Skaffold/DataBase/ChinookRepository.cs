@@ -108,7 +108,8 @@ namespace P055_Skaffold.DataBase
             using (var context = new ChinookContext())
             {
                 var emplList = context.Employees
-                   .Where(x => x.Title == "Sales Support Agent");
+                   .Select(x => x);
+
                 var invoisuSarasasSpecAgento = context.Invoices
                 .Join(
                      emplList,
@@ -124,54 +125,82 @@ namespace P055_Skaffold.DataBase
                 return invoisuSarasasSpecAgento.ToList();
             }
 
-
-
         }
         //7. Prašykite metodą, kuris grąžina kiek sąskaitų buvo išrašyta už metus
-        public IEnumerable<dynamic> Metodas7()
+        public int Metodas7()
         {
             using (var context = new ChinookContext())
             {
-                var kazkas = context.Customers;
-
-                return kazkas.ToList();
+                var metuInvoisai = context.Invoices
+                   .Where(x => x.InvoiceDate.Value.Year >= 2012 && x.InvoiceDate.Value.Year <= 2013);
+                int invoisuSkaicius = metuInvoisai.Count();
+                Console.WriteLine("7uzd:");
+                Console.WriteLine($"Per 2012 metus sugeneruota {invoisuSkaicius} ");
+                return invoisuSkaicius;
             }
-           
         }
-
-
         //  8. Prašykite metodą, kuris grąžina kiek prekių(invoice_items) buvo parduota su kiekviena sąskaita 
         public IEnumerable<dynamic> Metodas8()
         {
             using (var context = new ChinookContext())
             {
-                var kazkas = context.Customers;
+               var invoiceList = context.Invoices
+                .Select(x => x);
+            var prekiuKiekisInvoice = context.InvoiceItems
+            .Join(
+                 invoiceList,
+            i => i.InvoiceLineId,
+            y => y.InvoiceId,
+            (i, y) => new { y.InvoiceId, y.InvoiceItems, i.InvoiceLineId, i.Quantity });
 
-                return kazkas.ToList();
+            Console.WriteLine("8uzd:");
+            foreach (var invoice in prekiuKiekisInvoice)
+            {
+                Console.WriteLine($" {invoice.InvoiceId}, {invoice.InvoiceItems.Count()}");
             }
-
-        }
+            return prekiuKiekisInvoice.ToList();
+            }
+         }
         //  9. Prašykite metodą, kuris grąžina kiek kiekvienoje kliento valstybėje buvo išrašyta sąskaitų 
         public IEnumerable<dynamic> Metodas9()
         {
             using (var context = new ChinookContext())
             {
-                var kazkas = context.Customers;
-
-                return kazkas.ToList();
+                var countryList = context.Invoices
+                    .GroupBy(c => c.BillingCountry)
+                    .Select(e => new
+                    {
+                        CountriesGroup = e.Key,
+                        CountryName = e.Select(x => x.BillingCountry).ToArray(),
+                    });
+                Console.WriteLine("9 uzd:");
+                foreach (var invoice in countryList)
+                {
+                    Console.WriteLine($" {invoice.CountriesGroup}   {invoice.CountriesGroup.Count()}");
+                }
+                return countryList.ToList();
             }
-
         }
         //  10. Prašykite metodą, kuris grąžina kiek prekių(invoice_items) buvo parduota su kiekvienoje kliento valstybėje 
         public IEnumerable<dynamic> Metodas10()
         {
             using (var context = new ChinookContext())
             {
-                var kazkas = context.Customers;
+                var countryList = context.Invoices
+                    .GroupBy(c => c.BillingCountry)
+                    .Select(e => new
+                    {
+                        CountriesGroup = e.Key,
+                        InvoiceCount = e.Select(x => x.CustomerId).Count(),
+                    });
 
-                return kazkas.ToList();
+                Console.WriteLine("10 uzd:");
+                foreach (var invoice in countryList)
+                {
+                    Console.WriteLine($" {invoice.CountriesGroup}  {invoice.InvoiceCount} ");
+                }
+                return countryList.ToList();
             }
-
         }
         //  11. Prašykite metodą, kuris grąžina nupirko(invoice_items) 'track' pavadinimą ir 'artist' vardą
         public IEnumerable<dynamic> Metodas11()
@@ -255,11 +284,21 @@ namespace P055_Skaffold.DataBase
         {
             using (var context = new ChinookContext())
             {
-                var kazkas = context.Customers;
+                var countryList = context.Invoices
+                    .GroupBy(c => c.BillingCountry)
+                    .Select(e => new
+                  {
+                      CountriesGroup = e.Key,
+                      InvoiceCount = e.Select(x => x.Customer).Count(),
+                    });
 
-                return kazkas.ToList();
+                Console.WriteLine("18 uzd:");
+                foreach (var invoice in countryList)
+                {
+                    Console.WriteLine($" {invoice.CountriesGroup}  {invoice.InvoiceCount} ");
+                }
+                return countryList;
             }
-
         }
 
 
