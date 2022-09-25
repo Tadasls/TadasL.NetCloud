@@ -1,6 +1,6 @@
 ﻿using Domains.Models;
-using Infracstructure;
 using Microsoft.EntityFrameworkCore;
+using P053_QueryingSqliteDb.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
