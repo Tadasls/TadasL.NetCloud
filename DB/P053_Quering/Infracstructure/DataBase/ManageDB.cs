@@ -47,10 +47,6 @@ namespace P053_QueryingSqliteDb.Infrastrusture.DataBase
                     LastName = lastName,
                 },
                 BlogId = blogId
-
-
-
-
             });
 
             context.SaveChanges();
