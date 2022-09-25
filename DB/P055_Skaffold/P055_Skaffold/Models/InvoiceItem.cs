@@ -8,7 +8,7 @@ namespace P055_Skaffold.Models
         public long InvoiceLineId { get; set; }
         public long InvoiceId { get; set; }
         public long TrackId { get; set; }
-        public byte[] UnitPrice { get; set; } = null!;
+        public double? UnitPrice { get; set; } = null!;
         public long Quantity { get; set; }
 
         public virtual Invoice Invoice { get; set; } = null!;

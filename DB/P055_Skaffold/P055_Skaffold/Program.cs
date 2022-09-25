@@ -1,4 +1,6 @@
-﻿namespace P055_Skaffold.Models
+﻿using P055_Skaffold.DataBase;
+
+namespace P055_Skaffold
 {
     internal class Program
     {
@@ -8,6 +10,29 @@
             //Scaffold-DbContext "DataSource=C:\PLAYGROUND\ProgramavimoMokykla\CA.NET2\DB\P055_DB_DataSeed\P055_Scaffold\chinook.db" Microsoft.EntityFrameworkCore.Sqlite
             //mano kompo eilute
             //Scaffold-DbContext "DataSource=C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\P055_Skaffold\P055_Skaffold\chinook.db" Microsoft.EntityFrameworkCore.Sqlite
+
+            ChinookContext dbKontekstas = new ChinookContext();
+            ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
+
+            //manoDb.GetCustomer2("USA");
+            //manoDb.GetInvoices3("Poland");
+            //manoDb.GetEmployeesByTitle4();
+            //manoDb.GetUniqueCountryListFromCustomers5();
+            manoDb.GetInvoicesResponsibleBySalesAgents6();
+            manoDb.Metodas7();
+            //manoDb.Metodas8();
+            //manoDb.Metodas9();
+            //manoDb.Metodas10();
+            //manoDb.Metodas11();
+            //manoDb.Metodas12();
+            //manoDb.Metodas13();
+            //manoDb.Metodas14();
+            //manoDb.Metodas15();
+            //manoDb.Metodas16();
+            //manoDb.Metodas17();
+            //manoDb.Metodas18();
+          
+
 
 
             /*
