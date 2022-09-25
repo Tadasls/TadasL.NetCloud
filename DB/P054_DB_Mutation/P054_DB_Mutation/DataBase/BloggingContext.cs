@@ -21,7 +21,7 @@ namespace P054_DB_Mutation.Database
         {
             if (!optionsBuilder.IsConfigured) //reikalinga testams
             {
-                optionsBuilder.UseSqlite(@"Data Source=Blogging.db");
+                optionsBuilder.UseSqlite(@"Data Source=Blogging54.db");
                 optionsBuilder.UseLazyLoadingProxies(); /* Užtikriname kad EF palaikytu lazy loading instaliuojam package Microsoft.EntityFrameworkCore.Proxies */
             }
             base.OnConfiguring(optionsBuilder);

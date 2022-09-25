@@ -17,7 +17,7 @@ namespace P052_CodeFirstSqliteDb.Infrastructure.Database
             // %LOCALAPPDATA%
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = Path.Join(path, "CodeFirstBlogging.db");
+            DbPath = Path.Join(path, "CodeFirstBlogging52.db");
         }
 
         // Registruojame nauja lentele savo duombazeje
