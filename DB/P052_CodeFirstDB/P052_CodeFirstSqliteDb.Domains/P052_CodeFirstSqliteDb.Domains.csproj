@@ -8,11 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.9" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\P052_CodeFirstSqliteDb.Domains\P052_CodeFirstSqliteDb.Domains.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\P052_CodeFirstSqliteDb.Domain.csproj" />
     <ProjectReference Include="..\Infrasture\P052_CodeFirstSqliteDb.Infrastructure.csproj" />
+    <ProjectReference Include="..\P052_CodeFirstSqliteDb.Domains\P052_CodeFirstSqliteDb.Domains.csproj" />
   </ItemGroup>
 
 </Project>
