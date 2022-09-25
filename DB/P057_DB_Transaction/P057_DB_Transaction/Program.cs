@@ -84,6 +84,7 @@ namespace P057_DB_TransactionChangeTracking
            Customer gali tureti 1 registruota Warehouse, o Warehouse gali tureti daug registruotu Customer.
 
            Sukurkite DbContext ir ji naudokite DbManager klaseje.
+
            DbManager turi paveldeti is IDbManager:
                List<SalesPerson> GetSalesPeople();
                List<Customer> GetCustomers();
