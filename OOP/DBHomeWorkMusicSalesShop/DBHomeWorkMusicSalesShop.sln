@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHomeWorkMusicSalesShop", "DBHomeWorkMusicSalesShop\DBHomeWorkMusicSalesShop.csproj", "{DDEB33FE-C847-4EAB-AC84-C073A39646BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHomeWorMusicSalesShop.Infrastructure", "DBHomeWorMusicSalesShop.Infrastructure\DBHomeWorMusicSalesShop.Infrastructure.csproj", "{B6F1B63B-F19A-44E6-A056-119497F101C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDEB33FE-C847-4EAB-AC84-C073A39646BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEB33FE-C847-4EAB-AC84-C073A39646BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEB33FE-C847-4EAB-AC84-C073A39646BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEB33FE-C847-4EAB-AC84-C073A39646BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F1B63B-F19A-44E6-A056-119497F101C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F1B63B-F19A-44E6-A056-119497F101C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F1B63B-F19A-44E6-A056-119497F101C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F1B63B-F19A-44E6-A056-119497F101C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE9161AA-0E2A-4BF3-84A8-EA86CFC64F52}
+	EndGlobalSection
+EndGlobal
