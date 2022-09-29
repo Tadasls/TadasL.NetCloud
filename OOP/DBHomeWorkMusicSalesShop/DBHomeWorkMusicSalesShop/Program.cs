@@ -10,19 +10,20 @@ namespace DBHomeWorkMusicSalesShop
         {
             Console.WriteLine("Hello, My_MusicShop!");
 
-            // programą, kurioje galima būtų registruotis, prisijungti, pirkti ir gauti atąskaitas už Padarytus pirkimus.
+			//ChinookContext dbKontekstas = new ChinookContext();
+			//ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
 
-
-            IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
+			IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
             muzikosPardavimuServisas.Run();
 
-
-          
 
 
 
 
             //Scaffold-DbContext „DataSource = C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\DBHomeWorkMusicSalesShop\DBHomeWorkMusicSalesShop\InitialData\chinook.db“ Microsoft.EntityFrameworkCore.Sqlite
+
+
+
 
         }
     }
@@ -273,10 +274,94 @@ APRIBOJIMAI:
 - TAIKYTI "Single-responsibility principle". t.y.KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES
 */
 
-    #endregion
+	#endregion
+
+
+	#region
+
+	/*   like darbai verslo logika
+
+	 (BONUS - DARYKITE TIK JEI BŪSITE PABAIGĘ VISA KITA) Padarykite jūsų katalogas turėtų puslapiavimą. Prie esamų funkcijų pridėkite 'a' ir 'd' raides kaip galimybę eiti pirmyn arba atgal per katalogo puslapius. Kiekvienas puslapis turėtų turėti 10 Tracks. Apačioje turėtų atvaizduoti kuriame puslapyje šiuo metu esame ir kiek iš viso puslapių yra. Pasidarykite patikrą, kad vartotojas negalėtų nužygiuoti toliau nei esami puslapiai. (BONUS) Įdėkite 'x' komandą, kuri leistų įvesti į kurį puslapį norite nusigauti. 
+ (BONUS) Pagal Album ir Artist {Pagrindinės paieškos funkcijos}:
+(BONUS - DARYKITE TIK JEI BŪSITE PABAIGĘ VISA KITA [NĖRA BŪTINA]) Padarykite, kad perkant visą albumą pritaikytų 25% nuolaidą perkamoms dainoms.
+
+
+//To Do
+
+Turite atnaujinti Tracks lentelę ir pridėti naują stulpelį [Status] su default reiksme "Active".
+ Darbuotojai turės galimybę pakeisti Tracks status iš Active į Inactive ir atvirkščiai. 
+
+[PAPILDOMAI]
+EKRANAS [DARBUOTOJU PARINKTYS EKRANAS->Statistika (Darbuotojams)]:
+Pasirinkus "Statistika (Darbuotojams)" ekrane turėtume turėti išmesti bent 5 parinktis:
+	1. Išgauti visas kliento atąskaitas pagal kliento ID
+	2. Išgauti veiklos pelna (Neatskaičius mokesčių pilna suma)
+	3. Išgauti veiklos pelną pagal paduotus metus
+	4. Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį)
+		a. Rock | 1178
+		b. Indie | 588
+		c. Ir t.t
+	5. Išgauti kiek kiekvienas klienas išleido pinigų
+	6. (BONUS) Išgauti kiek pelno atnešė kiekvienas indivualus Artist
+		a. AC/DC | 8999
+		b. Aerosmith | 7775
+		c. Ir t.t
 
 
 
+
+EKRANAS [PIRKIMO EKRANAS->Peržiūrėti pirkimų istorija (Išrašai)]:
+Pasirinkus "Peržiūrėti pirkimų istorija (Išrašai)" į ekraną turi būti išvedami visi sukurti išrašai šiam prisijungusiam klientui.
+
+InvoiceId:InvoiceId
+-------------------------------------------------------------- 
+Name:Name
+Surname:Surname
+Address:Address
+Phone:Phone
+...
+PostalCode:PostalCode
+-------------------------------------------------------------- 
+| #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | 
+-------------------------------------------------------------- 
+| Id.  |    Name, Composer, Genre->Name, Album->Title, Milliseconds, Price |  
+--------------------------------------------------------------
+Total without Tax: Total
+Tax: 21%
+Total: Total+21%
+--------------------------------------------------------------
+
+***************************************************************************
+
+
+
+
+
+Parinktys [1] ir [2] yra aiškios, todėl darykite pagal tokius standartus kokius taikėte praeitiems uždaviniams t.y. Gaunant pirkėjų sąrašą laikykis tvarkingo formato, kur galima perpanaudokit metodus, pašalinant pirkėją paprašykite įvesti ID ir vadovaukitės saugumo principu išvesdami į ekraną ir patikrindami ar tikrai norima atlikti šį veiksmą.
+Pasirinkus [3] jums turi liepti įvesti ID pirkėjo, kurio duomenis norite keisti. Pasirinkus pirkėją turėtų išvesti į ekraną kiekvieną keičiamą pirkėjo informacijos lauką į ekraną su jau užpildytais esamais duomenimis pvz: keičiam Customer { Name: "Jonas"} duomenis, mums paprašius šio Customer duomenų keitimą į ekraną turėtų išvesti:
+Name:
+Jonas
+Taip, kad žinotume ką keičiame. Taip darykite su visais privalomais laukais, kurie atrodo logiškiausi tokiais operacijai įgyvendinti.
+
+
+
+EKRANAS [DARBUOTOJU PARINKTYS EKRANAS->Pakeisti dainos statusą]:
+Pasirinkus "Pakeisti dainos statusą" ekrane turime gauti 2 pasirinkimus:
+	1. Gauti dainu sarasa
+	2. Keisti dainos statusą
+[1] išveda į ekraną suformatuotas dainas. [2] Liepia įvesti dainos ID. Įvedus dainos ID [2] užklausoje mums į ekraną turėtų išvesti koks yra esamas statusas ir lieptų pasirinkti ar norime keisti į [Active] arba [Inactive] statusus. Pasirinkus [Inactive] ši daina turėtų būti slepiama ir nebeišgaunama likusioje programoje išskyrus atąskaitas ir darbuotojams prieinamą informaciją. 
+
+
+-----------------------
+
+APRIBOJIMAI:
+- TAIKYTI "Repository Pattern". t.y. VISA KOMUNIKACIJA SU DUOMENIMIS TURI BŪTI ATSKIRTA DUOMENIMS PRIKLAUSANČIU REPOSTIORY FAILU/KLASE
+- PADENGTI UNIT-TESTAIS VISĄ FUNCKIONALUMĄ, KURIS SAVEIKAUJA SU DUOMENŲ BAZE PASITELKIANT IN-MEMORY DB IR MOQ.
+- TAIKYTI "Dependency inversion principle". t.y. VISI SERVISAI TURI BŪTI KONSTRUOJAMI Į INTERFACE
+- TAIKYTI "Single-responsibility principle". t.y. KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES  
+	  */
+
+	#endregion
 
 
 

@@ -46,7 +46,8 @@ namespace P055_Skaffold.DataBase
             {
                 var customerSarasas = context.Customers
                     .Select(x => x);
-                    var invoisuSarasas = context.Invoices.Where(y => y.BillingCountry == country)
+                    var invoisuSarasas = context.Invoices
+                    .Where(y => y.BillingCountry == country)
                     .Join(
                          customerSarasas,
                     i => i.CustomerId,
