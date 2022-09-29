@@ -21,7 +21,7 @@ namespace DBHomeWorkMusicSalesShop.Services
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("| #   FAKE press 1               | ");  //laikinas
+               // Console.WriteLine("| #   FAKE press 1               | ");  //laikinas
                 Console.WriteLine("| #   | Pasirinkimas :                | ");
                 Console.WriteLine("| 1.  |   Prisijungti                 |  ");
                 Console.WriteLine("| 2.  |   Registruotis                |  ");
@@ -34,8 +34,8 @@ namespace DBHomeWorkMusicSalesShop.Services
                 {
                     case '1':
 
-                        KrepselioFormavimoMetodas(); //testavimui
-                       // PirmasKlientoPrisijungimoMetodas();
+                      //  KrepselioFormavimoMetodas(); //testavimui
+                        PirmasKlientoPrisijungimoMetodas();
                         break;
                     case '2':
                         KlientoRegistracijosMetodas();
