@@ -1,6 +1,7 @@
 ﻿using DBHomeWorkMusicSalesShop.DataBase;
 using DBHomeWorkMusicSalesShop.Interfaces;
 using DBHomeWorkMusicSalesShop.Services;
+using System.Text;
 
 namespace DBHomeWorkMusicSalesShop
 {
@@ -10,8 +11,15 @@ namespace DBHomeWorkMusicSalesShop
         {
             Console.WriteLine("Hello, My_MusicShop!");
 
-			//ChinookContext dbKontekstas = new ChinookContext();
-			//ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
+
+			Console.OutputEncoding = Encoding.GetEncoding(1200);
+			Console.InputEncoding = Encoding.GetEncoding(1200);
+
+
+
+			ChinookContext dbKontekstas = new ChinookContext();
+			ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
+
 
 			IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
             muzikosPardavimuServisas.Run();
