@@ -167,22 +167,34 @@ namespace DBHomeWorkMusicSalesShop.Services
         public void PakeistiDainosStatusą()
         {
             Console.Clear();
-            Console.WriteLine("| #   | Pasirinkimas                 |  ");
-            Console.WriteLine("| 1.  | Gauti dainu sarasa   |  ");
-            Console.WriteLine("| 2.  |  Keisti dainos statusą   |  ");
+            Console.WriteLine("| #   | Pasirinkimas            |  ");
+            Console.WriteLine("| 1.  | Gauti dainu sarasa      |  ");
+            Console.WriteLine("| 2.  | Keisti dainos statusą   |  ");
         
 
 
-            char meniu7;
-            meniu7 = Console.ReadKey().KeyChar;
+            char meniu;
+            meniu = Console.ReadKey().KeyChar;
 
-            switch (meniu7)
+            switch (meniu)
             {
                 case '1':
-                    // to do [1] išveda į ekraną suformatuotas dainas
+                    ShowActiveTracsMetod();
+                    Console.ReadKey();
+                    PakeistiDainosStatusą();
                     break;
                 case '2':
-                    // to do [2] Liepia įvesti dainos ID.
+                   
+
+                   
+                    Console.WriteLine("Iveskite norimą Id   ");
+                    int ieskomasTrackId = Convert.ToInt32(Console.ReadLine());
+                    IEnumerable<dynamic> redaguojamasIrasas = RastiDainaPagalIdMetodas2(ieskomasTrackId);
+
+                    //TrackDTO trackDTO = new TrackDTO(redaguojamasIrasas);
+                    //Console.WriteLine(trackDTO.Active);
+                    
+
                     // Įvedus dainos ID [2] užklausoje mums į ekraną turėtų išvesti koks yra esamas statusas
                     // ir lieptų pasirinkti ar norime keisti į [Active] arba [Inactive] statusus.
                     // Pasirinkus [Inactive] ši daina turėtų būti slepiama ir nebeišgaunama
@@ -472,9 +484,11 @@ namespace DBHomeWorkMusicSalesShop.Services
             {
                 case '1':
                     RastiDainaPagalIdMetodas();
+                    PirkimoMetodoKomandos();
                     break;
                 case '2':
                     RastiDainaPagalName();
+                    PirkimoMetodoKomandos();
                     break;
                 case '3':
                     Console.WriteLine("sarasas pagal Composer TODO "); // to do
@@ -497,6 +511,7 @@ namespace DBHomeWorkMusicSalesShop.Services
 
         public void RikiavimoMetoduMeniu()
         {
+            Console.Clear();
             Console.WriteLine("| #   | Rikiavimas :                             | ");
             Console.WriteLine("| 1.  |   Pagal Name abecėlės tvarka             |  ");
             Console.WriteLine("| 2.  |   Pagal Name atvirkštine abecėlės tvarka |  ");
@@ -701,6 +716,22 @@ namespace DBHomeWorkMusicSalesShop.Services
             return rastuDainuSaras;
 
         }
+
+        public IEnumerable<dynamic> RastiDainaPagalIdMetodas2(int ieskomasTrackId)
+        {
+           
+
+            ChinookContext dbKontekstas = new ChinookContext();
+            ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
+            var rastuDainuSaras = manoDb.GetTracksByID(ieskomasTrackId);
+
+            return rastuDainuSaras;
+
+        }
+
+
+
+
         public void RastiDainaPagalName()
         {
             Console.WriteLine("Iveskite norimą Name   "); 
