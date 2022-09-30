@@ -23,7 +23,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             using (var context = new ChinookContext())
             {
 
- //.Customers.Where(x => x.Country == country)
+                //.Customers.Where(x => x.Country == country)
 
                 var customersListByCountry = context.Customers
                     .Select(c => new

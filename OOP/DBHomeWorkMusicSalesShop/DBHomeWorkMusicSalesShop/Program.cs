@@ -17,8 +17,10 @@ namespace DBHomeWorkMusicSalesShop
 
 
 
+
 			ChinookContext dbKontekstas = new ChinookContext();
 			ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
+			
 
 
 			IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
