@@ -11,23 +11,12 @@ namespace DBHomeWorkMusicSalesShop
         {
             Console.WriteLine("Hello, My_MusicShop!");
 
-
 			Console.OutputEncoding = Encoding.GetEncoding(1200);
 			Console.InputEncoding = Encoding.GetEncoding(1200);
 
-
-
-
-			ChinookContext dbKontekstas = new ChinookContext();
-			ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
-			
-
-
+						
 			IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
             muzikosPardavimuServisas.Run();
-
-
-
 
 
             //Scaffold-DbContext „DataSource = C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\DBHomeWorkMusicSalesShop\DBHomeWorkMusicSalesShop\InitialData\chinook.db“ Microsoft.EntityFrameworkCore.Sqlite
@@ -299,6 +288,8 @@ APRIBOJIMAI:
 //To Do
 
 Turite atnaujinti Tracks lentelę ir pridėti naują stulpelį [Status] su default reiksme "Active".
+
+
  Darbuotojai turės galimybę pakeisti Tracks status iš Active į Inactive ir atvirkščiai. 
 
 [PAPILDOMAI]

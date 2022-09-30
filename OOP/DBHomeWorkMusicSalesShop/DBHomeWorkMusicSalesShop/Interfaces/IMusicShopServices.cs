@@ -2,9 +2,7 @@
 {
     public interface IMusicShopServices
     {
-
         void Run();
-
 
 
 

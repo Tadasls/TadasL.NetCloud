@@ -16,15 +16,11 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             _context = context;
         }
 
-
-
         public IEnumerable<dynamic> GetCustomers()
         {
             using (var context = new ChinookContext())
             {
-
                 //.Customers.Where(x => x.Country == country)
-
                 var customersListByCountry = context.Customers
                     .Select(c => new
                     {
@@ -41,12 +37,38 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return customersListByCountry.ToList();
             }
         }
+        public IEnumerable<dynamic> GetInvoices(int customerId)
+        {
+            using (var context = new ChinookContext())
+            {
+
+                var invoisuSarasas = context.Invoices
+                    .Where(x => x.CustomerId == customerId)
+                    .Select(c => new
+                    {
+                        SaskaitosId = c.CustomerId,
+                        SumaViso = c.Total,
+                        SaskaitosData = c.InvoiceDate,
+                        PrekiuKiekis = c.InvoiceItems.Count,
+
+                    });
+                Console.WriteLine("sarasas:");
+                foreach (var saskaita in invoisuSarasas)
+                {
+                    Console.WriteLine($" {saskaita.SaskaitosId}, {saskaita.SaskaitosData}, {saskaita.PrekiuKiekis}, {saskaita.SumaViso}");
+                }
+                return invoisuSarasas.ToList();
+            }
+        }
+
+
+
+
 
         public IEnumerable<dynamic> GetEmployees()
         {
             using (var context = new ChinookContext())
             {
-
 
                 var darbuotojuIdSarasas = context.Employees
                     .Select(c => new
@@ -64,7 +86,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return darbuotojuIdSarasas.ToList();
             }
         }
-
+     
 
 
 
@@ -100,7 +122,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return dainusarasas;
             }
         }
-
         public IEnumerable<dynamic> GetTracksSorted()
         {
             using (var context = new ChinookContext())
@@ -133,11 +154,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return dainusarasas;
             }
         }
-
-
-
-
-
         public IEnumerable<dynamic> GetTracksByID(int trackId)
         {
             using (var context = new ChinookContext())
@@ -168,7 +184,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return dainusarasas.ToList();
             }
         }
-        
         public IEnumerable<dynamic> GetTracksByName(string trackName)
         {
             using (var context = new ChinookContext())

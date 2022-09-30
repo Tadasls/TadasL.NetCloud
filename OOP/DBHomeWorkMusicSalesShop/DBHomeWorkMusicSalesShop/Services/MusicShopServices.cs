@@ -20,18 +20,10 @@ namespace DBHomeWorkMusicSalesShop.Services
             _manoDb = new ChinookRepository(_dbKontekstas);
         }
 
-       
-
-
-
-
-
         public void Run()
         {
-
             //Jei naudotojas yra jau prisijungęs jis neturėtų grįžti į šį langą nebent pats pasirenka atsijungti nuo tuometinės aktyvios paskyros.
             char meniu;
-
             while (true)
             {
                 Console.Clear();
@@ -71,14 +63,7 @@ namespace DBHomeWorkMusicSalesShop.Services
 
                 PauseScreen();
 
-
-
-
-
             }
-
-
-
 
 
         }
@@ -89,13 +74,11 @@ namespace DBHomeWorkMusicSalesShop.Services
         {
             Console.Clear();
 
-
             Console.Clear();
             Console.WriteLine("| #   | Pasirinkimas                 |  ");
             Console.WriteLine("| 1.  |  Iveskite Pin   |  ");
             Console.WriteLine("| 2.  |  Prisijungti su savo ID    |  ");
  
-
             
             char meniu = Console.ReadKey().KeyChar;
 
@@ -119,38 +102,32 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void DarbuotojoAplinkosMetodas()
         {
-
-            
             Console.WriteLine("Show Worker ID List");
-            _manoDb.GetEmployees(); 
+            _manoDb.GetEmployees();
 
+            int darbuotojuSkaicius = _dbKontekstas.Employees.ToList().Count();
             int idPasirinkimas;
+
             do
             {
                 Console.WriteLine("Choose Your Id");
-
                 idPasirinkimas = Convert.ToInt32(Console.ReadLine());
-                if (idPasirinkimas >= 1 && idPasirinkimas <= 59) // to lenght of data base list
+
+                if (idPasirinkimas >= 1 && idPasirinkimas <= darbuotojuSkaicius) 
                 {
                     AdminAplinkosMetodas();
                 }
-            } while (idPasirinkimas <= 1 && idPasirinkimas >= 59);
+            } while (idPasirinkimas <= 1 && idPasirinkimas >= darbuotojuSkaicius);
         }
-
-
         public void AdminAplinkosMetodas()
         {
-
-
               Console.Clear();
                 Console.WriteLine("| #   | Pasirinkimas                 |  ");
                 Console.WriteLine("| 1.  |  Keisti klientų duomenis    |  ");
                 Console.WriteLine("| 2.  |  Pakeisti dainos statusą     |  ");
                 Console.WriteLine("| 3.  |  Statistika (Darbuotojams)  |  "); //todo
-
 
                 char meniu;
                 meniu = Console.ReadKey().KeyChar;
@@ -164,7 +141,7 @@ namespace DBHomeWorkMusicSalesShop.Services
                     PakeistiDainosStatusą();
                         break;
                     case '3':
-                       // to do
+                    StatistikosDarbuotojamsMeniu();
                         break;
                     
                     case 'q':
@@ -176,6 +153,54 @@ namespace DBHomeWorkMusicSalesShop.Services
                         break;
                 }
         }
+
+        private void StatistikosDarbuotojamsMeniu()
+        {
+            Console.Clear();
+            Console.WriteLine("| #   | Pasirinkimas                 |  ");
+            Console.WriteLine("| 1.  | Išgauti visas kliento atąskaitas pagal kliento ID   |  ");
+            Console.WriteLine("| 2.  | Išgauti veiklos pelna (Neatskaičius mokesčių pilna suma)    |  ");
+            Console.WriteLine("| 3.  | Išgauti veiklos pelną pagal paduotus metus  |  "); 
+            Console.WriteLine("| 4.  | Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį) |  "); 
+            Console.WriteLine("| 5.  | Išgauti kiek kiekvienas klienas išleido pinigų  |  "); 
+            Console.WriteLine("| 6.  | (BONUS) Išgauti kiek pelno atnešė kiekvienas indivualus Artist  |  "); 
+
+            char meniu;
+            meniu = Console.ReadKey().KeyChar;
+
+            switch (meniu)
+            {
+                case '1':
+                    Console.WriteLine("Iveskite Kliento Id");
+                   int input = Convert.ToInt32(Console.ReadLine());
+                    GautiKlientoAtaskaitasPagalKlientoID(input);
+                    break;
+                case '2':
+                  
+                    break;
+                case '3':
+                   
+                    break;
+                case '4':
+
+                    break;
+                case '5':
+
+                    break;
+                case '6':
+
+                    break;
+
+                case 'q':
+                    Run();
+                    break;
+
+                default:
+                    Console.WriteLine("No such case");
+                    break;
+            }
+        }
+
         public void PakeistiDainosStatusą()
         {
             Console.Clear();
@@ -183,7 +208,6 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine("| 1.  | Gauti dainu sarasa      |  ");
             Console.WriteLine("| 2.  | Keisti dainos statusą   |  ");
         
-
 
             char meniu;
             meniu = Console.ReadKey().KeyChar;
@@ -198,7 +222,6 @@ namespace DBHomeWorkMusicSalesShop.Services
                 case '2':
                    
 
-                   
                     Console.WriteLine("Iveskite norimą Id   ");
                     int ieskomasTrackId = Convert.ToInt32(Console.ReadLine());
                     IEnumerable<dynamic> redaguojamasIrasas = RastiDainaPagalIdMetodas2(ieskomasTrackId);
@@ -226,8 +249,6 @@ namespace DBHomeWorkMusicSalesShop.Services
         }
         public void KeistiKlientųDuomenisMetodoMeniu()
         {
-           
-
 
             Console.Clear();
             Console.WriteLine("| #   | Pasirinkimas                 |  ");
@@ -235,14 +256,13 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine("| 2.  |  Pašalinti pirkėją pagal ID    |  ");
             Console.WriteLine("| 3.  |  Modifikuoti pirkėjo duomenis  |  ");
 
-
             char meniu;
             meniu = Console.ReadKey().KeyChar;
 
             switch (meniu)
             {
                 case '1':
-                    GautiPirkejuSarasaMetodas();
+                    _manoDb.GetCustomers();
                     break;
                 case '2':
                     // to do
@@ -260,11 +280,7 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
-        private void GautiPirkejuSarasaMetodas()
-        {
-           _manoDb.GetCustomers();
-        }
+       
 
         //2
         public void KlientoRegistracijosMetodas()
@@ -319,17 +335,12 @@ namespace DBHomeWorkMusicSalesShop.Services
             } while (!pirmasLaukasUzpildytas && !antrasLaukasUzpildytas);
 
 
-
             //to do suvedimas kaip naujo customerio i DB
 
             Run();
 
-      
-
-
 
     }
-
 
 
         //1
@@ -356,10 +367,7 @@ namespace DBHomeWorkMusicSalesShop.Services
             } while (idPasirinkimas <= 1 && idPasirinkimas >= 59);
 
 
-
-
         }
-
         public void PirkimoSistemosMetodas()
         {
             Console.Clear();
@@ -400,12 +408,10 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void SalesHistoryData()
         {
             //to do, show all customers Invoices filter by customer ID.. 
         }
-
         public void UzbaigimoKomandos()
         {
             Console.WriteLine("| #   | Pasirinkimas :                             | ");
@@ -429,21 +435,17 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void ViewBasket()
         {
             //to do show Invoice ?? 
         }
-
         public void RusiavimoPasirinkimoMetodas()
         {
-            
+
             Console.WriteLine("| #   | Pasirinkimas :                   | ");
             Console.WriteLine("| Q.  |   Grįžti atgal                   |  ");
             Console.WriteLine("| O.  |   Rikiavimo langas               |  ");
             Console.WriteLine("| S.  |   Paieškos langas                |  ");
-
-
 
             char meniu;
             meniu = Console.ReadKey().KeyChar;
@@ -474,7 +476,6 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void PaieskosMetoduMeniu()
         {
             Console.WriteLine("| #   | Paieška :                             | ");
@@ -517,7 +518,6 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void RikiavimoMetoduMeniu()
         {
             Console.Clear();
@@ -563,7 +563,6 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-
         public void KrepselioFormavimoMetodas()
         {
             Console.Clear();
@@ -609,7 +608,6 @@ namespace DBHomeWorkMusicSalesShop.Services
             }
 
         }
-
         public void PirkimoMetodoKomandos()
         {
            
@@ -635,7 +633,6 @@ namespace DBHomeWorkMusicSalesShop.Services
             }
 
         }
-
         public void PirkimoPatvirtinimoMetodoKomandos()
         {
 
@@ -661,8 +658,6 @@ namespace DBHomeWorkMusicSalesShop.Services
             }
 
         }
-
-
         public void IdetiPrekeIKrepselyMetodas()
         {
 
@@ -674,8 +669,6 @@ namespace DBHomeWorkMusicSalesShop.Services
 
 
         }
-
-
         public void SukurtiInvoiceMetodas()
         {
 
@@ -710,30 +703,24 @@ namespace DBHomeWorkMusicSalesShop.Services
         
 
         }
-
-
-
         public IEnumerable<dynamic> RastiDainaPagalIdMetodas()
         {
             Console.WriteLine("Iveskite norimą Id   "); 
             int ieskomasTrackId = Convert.ToInt32(Console.ReadLine());
-
             var rastuDainuSaras = _manoDb.GetTracksByID(ieskomasTrackId);
-
             return rastuDainuSaras;
-
         }
-
         public IEnumerable<dynamic> RastiDainaPagalIdMetodas2(int ieskomasTrackId)
         {
-           
-
             var rastuDainuSaras = _manoDb.GetTracksByID(ieskomasTrackId);
-
             return rastuDainuSaras;
-
         }
+        public IEnumerable<dynamic> GautiKlientoAtaskaitasPagalKlientoID(int klientoId)
+        {
 
+            var invoisuSarasas = _manoDb.GetInvoices(klientoId);
+            return invoisuSarasas;
+        }
 
 
 
@@ -741,35 +728,26 @@ namespace DBHomeWorkMusicSalesShop.Services
         {
             Console.WriteLine("Iveskite norimą Name   "); 
             string ieskomasTrackName = Console.ReadLine();
-
             var rastuDainuSaras = _manoDb.GetTracksByName(ieskomasTrackName);
-
         }
-
-
-
-
         public void RusiuotiDainaPagalMetoda(char meniu)
         {
-
-
-            if (meniu == '1')
+            switch (meniu)
             {
-                var isrusiuotasDainuSarasasAZ = _manoDb.GetTracks();
-                Console.WriteLine(isrusiuotasDainuSarasasAZ);
-            }  else if (meniu == '2')
-            {
-                var isrusiuotasDainuSarasasZA = _manoDb.GetTracksSorted();
-                Console.WriteLine(isrusiuotasDainuSarasasZA);
+                case '1':
+                    var isrusiuotasDainuSarasasAZ = _manoDb.GetTracks();
+                    Console.WriteLine(isrusiuotasDainuSarasasAZ);
+                    break;
+                case '2':
+                    var isrusiuotasDainuSarasasZA = _manoDb.GetTracksSorted();
+                    Console.WriteLine(isrusiuotasDainuSarasasZA);
+                    break;
+
+                default:
+                    Console.WriteLine("No such case");
+                    break;
             }
-           
-
-           
         }
-
-
-
-      
 
         //aditional methods
 
@@ -778,5 +756,7 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine("{0}{1}Press any key to continue..", Environment.NewLine, Environment.NewLine);
             Console.ReadKey();
         }
+
+
     }
 }
