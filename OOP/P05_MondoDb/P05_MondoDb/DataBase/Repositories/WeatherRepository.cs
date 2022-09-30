@@ -17,7 +17,7 @@ namespace P059_MongoDb.Database.Repositories
 
         public WeatherRepository()
         {
-            MongoClient dbClient = new MongoClient("mongodb+srv://Tadasls:<Fcl63651>@cluster0.hhhxphl.mongodb.net/?retryWrites=true&w=majority");
+            MongoClient dbClient = new MongoClient("mongodb+srv://Tadasls:<PassWord>@cluster0.hhhxphl.mongodb.net/?retryWrites=true&w=majority");
             var sample_weatherdata = dbClient.GetDatabase("sample_weatherdata");
 
             _collection = sample_weatherdata.GetCollection<BsonDocument>("data");
