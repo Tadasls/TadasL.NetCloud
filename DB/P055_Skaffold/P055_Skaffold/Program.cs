@@ -14,15 +14,15 @@ namespace P055_Skaffold
             ChinookContext dbKontekstas = new ChinookContext();
             ChinookRepository manoDb = new ChinookRepository(dbKontekstas);
 
-            //manoDb.GetCustomer2("USA");
-            //manoDb.GetInvoices3("Poland");
-            //manoDb.GetEmployeesByTitle4();
-            //manoDb.GetUniqueCountryListFromCustomers5();
-            //manoDb.GetInvoicesResponsibleBySalesAgents6();
-            //manoDb.Metodas7();
-            //manoDb.Metodas8();
-            //manoDb.Metodas9();
-            //   manoDb.Metodas10();
+            manoDb.GetCustomer2("USA");
+            manoDb.GetInvoices3("Poland");
+            manoDb.GetEmployeesByTitle4();
+            manoDb.GetUniqueCountryListFromCustomers5();
+            manoDb.GetInvoicesResponsibleBySalesAgents6();
+            manoDb.Metodas7();
+            manoDb.Metodas8();
+            manoDb.Metodas9();
+            manoDb.Metodas10();
             //manoDb.Metodas11();
             //manoDb.Metodas12();
             //manoDb.Metodas13();
@@ -31,7 +31,7 @@ namespace P055_Skaffold
             //manoDb.Metodas16();
             //manoDb.Metodas17();
             //  manoDb.Metodas18();
-          
+
 
 
 

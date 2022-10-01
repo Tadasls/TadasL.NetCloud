@@ -300,13 +300,6 @@ APRIBOJIMAI:
 
 
  
-
-[PAPILDOMAI]
-
-EKRANAS [DARBUOTOJU PARINKTYS EKRANAS->Statistika (Darbuotojams)]:
-Pasirinkus "Statistika (Darbuotojams)" ekrane turėtume turėti išmesti bent 5 parinktis:
-	1. Išgauti visas kliento atąskaitas pagal kliento ID
-	2. Išgauti veiklos pelna (Neatskaičius mokesčių pilna suma)
 	3. Išgauti veiklos pelną pagal paduotus metus
 	4. Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį)
 		a. Rock | 1178
@@ -314,46 +307,6 @@ Pasirinkus "Statistika (Darbuotojams)" ekrane turėtume turėti išmesti bent 5 
 		c. Ir t.t
 	5. Išgauti kiek kiekvienas klienas išleido pinigų
 	
-	
-
-
-EKRANAS [PIRKIMO EKRANAS->Peržiūrėti pirkimų istorija (Išrašai)]:
-Pasirinkus "Peržiūrėti pirkimų istorija (Išrašai)" į ekraną turi būti išvedami visi sukurti išrašai šiam prisijungusiam klientui.
-
-InvoiceId:InvoiceId
--------------------------------------------------------------- 
-Name:Name
-Surname:Surname
-Address:Address
-Phone:Phone
-...
-PostalCode:PostalCode
--------------------------------------------------------------- 
-| #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | 
--------------------------------------------------------------- 
-| Id.  |    Name, Composer, Genre->Name, Album->Title, Milliseconds, Price |  
---------------------------------------------------------------
-Total without Tax: Total
-Tax: 21%
-Total: Total+21%
---------------------------------------------------------------
-
-***************************************************************************
-
-
-
-Parinktys [1] ir [2] yra aiškios, todėl darykite pagal tokius standartus kokius taikėte praeitiems uždaviniams t.y.
-	Gaunant pirkėjų sąrašą laikykis tvarkingo formato, kur galima perpanaudokit metodus, pašalinant pirkėją paprašykite 
-	įvesti ID ir vadovaukitės saugumo principu išvesdami į ekraną ir patikrindami ar tikrai norima atlikti šį veiksmą.
-Pasirinkus [3] jums turi liepti įvesti ID pirkėjo, kurio duomenis norite keisti. Pasirinkus pirkėją turėtų išvesti 
-	į ekraną kiekvieną keičiamą pirkėjo informacijos lauką į ekraną su jau užpildytais esamais duomenimis 
-	pvz: keičiam Customer { Name: "Jonas"} duomenis, mums paprašius šio Customer duomenų keitimą į ekraną turėtų išvesti:
-Name:
-Jonas
-Taip, kad žinotume ką keičiame. Taip darykite su visais privalomais laukais, kurie atrodo logiškiausi tokiais operacijai įgyvendinti.
-
-
-
 
 
 -----------------------

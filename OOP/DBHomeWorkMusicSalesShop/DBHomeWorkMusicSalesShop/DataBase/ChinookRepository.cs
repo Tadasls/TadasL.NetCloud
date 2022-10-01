@@ -1,10 +1,12 @@
 ﻿using Castle.Core.Resource;
 using DBHomeWorkMusicSalesShop.DTO;
 using DBHomeWorkMusicSalesShop.Models;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -176,7 +178,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         AktyvStatus = x.Active,
                     });
 
-                Console.WriteLine("sarasas Dainu :");
+                Console.WriteLine("sarasas Dainu isrusiuotas pagal AZ :");
                 foreach (var track in dainusarasas)
                 {
                     Console.WriteLine($" {track.IrasoId}, {track.Vardas}");
@@ -403,7 +405,58 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             }
         }
 
-      
+
+        public void CreateNewCustomer(Customer customer)
+        {
+            using (var context = new ChinookContext())
+            {
+                context.Customers.Add(customer);
+                context.SaveChanges();
+            }
+        }
+        public void DeleteCustomer(long customerId)
+        {
+            using (var context = new ChinookContext())
+            {
+                var istrintasKlientoId = context.Customers.Find(customerId);
+                context.Customers.Remove(istrintasKlientoId);
+                context.SaveChanges();
+            }
+        }
+        public void UpdateCustomerData(long customerId)
+        {
+            using (var context = new ChinookContext())
+            {
+                Customer newChanges = new Customer();
+                var cust = context.Customers.Find(customerId);
+                Console.WriteLine($"Vardas  {cust.FirstName}");
+                newChanges.FirstName = Console.ReadLine();
+                if (newChanges.FirstName != null) { cust.FirstName = newChanges.FirstName; }
+
+                Console.WriteLine(cust.LastName);
+                newChanges.LastName = Console.ReadLine();
+                if (newChanges.LastName != null) { cust.LastName = newChanges.LastName; }
+
+                Console.WriteLine(cust.Company);
+                newChanges.Company = Console.ReadLine();
+                if (newChanges.Company != null) { cust.Company = newChanges.Company; }
+
+                if (newChanges.Address != null) { cust.Address = newChanges.Address; }
+                if (newChanges.City != null) { cust.City = newChanges.City; }
+                if (newChanges.State != null) { cust.State = newChanges.State; }
+                if (newChanges.Country != null) { cust.Country = newChanges.Country; }
+                if (newChanges.PostalCode != null) { cust.PostalCode = newChanges.PostalCode; }
+                if (newChanges.Phone != null) { cust.Phone = newChanges.Phone; }
+                if (newChanges.Fax != null) { cust.Fax = newChanges.Fax; }
+                if (newChanges.Email != null) { cust.Email = newChanges.Email; }
+                context.SaveChanges();
+            }
+        }
+
+
+
+
+
 
 
     }
