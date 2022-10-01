@@ -31,7 +31,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         Vardas = c.FirstName,
                         Pavarde = c.LastName,
                         KlientoId = c.CustomerId,
-                       // SaliesPavadinimas = c.Country,
+                        // SaliesPavadinimas = c.Country,
                     });
                 Console.WriteLine("sarasas:");
                 foreach (var customer in customersListByCountry)
@@ -83,7 +83,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 {
                     Console.WriteLine($" {saskaita.SaskaitosId} , {saskaita.SaskaitosData}, {saskaita.PrekiuKiekis}, {saskaita.SumaViso}");
                 }
-               
+
             }
         }
 
@@ -94,7 +94,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 var invoisuSarasas = context.Invoices;
 
 
-                double? veiklosPelnasEBIT = 0; 
+                double? veiklosPelnasEBIT = 0;
 
                 foreach (var saskaita in invoisuSarasas)
                 {
@@ -117,7 +117,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
 
                 var invoisuSarasas = context.Invoices
-                    .Where(x=>x.InvoiceDate.Value.Year >= year1 && x.InvoiceDate.Value.Year >= year2)
+                    .Where(x => x.InvoiceDate.Value.Year >= year1 && x.InvoiceDate.Value.Year >= year2)
                     ;
 
 
@@ -146,7 +146,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         Vardas = c.FirstName,
                         Pavarde = c.LastName,
                         DarbuotojoId = c.EmployeeId,
-                        
+
                     });
                 Console.WriteLine("sarasas:");
                 foreach (var darbuotojas in darbuotojuIdSarasas)
@@ -156,14 +156,43 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return darbuotojuIdSarasas.ToList();
             }
         }
+        public IEnumerable<dynamic> GetTracksForAdmins()
+        {
+            using (var context = new ChinookContext())
+            {
+                var dainusarasas = context.Tracks
+                    .OrderBy(x => x)
+                    .Select(x => new
+                    {
+                        IrasoId = x.TrackId,
+                        Vardas = x.Name,
+                        Kompozitorius = x.Composer,
+                        Zanras = x.Genre,
+                        ZanroPavadinimas = x.Genre.Name,
+                        Albumas = x.Album,
+                        AlbumoPavadinimas = x.Album.Title,
+                        Trukme = x.Milliseconds,
+                        Kaina = x.UnitPrice,
+                        AktyvStatus = x.Active,
+                    });
+
+                Console.WriteLine("sarasas Dainu isrusiuotas pagal AZ :");
+                foreach (var track in dainusarasas)
+                {
+                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}");
+                    //{track.Vardas},{track.Kompozitorius},{track.Zanras}, {track.Zanras.Name}, {track.Albumas}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina}
+
+                }
+                return dainusarasas;
+            }
+        }
         public IEnumerable<dynamic> GetTracks()
         {
             using (var context = new ChinookContext())
             {
-
                 var dainusarasas = context.Tracks
                     .Where(x => x.Active == true)
-                    .OrderBy(x => x)  
+                    .OrderBy(x => x)
                     .Select(x => new
                     {
                         IrasoId = x.TrackId,
@@ -192,7 +221,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
         {
             using (var context = new ChinookContext())
             {
-               
+
                 var dainusarasas = context.Tracks
                     .Where(x => x.Active == true)
                     .OrderByDescending(x => x)
@@ -229,11 +258,11 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.TrackId == trackId)
-                    .Select(c => new 
+                    .Select(c => new
                     {
                         IrasoId = c.TrackId,
                         Vardas = c.Name,
-                        Kompozitorius = c.Composer, 
+                        Kompozitorius = c.Composer,
                         Zanras = c.Genre.Name,
                         Albumas = c.Album.Title,
                         Trukme = c.Milliseconds,
@@ -259,6 +288,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.Name == trackName)
+                    .Where(x => x.Active == true)
                     .Select(c => new
                     {
                         IrasoId = c.TrackId,
@@ -274,7 +304,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 Console.WriteLine(" Surastas sarasas pagal Name:");
                 if (dainusarasas.ToList().Count == 0)
                 {
-                    Console.WriteLine(" Pavadinimas nerastas"); 
+                    Console.WriteLine(" Pavadinimas nerastas");
                 }
 
 
@@ -294,7 +324,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.AlbumId == albumId)
-                    .Select(c => new 
+                    .Where(x => x.Active == true)
+                    .Select(c => new
                     {
                         IrasoId = c.TrackId,
                         Vardas = c.Name,
@@ -324,6 +355,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(c => c.Album.Title == albumName)
+                    .Where(x => x.Active == true)
                     .Select(c => new
                     {
                         IrasoId = c.TrackId,
@@ -352,6 +384,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(c => c.Composer == composer)
+                    .Where(x => x.Active == true)
                     .Select(c => new
                     {
                         IrasoId = c.TrackId,
@@ -382,6 +415,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(c => c.Genre.Name == genre)
+                    .Where(x => x.Active == true)
                     .Select(c => new
                     {
                         IrasoId = c.TrackId,
@@ -429,34 +463,68 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             {
                 Customer newChanges = new Customer();
                 var cust = context.Customers.Find(customerId);
-                Console.WriteLine($"Vardas  {cust.FirstName}");
+                Console.WriteLine($"FirstName  {cust.FirstName}");
                 newChanges.FirstName = Console.ReadLine();
                 if (newChanges.FirstName != null) { cust.FirstName = newChanges.FirstName; }
 
-                Console.WriteLine(cust.LastName);
+                Console.WriteLine($"LastName  {cust.LastName}");
                 newChanges.LastName = Console.ReadLine();
                 if (newChanges.LastName != null) { cust.LastName = newChanges.LastName; }
 
-                Console.WriteLine(cust.Company);
+                Console.WriteLine($"Company  {cust.Company}");
                 newChanges.Company = Console.ReadLine();
                 if (newChanges.Company != null) { cust.Company = newChanges.Company; }
 
+                Console.WriteLine($"Address  {cust.Address}");
+                newChanges.Address = Console.ReadLine();
                 if (newChanges.Address != null) { cust.Address = newChanges.Address; }
+
+                Console.WriteLine($"City  {cust.City}");
+                newChanges.City = Console.ReadLine();
                 if (newChanges.City != null) { cust.City = newChanges.City; }
+
+                Console.WriteLine($"State  {cust.State}");
+                newChanges.State = Console.ReadLine();
                 if (newChanges.State != null) { cust.State = newChanges.State; }
+
+                Console.WriteLine($"Country  {cust.Country}");
+                newChanges.Country = Console.ReadLine();
                 if (newChanges.Country != null) { cust.Country = newChanges.Country; }
+
+                Console.WriteLine($"PostalCode  {cust.PostalCode}");
+                newChanges.PostalCode = Console.ReadLine();
                 if (newChanges.PostalCode != null) { cust.PostalCode = newChanges.PostalCode; }
+
+                Console.WriteLine($"Phone  {cust.Phone}");
+                newChanges.Phone = Console.ReadLine();
                 if (newChanges.Phone != null) { cust.Phone = newChanges.Phone; }
+
+                Console.WriteLine($"Fax  {cust.Fax}");
+                newChanges.Fax = Console.ReadLine();
                 if (newChanges.Fax != null) { cust.Fax = newChanges.Fax; }
+
+                Console.WriteLine($"Email  {cust.Email}");
+                newChanges.Email = Console.ReadLine();
                 if (newChanges.Email != null) { cust.Email = newChanges.Email; }
                 context.SaveChanges();
             }
         }
 
 
-
-
-
+        public void UpdateTrackData(long trackId)
+        {
+            using (var context = new ChinookContext())
+            {
+                Track newData = new Track();
+                var trx = context.Tracks.Find(trackId);
+                Console.WriteLine($"Dabartinis Statusas yra {trx.Active} ar norite pakeisti  press - Y /  jei palikti esama press N");
+                char input = Console.ReadKey().KeyChar;
+                if (input == 'Y' || input == 'y') { newData.Active = false;} 
+                else { newData.Active = true; }     
+                if (newData.Active != null) { trx.Active = newData.Active; }
+                context.SaveChanges();
+            }
+        }
 
 
     }
