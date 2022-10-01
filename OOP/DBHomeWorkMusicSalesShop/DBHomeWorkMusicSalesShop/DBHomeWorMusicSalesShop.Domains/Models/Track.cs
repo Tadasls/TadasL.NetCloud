@@ -12,7 +12,7 @@ namespace DBHomeWorkMusicSalesShop.Models
         }
 
         public long TrackId { get; set; }
-        public bool Active { get; set; } = true;
+        public bool Active { get; set; }
         public string Name { get; set; } = null!;
         public long? AlbumId { get; set; }
         public long MediaTypeId { get; set; }
@@ -21,7 +21,6 @@ namespace DBHomeWorkMusicSalesShop.Models
         public long Milliseconds { get; set; }
         public long? Bytes { get; set; }
         public double? UnitPrice { get; set; } = null!;
-
         public virtual Album? Album { get; set; }
         public virtual Genre? Genre { get; set; }
         public virtual MediaType MediaType { get; set; } = null!;

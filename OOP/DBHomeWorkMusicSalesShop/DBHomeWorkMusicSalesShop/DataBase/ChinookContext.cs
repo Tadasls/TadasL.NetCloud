@@ -39,8 +39,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase
            
                 optionsBuilder.UseLazyLoadingProxies();
             }
+            base.OnConfiguring(optionsBuilder);
 
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -224,6 +224,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             modelBuilder.Entity<Track>(entity =>
             {
                 entity.ToTable("tracks");
+
+               // overide Active? 
 
                 entity.HasIndex(e => e.AlbumId, "IFK_TrackAlbumId");
 

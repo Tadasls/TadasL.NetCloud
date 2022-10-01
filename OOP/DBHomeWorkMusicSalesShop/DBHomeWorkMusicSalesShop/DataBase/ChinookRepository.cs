@@ -1,8 +1,10 @@
-﻿using DBHomeWorkMusicSalesShop.DTO;
+﻿using Castle.Core.Resource;
+using DBHomeWorkMusicSalesShop.DTO;
 using DBHomeWorkMusicSalesShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,31 +39,71 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return customersListByCountry.ToList();
             }
         }
-        public IEnumerable<dynamic> GetInvoices(int customerId)
+        public void GetInvoices(int customerId)
         {
             using (var context = new ChinookContext())
             {
 
-                var invoisuSarasas = context.Invoices
+                var klientoDuomenys = context.Customers
                     .Where(x => x.CustomerId == customerId)
-                    .Select(c => new
-                    {
-                        SaskaitosId = c.CustomerId,
-                        SumaViso = c.Total,
-                        SaskaitosData = c.InvoiceDate,
-                        PrekiuKiekis = c.InvoiceItems.Count,
+                .Select(x => x);
 
-                    });
-                Console.WriteLine("sarasas:");
+                foreach (var klientas in klientoDuomenys)
+                {
+                    Console.WriteLine("Klientas : ");
+                    Console.WriteLine($"" +
+                        $" Vardas {klientas.FirstName}," +
+                        $"\n Pavarde {klientas.LastName}," +
+                        $"\n Adresas {klientas.Address}," +
+                        $"\n Miestas {klientas.City}," +
+                        $"\n Valstija {klientas.State}," +
+                        $"\n Salis {klientas.Country}," +
+                        $"\n Pasto Kodas {klientas.PostalCode}");
+
+                }
+
+
+                var invoisuSarasas = context.Invoices
+             .Where(c => c.CustomerId == customerId)
+             .Select(c => new
+             {
+                 SaskaitosId = c.CustomerId,
+                 SumaViso = c.Total,
+                 SaskaitosData = c.InvoiceDate,
+                 PrekiuKiekis = c.InvoiceItems.Count,
+
+             });
+
+                Console.WriteLine(" Saskaitu sarasas:");
+                Console.WriteLine(" ID / Data / Prekiu kiekis / Suma Viso:");
+
                 foreach (var saskaita in invoisuSarasas)
                 {
-                    Console.WriteLine($" {saskaita.SaskaitosId}, {saskaita.SaskaitosData}, {saskaita.PrekiuKiekis}, {saskaita.SumaViso}");
+                    Console.WriteLine($" {saskaita.SaskaitosId} , {saskaita.SaskaitosData}, {saskaita.PrekiuKiekis}, {saskaita.SumaViso}");
                 }
-                return invoisuSarasas.ToList();
+               
             }
         }
 
+        public double? GetAllInvoices()
+        {
+            using (var context = new ChinookContext())
+            {
+                var invoisuSarasas = context.Invoices;
 
+
+                double? veiklosPelnasEBIT = 0; 
+
+                foreach (var saskaita in invoisuSarasas)
+                {
+                    veiklosPelnasEBIT = veiklosPelnasEBIT + saskaita.Total;
+
+                }
+
+                Console.WriteLine($" Veiklos pelnas {veiklosPelnasEBIT}");
+                return veiklosPelnasEBIT;
+            }
+        }
 
 
 
@@ -86,18 +128,14 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return darbuotojuIdSarasas.ToList();
             }
         }
-     
-
-
-
         public IEnumerable<dynamic> GetTracks()
         {
             using (var context = new ChinookContext())
             {
 
                 var dainusarasas = context.Tracks
-                    .Where(y => y.Active == !true)
-                    .OrderBy(x => x)  // refactor needs override on model creating
+                    .Where(x => x.Active == true)
+                    .OrderBy(x => x)  
                     .Select(x => new
                     {
                         IrasoId = x.TrackId,
@@ -126,9 +164,9 @@ namespace DBHomeWorkMusicSalesShop.DataBase
         {
             using (var context = new ChinookContext())
             {
-                // refactor needs override on model creating
+               
                 var dainusarasas = context.Tracks
-                    .Where(y => y.Active == !true)
+                    .Where(x => x.Active == true)
                     .OrderByDescending(x => x)
                     .Select(x => new
                     {
@@ -154,6 +192,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return dainusarasas;
             }
         }
+
+
         public IEnumerable<dynamic> GetTracksByID(int trackId)
         {
             using (var context = new ChinookContext())
@@ -161,7 +201,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.TrackId == trackId)
-                    .Select(c => new TrackDTO
+                    .Select(c => new 
                     {
                         IrasoId = c.TrackId,
                         Vardas = c.Name,
@@ -191,7 +231,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.Name == trackName)
-                    .Select(c => new TrackDTO
+                    .Select(c => new
                     {
                         IrasoId = c.TrackId,
                         Vardas = c.Name,
@@ -219,7 +259,125 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
             }
         }
+        public IEnumerable<dynamic> GetTracksByAlbumID(int albumId)
+        {
+            using (var context = new ChinookContext())
+            {
 
+                var dainusarasas = context.Tracks
+                    .Where(x => x.AlbumId == albumId)
+                    .Select(c => new 
+                    {
+                        IrasoId = c.TrackId,
+                        Vardas = c.Name,
+                        Kompozitorius = c.Composer,
+                        Zanras = c.Genre.Name,
+                        Albumas = c.Album.Title,
+                        Trukme = c.Milliseconds,
+                        Kaina = c.UnitPrice,
+
+
+                    });
+                Console.Clear();
+                Console.WriteLine("sarasas pagal AlbumID: ");
+                Console.WriteLine(" | #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
+
+                foreach (var track in dainusarasas)
+                {
+                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                }
+                return dainusarasas.ToList();
+            }
+        }
+        public IEnumerable<dynamic> GetTracksByAlbumName(string albumName)
+        {
+            using (var context = new ChinookContext())
+            {
+
+                var dainusarasas = context.Tracks
+                    .Where(c => c.Album.Title == albumName)
+                    .Select(c => new
+                    {
+                        IrasoId = c.TrackId,
+                        Vardas = c.Name,
+                        Kompozitorius = c.Composer,
+                        Zanras = c.Genre.Name,
+                        Albumas = c.Album.Title,
+                        Trukme = c.Milliseconds,
+                        Kaina = c.UnitPrice,
+                    });
+                Console.Clear();
+                Console.WriteLine("sarasas pagal Albumname: ");
+                Console.WriteLine(" | #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
+
+                foreach (var track in dainusarasas)
+                {
+                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                }
+                return dainusarasas.ToList();
+            }
+        }
+        public IEnumerable<dynamic> GetTracksByComposer(string composer)
+        {
+            using (var context = new ChinookContext())
+            {
+
+                var dainusarasas = context.Tracks
+                    .Where(c => c.Composer == composer)
+                    .Select(c => new
+                    {
+                        IrasoId = c.TrackId,
+                        Vardas = c.Name,
+                        Kompozitorius = c.Composer,
+                        Zanras = c.Genre.Name,
+                        Albumas = c.Album.Title,
+                        Trukme = c.Milliseconds,
+                        Kaina = c.UnitPrice,
+
+
+                    });
+                Console.Clear();
+                Console.WriteLine("sarasas pagal Composer: ");
+                Console.WriteLine(" | #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
+
+                foreach (var track in dainusarasas)
+                {
+                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                }
+                return dainusarasas.ToList();
+            }
+        }
+        public IEnumerable<dynamic> GetTracksByGenre(string genre)
+        {
+            using (var context = new ChinookContext())
+            {
+
+                var dainusarasas = context.Tracks
+                    .Where(c => c.Genre.Name == genre)
+                    .Select(c => new
+                    {
+                        IrasoId = c.TrackId,
+                        Vardas = c.Name,
+                        Kompozitorius = c.Composer,
+                        Zanras = c.Genre.Name,
+                        Albumas = c.Album.Title,
+                        Trukme = c.Milliseconds,
+                        Kaina = c.UnitPrice,
+
+                    });
+                Console.Clear();
+                Console.WriteLine("sarasas pagal Composer: ");
+                Console.WriteLine(" | #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
+
+                foreach (var track in dainusarasas)
+                {
+                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                }
+                return dainusarasas.ToList();
+            }
+        }
+
+      
 
 
     }

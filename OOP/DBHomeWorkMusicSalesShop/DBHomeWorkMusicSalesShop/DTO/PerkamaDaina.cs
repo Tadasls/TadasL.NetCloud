@@ -7,38 +7,36 @@ using System.Threading.Tasks;
 
 namespace DBHomeWorkMusicSalesShop.DTO
 {
-    public class TrackDTO
+    public class PerkamaDaina
     {
 
-
-        public TrackDTO()
+        public PerkamaDaina()
         {
 
         }
 
-       
-
-        public TrackDTO(long irasoId, string vardas, string kompozitorius, string zanras, string albumas, long trukme, double? kaina)
+        public PerkamaDaina(Track trackData)
         {
-            IrasoId = irasoId;
-            Vardas = vardas;
-            Kompozitorius = kompozitorius;
-            Zanras = zanras;
-            Albumas = albumas;
-            Trukme = trukme;
-            Kaina = kaina;
+            TrackId = trackData.TrackId;
+            Active = trackData.Active;
+            Name = trackData.Name;
+            AlbumId = trackData.AlbumId;
+            MediaTypeId = trackData.MediaTypeId;
+            GenreId = trackData.GenreId;
+            Composer = trackData.Composer;
+            Milliseconds = trackData.Milliseconds;
+            Bytes = trackData.Bytes;
+            UnitPrice = trackData.UnitPrice;
+            Album = trackData.Album;
+            Genre = trackData.Genre;
+            MediaType = trackData.MediaType;
+            InvoiceItems = trackData.InvoiceItems;
+            Playlists = trackData.Playlists;
         }
 
-        public long IrasoId { get; set; }
-        public string Vardas { get; set; }
-        public string Kompozitorius { get; set; }
-        public string Zanras { get; set; }
-        public string Albumas { get; set; }
-        public long Trukme { get; set; }
-        public double? Kaina { get; set; }
-                      
+        public long TrackId { get; set; }
         public bool Active { get; set; } = true;
-
+        public string Name { get; set; } = null!;
         public long? AlbumId { get; set; }
         public long MediaTypeId { get; set; }
         public long? GenreId { get; set; }
@@ -46,12 +44,10 @@ namespace DBHomeWorkMusicSalesShop.DTO
         public long Milliseconds { get; set; }
         public long? Bytes { get; set; }
         public double? UnitPrice { get; set; } = null!;
-
         public virtual Album? Album { get; set; }
         public virtual Genre? Genre { get; set; }
         public virtual MediaType MediaType { get; set; } = null!;
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
-
         public virtual ICollection<Playlist> Playlists { get; set; }
 
 

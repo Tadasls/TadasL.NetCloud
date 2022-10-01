@@ -37,6 +37,8 @@ namespace P055_Skaffold.DataBase
                                                     
 
             }
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
