@@ -104,7 +104,33 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return veiklosPelnasEBIT;
             }
         }
+        public double? GetAllInvoicesByTime()
+        {
+            using (var context = new ChinookContext())
+            {
+                Console.WriteLine("Iveskite metus nuo");
+                int year1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Iveskite metus iki");
+                int year2 = Convert.ToInt32(Console.ReadLine());
 
+
+                var invoisuSarasas = context.Invoices
+                    .Where(x=>x.InvoiceDate.Value.Year >= year1 && x.InvoiceDate.Value.Year >= year2)
+                    ;
+
+
+                double? veiklosPelnasEBIT = 0;
+
+                foreach (var saskaita in invoisuSarasas)
+                {
+                    veiklosPelnasEBIT = veiklosPelnasEBIT + saskaita.Total;
+
+                }
+
+                Console.WriteLine($" Veiklos pelnas {veiklosPelnasEBIT}");
+                return veiklosPelnasEBIT;
+            }
+        }
 
 
         public IEnumerable<dynamic> GetEmployees()

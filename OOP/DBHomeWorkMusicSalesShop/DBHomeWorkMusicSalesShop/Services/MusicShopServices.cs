@@ -742,7 +742,9 @@ namespace DBHomeWorkMusicSalesShop.Services
                     StatistikosDarbuotojamsMeniu();
                     break;
                 case '3':
-                    // StatistikosMetodas2();
+                    _manoDb.GetAllInvoicesByTime();
+                    Console.ReadKey();
+                    StatistikosDarbuotojamsMeniu();
                     break;
                 case '4':
                     // StatistikosMetodas2();
