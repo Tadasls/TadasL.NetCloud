@@ -1,6 +1,5 @@
 ﻿using Castle.Core.Resource;
 using DBHomeWorkMusicSalesShop.DataBase;
-using DBHomeWorkMusicSalesShop.DTO;
 using DBHomeWorkMusicSalesShop.Interfaces;
 using DBHomeWorkMusicSalesShop.Models;
 using System;
@@ -15,7 +14,6 @@ using System.Xml.Linq;
 
 namespace DBHomeWorkMusicSalesShop.Services
 {
-
     public class MusicShopServices : IMusicShopServices
     {
 
@@ -31,11 +29,8 @@ namespace DBHomeWorkMusicSalesShop.Services
             _manoDb = new ChinookRepository(_dbKontekstas);
         }
 
-
-
         public void Run()
         {
-            
             char meniu;
             while (true)
             {
@@ -184,7 +179,6 @@ namespace DBHomeWorkMusicSalesShop.Services
                 case 's':
                     PaieskosMetoduMeniu();
                     break;
-
                 default:
                     Console.WriteLine("No such case");
                     break;
@@ -361,7 +355,7 @@ namespace DBHomeWorkMusicSalesShop.Services
             if (perkamaDainos.Count() == 0)
             {
                 Console.WriteLine("Krepselis tuscias");
-                Console.ReadKey();
+                PauseScreen();
                 PirkimoSistemosMetodas();
             }
 
@@ -507,51 +501,58 @@ namespace DBHomeWorkMusicSalesShop.Services
         public void KlientoRegistracijosMetodas()
         {
 
-            //Pasirinkus "Registruotis" vartotojas turėtų įvesti visus privalomus ir pasirinktinai optional Customer laukus.
-            //Jei registracija buvo sėkminga turėtų atsirasti naujas įrašas Customers lentelėje,
-            //jei registracija nepavyko turėtų atsirasti pranešimas su žinute kodėl registracija nepavyko
-            //ir būtų liepiama atnaujinti klaidą išmetusius laukus neišeinant iš registracijos lango.
-
-            bool pirmasLaukasUzpildytas = false;
+                  bool pirmasLaukasUzpildytas = false;
             bool antrasLaukasUzpildytas = false;
 
-                      
 
                 Customer naujasKlientas = new Customer();
 
                 Console.WriteLine("Iveskite kliento varda");
                 naujasKlientas.FirstName = Console.ReadLine();
-                if (naujasKlientas.FirstName != null) { pirmasLaukasUzpildytas = true; }
+                if (naujasKlientas.FirstName != "") { pirmasLaukasUzpildytas = true; }
+            while (!pirmasLaukasUzpildytas)
+            {
+                Console.WriteLine("Neivestas Vardas prasau pakartotinai");
+                Console.WriteLine("Iveskite kliento varda");
+                naujasKlientas.FirstName = Console.ReadLine();
+                if (naujasKlientas.FirstName != "") { pirmasLaukasUzpildytas = true; }
+            }
+
+            Console.WriteLine("Iveskite kliento Pavarde");
+            naujasKlientas.LastName = Console.ReadLine();
+            if (naujasKlientas.LastName != "") { antrasLaukasUzpildytas = true; }
+            while (!antrasLaukasUzpildytas)
+            {
+                Console.WriteLine("Neivesta Pavarde prasau pakartotinai");
                 Console.WriteLine("Iveskite kliento Pavarde");
                 naujasKlientas.LastName = Console.ReadLine();
-                if (naujasKlientas.LastName != null) { antrasLaukasUzpildytas = true; }
-                Console.WriteLine("Iveskite kliento Kompanija");
-                naujasKlientas.Company = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Adresa");
-                naujasKlientas.Address = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Miesta");
-                naujasKlientas.City = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Valstija");
-                naujasKlientas.State = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Saly");
-                naujasKlientas.Country = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento PastoKoda");
-                naujasKlientas.PostalCode = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Telefona");
-                naujasKlientas.Phone = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Faxa");
-                naujasKlientas.Fax = Console.ReadLine();
-                Console.WriteLine("Iveskite kliento Emaila");
-                naujasKlientas.Email = Console.ReadLine();
+                if (naujasKlientas.LastName != "") { antrasLaukasUzpildytas = true; }
+            }
+
+            Console.WriteLine("Iveskite kliento Kompanija");
+            naujasKlientas.Company = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Adresa");
+            naujasKlientas.Address = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Miesta");
+            naujasKlientas.City = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Valstija");
+            naujasKlientas.State = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Saly");
+            naujasKlientas.Country = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento PastoKoda");
+            naujasKlientas.PostalCode = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Telefona");
+            naujasKlientas.Phone = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Faxa");
+            naujasKlientas.Fax = Console.ReadLine();
+            Console.WriteLine("Iveskite kliento Emaila");
+            naujasKlientas.Email = Console.ReadLine();
 
 
+            _manoDb.CreateNewCustomer(naujasKlientas);
+                Console.Write($" new Customer with Name {naujasKlientas.FirstName}  and LastName {naujasKlientas.LastName}  added to the database\n");
+          PauseScreen();
 
-                _manoDb.CreateNewCustomer(naujasKlientas);
-
-                Console.WriteLine($" new Customer \n{naujasKlientas.FirstName}  added to the database\n");
-            Console.ReadKey();
-
-            
             Run();
         }
 
@@ -561,8 +562,8 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.Clear();
 
             Console.Clear();
-            Console.WriteLine("| #   | Pasirinkimas                 |  ");
-            Console.WriteLine("| 1.  |  Iveskite Pin   |  ");
+            Console.WriteLine("| #   | Pasirinkimas               |  ");
+            Console.WriteLine("| 1.  |  Iveskite Pin              |  ");
             Console.WriteLine("| 2.  |  Prisijungti su savo ID    |  ");
 
 
@@ -581,7 +582,9 @@ namespace DBHomeWorkMusicSalesShop.Services
                 case 'q':
                     Run();
                     break;
-
+                case 'Q':
+                    Run();
+                    break;
                 default:
                     Console.WriteLine("No such case");
                     break;
@@ -615,7 +618,7 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine("| #   | Pasirinkimas                 |  ");
             Console.WriteLine("| 1.  |  Keisti klientų duomenis    |  ");
             Console.WriteLine("| 2.  |  Pakeisti dainos statusą     |  ");
-            Console.WriteLine("| 3.  |  Statistika (Darbuotojams)  |  "); //todo
+            Console.WriteLine("| 3.  |  Statistika (Darbuotojams)  |  "); 
 
             char meniu = Console.ReadKey().KeyChar;
             Console.Clear();
@@ -657,19 +660,19 @@ namespace DBHomeWorkMusicSalesShop.Services
             {
                 case '1':
                     _manoDb.GetCustomers();
-                    Console.ReadKey();
+                    PauseScreen();
                     KeistiKlientųDuomenisMetodoMeniu();
                     break;
                 case '2':
                     Console.WriteLine("Iveskite Pirkejo ID, kuri norite PASALINTI");
                     long deleteCustomerID = Convert.ToInt32(Console.ReadLine());
                     _manoDb.DeleteCustomer(deleteCustomerID);
-                    Console.ReadKey();
+                    PauseScreen();
                     KeistiKlientųDuomenisMetodoMeniu();
                     break;
                 case '3':
                     RodytiPasirinktoKlientoDuomenisIrPrasytiSuvestiNaujus();
-                    Console.ReadKey();
+                    PauseScreen();
                     KeistiKlientųDuomenisMetodoMeniu();
                     break;
                 case 'q':
@@ -685,15 +688,12 @@ namespace DBHomeWorkMusicSalesShop.Services
             }
         }
 
-
         public void RodytiPasirinktoKlientoDuomenisIrPrasytiSuvestiNaujus()
         {
               Console.WriteLine("Iveskite Pirkejo ID, kuri norite REDAGUOTI");
                     long pokyciuID = Convert.ToInt32(Console.ReadLine());
             _manoDb.UpdateCustomerData(pokyciuID);
         }
-
-
 
         public void PakeistiDainosStatusą()
         {
@@ -719,7 +719,7 @@ namespace DBHomeWorkMusicSalesShop.Services
                     _manoDb.UpdateTrackData(input);
                     PakeistiDainosStatusą();
 
-                    // ir lieptų pasirinkti ar norime keisti į [Active] arba [Inactive] statusus.
+                    
 
                     break;
 
@@ -733,7 +733,7 @@ namespace DBHomeWorkMusicSalesShop.Services
                     break;
             }
         }
-        public void StatistikosDarbuotojamsMeniu()
+        public void StatistikosDarbuotojamsMeniu() // reikia papildyti metodais
         {
             Console.Clear();
             Console.WriteLine("| #   | Pasirinkimas                 |  ");
@@ -767,20 +767,20 @@ namespace DBHomeWorkMusicSalesShop.Services
                     StatistikosDarbuotojamsMeniu();
                     break;
                 case '4':
-                    // StatistikosMetodas2();
+                    // StatistikosMetodas4();
                     break;
                 case '5':
-                    // StatistikosMetodas2();
+                    // StatistikosMetodas5();
                     break;
                 case '6':
-                    // StatistikosMetodas2();
+                    // StatistikosMetodas6();
                     break;
 
                 case 'q':
-                    Run();
+                    KeistiKlientųDuomenisMetodoMeniu();
                     break;
                 case 'Q':
-                    Run();
+                    KeistiKlientųDuomenisMetodoMeniu();
                     break;
                 default:
                     Console.WriteLine("No such case");

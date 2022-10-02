@@ -1,5 +1,4 @@
 ﻿using Castle.Core.Resource;
-using DBHomeWorkMusicSalesShop.DTO;
 using DBHomeWorkMusicSalesShop.Models;
 using Microsoft.Data.Sqlite;
 using System;
@@ -134,7 +133,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             }
         }
 
-
         public IEnumerable<dynamic> GetEmployees()
         {
             using (var context = new ChinookContext())
@@ -249,7 +247,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return dainusarasas;
             }
         }
-
 
         public IEnumerable<dynamic> GetTracksByID(int trackId)
         {
@@ -439,7 +436,6 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             }
         }
 
-
         public void CreateNewCustomer(Customer customer)
         {
             using (var context = new ChinookContext())
@@ -509,15 +505,13 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 context.SaveChanges();
             }
         }
-
-
         public void UpdateTrackData(long trackId)
         {
             using (var context = new ChinookContext())
             {
                 Track newData = new Track();
                 var trx = context.Tracks.Find(trackId);
-                Console.WriteLine($"Dabartinis Statusas yra {trx.Active} ar norite pakeisti  press - Y /  jei palikti esama press N");
+                Console.WriteLine($"Dabartinis Statusas yra {trx.Active.ToString().Replace("True", "Active").Replace("False", "Inactive")} ar norite pakeisti  press - Y /  jei palikti esama press N");
                 char input = Console.ReadKey().KeyChar;
                 if (input == 'Y' || input == 'y') { newData.Active = false;} 
                 else { newData.Active = true; }     
@@ -525,7 +519,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 context.SaveChanges();
             }
         }
-
+        
 
     }
 }

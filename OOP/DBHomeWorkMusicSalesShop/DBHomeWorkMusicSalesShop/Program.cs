@@ -299,6 +299,7 @@ APRIBOJIMAI:
 		c. Ir t.t
 
 
+
  
 	3. Išgauti veiklos pelną pagal paduotus metus
 	4. Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį)
@@ -308,8 +309,7 @@ APRIBOJIMAI:
 	5. Išgauti kiek kiekvienas klienas išleido pinigų
 	
 
-
------------------------
+	-----------------------
 
 APRIBOJIMAI:
 - TAIKYTI "Repository Pattern". t.y. VISA KOMUNIKACIJA SU DUOMENIMIS TURI BŪTI ATSKIRTA DUOMENIMS PRIKLAUSANČIU REPOSTIORY FAILU/KLASE
