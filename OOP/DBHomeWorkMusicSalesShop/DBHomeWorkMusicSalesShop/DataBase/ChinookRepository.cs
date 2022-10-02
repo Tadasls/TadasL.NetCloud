@@ -1,6 +1,7 @@
 ﻿using Castle.Core.Resource;
 using DBHomeWorkMusicSalesShop.Models;
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             _context = context;
         }
 
-        public IEnumerable<dynamic> GetCustomers()
+
+        public virtual IEnumerable<dynamic> GetCustomers()
         {
             using (var context = new ChinookContext())
             {
@@ -132,6 +134,51 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 return veiklosPelnasEBIT;
             }
         }
+        public void GetAllInvoicesByZanras()
+        {
+
+            using (var context = new ChinookContext())
+            {
+                //using (var dbContextTransaction = context.Database.BeginTransaction())
+                //{
+
+                // ExecuteSqlRaw yra atliekamas iskart (Po panaudojimo pats call'ina context.SaveChanges())
+                //var results = context.Database.
+                //string query = @" select	
+                // SUM(invoice_items.UnitPrice ) as Suma ,
+                //    genres.Name as Pavadinimai 
+                //    from invoice_items 
+                //     Inner Join  Tracks  on invoice_items.TrackId =tracks.TrackId
+                //    Inner JOIN genres On tracks.GenreId = genres.GenreId
+                //    GROUP By genres.name";
+
+
+
+                //    // context.SaveChanges();
+                //   var test =  results.ToString();
+                //   dbContextTransaction.Commit();
+
+                ////}
+                ///
+
+                    
+            }
+
+        }
+
+
+        /*
+         select	
+SUM(invoices.total ) as Suma ,
+customers.FirstName as klientoVardas,
+customers.LastName as KlientoPavarde
+from Invoices 
+Inner join customers on invoices.CustomerId = customers.CustomerId
+Group By invoices.CustomerId
+
+         */
+
+
 
         public IEnumerable<dynamic> GetEmployees()
         {
@@ -171,15 +218,20 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         AlbumoPavadinimas = x.Album.Title,
                         Trukme = x.Milliseconds,
                         Kaina = x.UnitPrice,
-                        AktyvStatus = x.Active,
+                        Aktyvumas = x.Active,
                     });
 
                 Console.WriteLine("sarasas Dainu isrusiuotas pagal AZ :");
-                foreach (var track in dainusarasas)
+                if (dainusarasas.ToList().Count == 0)
                 {
-                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}");
-                    //{track.Vardas},{track.Kompozitorius},{track.Zanras}, {track.Zanras.Name}, {track.Albumas}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina}
-
+                    Console.WriteLine(" Pavadinimas nerastas");
+                }
+                else
+                {
+                    foreach (var track in dainusarasas)
+                    {
+                        Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras.Name}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina} ");
+                    }
                 }
                 return dainusarasas;
             }
@@ -202,17 +254,26 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         AlbumoPavadinimas = x.Album.Title,
                         Trukme = x.Milliseconds,
                         Kaina = x.UnitPrice,
-                        AktyvStatus = x.Active,
+                        Aktyvumas = x.Active,
                     });
 
                 Console.WriteLine("sarasas Dainu isrusiuotas pagal AZ :");
-                foreach (var track in dainusarasas)
+                if (dainusarasas.ToList().Count == 0)
                 {
-                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}");
-                    //{track.Vardas},{track.Kompozitorius},{track.Zanras}, {track.Zanras.Name}, {track.Albumas}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina}
-
+                    Console.WriteLine(" Pavadinimas nerastas");
                 }
-                return dainusarasas;
+                else if (dainusarasas.FirstOrDefault().Aktyvumas == false)
+                {
+                    Console.WriteLine(" Pavadinimas nerastas");
+                }
+                else
+                {
+                    foreach (var track in dainusarasas)
+                    {
+                        Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras.Name}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina} ");
+                    }
+                }
+                return dainusarasas.ToList();
             }
         }
         public IEnumerable<dynamic> GetTracksSorted()
@@ -234,17 +295,29 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                         AlbumoPavadinimas = x.Album.Title,
                         Trukme = x.Milliseconds,
                         Kaina = x.UnitPrice,
-                        AktyvStatus = x.Active,
+                        Aktyvumas = x.Active,
                     });
 
+
                 Console.WriteLine("sarasas isrusiuotas ZA :");
-                foreach (var track in dainusarasas)
+
+
+                if (dainusarasas.ToList().Count == 0)
                 {
-                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}");
-                    // {track.Kompozitorius},{track.Zanras}, {track.Zanras.Name}, {track.Albumas}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina}
-                    ;
+                    Console.WriteLine(" Pavadinimas nerastas");
                 }
-                return dainusarasas;
+                else if (dainusarasas.FirstOrDefault().Aktyvumas == false)
+                {
+                    Console.WriteLine(" Pavadinimas nerastas");
+                }
+                else
+                {
+                    foreach (var track in dainusarasas)
+                    {
+                        Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras.Name}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina} ");
+                    }
+                }
+                return dainusarasas.ToList();
             }
         }
 
@@ -255,15 +328,19 @@ namespace DBHomeWorkMusicSalesShop.DataBase
 
                 var dainusarasas = context.Tracks
                     .Where(x => x.TrackId == trackId)
-                    .Select(c => new
+                    .Where(x => x.Active == true)
+                    .Select(x => new
                     {
-                        IrasoId = c.TrackId,
-                        Vardas = c.Name,
-                        Kompozitorius = c.Composer,
-                        Zanras = c.Genre.Name,
-                        Albumas = c.Album.Title,
-                        Trukme = c.Milliseconds,
-                        Kaina = c.UnitPrice,
+                        IrasoId = x.TrackId,
+                        Vardas = x.Name,
+                        Kompozitorius = x.Composer,
+                        Zanras = x.Genre,
+                        ZanroPavadinimas = x.Genre.Name,
+                        Albumas = x.Album,
+                        AlbumoPavadinimas = x.Album.Title,
+                        Trukme = x.Milliseconds,
+                        Kaina = x.UnitPrice,
+                        Aktyvumas = x.Active,
 
 
                     });
@@ -271,9 +348,20 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 Console.WriteLine("sarasas pagal ID: ");
                 Console.WriteLine(" | #       |  Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
 
-                foreach (var track in dainusarasas)
+                if (dainusarasas.ToList().Count == 0)
                 {
-                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                    Console.WriteLine(" Pavadinimas nerastas");
+                }
+                else if (dainusarasas.FirstOrDefault().Aktyvumas == false)
+                {
+                    Console.WriteLine(" Pavadinimas nerastas");
+                }
+                else
+                {
+                    foreach (var track in dainusarasas)
+                    {
+                        Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras.Name}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina} ");
+                    }
                 }
                 return dainusarasas.ToList();
             }
@@ -286,34 +374,48 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 var dainusarasas = context.Tracks
                     .Where(x => x.Name == trackName)
                     .Where(x => x.Active == true)
-                    .Select(c => new
+                    .Select(x => new
                     {
-                        IrasoId = c.TrackId,
-                        Vardas = c.Name,
-                        Kompozitorius = c.Composer,
-                        Zanras = c.Genre.Name,
-                        Albumas = c.Album.Title,
-                        Trukme = c.Milliseconds,
-                        Kaina = c.UnitPrice,
+                        IrasoId = x.TrackId,
+                        Vardas = x.Name,
+                        Kompozitorius = x.Composer,
+                        Zanras = x.Genre,
+                        ZanroPavadinimas = x.Genre.Name,
+                        Albumas = x.Album,
+                        AlbumoPavadinimas = x.Album.Title,
+                        Trukme = x.Milliseconds,
+                        Kaina = x.UnitPrice,
+                        Aktyvumas = x.Active,
 
                     });
+
                 Console.Clear();
                 Console.WriteLine(" Surastas sarasas pagal Name:");
+
                 if (dainusarasas.ToList().Count == 0)
                 {
                     Console.WriteLine(" Pavadinimas nerastas");
                 }
-
-
-                foreach (var track in dainusarasas)
+                else if (dainusarasas.FirstOrDefault().Aktyvumas == false)
                 {
-                    Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina},  {track.Zanras},  ");
+                    Console.WriteLine(" Pavadinimas nerastas");
                 }
+                else
+                {
+                    foreach (var track in dainusarasas)
+                    {
+                        Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras.Name}, {track.Albumas.Title}, {track.Trukme}, {track.Kaina} ");
+                    }
+                }
+
+
                 return dainusarasas.ToList();
 
 
             }
         }
+
+
         public IEnumerable<dynamic> GetTracksByAlbumID(int albumId)
         {
             using (var context = new ChinookContext())
@@ -444,6 +546,14 @@ namespace DBHomeWorkMusicSalesShop.DataBase
                 context.SaveChanges();
             }
         }
+        public void CreateNewInvoice(Invoice invoice)
+        {
+            using (var context = new ChinookContext())
+            {
+                context.Invoices.Add(invoice);
+                context.SaveChanges();
+            }
+        }
         public void DeleteCustomer(long customerId)
         {
             using (var context = new ChinookContext())
@@ -511,15 +621,16 @@ namespace DBHomeWorkMusicSalesShop.DataBase
             {
                 Track newData = new Track();
                 var trx = context.Tracks.Find(trackId);
-                Console.WriteLine($"Dabartinis Statusas yra {trx.Active.ToString().Replace("True", "Active").Replace("False", "Inactive")} ar norite pakeisti  press - Y /  jei palikti esama press N");
+                Console.WriteLine($"Dabartinis Statusas yra {trx.Active.ToString().Replace("True", "Active").Replace("False", "Inactive")} ar norite Deaktyvuoti  press - Y /  jei palikte Aktyvuoti press A / q - gryzti atgal ");
                 char input = Console.ReadKey().KeyChar;
-                if (input == 'Y' || input == 'y') { newData.Active = false;} 
-                else { newData.Active = true; }     
+                if (input == 'q' || input == 'Q') return;
+                if (input == 'Y' || input == 'y') { newData.Active = false; }
+                else { newData.Active = true; }
                 if (newData.Active != null) { trx.Active = newData.Active; }
                 context.SaveChanges();
             }
         }
-        
 
     }
-}
+ }
+

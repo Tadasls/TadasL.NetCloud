@@ -2,8 +2,10 @@
 using DBHomeWorkMusicSalesShop.DataBase;
 using DBHomeWorkMusicSalesShop.Interfaces;
 using DBHomeWorkMusicSalesShop.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -17,9 +19,10 @@ namespace DBHomeWorkMusicSalesShop.Services
     public class MusicShopServices : IMusicShopServices
     {
 
+
         public static List<dynamic> perkamaDainos = new List<dynamic>();
         public static Customer PrisijungesUseris = new Customer();
-
+        private ChinookRepository @object;
         private readonly ChinookContext _dbKontekstas;
         private readonly ChinookRepository _manoDb;
 
@@ -27,6 +30,18 @@ namespace DBHomeWorkMusicSalesShop.Services
         {
             _dbKontekstas = new ChinookContext();
             _manoDb = new ChinookRepository(_dbKontekstas);
+        }
+
+        //public MusicShopServices(ChinookContext dbKontekstas)
+        //{
+        //    _dbKontekstas = dbKontekstas;
+
+        //}
+              
+
+        public MusicShopServices(ChinookRepository @object)
+        {
+            this.@object = @object;
         }
 
         public void Run()
@@ -78,7 +93,7 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             Console.Clear();
             Console.WriteLine("Show ID List");
-            _manoDb.GetCustomers();
+            GautiKlientus();
 
             List<long> idlist = new List<long>();
             foreach (var item in _dbKontekstas.Customers)
@@ -103,6 +118,14 @@ namespace DBHomeWorkMusicSalesShop.Services
 
 
         }
+
+        public virtual IEnumerable<dynamic> GautiKlientus()
+        {
+            IEnumerable<dynamic> klientai = _manoDb.GetCustomers();
+            return klientai;
+
+        }
+
         public void PirkimoSistemosMetodas()
         {
             Console.Clear();
@@ -132,10 +155,10 @@ namespace DBHomeWorkMusicSalesShop.Services
                     SalesHistoryData(); 
                     break;
                 case 'q':
-                    Run();
+                    PirkimoSistemosMetodas();
                     return;
                 case 'Q':
-                    Run();
+                    PirkimoSistemosMetodas();
                     return;
                 default:
                     Console.WriteLine("No such case");
@@ -145,7 +168,7 @@ namespace DBHomeWorkMusicSalesShop.Services
         public void SalesHistoryData()
         {
             GautiKlientoAtaskaitasPagalKlientoID((int)PrisijungesUseris.CustomerId);
-            Console.ReadKey();
+            PauseScreen();
             PirkimoSistemosMetodas();
         }
        
@@ -158,7 +181,7 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             char meniu;
             meniu = Console.ReadKey().KeyChar;
-
+            Console.Clear();
             switch (meniu)
             {
                 case 'Q':
@@ -194,8 +217,10 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine("| 5.  |   Pagal Composer ir Album                |  ");
             Console.WriteLine("| 6.  |   Pagal Milliseconds (Mažiau nei X arba daugiau nei X)  |  ");
 
-            char meniu;
-            meniu = Console.ReadKey().KeyChar;
+            
+            char meniu = Console.ReadKey().KeyChar;
+
+            Console.Clear();
             switch (meniu)
             {
                 case '1':
@@ -243,13 +268,16 @@ namespace DBHomeWorkMusicSalesShop.Services
             switch (meniu)
             {
                 case '1':
-                     var isrusiuotasDainuSarasasAZ = _manoDb.GetTracks();
+                    IEnumerable<dynamic> isrusiuotasDainuSarasasAZ = _manoDb.GetTracks();
+
                     Console.WriteLine(isrusiuotasDainuSarasasAZ);
+                    PauseScreen();
                     RusiavimoPasirinkimoMetodas();
                     break;
                 case '2':
                     var isrusiuotasDainuSarasasZA = _manoDb.GetTracksSorted();
                     Console.WriteLine(isrusiuotasDainuSarasasZA);
+                    PauseScreen();
                     RusiavimoPasirinkimoMetodas();
                     break;
                 case '3':
@@ -306,10 +334,10 @@ namespace DBHomeWorkMusicSalesShop.Services
                     RastiDainaPagalAlbumName();
                     break;
                 case 'q':
-                    Run();
+                    PirkimoSistemosMetodas();
                     return;
                 case 'Q':
-                    Run();
+                    PirkimoSistemosMetodas();
                     return;
                 default:
                     Console.WriteLine("No such case");
@@ -411,8 +439,15 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             Console.WriteLine();
             double TotalBePVM = 0.0;
+
+            var invoiceitems = new HashSet<InvoiceItem>();
             foreach (var track in perkamaDainos)
             {
+                var invItem = new InvoiceItem();
+                invItem.TrackId = track.IrasoId;
+                invItem.UnitPrice = track.Kaina;
+                invItem.Quantity =1;
+                invoiceitems.Add(invItem);
                 Console.WriteLine($" {track.IrasoId}, {track.Vardas}, {track.Kompozitorius}, {track.Zanras}, {track.Albumas}, {track.Trukme}, {track.Kaina}  ");
                 TotalBePVM = TotalBePVM + track.Kaina;
             }
@@ -424,6 +459,32 @@ namespace DBHomeWorkMusicSalesShop.Services
             Console.WriteLine(TotalSuPVM);
 
             Console.WriteLine();
+
+
+
+
+            Invoice invoice = new Invoice()
+            {
+                InvoiceItems = invoiceitems
+
+            };
+
+            invoice.CustomerId = PrisijungesUseris.CustomerId;
+            invoice.InvoiceDate = DateTime.Now;
+            invoice.BillingAddress = PrisijungesUseris.Address;
+            invoice.BillingCity = PrisijungesUseris.City;
+            invoice.BillingState = PrisijungesUseris.State;
+            invoice.BillingCountry = PrisijungesUseris.Country;
+            invoice.BillingPostalCode = PrisijungesUseris.PostalCode;
+            invoice.Total = TotalSuPVM;
+
+
+
+            _manoDb.CreateNewInvoice(invoice);
+
+
+
+
 
             GryzimoIMeniuMetodoKomanda();
         }
@@ -447,12 +508,13 @@ namespace DBHomeWorkMusicSalesShop.Services
 
 
         //dainu paieskos metodai
-        public void RastiDainaPagalIdMetodas()
+        public IEnumerable<dynamic> RastiDainaPagalIdMetodas()
         {
             Console.WriteLine("Iveskite norimą Id   "); 
             int ieskomaPagal = Convert.ToInt32(Console.ReadLine());
             var rastuDainuSaras = _manoDb.GetTracksByID(ieskomaPagal);
             PirkimoPasirinkimoKomandos(rastuDainuSaras.ToList());
+            return rastuDainuSaras.ToList();
         }
         public void RastiDainaPagalName()
         {
@@ -552,8 +614,16 @@ namespace DBHomeWorkMusicSalesShop.Services
                 Console.Write($" new Customer with Name {naujasKlientas.FirstName}  and LastName {naujasKlientas.LastName}  added to the database\n");
           PauseScreen();
 
+            
+
+
             Run();
         }
+
+       
+
+
+
 
         //3
         public void AdminAplinkosSecurityMetodas()
@@ -717,13 +787,12 @@ namespace DBHomeWorkMusicSalesShop.Services
                     long input = Convert.ToInt32(Console.ReadLine());
                     _manoDb.UpdateTrackData(input);
                     PakeistiDainosStatusą();
-
-                    
-
                     break;
 
-
                 case 'q':
+                    AdminAplinkosMetodas();
+                    break;
+                case 'Q':
                     AdminAplinkosMetodas();
                     break;
 
@@ -766,7 +835,7 @@ namespace DBHomeWorkMusicSalesShop.Services
                     StatistikosDarbuotojamsMeniu();
                     break;
                 case '4':
-                    // StatistikosMetodas4();
+                    _manoDb.GetAllInvoicesByZanras();
                     break;
                 case '5':
                     // StatistikosMetodas5();

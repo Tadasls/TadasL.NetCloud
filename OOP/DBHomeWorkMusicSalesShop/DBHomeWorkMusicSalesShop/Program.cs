@@ -290,30 +290,13 @@ APRIBOJIMAI:
 	(BONUS) Įdėkite 'x' komandą, kuri leistų įvesti į kurį puslapį norite nusigauti. 
 
    (BONUS) Pagal Album ir Artist {Pagrindinės paieškos funkcijos}:
-   (BONUS - DARYKITE TIK JEI BŪSITE PABAIGĘ VISA KITA [NĖRA BŪTINA]) 
+   
 	Padarykite, kad perkant visą albumą pritaikytų 25% nuolaidą perkamoms dainoms.
 
   6. (BONUS) Išgauti kiek pelno atnešė kiekvienas indivualus Artist
 		a. AC/DC | 8999
 		b. Aerosmith | 7775
 		c. Ir t.t
-
-
-
- 
-	3. Išgauti veiklos pelną pagal paduotus metus
-	4. Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį)
-		a. Rock | 1178
-		b. Indie | 588
-		c. Ir t.t
-	5. Išgauti kiek kiekvienas klienas išleido pinigų
-	
-
-	-----------------------
-
-APRIBOJIMAI:
-
-- PADENGTI UNIT-TESTAIS VISĄ FUNCKIONALUMĄ, KURIS SAVEIKAUJA SU DUOMENŲ BAZE PASITELKIANT IN-MEMORY DB IR MOQ.
 
 	  */
 

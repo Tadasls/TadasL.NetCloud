@@ -18,6 +18,7 @@ namespace DBHomeWorkMusicSalesShop.DataBase
         {
 
         }
+     
 
         public virtual DbSet<Album> Albums { get; set; } = null!;
         public virtual DbSet<Artist> Artists { get; set; } = null!;
