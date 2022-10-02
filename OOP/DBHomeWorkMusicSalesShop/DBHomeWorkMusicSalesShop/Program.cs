@@ -14,15 +14,10 @@ namespace DBHomeWorkMusicSalesShop
 			Console.OutputEncoding = Encoding.GetEncoding(1200);
 			Console.InputEncoding = Encoding.GetEncoding(1200);
 
-						
 			IMusicShopServices muzikosPardavimuServisas = new MusicShopServices();
             muzikosPardavimuServisas.Run();
 
-
             //Scaffold-DbContext „DataSource = C:\Users\tadas\source\repos\Tadasls\TadasL.NetCloud\OOP\DBHomeWorkMusicSalesShop\DBHomeWorkMusicSalesShop\InitialData\chinook.db“ Microsoft.EntityFrameworkCore.Sqlite
-
-
-
 
         }
     }
@@ -281,25 +276,21 @@ APRIBOJIMAI:
 
 
     #region
-
-    /*   
-
-	 (BONUS - DARYKITE TIK JEI BŪSITE PABAIGĘ VISA KITA) Padarykite jūsų katalogas turėtų puslapiavimą. 
+	/*   
+	(BONUS - DARYKITE TIK JEI BŪSITE PABAIGĘ VISA KITA) Padarykite jūsų katalogas turėtų puslapiavimą. 
 	Prie esamų funkcijų pridėkite 'a' ir 'd' raides kaip galimybę eiti pirmyn arba atgal per katalogo puslapius. Kiekvienas puslapis turėtų turėti 10 Tracks.
 	Apačioje turėtų atvaizduoti kuriame puslapyje šiuo metu esame ir kiek iš viso puslapių yra. Pasidarykite patikrą, kad vartotojas negalėtų nužygiuoti toliau nei esami puslapiai. 
 	(BONUS) Įdėkite 'x' komandą, kuri leistų įvesti į kurį puslapį norite nusigauti. 
 
-   (BONUS) Pagal Album ir Artist {Pagrindinės paieškos funkcijos}:
-   
-	Padarykite, kad perkant visą albumą pritaikytų 25% nuolaidą perkamoms dainoms.
+    (BONUS) Pagal Album ir Artist {Pagrindinės paieškos funkcijos}:
 
-  6. (BONUS) Išgauti kiek pelno atnešė kiekvienas indivualus Artist
+    Padarykite, kad perkant visą albumą pritaikytų 25% nuolaidą perkamoms dainoms.
+
+    (BONUS) Išgauti kiek pelno atnešė kiekvienas indivualus Artist
 		a. AC/DC | 8999
 		b. Aerosmith | 7775
 		c. Ir t.t
-
 	  */
-
     #endregion
 
 
