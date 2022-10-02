@@ -275,8 +275,7 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             }
         }
-        
-     
+
 
         //sales metodai
         public void KrepselioFormavimoMeniu()
