@@ -18,8 +18,8 @@ namespace DBHomeWorkMusicSalesShop.Services
 {
     public class MusicShopServices : IMusicShopServices
     {
-        public static List<dynamic> perkamaDainos = new List<dynamic>();
-        public static Customer PrisijungesUseris = new Customer();
+        public List<dynamic> perkamaDainos = new List<dynamic>();
+        public Customer prisijungesUseris = new Customer();
         private ChinookRepository @object;
         private readonly ChinookContext _dbKontekstas;
         private readonly ChinookRepository _manoDb;
@@ -41,7 +41,6 @@ namespace DBHomeWorkMusicSalesShop.Services
             while (true)
             {
                 Console.Clear();
-                Reset();
                 Console.WriteLine("| #   | Pasirinkimas :                | ");
                 Console.WriteLine("| 1.  |   Prisijungti                 |  ");
                 Console.WriteLine("| 2.  |   Registruotis                |  ");
@@ -92,16 +91,20 @@ namespace DBHomeWorkMusicSalesShop.Services
             long idPasirinkimas;
             do
             {
+                
                 Console.WriteLine("Choose Your Id");
-
-               
+                Reset();
                 idPasirinkimas = IvestiSkaiciu();
 
                 if (idlist.Contains(idPasirinkimas)) 
                 {
                     foreach (var item in _dbKontekstas.Customers)
                     {
-                        if (item.CustomerId == idPasirinkimas) { PrisijungesUseris = item; }
+                        if (item.CustomerId == idPasirinkimas) 
+                        {
+                            prisijungesUseris = item;
+                        }
+
                     }
                     PirkimoSistemosMetodas();
                 } 
@@ -156,7 +159,7 @@ namespace DBHomeWorkMusicSalesShop.Services
         }
         public void SalesHistoryData()
         {
-            GautiKlientoAtaskaitasPagalKlientoID((int)PrisijungesUseris.CustomerId);
+            GautiKlientoAtaskaitasPagalKlientoID((int)prisijungesUseris.CustomerId);
             PauseScreen();
             PirkimoSistemosMetodas();
         }
@@ -374,7 +377,7 @@ namespace DBHomeWorkMusicSalesShop.Services
         {
             Console.Clear();
             Console.WriteLine("Krepselyje Yra sios Dainos:");
-            if (perkamaDainos.Count() == 0)
+            if (perkamaDainos.Count() == 0)  //    ==null )
             {
                 Console.WriteLine("Krepselis tuscias");
                 PauseScreen();
@@ -421,11 +424,11 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             Console.WriteLine("   Sugeneruotas INVOICE ");
 
-            Console.WriteLine($"Name {PrisijungesUseris.FirstName}");
-            Console.WriteLine($"LastName {PrisijungesUseris.LastName}");
-            Console.WriteLine($"Adress {PrisijungesUseris.Address}");
-            Console.WriteLine($"Phone {PrisijungesUseris.Phone}");
-            Console.WriteLine($"Post Code {PrisijungesUseris.PostalCode}");
+            Console.WriteLine($"Name {prisijungesUseris.FirstName}");
+            Console.WriteLine($"LastName {prisijungesUseris.LastName}");
+            Console.WriteLine($"Adress {prisijungesUseris.Address}");
+            Console.WriteLine($"Phone {prisijungesUseris.Phone}");
+            Console.WriteLine($"Post Code {prisijungesUseris.PostalCode}");
 
             Console.WriteLine();
             Console.WriteLine(" | #       | ID, Name, Composer, Genre->Name, Album->Title, Milliseconds, Price | ");
@@ -462,13 +465,13 @@ namespace DBHomeWorkMusicSalesShop.Services
 
             };
 
-            invoice.CustomerId = PrisijungesUseris.CustomerId;
+            invoice.CustomerId = prisijungesUseris.CustomerId;
             invoice.InvoiceDate = DateTime.Now;
-            invoice.BillingAddress = PrisijungesUseris.Address;
-            invoice.BillingCity = PrisijungesUseris.City;
-            invoice.BillingState = PrisijungesUseris.State;
-            invoice.BillingCountry = PrisijungesUseris.Country;
-            invoice.BillingPostalCode = PrisijungesUseris.PostalCode;
+            invoice.BillingAddress = prisijungesUseris.Address;
+            invoice.BillingCity = prisijungesUseris.City;
+            invoice.BillingState = prisijungesUseris.State;
+            invoice.BillingCountry = prisijungesUseris.Country;
+            invoice.BillingPostalCode = prisijungesUseris.PostalCode;
             invoice.Total = TotalSuPVM;
 
 
@@ -503,7 +506,7 @@ namespace DBHomeWorkMusicSalesShop.Services
         public IEnumerable<dynamic> RastiDainaPagalIdMetodas()
         {
             Console.WriteLine("Iveskite norimą Id   "); 
-            int ieskomaPagal = Convert.ToInt32(Console.ReadLine());
+            int ieskomaPagal = IvestiSkaiciu();
             var rastuDainuSaras = _manoDb.GetTracksByID(ieskomaPagal);
             PirkimoPasirinkimoKomandos(rastuDainuSaras.ToList());
             return rastuDainuSaras.ToList();
@@ -518,7 +521,7 @@ namespace DBHomeWorkMusicSalesShop.Services
         public void RastiDainaPagalAlbumID()
         {
             Console.WriteLine("Iveskite norimą AlbumId  ");
-            int ieskomaPagal = Convert.ToInt32(Console.ReadLine());
+            int ieskomaPagal = IvestiSkaiciu(); 
             var rastuDainuSaras = _manoDb.GetTracksByAlbumID(ieskomaPagal);
             PirkimoPasirinkimoKomandos(rastuDainuSaras.ToList());
         }
@@ -556,9 +559,9 @@ namespace DBHomeWorkMusicSalesShop.Services
         {
             Console.WriteLine("Iveskite ieskoma trukme nuo MiliSekundziu   ");
 
-            int ieskomaPagalNuoMili = Convert.ToInt32(Console.ReadLine());
+            int ieskomaPagalNuoMili = IvestiSkaiciu();
             Console.WriteLine("Iveskite ieskoma trukme nuo MiliSekundziu   ");
-            int ieskomaPagalIkiMili = Convert.ToInt32(Console.ReadLine());
+            int ieskomaPagalIkiMili = IvestiSkaiciu();
             var rastuDainuSaras = _manoDb.GetTracksByLenght(ieskomaPagalNuoMili, ieskomaPagalIkiMili);
             PirkimoPasirinkimoKomandos(rastuDainuSaras.ToList());
         }
@@ -867,9 +870,9 @@ namespace DBHomeWorkMusicSalesShop.Services
         }
         public void Reset()
         {
-            List<dynamic> perkamaDainos = new List<dynamic>();
-            Customer PrisijungesUseris = new Customer();
-        }
+           perkamaDainos = new List<dynamic>();
+         // Customer prisijungesUseris = new Customer();
+    }
         public int IvestiSkaiciu()
         {
             int input;
