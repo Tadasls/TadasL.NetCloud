@@ -30,10 +30,10 @@ namespace DBHomeWorkMusicSalesShop.Services
             _manoDb = new ChinookRepository(_dbKontekstas);
         }
 
-        //public MusicShopServices(ChinookRepository @object)
-        //{
-        //    this.@object = @object;
-        //}
+        public MusicShopServices(ChinookRepository @object)
+        {
+            this.@object = @object;
+        }
 
         public void Run()
         {

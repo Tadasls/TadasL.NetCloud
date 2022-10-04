@@ -24,6 +24,8 @@ namespace DBHomeWorkMusicSalesShop.DataBase.Tests
             mock_MusicShopServices.Setup(c => c.GetCustomers()).Returns(
                 new List<Customer>
                 {
+                  
+
                         new Customer { CustomerId = 1, FirstName = "Tadas", LastName = "Laurinaitis" , Email = "Tadas.laurinaitis@gmail.com"}
             }
             );
