@@ -1,0 +1,17 @@
+a {
+    font-size: large;
+    font-weight: bold;
+    color: brown;
+    padding: 24px;
+    margin-bottom: 25px;
+    border: 1px solid black;
+}
+
+nav{
+
+    background-color:darkgrey;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 1px solid black;
+}
