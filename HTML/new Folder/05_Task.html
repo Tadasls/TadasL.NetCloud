@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello imput attributes</title>
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+    <form action="https://atikas.github.io/BlazorConsole/" method="get">
+      <h1>Payment form</h1>
+<p>Required fields are followed by *</p>
+<h1>Contact information</h1>
+      <label for="fname">Name:*   </label>
+      <input type="text" id="fname" name="fname" value=""  />
+      <br />
+      <label for="Email">Email:*  </label>
+      <input type="text" id="Email" name="Email" value=""  />
+      <br />
+      <label for="pass">Password:*</label>
+      <input type="text" id="pass" name="pass" value=""  />
+     
+     
+      <h1>Payment information</h1>
+    
+ 
+      <label for="CardType">Card Type:</label>
+        <select id="Cards" name="VisaType" size="1">
+          <option value="Visa">Visa</option>
+          <option value="mastercard" selected>mastercard</option>
+          <option value="Gold">Gold</option>
+          <option value="Travel">Travel</option>
+        </select>
+      
+
+
+
+      <br />
+      <label for="CardNumber">Card Number:*</label>
+      <input type="text" id="CardNumber" name="CardNumber" size="11"  />   
+      <br />
+      <label for="datemax">Expiration date:*</label>
+      <input type="date" id="datemax" name="datemax" max="2024-12-31" />
+
+    
+      <br />
+      <br />
+<hr>
+<p>Agree with terms and conditions  <input type ="checkbox" value="checked" required/> </p>
+
+
+      <input type="submit" value="Validate the payment" />
+
+
+      <br />
+      <br />
+    </form>
+
+
+
+    <br />
+    <br />
+<div>
+
+
+
+
+
+
+
+<div class="Visa Lentele" style ="width: 600px; " ></div>
+
+
+<div class="kaire puse" style ="display: inline-table; width: 300px; ">
+  <div>
+<div class="Kortele" style="background-color: darkgray; border-radius: 15px; height: 155px; border: 1px solid darkgray;">
+
+<div style="background-color: rgb(62, 60, 60); width: 30px; height: 20px; margin: 25px; border-radius: 5px;">
+  <div style="background-color:lightgray;  margin-top: 5px; padding-top: 5px;  width: 15px; height: 12px; border-radius: 5px;">
+
+  </div>
+</div>
+
+
+<p style="margin: 20px;">0000 0000 0000 0000</p>
+<p style="margin: 20px; margin-top: 25px;">  FULL NAME </p>
+
+</div>
+
+
+
+
+
+  </div>
+  <div> </div>
+
+</div>
+<div class="desine puse" style ="display: inline-table; width: 300px; vertical-align: top ;" > 
+  <div class="pildomi laukai">  
+    
+   <label for="CardNumber">Card Number</label><br>
+    <input type="text" id="CardNumber" name="CardNumber" size="11" style="border-radius: 10px; background-color: lightgray;"  />   
+    <br />
+    <label for="fname">Cardholder name   </label>
+    <br>
+    <input type="text" id="fname" name="fname" value="" style="border-radius: 10px; background-color: lightgray;" />
+    <br>
+    <label for="text">Expiration date</label><br>
+      <input type="text" id="datemax" name="datemax" max="2024-12-31"style="border-radius: 10px; background-color: lightgray;" placeholder="MM/YYYY" />
+      <br>
+      <label for="snumber">Security Number:   </label>
+      <br>
+      <input type="text" id="fname" name="fname" value="" style="border-radius: 10px; background-color: lightgray;"  placeholder="CVC" />
+      <br>
+  </div>
+  <div class="mokejimo mygtukas"><button type="Pay" style="border-radius: 5px; margin: 10px; width: 130px; height: 30px; background-color: rgb(33, 216, 248);" > X Pay --.-- $</button></div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
