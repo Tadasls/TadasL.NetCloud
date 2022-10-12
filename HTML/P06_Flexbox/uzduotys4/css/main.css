@@ -1,0 +1,48 @@
+    .container-pirmas{
+        display: flex;
+        flex-wrap: nowrap;
+        
+    align-items: center;
+    justify-content: center;
+    }
+    
+    .container-pirmas div{
+        background-color: rgb(224, 79, 50);
+            border: 1px solid grey;
+            width: 100px;
+            height:  100px;
+            margin: 1em;
+            text-align: center;
+            color: white;
+           
+        }
+    .container-wrap{
+        display: flex;
+        flex-flow: wrap;
+    }
+    
+    .container-wrap div{
+        background-color: rgb(248, 245, 49);
+            border: 1px solid grey;
+            width: 100px;
+            height:  100px;
+            margin: 1em;
+            text-align: center;
+            color: white;
+        }
+
+.container-trys{
+    display: flex;
+    flex-flow: wrap-reverse;
+}
+
+.container-trys div{
+    background-color: rgb(38, 190, 228);
+        border: 1px solid grey;
+        width: 100px;
+        height:  100px;
+        margin: 1em;
+        text-align: center;
+        color: white;
+     
+    }            

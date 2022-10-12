@@ -1,0 +1,85 @@
+
+.container-row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.container-row div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: darkgray;
+    text-align: center;
+    margin: 1em;
+}
+
+
+.container-row-reverse{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+.container-row-reverse div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: rgb(240, 161, 161);
+    text-align: center;
+    margin: 1em;
+}
+
+
+.container-colum{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.container-colum div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: rgb(179, 218, 124);
+    text-align: center;
+    margin: 1em;
+}
+
+.container-colum-r{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+}
+.container-colum-r div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: rgb(226, 93, 93);
+    text-align: center;
+    margin: 1em;
+}
+
+.container-no-wrap{
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+.container-no-wrap div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: rgb(96, 153, 228);
+    text-align: center;
+    margin: 1em;
+}
+.container-wrap-reverse{
+    display: flex;
+    flex-wrap: wrap-reverse;
+
+}
+.container-wrap-reverse div{
+    width: 55px;
+    height: 50px;
+    border:1px solid red;
+    background-color: rgb(226, 251, 116);
+    text-align: center;
+    margin: 1em;
+}
