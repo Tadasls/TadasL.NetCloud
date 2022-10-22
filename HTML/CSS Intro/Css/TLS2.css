@@ -17,8 +17,8 @@ main.container {
 }
 main header.main-header {
     background-color: #f7f7f7;
-    padding: 10px 160px;
-    margin-bottom: 40px;
+    padding: 0px 160px;
+    margin-bottom: 20px;
     border-radius: 25px;
 }
 
@@ -57,6 +57,8 @@ p {
     margin-left: 10px;
     font-size: 18px;
     margin-left: 15px;
+    word-wrap: break-word;  
+
 }
 
 div.container-row-space-between-justify {
