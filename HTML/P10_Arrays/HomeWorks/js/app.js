@@ -1,4 +1,4 @@
-
+console.log(`1 uzdavinys`);
 // IsPassWordValid();
 
 function IsPassWordValid(userName, passWord){
@@ -21,6 +21,8 @@ function IsPassWordValid(userName, passWord){
         
 }
 
+console.log(`2 uzdavinys`);
+
 let array = [19,22,56.80,12,51, 100];
 let vidurkioSuma = 0;
 function GetAverageOfArray(array){
@@ -37,6 +39,7 @@ function GetAverageOfArray(array){
 GetAverageOfArray(array);
 
 
+console.log(`3 uzdavinys`);
 
 let show = function() {
     console.log(`Anononymous function`);
@@ -50,11 +53,12 @@ show();
 console.log(add(2,2));
 
 
-// let param1 = 5;
-// let param2 = 7;
-// const getData = console.log(param1,param2);
+let param1 = 5;
+let param2 = 7;
+const getData = (param1,param2) => console.log(param1,param2);
 
-console.log(`tadas`);
+
+console.log(`4 uzdavinys`);
 
 
 let cardType = ['Clubs', 'Spades', 'Hearts', 'Diamonds'];
