@@ -57,6 +57,9 @@ let param1 = 5;
 let param2 = 7;
 const getData = (param1,param2) => console.log(param1,param2);
 
+//  function show => console.log(`Anononymous function`);
+//  const sudetis(a,b) => console.log(a+b); 
+
 
 console.log(`4 uzdavinys`);
 
