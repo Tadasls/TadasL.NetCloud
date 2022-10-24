@@ -1,0 +1,22 @@
+div.container-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    border: 1px solid tomato;
+    width: 840px;
+    height: 600px;
+}
+
+
+div.container-row div {
+    width: 350px;
+    height: 100px;
+    border: 1px solid rgb(71, 255, 77);
+    background-color: darkgray;
+    text-align: left;
+}
+
+button {
+    background-color: blue; 
+    color: white;
+}
