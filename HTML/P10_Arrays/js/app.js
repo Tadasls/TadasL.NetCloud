@@ -77,7 +77,7 @@ if(isExercise4On) {
         let price = prompt("Įveskite kainą:");
         let name = prompt("Įveskite pavadinimą:");
         let weight = prompt("Įveskite svorį:");
-        let candy = [price, name, weight];
+        // let candy = [price, name, weight];
         // candies[i] = `${price}$ ${name} ${weight} grams`;
     
         // candies[i][0] = price;
@@ -85,7 +85,7 @@ if(isExercise4On) {
         // candies[i][2] = weight;
     
         console.log(candy);
-        candies[i] = candy;
+        // candies[i] = candy;
     }
     
     for(let candy of candies) {
@@ -152,3 +152,40 @@ lottoNumbers.forEach((item, index, array) => {
 const logArrayElements = (element, index, array) => {
     console.log(`a[${index}] = ${element}`);
 };
+
+shoppingList.forEach(logArrayElements);
+
+
+// Activities and hours spent on each one
+let activities = [
+    ['Work', 9],
+    ['Eat', 1],
+    ['Commute', 2],
+    ['Play Game', 1],
+    ['Sleep', 7],
+];
+
+console.table(activities);
+console.log(activities[0][1]);
+
+activities.forEach(activity => {
+    let percentage = ((activity[1]/24)*100).toFixed();
+    activity[2] = percentage + '%';
+});
+
+console.table(activities);
+
+let players = [
+    ['Player1', [9,9,8]],
+    ['Player2', [9,8,8]],
+];
+
+players.forEach(player => {
+    let scoringLabel = player[0];
+    player[1].forEach(score => {
+        scoringLabel += ` ${score}`;
+    });
+    console.log(scoringLabel);
+});
+
+console.table(players);

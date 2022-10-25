@@ -391,6 +391,11 @@ console.log(isChild(19));
 const isInNineties = makeBetweenFunc(1990, 2000);
 const isGoodWeather = makeBetweenFunc(20, 30);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> cb7867ed92b201a076d43543d0ef14c1623433d4
 // ARROW FUNCTIONS
 
 let greetArrow = () => {
@@ -410,8 +415,12 @@ let sumArrow = (a, b) => a + b;
 console.log(sumArrow(8,8));
 
 
+<<<<<<< HEAD
 
 
+=======
+// Exercise 4
+>>>>>>> cb7867ed92b201a076d43543d0ef14c1623433d4
 function register() {
     let name = prompt("Iveskite varda:");
     let surname = prompt("Iveskite pavarde:");
@@ -424,7 +433,11 @@ function register() {
     console.log(`email:${email}`);
 }
 
+<<<<<<< HEAD
 //register();
+=======
+// register();
+>>>>>>> cb7867ed92b201a076d43543d0ef14c1623433d4
 
 // Exercise 4 DONE
 
@@ -442,6 +455,7 @@ function IsAdult(age) {
 // Exercise 5 DONE
 
 
+<<<<<<< HEAD
 
 //let year = prompt("Iveskite metus:");
 
@@ -467,3 +481,36 @@ function KOnvToKelv(farenheitai){
  }
 console.log(KOnvToKelv(50).toFixed(2));
 console.log(KOnvToKelv(20).toFixed(2));
+=======
+// Exercise 6
+
+function arKeliamiejiMetai(year) {
+    return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+}
+
+// for (let i = 0; i <= 2000; i++) {
+//     if(arKeliamiejiMetai(i)) {
+//         console.log(i);
+//     }
+    
+// }
+
+// Exercise 6 DONE
+
+
+// Exercise 7
+
+// C = 5/9(F-32)
+
+function fToC(farenheits) {
+    let fToCelcius = 5 / 9 * (farenheits-32);
+    console.log(`${farenheits}F to ${fToCelcius}C`);
+}
+
+function cToF(celcius) {
+    let cToFarenheit = celcius * (9/5) + 32;
+    console.log(`${celcius}C to ${cToFarenheit}F`);
+}
+
+// Exercise 7 DONE
+>>>>>>> cb7867ed92b201a076d43543d0ef14c1623433d4
