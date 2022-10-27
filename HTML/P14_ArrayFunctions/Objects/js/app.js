@@ -58,4 +58,27 @@ console.log(userReviews);
 
 
 
-// NESTING 
+// NESTING arrays and objects
+
+const student = {
+
+firstName: 'David',
+lastName: 'Jones',
+strengths: ['music','Art'],
+
+exams: {
+    midterm:10,
+    final:9
+},
+fullName: function(){
+   return this.firstName + ' ' +this.lastName
+}
+
+};
+
+
+console.log(student.fullName());
+
+const studentuAvgExamMarkCount = 2; 
+const studentsAvgExamMark = (student.exams.midterm + student.exams.final) /studentuAvgExamMarkCount;
+
