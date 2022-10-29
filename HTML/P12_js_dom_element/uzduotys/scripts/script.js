@@ -4,12 +4,18 @@ function show(index) {
     btn.classList.remove('btn-hover');
   }
   buttons[index].classList.add('btn-hover');
+
+
+
+
   document.querySelector('#pavadinimas').innerHTML =
     receptai[index].pavadinimas;
   document.querySelector('#paruosimas').innerHTML = receptai[index].paruosimas;
   document.querySelector('#ingredientai').innerHTML =
     receptai[index].ingredientai;
   document.querySelector('#paveikslelis').src = receptai[index].paveikslelis;
+
+
   //alergenai
   document.querySelector('#alergenai').innerHTML = '';
   if (document.getElementsByClassName('milk').length > 0) {
@@ -27,6 +33,8 @@ function show(index) {
         <img src="${alergenai[2]}" alt="laktoze" width="60" />
         </div>`;
   }
+
+
   const ingredientai = document.querySelectorAll('#ingredientai');
   for (const li of ingredientai) {
     for (const link of links) {
@@ -39,6 +47,8 @@ function show(index) {
     }
   }
 }
+
+
 const links = [
   { name: 'pienas', href: 'https://lt.wikipedia.org/wiki/Pienas' },
   { name: 'kakavos pudra', href: 'https://lt.wikipedia.org/wiki/Kakava' },
@@ -47,6 +57,8 @@ const links = [
   { name: 'kakava', href: 'https://lt.wikipedia.org/wiki/Kakava' },
   { name: 'druska', href: 'https://lt.wikipedia.org/wiki/Druska' },
 ];
+
+
 const receptai = [
   {
     pavadinimas: `Karšta kakava`,
@@ -166,4 +178,5 @@ const receptai = [
     paveikslelis: `brownie.jpg`,
   },
 ];
+
 const alergenai = [`lacteos.png`, `gluten.png`, `egg.png`];

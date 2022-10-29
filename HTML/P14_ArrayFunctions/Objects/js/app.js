@@ -420,3 +420,19 @@ console.log(allEndInG);
 
 const someStartWithD = words2.some(word => word[0] === 'd');
 console.log(someStartWithD);
+
+
+
+// for each uzduotis 
+
+let numbers4 = [5, 1, 7, 2, -9, 8, 2, 7, 9, 4, -5, 2, -6, 8, -4, 6];
+
+for (let i = 0; i < numbers4.length-1; i++) {
+    console.log(`<p> Index Nr: ${i} value: ${numbers4[i]} </p> `);
+}
+
+
+
+
+
+
