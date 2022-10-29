@@ -1,0 +1,40 @@
+.card {
+  background-color: rgb(241, 240, 240);
+  border: 20px solid lightgrey;
+  vertical-align: top;
+}
+.border {
+  border: 1px solid grey;
+}
+.box-2 {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  width: 48%;
+
+  vertical-align: top;
+}
+.box-3 {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  width: 30%;
+  vertical-align: top;
+}
+.btn {
+  display: inline-block;
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+  background-color: blue;
+  text-align: center;
+  border-radius: 7px;
+}
+.btn a {
+  color: white;
+}
+.btn-hover {
+  background-color: green;
+}

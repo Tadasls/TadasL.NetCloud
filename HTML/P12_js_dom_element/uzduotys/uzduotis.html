@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/page.css" />
+  </head>
+  <body>
+    <div>
+      <h2>Turinys</h2>
+      <ul>
+        <li class="btn">
+          <a href="#kakava" onclick="show(0)">Karšta kakava</a>
+        </li>
+        <li class="btn">
+          <a href="#tinginys" onclick="show(1)">Tinginys su pienu</a>
+        </li>
+        <li class="btn"><a href="#brownie" onclick="show(2)">Brownie</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="box-2">
+        <h1 id="pavadinimas"></h1>
+        <div style="text-align: left">
+          <h3>Recepto paruošimas</h3>
+          <ol id="paruosimas"></ol>
+          <h3>Alergenai</h3>
+          <div id="alergenai"></div>
+          <h3>Įrankiai</h3>
+          <div>
+            <div class="box-3">
+              <img src="saukstas.png" alt="saukstas" width="60" />
+            </div>
+            <div class="box-3">
+              <img src="puodelis.png" alt="puodelis" width="60" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-2 border">
+        <img id="paveikslelis" src="" alt="kakava" style="width: 100%" />
+        <div style="text-align: left; margin: 25px 10px 25px 10px">
+          <h3>Ingredientai</h3>
+          <ul id="ingredientai"></ul>
+        </div>
+      </div>
+    </div>
+    <!-- REGION SCRIPTS -->
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
