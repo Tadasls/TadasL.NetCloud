@@ -449,9 +449,10 @@ console.log(`cia yra sudvibubinti ${dvigubi}`);
 console.log(`2 uzdavinys 2 dalis `) // ?? ar veikia
 
 let ivestasSkaicius = 5;
-const padaugintiSkaiciai = numbers4.map(function(skaicius,ivestasSkaicius) { 
+const padaugintiSkaiciai = numbers4.map(function(skaicius) { 
     return skaicius * ivestasSkaicius;
 });
+console.log(numbers4);
 console.log(`cia yra pagaudinti is skaiciaus ${ivestasSkaicius} ir gauta ${padaugintiSkaiciai}`);
 
 console.log(`2 uzdavinys 3 dalis `) 
@@ -520,8 +521,10 @@ function isPersonInArray(){
 isPersonInArray();
 
 console.log(`3 uzdavinys 2 dalis `)
+const arrCountTwos = numbers4 => numbers4.filter((item, index) => numbers4.indexOf(item) !== index)
+const dublikatai = arrCountTwos(numbers4);
+console.log(`dublikatai yra sie ${dublikatai} ir ju isviso yra ${dublikatai.length}`);
 
-// nepadaryta
 
 
 //4 uzdavinys some and every
@@ -539,5 +542,15 @@ function belowHundred() {
 belowHundred();
 
 
+
 console.log(`4 uzdavinys 3 dalis `)
-// nepadaryta
+function symbolifield() {
+    const ilgiVardai = budgets.filter(budgets => budgets.name.length > 3).filter(budgets => budgets.name.includes("a"));
+    console.log(ilgiVardai);
+     ilgiVardai.forEach(function(value,) {
+        console.log(` ${value.name.replace("a","@")}`);
+    });
+}
+symbolifield();
+
+
