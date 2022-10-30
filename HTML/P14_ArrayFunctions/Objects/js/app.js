@@ -431,8 +431,106 @@ for (let i = 0; i < numbers4.length-1; i++) {
     console.log(`<p> Index Nr: ${i} value: ${numbers4[i]} </p> `);
 }
 
+// numbers4.forEach(function(num) {
+//     console.log(num * 2);
+    
+// });
+
+
+const dvigubi = numbers4.map(function(skaiciai) { 
+    return skaiciai * 2;
+   
+});
+console.log(`cia yra sudvibubinti ${dvigubi}`);
 
 
 
+
+
+let ivestasSkaicius = 5;
+const padaugintiSkaiciai = numbers4.map(function(skaiciai,ivestasSkaicius) { 
+    return skaiciai * ivestasSkaicius;
+});
+console.log(`cia yra pagaudinti is skaiciaus ${ivestasSkaicius} ir gauta ${padaugintiSkaiciai}`);
+
+
+let visoSuma = 0;
+numbers4.forEach(function(num) {
+   visoSuma += num    
+});
+console.log(`cia total suma ${visoSuma}`);
+
+
+//some 
+let negative = (numbers4) => numbers4 > 0;
+console.log(numbers4.some(negative));
+
+
+
+function belowHundred() {
+    const result = numbers4.filter(numb => numb > 6);
+    
+    console.log(result);
+   
+}
+
+belowHundred();
+
+
+// 2 uzduotis 
+
+const budgets = [
+    {
+      name: "Rytis",
+      budget: 50,
+    },
+    {
+      name: "Saulė",
+      budget: 230,
+    },
+    {
+      name: "Paulius",
+      budget: 1500,
+    },
+    {
+      name: "Gytis",
+      budget: 92,
+    },
+    {
+      name: "Sandra",
+      budget: 7,
+    },
+  ];
+
+  const vardai = budgets.map(function(name) { 
+    return name.name;
+   
+});
+console.log(`cia yra vardai ${vardai}`);
+
+
+let nameMas = "Paulius"; 
+
+function isPersonInArray(){
+   
+    let paieska = budgets.some(budgets => budgets.name === nameMas );
+    console.log(paieska);
+
+    if(paieska){
+        if(nameMas.endsWith("s"))
+        {
+         console.log(`Sveiki Pone Mr. ${nameMas}`);
+        } else 
+        {
+         console.log(`Sveiki Miss ${nameMas}`);
+        }
+    } else
+    {
+        console.log(`Toks vardas ${nameMas} nerasta Musu Duombazeje`);
+    }
+    
+};
+
+isPersonInArray();
 
 
