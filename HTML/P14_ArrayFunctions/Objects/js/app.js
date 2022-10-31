@@ -16,6 +16,7 @@ console.log(fitBitData.totalSteps);
 let dataDotSyntax = {a:1, b:2, c:3};
 console.log(dataDotSyntax.a);
 
+
 // Square bracket syntax
 const numbers = {
     100: 'one hundred',
