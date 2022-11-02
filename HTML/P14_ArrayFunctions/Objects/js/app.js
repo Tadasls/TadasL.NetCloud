@@ -16,6 +16,7 @@ console.log(fitBitData.totalSteps);
 let dataDotSyntax = {a:1, b:2, c:3};
 console.log(dataDotSyntax.a);
 
+
 // Square bracket syntax
 const numbers = {
     100: 'one hundred',
@@ -286,10 +287,6 @@ console.log(firstSecond);
 
 
 
-
-
-
-
 // CALLBACKS
 // A callback is a function passed to another function as an argument to parameter which is invoked in our outer function.
 
@@ -421,63 +418,45 @@ console.log(allEndInG);
 const someStartWithD = words2.some(word => word[0] === 'd');
 console.log(someStartWithD);
 
+// uzdaviniai
 
-
-// for each uzduotis 
+console.log(`uzdaviniu pradzia`)
+// 1 uzduotis for each 
 
 let numbers4 = [5, 1, 7, 2, -9, 8, 2, 7, 9, 4, -5, 2, -6, 8, -4, 6];
 
+console.log(`1 uzdavinys su for`)
 for (let i = 0; i < numbers4.length-1; i++) {
+
     console.log(`<p> Index Nr: ${i} value: ${numbers4[i]} </p> `);
 }
 
-// numbers4.forEach(function(num) {
-//     console.log(num * 2);
-    
-// });
+console.log(`1 uzdavinys su foreach ir calback funkcija`)
+numbers4.forEach(function(value, index) {
+    console.log(`<p> Index Nr: ${index} value: ${value * 2} </p> `);
+});
 
 
+// 2 uzduotis skaiciu masyvas 
+console.log(`2 uzdavinys 1 dalis `)
+
+// su anonimine funkcija callbacke ir priskyrimu objektui
 const dvigubi = numbers4.map(function(skaiciai) { 
     return skaiciai * 2;
    
 });
 console.log(`cia yra sudvibubinti ${dvigubi}`);
 
-
-
-
+console.log(`2 uzdavinys 2 dalis `) // ?? ar veikia
 
 let ivestasSkaicius = 5;
-const padaugintiSkaiciai = numbers4.map(function(skaiciai,ivestasSkaicius) { 
-    return skaiciai * ivestasSkaicius;
+const padaugintiSkaiciai = numbers4.map(function(skaicius) { 
+    return skaicius * ivestasSkaicius;
 });
+console.log(numbers4);
 console.log(`cia yra pagaudinti is skaiciaus ${ivestasSkaicius} ir gauta ${padaugintiSkaiciai}`);
 
-
-let visoSuma = 0;
-numbers4.forEach(function(num) {
-   visoSuma += num    
-});
-console.log(`cia total suma ${visoSuma}`);
-
-
-//some 
-let negative = (numbers4) => numbers4 > 0;
-console.log(numbers4.some(negative));
-
-
-
-function belowHundred() {
-    const result = numbers4.filter(numb => numb > 6);
-    
-    console.log(result);
-   
-}
-
-belowHundred();
-
-
-// 2 uzduotis 
+console.log(`2 uzdavinys 3 dalis `) 
 
 const budgets = [
     {
@@ -502,20 +481,31 @@ const budgets = [
     },
   ];
 
+
+function getBudgets (){
+    let visoSuma = 0;
+    budgets.forEach(function(budget) {
+       visoSuma += budget.budget   
+    });
+    console.log(`cia total suma ${visoSuma}`);
+};
+getBudgets();
+
+console.log(`2 uzdavinys 4 dalis `)
   const vardai = budgets.map(function(name) { 
     return name.name;
-   
 });
 console.log(`cia yra vardai ${vardai}`);
 
+console.log(`2 uzdavinys 4 dalis `)
 
+
+// trecias uzdavinys Filter 
+console.log(`3 uzdavinys 1 dalis `)
 let nameMas = "Paulius"; 
-
 function isPersonInArray(){
-   
     let paieska = budgets.some(budgets => budgets.name === nameMas );
     console.log(paieska);
-
     if(paieska){
         if(nameMas.endsWith("s"))
         {
@@ -528,9 +518,40 @@ function isPersonInArray(){
     {
         console.log(`Toks vardas ${nameMas} nerasta Musu Duombazeje`);
     }
-    
 };
-
 isPersonInArray();
+
+console.log(`3 uzdavinys 2 dalis `)
+const arrCountTwos = numbers4 => numbers4.filter((item, index) => numbers4.indexOf(item) !== index)
+const dublikatai = arrCountTwos(numbers4);
+console.log(`dublikatai yra sie ${dublikatai} ir ju isviso yra ${dublikatai.length}`);
+
+
+
+//4 uzdavinys some and every
+console.log(`4 uzdavinys 1 dalis `)
+
+let negative = (numbers4) => numbers4 > 0;
+console.log(numbers4.some(negative));
+
+console.log(`4 uzdavinys 2 dalis `)
+
+function belowHundred() {
+    const result = numbers4.filter(numb => numb < 5);
+    console.log(result);
+}
+belowHundred();
+
+
+
+console.log(`4 uzdavinys 3 dalis `)
+function symbolifield() {
+    const ilgiVardai = budgets.filter(budgets => budgets.name.length > 3).filter(budgets => budgets.name.includes("a"));
+    console.log(ilgiVardai);
+     ilgiVardai.forEach(function(value,) {
+        console.log(` ${value.name.replace("a","@")}`);
+    });
+}
+symbolifield();
 
 
