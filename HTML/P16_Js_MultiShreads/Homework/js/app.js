@@ -8,6 +8,7 @@ uzduociuLaukas.innerHTML += "<br>Hello World";
 networkRequest();
 uzduociuLaukas.innerHTML += "<br>The End";
 
+
 //extra
 const startas = () => {
   setTimeout(() => {
@@ -19,7 +20,13 @@ const startas = () => {
   setTimeout(() => {
     lenktyniuLaukas.innerHTML += `<strong><br>Startas!!!</strong>`;
   }, 5000);
+ 
+ 
 };
+
+
+
+
 
 taimerioMygtukas.addEventListener("click", startas);
 
