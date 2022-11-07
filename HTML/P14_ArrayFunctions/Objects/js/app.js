@@ -462,7 +462,7 @@ const padaugintiSkaiciai = numbers4.map(function(skaicius) {
     return skaicius * ivestasSkaicius;
 });
 console.log(numbers4);
-console.log(`cia yra pagaudinti is skaiciaus ${ivestasSkaicius} ir gauta ${padaugintiSkaiciai}`);
+console.log(`cia yra padauginti is skaiciaus ${ivestasSkaicius} ir gauta ${padaugintiSkaiciai}`);
 
 console.log(`2 uzdavinys 3 dalis `) 
 
