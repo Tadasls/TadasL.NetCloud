@@ -9,21 +9,44 @@
 
 </head>
 <body>
-<div id="uzduociuLaukas"> 1 uzduotys</div><br> 
 
-
+<div id="uzduociuLaukas"> 1 uzduotis Uždelsimas</div><br> 
 <button class="taimeris" id="taimerioMygtukas">Paleisti Žirgus</button>
 
 <div id="lenktyniuLaukas"> Lenktyniu arena: </div>
 <hr>
-<p id="antraUzduotis"> 2 uzduoties paragrafas</p>
+<p id="antraUzduotis"> 2 uzduoties paragrafas Uždelsimas su pranešimais</p>
 <button class="antrasMygtukas" id="antrasMygtukas"> Kviesti Greitąją pagalba </button>
 <button class="treciasMygtukas" id="treciasMygtukas"> Buklė Stabili </button>
 
 <hr>
-<div id="treciaUzduotis"> 3 uzduotys</div><br> 
+<div id="treciaUzduotis"> 3 uzduotis</div><br> 
 
 
-    <script src="js/app.js"></script>
+<hr>
+<div id="ketvirtaUzduotis"> 4 uzduotis Laikrodis</div><br> 
+<div id="laikrodis" style="font-size:40px; border: 1px solid black; border-radius: 15px; width: 260px;">00:00:00</div>
+
+<!-- <button id="irasytiDabartinyLaika" type="button">irasytiDabartinyLaika</button> -->
+<span id="pranesimasPrieLaikrodzioIrasymo" style="color: rgb(117, 24, 24)">-----</span>
+
+
+
+<div>
+    <button id="taimerioStartas" onclick="start()">Start</button>
+  </div>
+  <div>
+    <button id="taimerioStop" onclick="stop()" >Stop / Įrašyti</button>
+  </div>
+  <div>
+    <button id="PrintTimeRecords">PrintTimeTable</button>
+    <ul id="lst_loop"></ul>
+  </div>
+
+  <p id="demo"></p>
+
+ 
+
+<script src="js/app.js"></script>
 </body>
 </html>
