@@ -423,18 +423,26 @@ console.log(someStartWithD);
 console.log(`uzdaviniu pradzia`)
 // 1 uzduotis for each 
 
+
 let numbers4 = [5, 1, 7, 2, -9, 8, 2, 7, 9, 4, -5, 2, -6, 8, -4, 6];
+
+bodyEle = document.querySelector('body');
+bodyEle.innerHTML+='<hr>'
 
 console.log(`1 uzdavinys su for`)
 for (let i = 0; i < numbers4.length-1; i++) {
-
-    console.log(`<p> Index Nr: ${i} value: ${numbers4[i]} </p> `);
+    bodyEle.innerHTML+= `<p> Index Nr: ${i} value: ${numbers4[i]} </p> `;
+    // console.log(`<p> Index Nr: ${i} value: ${numbers4[i]} </p> `);
 }
+
+bodyEle.innerHTML+='<hr>'
 
 console.log(`1 uzdavinys su foreach ir calback funkcija`)
 numbers4.forEach(function(value, index) {
-    console.log(`<p> Index Nr: ${index} value: ${value * 2} </p> `);
+    // console.log(`<p> Index Nr: ${index} value: ${value * 2} </p> `);
+    bodyEle.innerHTML+= `<p> Index Nr: ${index} value: ${value * 2} </p> `;
 });
+bodyEle.innerHTML+='<hr>'
 
 
 // 2 uzduotis skaiciu masyvas 
@@ -482,18 +490,19 @@ const budgets = [
   ];
 
 
-function getBudgets (){
+function getBudgets(){
     let visoSuma = 0;
-    budgets.forEach(function(budget) {
-       visoSuma += budget.budget   
+    budgets.forEach(function(ele) {
+       visoSuma += ele.budget   
     });
     console.log(`cia total suma ${visoSuma}`);
 };
 getBudgets();
 
 console.log(`2 uzdavinys 4 dalis `)
-  const vardai = budgets.map(function(name) { 
-    return name.name;
+
+  const vardai = budgets.map(function(budgetArr) { 
+    return budgetArr.name;
 });
 console.log(`cia yra vardai ${vardai}`);
 
@@ -522,7 +531,7 @@ function isPersonInArray(){
 isPersonInArray();
 
 console.log(`3 uzdavinys 2 dalis `)
-const arrCountTwos = numbers4 => numbers4.filter((item, index) => numbers4.indexOf(item) !== index)
+arrCountTwos = numbers4 => numbers4.filter((item, index) => numbers4.indexOf(item) !== index)
 const dublikatai = arrCountTwos(numbers4);
 console.log(`dublikatai yra sie ${dublikatai} ir ju isviso yra ${dublikatai.length}`);
 
@@ -555,3 +564,163 @@ function symbolifield() {
 symbolifield();
 
 
+
+// // Uzduotis 7
+// let numbers3 = [5, 1, 700, 2, -9, 812, 2, 7, 900, 422, -5, 2, -6, 8, -4, 6];
+
+// const bodyEle = document.querySelector('body');
+
+// numbers3.forEach(function(num, ind) {
+//     bodyEle.innerHTML += `<p>Index Nr: ${ind}, value: ${num}</p>`;
+// });
+
+// bodyEle.innerHTML += `<hr/>`;
+
+// for(let i = 0; i < numbers3.length; i++) {
+//     bodyEle.innerHTML += `<p>Index Nr: ${i}, value: ${numbers3[i]}</p>`;
+// };
+
+// // Uzduotis 7 DONE
+
+// // Uzduotis 8
+// function arrDouble(arr) {
+//     return arr.map(function(arrEle) {
+//         // We return value to an array that is STILL in progress of being built
+//         return arrEle * 2;
+//     });
+// }
+
+// function arrDoubleArrowSyntax(arr) {
+//     return arr.map(arrEle => arrEle * 2);
+// }
+
+// console.log(arrDouble(numbers3));
+
+// function arrMultiplied(arr, multiplier) {
+//     return arr.map(arrEle => arrEle * multiplier);
+// }
+
+// console.log(arrMultiplied(numbers3, 3));
+
+// budgets = [
+//     {
+//       name: "Rytis",
+//       budget: 50,
+//     },
+//     {
+//       name: "Saulė",
+//       budget: 230,
+//     },
+//     {
+//       name: "Paulius",
+//       budget: 1500,
+//     },
+//     {
+//       name: "Gytis",
+//       budget: 92,
+//     },
+//     {
+//       name: "Sandra",
+//       budget: 7,
+//     }
+// ]
+
+// function getBudgets(budgetArr) {
+//     let total = 0;
+//     budgetArr.forEach((ele) => {
+//         total += ele.budget;
+//     });
+//     return total;
+// }
+
+// console.log(getBudgets(budgets));
+
+// // Select()
+
+
+
+
+// function getBudgetPeople(budgetArr) {
+//     return budgetArr.map(ele => ele.name);
+// }
+
+// // function getBudgetPeople(budgetArr) {
+// //     return budgetArr.map(ele => {
+// //         return {
+// //             name: ele.name
+// //         }
+// //     });
+// // }
+
+// const budgetExercise8 = getBudgetPeople(budgets);
+// console.log(budgetExercise8);
+
+
+
+// // Uzduotis 8 DONE
+
+// // Uzduotis 9
+// function isPersonInArray(nameArr, lookupName) {
+//     return nameArr.includes(lookupName)
+//         ? getGenderBasedGreet(lookupName)
+//         : `Unfotunately Name is not in our list`;
+// }
+
+// function getGenderBasedGreet(name) {
+//     // Alternative: can be used with endswith
+//     let lastChar = name.charAt(name.length-1); // name[name.length-1]
+//     if(lastChar === 's') {
+//         return `Welcome Mr. ${name}`;
+//     }
+//     return `Welcome Miss. ${name}`;
+// }
+
+// console.log(isPersonInArray(budgetExercise8, 'Edvinas'));
+
+// function arrCountTwos(arr) {
+//     return arr.filter(n => n === 2).length;
+// }
+
+// console.log(arrCountTwos(numbers3));
+
+// // Uzduotis 9 DONE
+
+// // Uzduotis 10
+// const names = budgets.map((person) => person.name);
+// const monies = budgets.map((person) => person.budget);
+
+// if(monies.some(n => n < 0)) {
+//     console.log(`Found a budget account with a negative value.`);
+// }
+
+// function belowHundred(arr) {
+//     if(arr.some(belowHundredCondition)) {
+//         return arr.filter(belowHundredCondition);
+//     }
+//     return `All numbers are above 100`;
+// };
+
+// function belowHundredCondition(num) {
+//     return num < 100;
+// }
+
+// console.log(belowHundred(numbers3));
+
+// function symbolified(arr) {
+//     if(arr.every(n => n.length >= 3)) {
+//         if(arr.some(symbolifiedCondition)) {
+//             let newArr = arr.filter(symbolifiedCondition);
+//             return newArr.map(function(ele) {
+//                 return ele.replace('a', '@');
+//             });
+//         }
+//     }
+// }
+
+// function symbolifiedCondition(word) {
+//     return word.includes('a');
+// }
+
+// console.log(symbolified(budgetExercise8));
+
+// // Uzduotis 10 DONE

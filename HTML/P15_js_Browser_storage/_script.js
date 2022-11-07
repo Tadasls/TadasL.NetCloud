@@ -137,5 +137,5 @@ f_name2.addEventListener('keyup', () => {
 
 ivedimoMygtukas.addEventListener('click', (e) => {
   e.preventDefault();
-  sessionStorage.setItem('kitas_raktas', f_name2.value);
+  sessionStorage.setItem('kitas_raktas po paspaudimo', f_name2.value);
 });
