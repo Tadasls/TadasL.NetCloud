@@ -1,6 +1,6 @@
 const userForm = document.querySelector("#user-create-form");
 const userFormSbmBtn = document.querySelector("#user-create-submit");
-
+const laukas = document.querySelector("#pirmas");
 
 function sendData() {
   let data = new FormData(userForm);
@@ -23,16 +23,13 @@ function sendData() {
 }
 
 
-
 userFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault(); 
   sendData();
 });
 
-
 const userDelForm = document.querySelector('#user-delete-form');
 const userDelFormSbmBtn = document.querySelector('#user-delete-submit');
-
 
 
 function sendDataDel() {
@@ -53,7 +50,7 @@ function sendDataDel() {
         }
     })
     .then(obj => {
-        const res = obj.json()
+        const res = obj; // .json()
         console.log(res);
         return res;
     })
@@ -64,3 +61,13 @@ userDelFormSbmBtn.addEventListener('click', (e) => {
   e.preventDefault(); 
   sendDataDel();
 })
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const o = Object.assign({}, JSON.parse(localStorage.getItem('LocalformData')));
+  pirmas.innerHTML = o.regUserName ?? ``;
+  antras.innerHTML = o.regUserLastname ?? ``;
+  trecias.innerHTML = o.regUserEmail ?? ``;
+
+});
+
