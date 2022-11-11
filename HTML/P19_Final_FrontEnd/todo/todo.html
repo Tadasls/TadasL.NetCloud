@@ -13,9 +13,23 @@
     
   <p>
   Sveiki Prisijungę : 
-  <div id="pirmas"> tt</div> 
-  <div id="antras"> bb</div> 
-  <div id="trecias"> cc </div> 
+  <div style = "flex-wrap: wrap;">
+    <div id="nulinis" style="width: 100px;"> aa</div> 
+    <div id="pirmas"  style="width: 100px; "> tt</div> 
+    <div id="antras"  style="width: 100px;"> bb</div> 
+    <div id="trecias"  style="width: 100px; "> cc </div> 
+  </div>
+
+
+
+ <div>
+  <form id="user-view-form">
+    <p id="data-text"> </p>
+    <br /><br />
+      <input type="button" id="user-view-submit" value="parodyti duomenis" />
+  </form>
+
+</div>
 
 
 
@@ -31,10 +45,8 @@
     <br /><br />
     <label for="endDate">endDate</label>
     <input type="text" name="endDate" id="endDate" placeholder="endDate" />
-    <input type="hidden" name="userName" id="userName" value="testA" placeholder=""/>
-    <input type="hidden" name="userLastname" id="userLastname" value="testB" placeholder="" />
     <br /><br />
-    <input type="button" id="user-create-submit" value="Submit" />
+    <input type="button" id="user-create-submit" value="Įrašyti" />
   </form>
 </div>
 
@@ -56,7 +68,7 @@
       <input type="text" name="endDate" id="endDate" placeholder="endDate" />
       <br /><br />
 
-      <input type="button" id="user-edit-form-submit" value="Submit" />
+      <input type="button" id="user-edit-form-submit" value="Redaguoti" />
     </form>
   </div>
 
@@ -67,7 +79,7 @@
         <label for="name">Id</label>
         <input type="number" name="id" id="id" /><br /><br />
   
-        <input type="button" id="user-delete-submit" value="Submit" />
+        <input type="button" id="user-delete-submit" value="Trinti" />
       </form>
     </div>
 

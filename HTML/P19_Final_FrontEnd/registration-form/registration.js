@@ -1,8 +1,17 @@
+
 const newRegForm = document.querySelector("#new-registration-form");
 const newRegFormSbmBtn = document.querySelector("#new-registration-form-submit");
 const logFirstName = document.querySelector('#regUserName');
 const logLastName = document.querySelector('#regUserLastname');
 const logEmail = document.querySelector('#regUserEmail');
+
+const arUzpyldytiDuomenis = () => {
+  if (!logFirstName.value) return false;
+  if (!logLastName.value) return false;
+  if (!logEmail.value) return false;
+  return true;
+};
+
 
 function sendRegData() {
   let data = new FormData(newRegForm);
@@ -28,23 +37,31 @@ function sendRegData() {
 
 newRegFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  sendRegData();
-  saveLocalFormData('regUserName', logFirstName.value);
-  saveLocalFormData('regUserLastname', logLastName.value);
-  saveLocalFormData('regUserEmail', logEmail.value);
- 
+
+  if (arUzpyldytiDuomenis()){
+    sendRegData();
+    saveLocalFormData('regUserName', logFirstName.value);
+    saveLocalFormData('regUserLastname', logLastName.value);
+    saveLocalFormData('regUserEmail', logEmail.value);
   sessionStorage.clear();
-  window.location = '../todo/todo.html';
+  window.location = '../login-form/login.html';
+  }
+    else {window.alert('Duomenis nėra pilnai užpildyti');}
+
 });
 
 
+//saugoti registraciju duomenis
+
 const saveLocalFormData = (key, value) => {
-  const localJson = localStorage.getItem('LocalformData'); 
+  const localJson = localStorage.getItem('UserData'); 
   const obj = JSON.parse(localJson); 
   const o = Object.assign({}, obj); 
   o[key] = value; 
-  localStorage.setItem('LocalformData', JSON.stringify(o)); 
+  localStorage.setItem('UserData', JSON.stringify(o)); 
 };
+
+//saugoti formu duomenis
 
 const saveFormData = (key, value) => {
   const json = sessionStorage.getItem('formData'); 

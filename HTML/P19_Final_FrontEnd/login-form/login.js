@@ -21,9 +21,17 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
       {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
       // usersData.innerHTML = 'Vartotojas rastas ' + user.userEmail;
       window.alert(`Sveiki prisijunge ${user.userName} `);
-      saveLocalFormData('regUserName', user.userName);
-      saveLocalFormData('regUserLastname', user.userLastname);
-      saveLocalFormData('regUserEmail', user.userEmail);
+     
+      const vartotojoDuomenys = {
+        ID: user.id,
+        regUserName: user.userName,
+        regUserLastname: user.userLastname,
+        regUserEmail: user.userEmail,
+        Created: user.createdAt.slice(0, 10) + ' ' + user.createdAt.slice(11, 19),
+        Updated: user.updatedAt.slice(0, 10) + ' ' + user.updatedAt.slice(11, 19)
+    };
+    saveLocalFormData(vartotojoDuomenys);
+
       sessionStorage.clear();
       window.location = '../todo/todo.html';
      } 
@@ -36,19 +44,15 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
 }
 
 
-
-
 loginFormSbmBtn.addEventListener("click", (e) => {
     e.preventDefault();
      patikrintiVartotojus(); 
   });
   
-  const saveLocalFormData = (key, value) => {
-    const localJson = localStorage.getItem('LocalformData'); 
-    const obj = JSON.parse(localJson); 
-    const o = Object.assign({}, obj); 
-    o[key] = value; 
-    localStorage.setItem('LocalformData', JSON.stringify(o)); 
+
+
+  const saveLocalFormData = (obj) => {
+    localStorage.setItem('UserData', JSON.stringify(obj)); 
   };
   
 
@@ -75,4 +79,10 @@ loginFormSbmBtn.addEventListener("click", (e) => {
     logFirstName.value = o.firstName ?? ``;
     logLastName.value = o.lastname ?? ``;
     
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const o = Object.assign({}, JSON.parse(localStorage.getItem('UserData')));
+    logFirstName.value = o.regUserName ?? ``;
+    logLastName.value = o.regUserLastname ?? ``;
   });
