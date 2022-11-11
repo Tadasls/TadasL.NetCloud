@@ -37,8 +37,8 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
      
     });
 
-    Alert.on("Tokio Userio Nėra !");
-  //  window.alert(`Toks vartotojas Neegzistuoja `);
+    // Alert.on("Tokio Userio Nėra !");
+    window.alert(`Toks vartotojas Neegzistuoja `);
    
   
 
@@ -92,24 +92,28 @@ loginFormSbmBtn.addEventListener("click", (e) => {
 
 
 
-  function CustomAlert(){
-    this.on = function(alert){
-        var winW = window.innerWidth;
-        var winH = window.innerHeight;
+//   function CustomAlert(){
+//     this.on = function(alert){
+//         var winW = window.innerWidth;
+//         var winH = window.innerHeight;
 
-        alertoverlay.style.display = "block";
-        alertoverlay.style.height = window.innerHeight+"px";
-        alertbox.style.left = (window.innerWidth/3.5)+"pt";
-        alertbox.style.right = (window.innerWidth/3.5)+"pt"; // remove this if you don't want to have your alertbox to have a standard size but after you remove modify this line : alertbox.style.left=(window.inner.Width/4);
-    alertbox.style.top = (window.innerHeight/10)+"pt";
-        alertbox.style.display = "block";
-        document.getElementById('alertboxhead').innerHTML = "Pranešimas didelis ir raudonas :";
-        document.getElementById('alertboxbody').innerHTML = alert;
-        document.getElementById('alertboxfoot').innerHTML = '<button onclick="Alert.off()">OK</button>';
-    }
-    this.off = function(){
-        document.getElementById('alertbox').style.display = "none";
-        document.getElementById('alertoverlay').style.display = "none";
-    }
-}
-var Alert = new CustomAlert();
+//         alertoverlay.style.display = "block";
+//         alertoverlay.style.height = window.innerHeight+"px";
+//         alertbox.style.left = (window.innerWidth/3.5)+"pt";
+//         alertbox.style.right = (window.innerWidth/3.5)+"pt";
+//     alertbox.style.top = (window.innerHeight/10)+"pt";
+//         alertbox.style.display = "block";
+//         document.getElementById('alertboxhead').innerHTML = "Pranešimas didelis ir raudonas :";
+//         document.getElementById('alertboxbody').innerHTML = alert;
+//         document.getElementById('alertboxfoot').innerHTML = '<button onclick="Alert.off()">OK</button>';
+//     }
+//     this.off = function(){
+//         document.getElementById('alertbox').style.display = "none";
+//         document.getElementById('alertoverlay').style.display = "none";
+//     }
+// }
+// var Alert = new CustomAlert();
+
+
+
+

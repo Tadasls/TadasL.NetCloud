@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   pirmas.innerHTML = o.regUserName ?? ``;
   antras.innerHTML = o.regUserLastname ?? ``;
   trecias.innerHTML = o.regUserEmail ?? ``;
+  setTimeout(() => { viewData();}, 1000);
 });
 
+//validacijos
 const arUzpyldytiVartDuomenis = () => {
   if (!type.value) return false;
   if (!content.value) return false;
@@ -15,6 +17,10 @@ const arUzpyldytiVartDuomenis = () => {
   return true;
 };
 
+const arUzpildytiIdData = () => {
+  if (!id.value) return false;
+  return true;
+};
 
 //create new
 
@@ -147,7 +153,7 @@ function editData() {
 
 dataFormSbmBtn.addEventListener('click', (e) => {
     e.preventDefault(); 
-    if (arUzpyldytiVartDuomenis()){
+    if (arUzpyldytiVartDuomenis() && arUzpildytiIdData()){
     editData();
     setTimeout(() => { viewData();}, 1000);}
     else { {window.alert('Duomenis nėra pilnai užpildyti');}}
@@ -199,11 +205,43 @@ function sendDataDel() {
 
 userDelFormSbmBtn.addEventListener('click', (e) => {
   e.preventDefault(); 
-  if (confirm(`Ištrinti?`) == true) {
+  if (arUzpildytiIdData()){
+  if (confirm(`Ištrinti?`) == true) {  
     sendDataDel();
    setTimeout(() => { viewData();}, 1000);
-  }})
+  }} else {window.alert('Nėra pasirinktas trinamo elemento Id');}
+
+});
 
 
+add_actions.addEventListener('click', (e) => {
+document.querySelector('#SpecVieta').innerHTML = VeiksmuMeniu[0].AVeiksmas;
 
+})
 
+const VeiksmuMeniu = [
+  {
+    AVeiksmas: `<div class="edit">
+    CREATE & EDIT & DELETE
+    <br /><br />
+    <form id="user-edit-form">
+      <label for="name">Id</label>
+      <input type="number" name="id" id="id" /> <br /><br />
+      <label for="type">Type</label>
+      <input type="text" name="type" id="type" placeholder="Pranšimo Tipas" />  
+      <br /><br />
+      <label for="content">Content</label>
+      <input type="text" name="content" id="content" placeholder="Jūsų pranešimo turinys" />
+      <br /><br />
+      <label for="endDate">EndDate</label>
+      <input type="text" name="endDate" id="endDate" placeholder="Galiojimo data" />
+      <br /><br />
+      <input type="button" id="user-create-submit" value="Įrašyti" />
+      <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
+      <input type="button" id="user-delete-submit" value="Trinti">
+    </form>
+  </div>`,
+  }
+  ,
+  {}
+];
