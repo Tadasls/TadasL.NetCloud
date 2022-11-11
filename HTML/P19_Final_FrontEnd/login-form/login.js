@@ -19,7 +19,6 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
     userData.data.forEach(user => {
       if(user.userName === logFirstName.value && user.userLastname === logLastName.value)
       {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
-      // usersData.innerHTML = 'Vartotojas rastas ' + user.userEmail;
       window.alert(`Sveiki prisijunge ${user.userName} `);
      
       const vartotojoDuomenys = {
@@ -37,7 +36,11 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
      } 
      
     });
-    window.alert(`Toks vartotojas Neegzistuoja `);
+
+    Alert.on("Tokio Userio Nėra !");
+  //  window.alert(`Toks vartotojas Neegzistuoja `);
+   
+  
 
   })
   .catch((klaida) => console.log(klaida));
@@ -86,3 +89,27 @@ loginFormSbmBtn.addEventListener("click", (e) => {
     logFirstName.value = o.regUserName ?? ``;
     logLastName.value = o.regUserLastname ?? ``;
   });
+
+
+
+  function CustomAlert(){
+    this.on = function(alert){
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+
+        alertoverlay.style.display = "block";
+        alertoverlay.style.height = window.innerHeight+"px";
+        alertbox.style.left = (window.innerWidth/3.5)+"pt";
+        alertbox.style.right = (window.innerWidth/3.5)+"pt"; // remove this if you don't want to have your alertbox to have a standard size but after you remove modify this line : alertbox.style.left=(window.inner.Width/4);
+    alertbox.style.top = (window.innerHeight/10)+"pt";
+        alertbox.style.display = "block";
+        document.getElementById('alertboxhead').innerHTML = "Pranešimas didelis ir raudonas :";
+        document.getElementById('alertboxbody').innerHTML = alert;
+        document.getElementById('alertboxfoot').innerHTML = '<button onclick="Alert.off()">OK</button>';
+    }
+    this.off = function(){
+        document.getElementById('alertbox').style.display = "none";
+        document.getElementById('alertoverlay').style.display = "none";
+    }
+}
+var Alert = new CustomAlert();

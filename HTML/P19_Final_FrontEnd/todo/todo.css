@@ -1,7 +1,35 @@
-div{
-    /* height: 100px;
-    width: 100px; */
+.edit{
     padding: 5px;
     margin-bottom: 1px;
-    border: 3px solid green;
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-flow: column nowrap;
 }
+.meniu{
+    padding: 10px;
+    display: flex ;
+    flex-flow: column nowrap;
+
+}
+.meniu>div{
+     display: flex ;
+    flex-flow: row nowrap;
+    justify-content: left;
+}
+.meniu>div>div{
+   margin-right: 5px;
+}
+
+.mygtukai {
+    margin-left: 7px;
+}
+.footer{
+    margin: 50px;
+    padding: 20px;
+}
+
+label{ 
+    display: inline-block;
+    width: 70px;
+}
+

@@ -1,4 +1,3 @@
-
 const newRegForm = document.querySelector("#new-registration-form");
 const newRegFormSbmBtn = document.querySelector("#new-registration-form-submit");
 const logFirstName = document.querySelector('#regUserName');
@@ -11,7 +10,6 @@ const arUzpyldytiDuomenis = () => {
   if (!logEmail.value) return false;
   return true;
 };
-
 
 function sendRegData() {
   let data = new FormData(newRegForm);
