@@ -17,7 +17,7 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
   .then((userData) => 
   {
     userData.data.forEach(user => {
-      if(user.userName === logFirstName.value && user.userLastname === logLastName.value)
+      if(user.userName.toLowerCase() === logFirstName.value.toLowerCase() && user.userLastname.toLowerCase() === logLastName.value.toLowerCase())
       {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
       window.alert(`Sveiki prisijunge ${user.userName} `);
      

@@ -7,9 +7,15 @@ const logEmail = document.querySelector('#regUserEmail');
 const arUzpyldytiDuomenis = () => {
   if (!logFirstName.value) return false;
   if (!logLastName.value) return false;
-  if (!logEmail.value) return false;
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(logEmail.value)){ return (true)}
+else return false;
   return true;
 };
+
+
+
+
+
 
 function sendRegData() {
   let data = new FormData(newRegForm);
@@ -35,18 +41,26 @@ function sendRegData() {
 
 newRegFormSbmBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  arEgzistuojaToksVartotojas();
+    });
 
-  if (arUzpyldytiDuomenis()){
-    sendRegData();
-    saveLocalFormData('regUserName', logFirstName.value);
-    saveLocalFormData('regUserLastname', logLastName.value);
-    saveLocalFormData('regUserEmail', logEmail.value);
-  sessionStorage.clear();
-  window.location = '../login-form/login.html';
+  function duomenuSiuntimasToDB() {
+    if(arUzpyldytiDuomenis() ){ 
+          sendRegData();
+          saveLocalFormData('regUserName', logFirstName.value);
+          saveLocalFormData('regUserLastname', logLastName.value);
+          saveLocalFormData('regUserEmail', logEmail.value);
+        sessionStorage.clear();
+        window.location = '../login-form/login.html';
+     } else { 
+      window.alert('Duomenis nėra teisingai užpildyti');
+    } 
+    
   }
-    else {window.alert('Duomenis nėra pilnai užpildyti');}
 
-});
+
+
+
 
 
 //saugoti registraciju duomenis
@@ -81,8 +95,43 @@ regUserEmail.addEventListener('change', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const o = Object.assign({}, JSON.parse(sessionStorage.getItem('formData')));
-  userName.value = o.userName ?? ``;
-  userLastname.value = o.userLastname ?? ``;
-  userEmail.value = o.userEmail ?? ``;
+  regUserName.value = o.regUserName ?? ``;
+  regUserLastname.value = o.regUserLastname ?? ``;
+  regUserEmail.value = o.regUserEmail ?? ``;
 });
 
+
+
+
+function arEgzistuojaToksVartotojas() {
+  let userExists = false
+  const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
+  const options = {
+      method: 'get',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      }}
+      fetch(url, options)
+      .then((response) => response.json())
+      .then((duomenys) => {
+        for (const klientas of duomenys.data) {      
+              if(klientas.userName.toLowerCase() === regUserName.value.toLowerCase() && 
+                klientas.userLastname.toLowerCase() === regUserLastname.value && 
+                klientas.userEmail === regUserEmail.value) 
+              {userExists = true};
+            }
+              if(userExists){
+                window.alert('Toks vartotojas Jau YRA Uzregistruotas');
+                return false;
+              }            
+              else 
+              {
+                duomenuSiuntimasToDB();
+                  return true;
+              }
+      })
+      .catch(
+                (klaida) => console.log(klaida)
+        );
+    }

@@ -22,6 +22,7 @@ const arUzpildytiIdData = () => {
   return true;
 };
 
+
 //create new
 
 const userForm = document.querySelector("#user-edit-form");
@@ -90,32 +91,21 @@ function viewData(){
           
         }
     }
-     console.log(vienoVartotojoUzrasai);
+ 
    const duomenuVaizdavimoLaukas = document.getElementById('data-text');
    let htmlDuomenys = '';
 
    vienoVartotojoUzrasai.forEach(element => {
-     console.log(element);
-    let htmlElement = `<p> Id: ${element.ID} Tipas: ${element.Type} Turinys: ${element.Content} Galiojimo data: ${element.EndDate}</p>`;
+      let htmlElement = `<p> Id: ${element.ID} Tipas: ${element.Type} Turinys: ${element.Content} Galiojimo data: ${element.EndDate}</p>` + `<hr>`;
       htmlDuomenys += htmlElement;
     });
     duomenuVaizdavimoLaukas.innerHTML = htmlDuomenys;
   
-
-    // let trinamasSarasas = '';
-    // vienoVartotojoUzrasai.forEach(trinamas => {
-    //     let sarasoElementas = `<option value="${trinamas.ID}"></option>`;
-    //    trinamasSarasas += sarasoElementas;
-    //  });
-    //  trinami_dalykai.innerHTML = trinamasSarasas;
-
-
   });
 }
 
 userViewFormSbmBtn.addEventListener('click', (e) => {
   e.preventDefault(); 
-  
   viewData();
 })
 
@@ -154,7 +144,7 @@ function editData() {
 dataFormSbmBtn.addEventListener('click', (e) => {
     e.preventDefault(); 
     if (arUzpyldytiVartDuomenis() && arUzpildytiIdData()){
-    editData();
+      validateDataEditinimui();
     setTimeout(() => { viewData();}, 1000);}
     else { {window.alert('Duomenis nėra pilnai užpildyti');}}
   });
@@ -172,6 +162,7 @@ function sendDataDel() {
         obj[key] = value
     });
 
+
     const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/' + obj.id;
     const urlFetch = 'https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/' + obj.id;
     const optionsFetch = {
@@ -180,19 +171,19 @@ function sendDataDel() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
+    };
+   const optionsDel = {
+    method: 'delete',
+    headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
     }
-
+};
+    
     fetch(urlFetch, optionsFetch)
     .then((response) => response.json())
     .then((a) => {
-        console.log(`exists: ${a}`);
-        return fetch(url, {
-            method: 'delete',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            }
-        })
+        return fetch(url, optionsDel)
     })
     .then(obj => { 
         const res = obj; //.json()
@@ -201,47 +192,120 @@ function sendDataDel() {
     })
     .catch((error) => {
         console.log(`Request failed with error: ${error}`);
-    })}
+    });
+
+  };
+
 
 userDelFormSbmBtn.addEventListener('click', (e) => {
   e.preventDefault(); 
   if (arUzpildytiIdData()){
-  if (confirm(`Ištrinti?`) == true) {  
-    sendDataDel();
-   setTimeout(() => { viewData();}, 1000);
+  if (confirm(`Ištrinti? ${id.value} Įrašą`) == true) {  
+    validateDataTrynimiui();
   }} else {window.alert('Nėra pasirinktas trinamo elemento Id');}
-
 });
 
 
-add_actions.addEventListener('click', (e) => {
-document.querySelector('#SpecVieta').innerHTML = VeiksmuMeniu[0].AVeiksmas;
 
-})
 
-const VeiksmuMeniu = [
-  {
-    AVeiksmas: `<div class="edit">
-    CREATE & EDIT & DELETE
-    <br /><br />
-    <form id="user-edit-form">
-      <label for="name">Id</label>
-      <input type="number" name="id" id="id" /> <br /><br />
-      <label for="type">Type</label>
-      <input type="text" name="type" id="type" placeholder="Pranšimo Tipas" />  
-      <br /><br />
-      <label for="content">Content</label>
-      <input type="text" name="content" id="content" placeholder="Jūsų pranešimo turinys" />
-      <br /><br />
-      <label for="endDate">EndDate</label>
-      <input type="text" name="endDate" id="endDate" placeholder="Galiojimo data" />
-      <br /><br />
-      <input type="button" id="user-create-submit" value="Įrašyti" />
-      <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
-      <input type="button" id="user-delete-submit" value="Trinti">
-    </form>
-  </div>`,
-  }
-  ,
-  {}
-];
+
+
+
+// add_actions.addEventListener('click', (e) => {
+// document.querySelector('#SpecVieta').innerHTML = VeiksmuMeniu[0].AVeiksmas;
+
+// })
+
+// const VeiksmuMeniu = [
+//   {
+//     AVeiksmas: `<div class="edit">
+//     CREATE & EDIT & DELETE
+//     <br /><br />
+//     <form id="user-edit-form">
+//       <label for="name">Id</label>
+//       <input type="number" name="id" id="id" /> <br /><br />
+//       <label for="type">Type</label>
+//       <input type="text" name="type" id="type" placeholder="Pranšimo Tipas" />  
+//       <br /><br />
+//       <label for="content">Content</label>
+//       <input type="text" name="content" id="content" placeholder="Jūsų pranešimo turinys" />
+//       <br /><br />
+//       <label for="endDate">EndDate</label>
+//       <input type="text" name="endDate" id="endDate" placeholder="Galiojimo data" />
+//       <br /><br />
+//       <input type="button" id="user-create-submit" value="Įrašyti" />
+//       <input type="button" id="user-edit-form-submit" value="Atnaujinti" />
+//       <input type="button" id="user-delete-submit" value="Trinti">
+//     </form>
+//   </div>`,
+//   }
+//   ,
+//   {}
+// ];
+
+
+
+//validacijos papildomai
+
+const userON = JSON.parse(localStorage.getItem('UserData'));
+const url2 = 'https://testapi.io/api/Tadasls/resource/TLSusersDuomenys';
+const options2 = {
+  method: 'get',
+  headers: {      
+      'Accept': 'application/json',   
+           'Content-Type': 'application/json'  
+  }}
+const response2 = {};
+
+let irasasRastas = false;
+function validateDataTrynimiui(){
+  fetch(url2, options2)
+  .then((response) => response.json())
+  .then((informacija) => {
+    for (const pranesimas of informacija.data) {
+        if (pranesimas.UserId === userON.ID) 
+        {
+          if (pranesimas.id == id.value)
+          {
+            irasasRastas = true;
+          } 
+        }
+      }
+      if (irasasRastas) {
+        sendDataDel();
+      window.alert('Įrašas ištrintas');
+      setTimeout(() => { viewData();}, 1000);
+      }   
+      else {
+        window.alert('Tokio įrašo nėra')
+      }
+    })
+    };
+
+    
+let irasasRastas2Edit = false;
+function validateDataEditinimui(){
+  fetch(url2, options2)
+  .then((response) => response.json())
+  .then((informacija) => {
+    for (const pranesimas of informacija.data) {
+
+        if (pranesimas.UserId === userON.ID) 
+        {
+          if (pranesimas.id == id.value)
+          {
+            irasasRastas2Edit = true;
+          } 
+        }
+      }
+      if (irasasRastas2Edit) {
+      editData();
+
+      window.alert('Įrašas pakoreguotas');
+      setTimeout(() => { viewData();}, 1000);
+      }   
+      else {
+        window.alert('Tokio įrašo nėra')
+      }
+    })
+    };
