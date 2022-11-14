@@ -28,7 +28,7 @@ function sendRegData() {
   fetch("https://testapi.io/api/Tadasls/resource/TLSusersDB", {
     method: "post",
     headers: {
-      Accept: "application/json, text/plain, */*",
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(obj),

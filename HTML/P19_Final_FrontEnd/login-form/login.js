@@ -6,7 +6,7 @@ const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
 const options = {
   method: 'get',
   headers: {      
-    'Accept': 'application/json, text/plain, */*',
+    'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
 }
@@ -37,7 +37,7 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
      
     });
 
-    // Alert.on("Tokio Userio Nėra !");
+    //  Alert.on("Tokio Userio Nėra !");
     window.alert(`Toks vartotojas Neegzistuoja `);
    
   
