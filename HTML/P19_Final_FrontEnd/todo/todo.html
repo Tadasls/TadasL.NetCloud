@@ -69,7 +69,6 @@
             <h2>ToDo Puslapis</h2>
             <hr>
 
-
             <div class="edit" id = "editforma" style = "display:none">
               MENIU for CREATE & EDIT & DELETE
               <br /><br />
@@ -91,20 +90,26 @@
               </form>
             </div>
 
-                  <div class="edit">
-                    <div id="user-view-form">
-                      <p id="data-text"> </p>
-                      <br>
-                      <input type="button" id="user-view-submit" value="Gauti duomenis" />
+                      <div class="app" style = "margin: 5px;">
+                      <input type="text" id="searchInput" placeholder="iveskite filtravimo kriterijus...">
+                
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Tipas</th>
+                            <th>Turinys</th>
+                            <th>Galiojimo data</th>
+                          </tr>
+                        </thead>
+                        <tbody id="names">
+                         
+                        </tbody>
+                      </table>
+                      <input type="button" id="user-view-submit" value="Gauti duomenis" style="margin: 5px;"/>
                     </div>
-                  </div>
-
-            
-               
-
-                <!-- <div id="SpecVieta"> 
-                  Spec
-                </div> -->
+                                       
+                  
 
 
           </div>
@@ -112,6 +117,12 @@
       </div>  
   </div>
  </div>
+
+
+
+
+
+
 
     
 <footer id = "copyright" style  = "text-align: right;" >Copyright &copy; 2023 Tadas Laurinaitis</footer>

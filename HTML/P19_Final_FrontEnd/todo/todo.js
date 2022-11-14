@@ -91,15 +91,22 @@ function viewData(){
           
         }
     }
- 
-   const duomenuVaizdavimoLaukas = document.getElementById('data-text');
-   let htmlDuomenys = '';
+   
+   let visiDuomenys = '';
 
    vienoVartotojoUzrasai.forEach(element => {
-      let htmlElement = `<p> Id: ${element.ID} Tipas: ${element.Type} Turinys: ${element.Content} Galiojimo data: ${element.EndDate}</p>` + `<hr>`;
-      htmlDuomenys += htmlElement;
+     
+      let filtruojamiDuomuo =`<tr><td> ${element.ID}</td>
+      <td>${element.Type}</td>
+      <td>${element.Content}</td>
+      <td>${element.EndDate}</td>
+      </tr>`;
+      tarpas = `<hr>`;
+      visiDuomenys += tarpas;
+      visiDuomenys += filtruojamiDuomuo;
     });
-    duomenuVaizdavimoLaukas.innerHTML = htmlDuomenys;
+    names.innerHTML = visiDuomenys;
+  
   
   });
 }
@@ -294,7 +301,6 @@ function validateDataEditinimui(){
   .then((response) => response.json())
   .then((informacija) => {
     for (const pranesimas of informacija.data) {
-
         if (pranesimas.UserId === userON.ID) 
         {
           if (pranesimas.id == id.value)
@@ -314,3 +320,22 @@ function validateDataEditinimui(){
       }
     })
     };
+
+
+        //filtravimas
+
+        function filter() {
+          let value = document.getElementById("searchInput").value.toUpperCase();
+          var names = document.getElementById("names");
+          var rows = names.getElementsByTagName("tr");
+        
+          for (i = 0; i < rows.length; i++) {
+            let column = rows[i].getElementsByTagName("td")[2];
+            let language = column.textContent;
+        
+            rows[i].style.display =
+              language.toUpperCase().indexOf(value) > -1 ? "" : "none";
+          }
+        }
+        document.getElementById("searchInput").addEventListener("keyup", filter);
+        

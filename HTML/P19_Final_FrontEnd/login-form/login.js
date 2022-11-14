@@ -2,7 +2,7 @@ const logFirstName = document.querySelector('#logfirstName');
 const logLastName = document.querySelector('#loglastname');
 const loginFormSbmBtn = document.querySelector('#login_form_submit');
 const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
-
+let prisijungimas = false;
 const options = {
   method: 'get',
   headers: {      
@@ -33,12 +33,16 @@ fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
 
       sessionStorage.clear();
       window.location = '../todo/todo.html';
+      prisijungimas = true;
+
      } 
      
     });
-
+      if (!prisijungimas){
+        window.alert(`Toks vartotojas Neegzistuoja `);
+         }
     //  Alert.on("Tokio Userio Nėra !");
-    window.alert(`Toks vartotojas Neegzistuoja `);
+   
    
   
 

@@ -34,6 +34,7 @@ function sendRegData() {
     body: JSON.stringify(obj),
   })
     .then((obj) => console.log(obj.json()))
+
     .catch((error) => console.log(error));
    
     window.alert(`vartotojas uzregistruotas ${Object.values(obj)}`);
@@ -102,6 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+//validacija
+
 
 function arEgzistuojaToksVartotojas() {
   let userExists = false
@@ -135,3 +138,8 @@ function arEgzistuojaToksVartotojas() {
                 (klaida) => console.log(klaida)
         );
     }
+
+
+
+
+  
