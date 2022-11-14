@@ -45,7 +45,7 @@ newRegFormSbmBtn.addEventListener("click", (e) => {
     });
 
   function duomenuSiuntimasToDB() {
-    if(arUzpyldytiDuomenis() ){ 
+    if(arUzpyldytiDuomenis()){ 
           sendRegData();
           saveLocalFormData('regUserName', logFirstName.value);
           saveLocalFormData('regUserLastname', logLastName.value);

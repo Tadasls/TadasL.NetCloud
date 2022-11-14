@@ -46,13 +46,16 @@
         <hr />
         
         <br>
-        <form action="../index.html" class="mygtukai">
-          <button type="submit">Atsijungti</button>
-        </form>
-        <br>
-        <!-- <form class="mygtukai"> 
-          <button type="button" id="add_actions"> ADD Actions Meniu</button>
-        </form> -->
+        <div style = "flex-wrap: wrap; display: flex; margin-left: 30px;" >
+          <form action="../index.html" class="mygtukai">
+            <button type="submit">Atsijungti</button>
+          </form>
+          <br>
+          <form class="mygtukai"> 
+            <button type="button" id="add_actions"> ADD/- Meniu </button>
+          </form>
+        </div>
+      
 
       </p>
       </div>
@@ -67,8 +70,8 @@
             <hr>
 
 
-            <div class="edit">
-              CREATE & EDIT & DELETE
+            <div class="edit" id = "editforma" style = "display:none">
+              MENIU for CREATE & EDIT & DELETE
               <br /><br />
               <form id="user-edit-form">
                 <label for="name">Id</label>
@@ -91,8 +94,8 @@
                   <div class="edit">
                     <form id="user-view-form">
                       <p id="data-text"> </p>
-                      <br /><br />
-                        <input type="button" id="user-view-submit" value="Gauti duomenis" />
+                      <br>
+                      <input type="button" id="user-view-submit" value="Gauti duomenis" />
                     </form>
                   </div>
 

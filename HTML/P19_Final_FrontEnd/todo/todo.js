@@ -206,6 +206,11 @@ userDelFormSbmBtn.addEventListener('click', (e) => {
 });
 
 
+add_actions.addEventListener('click', showForm);
+ function showForm() {
+document.getElementById("editforma").style.display = (editforma.style.display == "none") ? "block" : "none"; 
+}
+ 
 
 
 
