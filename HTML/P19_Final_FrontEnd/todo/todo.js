@@ -151,6 +151,7 @@ function editData() {
 dataFormSbmBtn.addEventListener('click', (e) => {
     e.preventDefault(); 
     if (arUzpyldytiVartDuomenis() && arUzpildytiIdData()){
+      irasasRastas2Edit = false;
       validateDataEditinimui();
     setTimeout(() => { viewData();}, 1000);}
     else { {window.alert('Duomenis nėra pilnai užpildyti');}}
@@ -257,7 +258,7 @@ document.getElementById("editforma").style.display = (editforma.style.display ==
 
 
 
-//validacijos papildomai
+//validacijos papildomai trinymui
 
 const userON = JSON.parse(localStorage.getItem('UserData'));
 const url2 = 'https://testapi.io/api/Tadasls/resource/TLSusersDuomenys';
@@ -294,6 +295,7 @@ function validateDataTrynimiui(){
     })
     };
 
+    //validacijos papildomai editui
     
 let irasasRastas2Edit = false;
 function validateDataEditinimui(){
