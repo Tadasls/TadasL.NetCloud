@@ -24,8 +24,10 @@ function sendRegData() {
   data.forEach((value, key) => {
     obj[key] = value;
   });
-	       
-  fetch("https://testapi.io/api/Tadasls/resource/TLSusersDB", {
+  
+  // fetch("https://testapi.io/api/Tadasls/resource/TLSusersDB",
+  fetch("https://localhost:7125/api/user/create",
+   {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -108,7 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function arEgzistuojaToksVartotojas() {
   let userExists = false
-  const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
+ 
+  // const url = 'https://testapi.io/api/Tadasls/resource/TLSusersDB';
+  const url = 'https://localhost:7125/api/user/get';
   const options = {
       method: 'get',
       headers: {
@@ -118,7 +122,7 @@ function arEgzistuojaToksVartotojas() {
       fetch(url, options)
       .then((response) => response.json())
       .then((duomenys) => {
-        for (const klientas of duomenys.data) {      
+        for (const klientas of duomenys) {      
               if(klientas.userName.toLowerCase() === regUserName.value.toLowerCase() && 
                 klientas.userLastname.toLowerCase() === regUserLastname.value && 
                 klientas.userEmail === regUserEmail.value) 

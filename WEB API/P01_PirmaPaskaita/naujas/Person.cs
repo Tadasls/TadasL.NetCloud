@@ -1,4 +1,4 @@
-﻿namespace naujas
+﻿namespace ApiMokymai
 {
     public class Person
     {

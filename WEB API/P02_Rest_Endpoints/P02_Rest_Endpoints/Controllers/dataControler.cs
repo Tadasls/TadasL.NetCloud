@@ -4,6 +4,7 @@ using P02_Rest_Endpoints.Data;
 using P02_Rest_Endpoints.Models;
 using P02_Rest_Endpoints.Models.Dto;
 using System.Data.SqlTypes;
+using System.Diagnostics.Metrics;
 
 namespace P02_Rest_Endpoints.Controllers
 {
@@ -11,64 +12,54 @@ namespace P02_Rest_Endpoints.Controllers
     [ApiController]
     public class dataController : ControllerBase
     {
-        [HttpGet("data")]
-        public IEnumerable<Sport> GetAllSportSakos()
+        [HttpGet("get")]
+        public IEnumerable<DataDTO> GetAllduomenys()
         {
-            var sportoSakuDuomenys = DataBase.sportoSakos;
-            return sportoSakuDuomenys;
+            var duomenys = DataDb.dataDuomenys;
+            return duomenys;
         }
 
-        [HttpGet("data/{id:int}")] 
-        public Sport? GetSportSakosById(int id)
+        [HttpGet("data/{id:int}")]
+        public DataDTO? GetDataById(int id)
         {
-            return DataBase.sportoSakos
-                .FirstOrDefault(f => f.Id == id);
-        }
-
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        //[HttpGet("data/testing/{id:int}")]
-        //public FoodDTO? GetFoodByIdTesting(int id)
-        //{
-        //    return FoodStore.foodList.FirstOrDefault(f => f.Id == id);
-        //}
-       
-        [HttpGet("data/SportoSalys")]
-        public Sport? GetSportByNameAndCountry(string foodName, string country) 
-        {     
-            return DataBase.sportoSakos.FirstOrDefault(f => f.Name == foodName && f.Country == country);
+            return DataDb.dataDuomenys
+                .FirstOrDefault(f => f.id == id);
         }
 
 
-        [HttpPost]
-        public Sport? CreateSportoSaka(Sport sportas)
-        {
-            sportas.Id = DataBase.sportoSakos
-                .OrderByDescending(f => f.Id)
-                .First().Id +1;
 
-            DataBase.sportoSakos.Add(sportas);
-            return sportas;
+        [HttpPost("create")]
+        public DataDTO? CreateData(DataDTO duomenys)
+        {
+           
+            duomenys.id = DataDb.dataDuomenys
+                .OrderByDescending(f => f.id)
+                .First().id +1;
+
+            DataDb.dataDuomenys.Add(duomenys);
+            return duomenys;
 
         }
 
 
-        [HttpDelete("data/delete/{id:int}")]
-        public void DeleteSportById(int id) 
+        [HttpDelete("delete/{id:int}")]
+        public void DeleteDataById(int id) 
         {
-            var sportas = DataBase.sportoSakos.FirstOrDefault(f => f.Id == id);
-            DataBase.sportoSakos.Remove(sportas);
+            var duomenys = DataDb.dataDuomenys.FirstOrDefault(f => f.id == id);
+            DataDb.dataDuomenys.Remove(duomenys);
         }
 
-        [HttpPut("data/update/{id:int}")]
-        public void UpdateSportas(int id, Sport sportas)
+        [HttpPut("update/{id:int}")]
+        public void UpdateData(int id, DataDTO duomenys)
         {
-            var naujasSportas = DataBase.sportoSakos
-                .FirstOrDefault(f => f.Id == id);
+            var newData = DataDb.dataDuomenys
+                .FirstOrDefault(f => f.id == id);
 
-            naujasSportas.Name = sportas.Name;
-            naujasSportas.Id = sportas.Id;
-            naujasSportas.Country = sportas.Country;
-            naujasSportas.PleoplePlaing = sportas.PleoplePlaing;
+            newData.type = duomenys.type;
+            newData.id = duomenys.id;
+            newData.content = duomenys.content;
+            newData.endDate = duomenys.endDate;
+            newData.UserId = duomenys.UserId;
         }
 
 

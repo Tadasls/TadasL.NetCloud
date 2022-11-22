@@ -1,4 +1,7 @@
-namespace naujas
+using ApiMokymai.Data;
+using ApiMokymai.Services;
+
+namespace ApiMokymai
 {
     public class Program
     {
@@ -6,7 +9,28 @@ namespace naujas
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
             // Add services to the container.
+            builder.Services.AddSingleton<IBookSet, BookSet>();
+
+            builder.Services.AddTransient<IBookWraper, BookWrapper>();
+
+
+
+            builder.Services.AddTransient<IMyOperationTransient, GuidService>();
+            builder.Services.AddScoped<IMyOperationScoped, GuidService>();
+            builder.Services.AddSingleton<IMyOperationSingleton, GuidService>();
+
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,6 +52,7 @@ namespace naujas
 
 
             app.MapControllers();
+            app.UseCors();
 
             app.Run();
         }

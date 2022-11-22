@@ -20,6 +20,13 @@ namespace P02_Rest_Endpoints
 
             }));
 
+            builder.Services.AddCors(p => p.AddPolicy("corsforTLS", builder =>
+            {
+                builder.WithOrigins("*")
+                .AllowAnyMethod().AllowAnyHeader();
+
+            }));
+
 
             var app = builder.Build();
 
@@ -31,6 +38,7 @@ namespace P02_Rest_Endpoints
             }
 
             app.UseCors("corsforfood");  
+            app.UseCors("corsforTLS");  
 
             app.UseHttpsRedirection();
 

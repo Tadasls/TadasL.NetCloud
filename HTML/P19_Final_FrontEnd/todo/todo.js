@@ -37,9 +37,11 @@ function createData() {
   data.forEach((value, key) => {
     obj[key] = value;
   });
-  obj["UserId"] = user.ID;
+  obj["userId"] = user.ID;
 
-  fetch("https://testapi.io/api/Tadasls/resource/TLSusersDuomenys", {
+  // fetch("https://testapi.io/api/Tadasls/resource/TLSusersDuomenys",
+  fetch("https://localhost:7125/api/data/create",
+   {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -69,7 +71,8 @@ userFormSbmBtn.addEventListener("click", (e) => {
 
 const userViewFormSbmBtn = document.querySelector("#user-view-submit");
 
-const url = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
+// const url = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
+const url = "https://localhost:7125/api/data/get";
 const options = {
   method: "get",
   headers: {
@@ -85,21 +88,21 @@ function viewData() {
     .then((duomenys) => {
       const vienoVartotojoUzrasai = [];
 
-      for (const uzrasas of duomenys.data) {
-        if (uzrasas.UserId === user.ID) {
+      for (const uzrasas of duomenys) {
+        if (uzrasas.userId === user.ID) {
           vienoVartotojoUzrasai.push({
             ID: uzrasas.id,
             Type: uzrasas.type,
             Content: uzrasas.content,
             EndDate: uzrasas.endDate,
-            Created:
-              uzrasas.createdAt.slice(0, 10) +
-              " " +
-              uzrasas.createdAt.slice(11, 19),
-            Updated:
-              uzrasas.updatedAt.slice(0, 10) +
-              " " +
-              uzrasas.updatedAt.slice(11, 19),
+            // Created:
+            //   uzrasas.createdAt.slice(0, 10) +
+            //   " " +
+            //   uzrasas.createdAt.slice(11, 19),
+            // Updated:
+            //   uzrasas.updatedAt.slice(0, 10) +
+            //   " " +
+            //   uzrasas.updatedAt.slice(11, 19),
           });
         }
       }
@@ -137,10 +140,11 @@ function editData() {
   data.forEach((value, key) => {
     obj[key] = value;
   });
-  obj["UserId"] = user.ID;
+  obj["userId"] = user.ID;
 
   const url =
-    "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
+    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
+    "https://localhost:7125/api/data/update/" + obj.id;
 
   fetch(url, {
     method: "put",
@@ -185,10 +189,12 @@ function sendDataDel() {
     obj[key] = value;
   });
 
-  const url =
-    "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
+  const urlDel =
+    "https://localhost:7125/api/data/delete/" + obj.id;
+    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
   const urlFetch =
-    "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
+    "https://localhost:7125/api/data/data/" + obj.id;
+    // "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys/" + obj.id;
   const optionsFetch = {
     method: "get",
     headers: {
@@ -207,7 +213,7 @@ function sendDataDel() {
   fetch(urlFetch, optionsFetch)
     .then((response) => response.json())
     .then((a) => {
-      return fetch(url, optionsDel);
+      return fetch(urlDel, optionsDel);
     })
     .then((obj) => {
       const res = obj; //.json()
@@ -272,7 +278,8 @@ function showForm() {
 //validacijos papildomai trinymui
 
 const userON = JSON.parse(localStorage.getItem("UserData"));
-const url2 = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
+// const url2 = "https://testapi.io/api/Tadasls/resource/TLSusersDuomenys";
+const url2 = "https://localhost:7125/api/data/get";
 const options2 = {
   method: "get",
   headers: {
@@ -287,8 +294,8 @@ function validateDataTrynimiui() {
   fetch(url2, options2)
     .then((response) => response.json())
     .then((informacija) => {
-      for (const pranesimas of informacija.data) {
-        if (pranesimas.UserId === userON.ID) {
+      for (const pranesimas of informacija) {
+        if (pranesimas.userId === userON.ID) {
           if (pranesimas.id == id.value) {
             irasasRastas = true;
           }
@@ -313,8 +320,8 @@ function validateDataEditinimui() {
   fetch(url2, options2)
     .then((response) => response.json())
     .then((informacija) => {
-      for (const pranesimas of informacija.data) {
-        if (pranesimas.UserId === userON.ID) {
+      for (const pranesimas of informacija) {
+        if (pranesimas.userId === userON.ID) {
           if (pranesimas.id == id.value) {
             irasasRastas2Edit = true;
           }

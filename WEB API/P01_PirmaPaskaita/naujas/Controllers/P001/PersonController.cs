@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using naujas;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
-namespace naujas.Controllers
+namespace ApiMokymai.Controllers.P001
 {
     [Route("api/[controller]")]
     [ApiController]

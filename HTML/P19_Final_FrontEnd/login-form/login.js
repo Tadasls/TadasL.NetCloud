@@ -11,44 +11,89 @@ const options = {
   }
 }
 
+// local conection
+
 function patikrintiVartotojus(){
-fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
-  .then((response) => response.json())
-  .then((userData) => 
-  {
-    userData.data.forEach(user => {
-      if(user.userName.toLowerCase() === logFirstName.value.toLowerCase() && user.userLastname.toLowerCase() === logLastName.value.toLowerCase())
-      {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
-      window.alert(`Sveiki prisijunge ${user.userName} `);
-     
-      const vartotojoDuomenys = {
-        ID: user.id,
-        regUserName: user.userName,
-        regUserLastname: user.userLastname,
-        regUserEmail: user.userEmail,
-        Created: user.createdAt.slice(0, 10) + ' ' + user.createdAt.slice(11, 19),
-        Updated: user.updatedAt.slice(0, 10) + ' ' + user.updatedAt.slice(11, 19)
-    };
-    saveLocalFormData(vartotojoDuomenys);
+  fetch('https://localhost:7125/api/user/get')
+     .then((response) => response.json())
+    .then((data) => 
+    {
+      data.forEach(user => {
+        if(user.userName.toLowerCase() === logFirstName.value.toLowerCase() && user.userLastname.toLowerCase() === logLastName.value.toLowerCase())
+        {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
+        window.alert(`Sveiki prisijunge ${user.userName} `);
+       
+        const vartotojoDuomenys = {
+          ID: user.id,
+          regUserName: user.userName,
+          regUserLastname: user.userLastname,
+          regUserEmail: user.userEmail,
+          // Created: user.createdAt.slice(0, 10) + ' ' + user.createdAt.slice(11, 19),
+          // Updated: user.updatedAt.slice(0, 10) + ' ' + user.updatedAt.slice(11, 19)
+      };
+      saveLocalFormData(vartotojoDuomenys);
+  
+        sessionStorage.clear();
+        window.location = '../todo/todo.html';
+        prisijungimas = true;
+  
+       } 
 
-      sessionStorage.clear();
-      window.location = '../todo/todo.html';
-      prisijungimas = true;
-
-     } 
      
-    });
+      });
       if (!prisijungimas){
         window.alert(`Toks vartotojas Neegzistuoja `);
          }
     //  Alert.on("Tokio Userio Nėra !");
-   
-   
   
 
   })
   .catch((klaida) => console.log(klaida));
 }
+
+// new local iki cia
+
+
+
+
+//online db
+
+// function patikrintiVartotojus(){
+// fetch('https://testapi.io/api/Tadasls/resource/TLSusersDB')
+//   .then((response) => response.json())
+//   .then((userData) => 
+//   {
+//     userData.data.forEach(user => {
+//       if(user.userName.toLowerCase() === logFirstName.value.toLowerCase() && user.userLastname.toLowerCase() === logLastName.value.toLowerCase())
+//       {console.log(`vardas ${user.userName} ir pavarde ${user.userLastname} ir email ${user.userEmail}`);
+//       window.alert(`Sveiki prisijunge ${user.userName} `);
+     
+//       const vartotojoDuomenys = {
+//         ID: user.id,
+//         regUserName: user.userName,
+//         regUserLastname: user.userLastname,
+//         regUserEmail: user.userEmail,
+//         Created: user.createdAt.slice(0, 10) + ' ' + user.createdAt.slice(11, 19),
+//         Updated: user.updatedAt.slice(0, 10) + ' ' + user.updatedAt.slice(11, 19)
+//     };
+//     saveLocalFormData(vartotojoDuomenys);
+
+//       sessionStorage.clear();
+//       window.location = '../todo/todo.html';
+//       prisijungimas = true;
+
+//      } 
+     
+//     });
+//       if (!prisijungimas){
+//         window.alert(`Toks vartotojas Neegzistuoja `);
+//          }
+//     //  Alert.on("Tokio Userio Nėra !");
+  
+
+//   })
+//   .catch((klaida) => console.log(klaida));
+// }
 
 
 loginFormSbmBtn.addEventListener("click", (e) => {

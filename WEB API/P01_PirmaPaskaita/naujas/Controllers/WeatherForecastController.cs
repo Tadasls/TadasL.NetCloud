@@ -1,6 +1,6 @@
 //using Microsoft.AspNetCore.Mvc;
 
-//namespace naujas.Controllers
+//namespace ApiMokymai.Controllers
 //{
 //    [ApiController]
 //    [Route("[controller]")]
