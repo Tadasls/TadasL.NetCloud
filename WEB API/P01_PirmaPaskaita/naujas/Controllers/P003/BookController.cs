@@ -10,16 +10,10 @@ namespace ApiMokymai.Controllers.P003
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IBookManager _bookManager;
-       
-       
-
+        private readonly IBookManager _bookManager;   
         public BookController(IBookManager bookManager)
         {
             _bookManager = bookManager;
-          
-            
-
         }
 
         [HttpGet]
