@@ -1,4 +1,5 @@
 using ApiMokymai.Data;
+using ApiMokymai.Interfaces;
 using ApiMokymai.Services;
 
 namespace ApiMokymai
@@ -19,20 +20,22 @@ namespace ApiMokymai
                                .AllowAnyHeader();
                     });
             });
-            // Add services to the container.
-            builder.Services.AddSingleton<IBookSet, BookSet>();
-
-            builder.Services.AddTransient<IBookWraper, BookWrapper>();
-
-
-
-            builder.Services.AddTransient<IMyOperationTransient, GuidService>();
-            builder.Services.AddScoped<IMyOperationScoped, GuidService>();
-            builder.Services.AddSingleton<IMyOperationSingleton, GuidService>();
-
 
 
             builder.Services.AddControllers();
+            // Add services to the container.
+            builder.Services.AddSingleton<IBookSet, BookSet>();
+            builder.Services.AddTransient<IBookWraper, BookWrapper>();
+            builder.Services.AddTransient<IBookManager, BookManager>();
+
+
+            //builder.Services.AddTransient<IMyOperationTransient, GuidService>();
+            //builder.Services.AddScoped<IMyOperationScoped, GuidService>();
+            //builder.Services.AddSingleton<IMyOperationSingleton, GuidService>();
+
+
+
+           
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -45,6 +48,7 @@ namespace ApiMokymai
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("_allowAny");
 
             app.UseHttpsRedirection();
 

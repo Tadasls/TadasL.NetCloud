@@ -1,5 +1,5 @@
 ﻿using ApiMokymai.Data.DTO;
-using ApiMokymai.Data;
+using ApiMokymai.Models;
 
 namespace ApiMokymai.Services
 {

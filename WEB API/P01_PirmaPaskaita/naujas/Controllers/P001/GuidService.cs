@@ -1,4 +1,6 @@
-﻿namespace ApiMokymai.Services
+﻿using ApiMokymai.Interfaces;
+
+namespace ApiMokymai.Controllers.P001
 {
     public class GuidService : IMyOperationTransient, IMyOperationScoped, IMyOperationSingleton
     {

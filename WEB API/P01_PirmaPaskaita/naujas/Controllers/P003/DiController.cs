@@ -1,4 +1,4 @@
-﻿using ApiMokymai.Services;
+﻿using ApiMokymai.Controllers.P001;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,6 @@ namespace ApiMokymai.Controllers.P003
         public ActionResult Get()
         {
             
-
             return Ok(new
             {
                 Transient = _operationTransient.GetOperationId(),

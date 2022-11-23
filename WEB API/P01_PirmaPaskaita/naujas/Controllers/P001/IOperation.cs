@@ -1,4 +1,4 @@
-﻿namespace ApiMokymai.Services
+﻿namespace ApiMokymai.Controllers.P001
 {
     public interface IOperation
     {

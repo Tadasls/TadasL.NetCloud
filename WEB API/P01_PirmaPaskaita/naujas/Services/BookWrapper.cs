@@ -1,6 +1,6 @@
-﻿using ApiMokymai.Books;
-using ApiMokymai.Data;
+﻿using ApiMokymai.Data;
 using ApiMokymai.Data.DTO;
+using ApiMokymai.Models;
 
 namespace ApiMokymai.Services
 {

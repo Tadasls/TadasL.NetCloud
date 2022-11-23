@@ -1,6 +1,6 @@
-﻿using ApiMokymai.Books;
+﻿using ApiMokymai.Data;
 
-namespace ApiMokymai.Data
+namespace ApiMokymai.Models
 {
     public class Book
     {

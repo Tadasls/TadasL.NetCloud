@@ -1,4 +1,4 @@
-﻿namespace ApiMokymai.Books
+﻿namespace ApiMokymai.Data
 {
-    public enum ECoverType {Hardcover,Paperback,Electric}
+    public enum ECoverType { Hardcover, Paperback, Electric }
 }

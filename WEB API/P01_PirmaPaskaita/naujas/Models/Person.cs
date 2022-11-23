@@ -1,4 +1,4 @@
-﻿namespace ApiMokymai
+﻿namespace ApiMokymai.Models
 {
     public class Person
     {
