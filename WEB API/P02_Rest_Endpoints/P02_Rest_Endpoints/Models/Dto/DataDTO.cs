@@ -3,19 +3,19 @@
     public class DataDTO
 
     {
-        public DataDTO(int id, string type, string content, string endDate, int UserId)
+        public DataDTO(DBData duomenys)
         {
-            this.id = id;
-            this.type = type;
-            this.content = content;
-            this.endDate = endDate;
-            this.UserId = UserId;
+            Id = duomenys.Id;
+            Type = duomenys.Type;
+            Content = duomenys.Content;
+            EndDate = duomenys.EndDate;
+            UserId = duomenys.UserId;
         }
 
-        public int id { get; set; }
-        public string type { get; set; }
-        public string content { get; set; }
-        public string endDate { get; set; }
+        public int Id { get; set; }
+        public string Type { get; set; }
+        public string Content { get; set; }
+        public string EndDate { get; set; }
         public int UserId { get; set; }
     }
 }

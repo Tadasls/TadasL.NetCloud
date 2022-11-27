@@ -3,9 +3,9 @@ using P004_EF_Application.Models;
 
 namespace P004_EF_Application.Data
 {
-    public class RestaurantContex : DbContext
+    public class RestaurantContext : DbContext
     {
-        public RestaurantContex(DbContextOptions<RestaurantContex> options) : base(options) 
+        public RestaurantContext(DbContextOptions<RestaurantContext> options) : base(options) 
         {
 
         }

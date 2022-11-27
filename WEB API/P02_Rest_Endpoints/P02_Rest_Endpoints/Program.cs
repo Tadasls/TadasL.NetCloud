@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using P02_Rest_Endpoints.Data;
+using System.Reflection;
+using System.Text.Json.Serialization;
+
 namespace P02_Rest_Endpoints
 {
     public class Program
@@ -8,10 +13,20 @@ namespace P02_Rest_Endpoints
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddDbContext<DataContex>(option =>
+            {
+                option.UseSqlite(builder.Configuration.GetConnectionString("TLSMySQLConection"));
+            });
+
+            builder.Services.AddControllers()
+                .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
+          
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
 
             builder.Services.AddCors(p => p.AddPolicy("corsforfood", builder =>
             {

@@ -13,14 +13,14 @@ namespace P02_Rest_Endpoints.Controllers
     public class dataController : ControllerBase
     {
         [HttpGet("get")]
-        public IEnumerable<DataDTO> GetAllduomenys()
+        public IEnumerable<DataDTO2> GetAllduomenys()
         {
             var duomenys = DataDb.dataDuomenys;
             return duomenys;
         }
 
         [HttpGet("data/{id:int}")]
-        public DataDTO? GetDataById(int id)
+        public DataDTO2? GetDataById(int id)
         {
             return DataDb.dataDuomenys
                 .FirstOrDefault(f => f.id == id);
@@ -29,7 +29,7 @@ namespace P02_Rest_Endpoints.Controllers
 
 
         [HttpPost("create")]
-        public DataDTO? CreateData(DataDTO duomenys)
+        public DataDTO2? CreateData(DataDTO2 duomenys)
         {
            
             duomenys.id = DataDb.dataDuomenys
@@ -50,7 +50,7 @@ namespace P02_Rest_Endpoints.Controllers
         }
 
         [HttpPut("update/{id:int}")]
-        public void UpdateData(int id, DataDTO duomenys)
+        public void UpdateData(int id, DataDTO2 duomenys)
         {
             var newData = DataDb.dataDuomenys
                 .FirstOrDefault(f => f.id == id);
@@ -59,7 +59,7 @@ namespace P02_Rest_Endpoints.Controllers
             newData.id = duomenys.id;
             newData.content = duomenys.content;
             newData.endDate = duomenys.endDate;
-            newData.UserId = duomenys.UserId;
+            newData.UserId2 = duomenys.UserId2;
         }
 
 

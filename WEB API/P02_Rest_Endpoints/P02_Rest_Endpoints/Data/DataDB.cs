@@ -5,11 +5,11 @@ namespace P02_Rest_Endpoints.Data
 {
     public static class DataDb
     {
-        public static List<DataDTO> dataDuomenys = new List<DataDTO>()
+        public static List<DataDTO2> dataDuomenys = new List<DataDTO2>()
             {
-            new DataDTO(1, "tipas", "Turinys Zinutes", "05/29/2015", 55),
-            new DataDTO(2, "tipas2", "Turinys Zinutes", "05/29/2018", 1),
-            new DataDTO(3, "tipas3", "Turinys Zinutes", "05/29/2020", 1),
+            new DataDTO2(1, "tipas", "Turinys Zinutes", "05/29/2015", 55),
+            new DataDTO2(2, "tipas2", "Turinys Zinutes", "05/29/2018", 1),
+            new DataDTO2(3, "tipas3", "Turinys Zinutes", "05/29/2020", 1),
         
             };
 

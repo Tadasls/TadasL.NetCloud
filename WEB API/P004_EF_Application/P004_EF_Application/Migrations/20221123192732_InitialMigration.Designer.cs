@@ -10,7 +10,7 @@ using P004_EF_Application.Data;
 
 namespace P004EFApplication.Migrations
 {
-    [DbContext(typeof(RestaurantContex))]
+    [DbContext(typeof(RestaurantContext))]
     [Migration("20221123192732_InitialMigration")]
     partial class InitialMigration
     {

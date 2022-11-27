@@ -9,7 +9,7 @@ using P004_EF_Application.Data;
 
 namespace P004EFApplication.Migrations
 {
-    [DbContext(typeof(RestaurantContex))]
+    [DbContext(typeof(RestaurantContext))]
     partial class RestaurantContexModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
