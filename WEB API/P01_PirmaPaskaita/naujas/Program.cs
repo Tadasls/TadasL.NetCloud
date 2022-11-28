@@ -1,6 +1,7 @@
 using ApiMokymai.Data;
 using ApiMokymai.Interfaces;
 using ApiMokymai.Services;
+using System.Reflection;
 
 namespace ApiMokymai
 {
@@ -27,6 +28,8 @@ namespace ApiMokymai
             builder.Services.AddSingleton<IBookSet, BookSet>();
             builder.Services.AddTransient<IBookWraper, BookWrapper>();
             builder.Services.AddTransient<IBookManager, BookManager>();
+            builder.Services.AddTransient<IBadService, BadService>();
+            builder.Services.AddTransient<InterfaisasDalybos, Skaiciuokle>();
 
 
             //builder.Services.AddTransient<IMyOperationTransient, GuidService>();
@@ -35,10 +38,17 @@ namespace ApiMokymai
 
 
 
-           
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(option =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                option.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+            });
+
+
 
             var app = builder.Build();
 
