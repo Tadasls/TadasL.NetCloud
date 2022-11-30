@@ -15,52 +15,54 @@ namespace L05_Tasks_MSSQL.Controllers
     public class KnygynasController : ControllerBase
     {
 
-        private readonly KnygynasContext _db;
+        private readonly KnygynasContext _knygynasDB;
         private readonly IBookWrapper _wrapper;
         private readonly ILogger<KnygynasController> _logger;
 
-        public KnygynasController(KnygynasContext db, IBookWrapper wrapper, ILogger<KnygynasController> logger)
+        public KnygynasController(KnygynasContext knyguDB, IBookWrapper wrapper, ILogger<KnygynasController> logger)
         {
-            _db = db;
+            _knygynasDB = knyguDB;
             _wrapper = wrapper;
             _logger = logger;
         }
 
         /// <summary>
-        /// Uklausia visu knygu is duomenu bazes
+        /// Get skirtas gauti visa knygų sarasa
         /// </summary>
-        /// <returns>Grazina rezultata</returns>
-        /// <response code="200">Teisingai ivykdomas gavimas ir parodoma visos knygos</response>
-        /// <response code="500">Baisi klaida!</response>
-        [HttpGet("AllBooks")]
+        /// <returns>?????????????????? ar sita vieta veikia ??????? </returns>
+        /// <response code="200">gavus 200 reiskia kad uzklausa pavyko ir sekmingai grazintas rezultatas</response>
+        /// <response code="500">500 serverio tipo klaidos.. Amen!</response>
+        [HttpGet("Visos Knygos")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetBookDto>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IEnumerable<GetBookDto>> GetBooks()
         {
-            _logger.LogInformation("Get AllBooks() buvo iskvietas {0} ", DateTime.Now);
+            _logger.LogInformation("Metodo Get iskvietimo laikas yra - {0} ", DateTime.Now);
             try
             {
-                return Ok(_db.Books
+                _logger.LogInformation("paieskos metodas su rezultatai buvo yvykdytas tokiu metu {1} ", DateTime.Now);
+                return Ok(_knygynasDB.Books
                     .Select(book => _wrapper.Bind(book))
                     .ToList());
+
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Get AllBooks() nuluzo {0}", DateTime.Now);
+                _logger.LogError(e, "Metodas Get nuluzimo laikas yra - {0}", DateTime.Now);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
         /// <summary>
-        /// Uzklausia knyga is duomenu bazes pagal specijini id
+        /// Metodas sugrazina viena knyga is duomenu bazes pagal paduota id
         /// </summary>
-        /// <param name="id">Uzklausiamos knygos id</param>
-        /// <returns>Grazina rezultata</returns>
-        /// <response code="200">Teisingai ivykdomas gavimas ir parodoma vienos knygos informacija</response>
-        /// <response code="400">Blogas kreipimasis</response>
-        /// <response code="404">Nerasta</response>
-        /// <response code="500">Baisi klaida!</response>
-        [HttpGet("GetSingleBook/{id:int}", Name = "GetBook")]
+        /// <param name="id">ieskomos knygos paduotas id</param>
+        /// <returns>Grazina rezultata??? ar veikia dar nezinom</returns>
+        /// <response code="200">VISKAS OK jei 200, sekmingai rasta ir grazinta ieskoma knyga pagal id</response>
+        /// <response code="400">buvo gautas blogas kreipimasis</response>
+        /// <response code="404">Toks puslapis/adresas nerastas</response>
+        /// <response code="500">Ciua jau serverio klaidos kodas!</response>
+        [HttpGet("GautiKonkreciaKnygaPagalId/{id:int}", Name = "GetBook")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -68,130 +70,135 @@ namespace L05_Tasks_MSSQL.Controllers
         public ActionResult<GetBookDto> GetBookById(int id)
         {
 
-
-            _logger.LogInformation("Get GetBookById(id = {0}) buvo iskvietas {1} ", id, DateTime.Now);
+            _logger.LogInformation("Metodas Get pagal (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             try
             {
                 if (id == 0)
                 {
-                    _logger.LogError("Get GetBookById(id = {0}) su blogu id {1} ", id, DateTime.Now);
+                    _logger.LogError("Metodas Get GetBookById(id = {0}) nesuveike nes nebuvo nurodytas id tokiu laiku {1} ", id, DateTime.Now);
                     return BadRequest();
                 }
 
-                var book = _db.Books.FirstOrDefault(a => a.Id == id);
+                var book = _knygynasDB.Books.FirstOrDefault(a => a.Id == id);
                 if (book == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
                     return BadRequest();
                 }
 
+                _logger.LogInformation("paieskos metodas su surastu rezultatu pagal (id = {0})  buvo įvykdytas tokiu metu {1} ", DateTime.Now);
                 return Ok(_wrapper.Bind(book));
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Get GetBookById(id = {0}) nuluzo {1} ", id, DateTime.Now);
+                _logger.LogError(e, "Metodas Get gauti Knyga pagal id(id = {0}) nuluzo del serverio klaidos tokiu laiku - {1} ", id, DateTime.Now);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
 
         /// <summary>
-        /// Sukuria nauja knyga
+        /// kontroleris skirtas sukuria nauja knyga
         /// </summary>
-        /// <param name="createBookDto">Knygos objektas</param>
-        /// <returns>Grazina rezultata</returns>
-        /// <response code="201">Sekmingai sukuriama nauja knyga</response>
-        /// <response code="400">Blogas kreipimasis</response>
-        /// <response code="500">Baisi klaida!</response>
+        /// <param name="createBookDto">tai tra naujos Knygos objektas</param>
+        /// <returns>Grazina rezultata greiciausiais kur niekas nemato... </returns>
+        /// <response code="201">201 pranesimas reiskia kad Sekmingai į DB įrašyta nauja knyga</response>
+        /// <response code="400">Blogas kreipimasis gautas</response>
+        /// <response code="500">Baisi klaida! nes ji serverio</response>
         [HttpPost("CreateBook")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<CreateBookDto> CreateBook(CreateBookDto createBookDto)
         {
-            if (createBookDto == null) return BadRequest();
+            if (createBookDto == null)
+            {
+                _logger.LogError("sukurimo iskvietimo laikas buvo - {1} negalejo sukurti iraso nes nebuvo  paduoti nauji duomenys", DateTime.Now);
+                return BadRequest();
+            }
 
             Book newBook = _wrapper.Bind(createBookDto);
 
-            _db.Books.Add(newBook);
-            _db.SaveChanges();
+            _knygynasDB.Books.Add(newBook);
+            _knygynasDB.SaveChanges();
 
+            _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
         }
 
 
 
         /// <summary>
-        /// Update book by id
+        /// Redaguojame Knygos informacija pagal nurodyta id
         /// </summary>
-        /// <param name="id"> Book Id</param>
-        /// <param name="req"></param>
-        /// <returns>Status code</returns>
+        /// <param name="id"> cia redaguojamos knygos id </param>
+        /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
         [HttpPut("{id}")]
         public ActionResult UpdateBook(int id, UpdateBookDto updateBookDto)
         {
             if (id == 0 || updateBookDto == null)
             {
+                _logger.LogError("Redagavimo Metodas pagal nurodyta (id = {0}) kurio iskvietimo laikas buvo - {1} nesurado nurodyto id arba nebuvo uzpildyti duomenys", id, DateTime.Now);
                 return BadRequest();
             }
 
-            var foundBook = _db.Books.FirstOrDefault(d => d.Id == id);
+            var foundBook = _knygynasDB.Books.FirstOrDefault(d => d.Id == id);
 
             if (foundBook == null)
             {
+                _logger.LogError("Redagavimo Metodas pagal nurodyta (id = {0}) kurio iskvietimo laikas buvo - {1} nesurado nurodyto id", id, DateTime.Now);
                 return NotFound();
             }
 
             foundBook.Author = updateBookDto.Autorius;
             foundBook.Title = updateBookDto.Pavadinimas;
             foundBook.ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), updateBookDto.KnygosTipas);
-            //foundBook.ECoverType = updateBookDto.KnygosTipas;
             foundBook.PublishYear = updateBookDto.Isleista.Year;
 
 
-            _db.Books.Update(foundBook);
-            _db.SaveChanges();
+            _knygynasDB.Books.Update(foundBook);
+            _knygynasDB.SaveChanges();
 
-            _logger.LogInformation($"Update book by id={id}");
-
+            _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             return NoContent();
           
         }
 
 
         /// <summary>
-        /// Trinama knyga is duomenu bases pagal specifini id
+        /// Trinama knyga is duomenu bases pagal nurodoma id
         /// </summary>
-        /// <param name="id">Norimos istrinti knygos id</param>
-        /// <returns>Grazina rezultata</returns>
-        /// <response code="204">Sekmingai istrinta</response>
+        /// <param name="id"> trinamos knygos id</param>
+        /// <returns>Grazina rezultata, maybe ??? </returns>
+        /// <response code="204">Sekmingai ivykdytas trynimas </response>
         /// <response code="400">Blogas kreipimasis</response>
-        /// <response code="404">Nerasta</response>
-        /// <response code="500">Baisi klaida!</response>
+        /// <response code="404">Nerastas adresas</response>
+        /// <response code="500">Ziauri serverio klaida!</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult DeleteBookById(int id)
         {
-            _logger.LogInformation("HttpDelete DeleteBookById(id = {0}) buvo iskvietas {1} ", id, DateTime.Now);
+            _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas tokiu laiku - {1} ", id, DateTime.Now);
             try
             {
-                var book = _db.Books.FirstOrDefault(b => b.Id == id);
+                var book = _knygynasDB.Books.FirstOrDefault(b => b.Id == id);
                 if (book == null)
                 {
-                    _logger.LogError("HttpDelete DeleteBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
+                    _logger.LogError("HttpDelete  Trinimo metodas pagal (id = {0}) knyga su tokiu id buvo nerasta {1} ", id, DateTime.Now);
                     return NotFound();
                 }
 
-                _db.Books.Remove(book);
-                _db.SaveChanges();
+                _knygynasDB.Books.Remove(book);
+                _knygynasDB.SaveChanges();
 
+                _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas ir ivykdytas  tokiu laiku - {1} ", id, DateTime.Now);
                 return NoContent();
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "HttpDelete DeleteBookById(id = {0}) nuluzo {1} ", id, DateTime.Now);
+                _logger.LogError(e, "HttpDelete Trinimo metodas pagal (id = {0}) nuluzo  tokiu laiku - {1} ", id, DateTime.Now);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
