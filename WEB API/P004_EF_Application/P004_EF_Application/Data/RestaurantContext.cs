@@ -7,7 +7,6 @@ namespace P004_EF_Application.Data
     {
         public RestaurantContext(DbContextOptions<RestaurantContext> options) : base(options) 
         {
-
         }
 
 
