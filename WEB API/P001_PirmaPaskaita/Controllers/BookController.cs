@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAppMSSQL.Repository;
+using WebAppMSSQL.Repository.IRepository;
 
 namespace L05_Tasks_MSSQL.Controllers
 {
@@ -15,16 +17,25 @@ namespace L05_Tasks_MSSQL.Controllers
     public class KnygynasController : ControllerBase
     {
 
-        private readonly KnygynasContext _knygynasDB;
+        //private readonly KnygynasContext _knygynasDB;
         private readonly IBookWrapper _wrapper;
         private readonly ILogger<KnygynasController> _logger;
+        private readonly IUpdateBookRepository _bookRepo;
 
-        public KnygynasController(KnygynasContext knyguDB, IBookWrapper wrapper, ILogger<KnygynasController> logger)
+        //KnygynasContext knyguDB,
+
+        public KnygynasController(IBookWrapper wrapper, ILogger<KnygynasController> logger, IUpdateBookRepository bookRepo)
         {
-            _knygynasDB = knyguDB;
+            //_knygynasDB = knyguDB;
             _wrapper = wrapper;
             _logger = logger;
+            _bookRepo = bookRepo;
         }
+
+       
+      
+
+
 
         /// <summary>
         /// Get skirtas gauti visa knygų sarasa
@@ -41,10 +52,9 @@ namespace L05_Tasks_MSSQL.Controllers
             try
             {
                 _logger.LogInformation("paieskos metodas su rezultatai buvo yvykdytas tokiu metu {1} ", DateTime.Now);
-                return Ok(_knygynasDB.Books
+                return Ok(_bookRepo.GetAll()
                     .Select(book => _wrapper.Bind(book))
                     .ToList());
-
             }
             catch (Exception e)
             {
@@ -79,7 +89,7 @@ namespace L05_Tasks_MSSQL.Controllers
                     return BadRequest();
                 }
 
-                var book = _knygynasDB.Books.FirstOrDefault(a => a.Id == id);
+                var book = _bookRepo.Get(a => a.Id == id);
                 if (book == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
@@ -119,8 +129,8 @@ namespace L05_Tasks_MSSQL.Controllers
 
             Book newBook = _wrapper.Bind(createBookDto);
 
-            _knygynasDB.Books.Add(newBook);
-            _knygynasDB.SaveChanges();
+            _bookRepo.Create(newBook);
+          
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
@@ -142,7 +152,7 @@ namespace L05_Tasks_MSSQL.Controllers
                 return BadRequest();
             }
 
-            var foundBook = _knygynasDB.Books.FirstOrDefault(d => d.Id == id);
+            var foundBook = _bookRepo.Get(d => d.Id == id);
 
             if (foundBook == null)
             {
@@ -156,8 +166,8 @@ namespace L05_Tasks_MSSQL.Controllers
             foundBook.PublishYear = updateBookDto.Isleista.Year;
 
 
-            _knygynasDB.Books.Update(foundBook);
-            _knygynasDB.SaveChanges();
+            _bookRepo.Update(foundBook);
+           
 
             _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             return NoContent();
@@ -183,15 +193,15 @@ namespace L05_Tasks_MSSQL.Controllers
             _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas tokiu laiku - {1} ", id, DateTime.Now);
             try
             {
-                var book = _knygynasDB.Books.FirstOrDefault(b => b.Id == id);
+                var book = _bookRepo.Get(b => b.Id == id);
                 if (book == null)
                 {
                     _logger.LogError("HttpDelete  Trinimo metodas pagal (id = {0}) knyga su tokiu id buvo nerasta {1} ", id, DateTime.Now);
                     return NotFound();
                 }
 
-                _knygynasDB.Books.Remove(book);
-                _knygynasDB.SaveChanges();
+                _bookRepo.Remove(book);
+             
 
                 _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas ir ivykdytas  tokiu laiku - {1} ", id, DateTime.Now);
                 return NoContent();

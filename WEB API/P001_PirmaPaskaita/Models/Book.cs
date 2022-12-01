@@ -24,5 +24,6 @@ namespace L05_Tasks_MSSQL.Models
         public string Author { get; set; }
         public ECoverType ECoverType { get; set; }
         public int PublishYear { get; set; }
+        public DateTime UpdateDateTime { get; set; }
     }
 }

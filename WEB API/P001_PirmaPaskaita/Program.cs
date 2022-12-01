@@ -3,6 +3,8 @@ using L05_Tasks_MSSQL.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using WebAppMSSQL.Repository;
+using WebAppMSSQL.Repository.IRepository;
 
 namespace L05_Tasks_MSSQL
 {
@@ -18,8 +20,11 @@ namespace L05_Tasks_MSSQL
             builder.Services.AddDbContext<KnygynasContext>(option =>
             {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
+                option.UseLazyLoadingProxies();
                 //cia kiti nustatymai jei reiktu SQL Lite  -  option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
             });
+
+            builder.Services.AddScoped<IUpdateBookRepository, BookUpdateRepository>();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -41,8 +46,6 @@ namespace L05_Tasks_MSSQL
                 .AllowAnyMethod().AllowAnyHeader();
 
             }));
-
-
 
 
             var app = builder.Build();

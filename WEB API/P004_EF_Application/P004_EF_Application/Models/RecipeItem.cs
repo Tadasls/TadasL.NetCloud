@@ -25,7 +25,7 @@ namespace P004_EF_Application.Models
         public string Name { get; set; }
         public double Calories { get; set; }
         public int DishId { get; set; }
-        public Dish Dish { get; set; }
+        public virtual Dish Dish { get; set; }
 
 
 

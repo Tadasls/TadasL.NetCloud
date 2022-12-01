@@ -1,12 +1,33 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using P004_EF_Application.Models.Dto;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P004_EF_Application.Models
 {
     public class Dish
     {
+        public Dish() { }
 
+        public Dish(CreateDishDTO createDishDTO)
+        {
+            Name = createDishDTO.Name;
+            Type = createDishDTO.Type;
+            SpiceLevel = createDishDTO.SpiceLevel;
+            Country = createDishDTO.Country;
+            ImagePath = createDishDTO.ImagePath;
+            CreatedDateTime = createDishDTO.CreatedDateTime;
+        }
 
+        public Dish(int dishId, string name, string type, string spiceLevel, string country, string imagePath, DateTime createDateTime)
+        {
+            DishId = dishId;
+            Name = name;
+            Type = type;
+            SpiceLevel = spiceLevel;
+            Country = country;
+            ImagePath = imagePath;
+            CreatedDateTime = createDateTime;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,21 +38,7 @@ namespace P004_EF_Application.Models
         public string Country { get; set; }
         public string ImagePath { get; set; }
         public DateTime CreatedDateTime { get; set; }
-        public List<RecipeItem> RecipeItems { get; set; }
-
-        public Dish()
-        {
-
-        }
-        public Dish(int dishId, string name, string type, string spiceLevel, string country, string imagePath, DateTime createdDateTime)
-        {
-            DishId = dishId;
-            Name = name;
-            Type = type;
-            SpiceLevel = spiceLevel;
-            Country = country;
-            ImagePath = imagePath;
-            CreatedDateTime = createdDateTime;
-        }
+        public DateTime UpdatedDateTime { get; set; }
+        public virtual List<RecipeItem> RecipeItems { get; set; }
     }
 }

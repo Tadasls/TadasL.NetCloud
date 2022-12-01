@@ -19,8 +19,8 @@ namespace L05_Tasks_MSSQL
 
             // Add services to the container.
 
-            //builder.Services.AddSingleton<IBookSet, BookSet>();
-            //builder.Services.AddTransient<IBookManager, BookManager>();
+            builder.Services.AddSingleton<IBookSet, BookSet>();
+            builder.Services.AddTransient<IBookManager, BookManager>();
 
             builder.Services.AddTransient<IMyOperationTransient, GuidService>();
             builder.Services.AddScoped<IMyOperationScoped, GuidService>();

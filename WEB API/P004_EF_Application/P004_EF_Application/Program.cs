@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using P004_EF_Application.Data;
+using P004_EF_Application.Repository;
+using P004_EF_Application.Repository.IRepository;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -15,7 +17,11 @@ namespace P004_EF_Application
             builder.Services.AddDbContext<RestaurantContext>(option =>
             {
                 option.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLConection"));
+                option.UseLazyLoadingProxies();
             });
+
+
+            builder.Services.AddScoped<IDishRepository, DishRepository>();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options=> options.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.IgnoreCycles);
