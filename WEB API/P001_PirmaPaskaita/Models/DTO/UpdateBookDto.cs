@@ -4,6 +4,15 @@ namespace L05_Tasks_MSSQL.Models.DTO
 {
     public class UpdateBookDto
     {
+        public UpdateBookDto(int id, DateTime isleista, string autorius, string pavadinimas, string knygosTipas)
+        {
+            Id = id;
+            Isleista = isleista;
+            Autorius = autorius;
+            Pavadinimas = pavadinimas;
+            KnygosTipas = knygosTipas;
+        }
+
         public int Id { get; set; }
         /// <summary>
         /// Isleidimo metais DateTime formatas

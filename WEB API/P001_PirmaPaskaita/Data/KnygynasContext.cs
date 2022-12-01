@@ -15,7 +15,7 @@ namespace L05_Tasks_MSSQL.Data
             modelBuilder.Entity<Book>()
             .Property(u => u.ECoverType)
             .HasConversion<string>()
-            .HasMaxLength(20);
+            .HasMaxLength(50);
 
             modelBuilder.Entity<Book>()
                 .HasData(

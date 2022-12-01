@@ -90,14 +90,16 @@ namespace L05_Tasks_MSSQL.Controllers
                 }
 
                 var book = _bookRepo.Get(a => a.Id == id);
+
                 if (book == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
                     return BadRequest();
                 }
 
-                _logger.LogInformation("paieskos metodas su surastu rezultatu pagal (id = {0})  buvo įvykdytas tokiu metu {1} ", DateTime.Now);
+                _logger.LogInformation("paieskos metodas su surastu rezultatu pagal (id = {0})  buvo įvykdytas tokiu metu {1} ",id, DateTime.Now);
                 return Ok(_wrapper.Bind(book));
+
             }
             catch (Exception e)
             {
@@ -168,7 +170,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
             _bookRepo.Update(foundBook);
            
-
             _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             return NoContent();
           
