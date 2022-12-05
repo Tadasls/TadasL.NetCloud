@@ -39,6 +39,16 @@ namespace L05_Tasks_MSSQL.Services
                 ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas)
             };
         }
+        public Book Bind(FilterBooksRequestDto book)
+        {
+            return new Book
+            {
+                Title = book.Pavadinimas,
+                Author = book.Autorius,
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
+            };
+
+        }
 
 
     }

@@ -465,11 +465,14 @@ namespace testavimaiTLS
         {
            
             string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input5.txt";
-            string[] duomenuMasyvas = System.IO.File.ReadAllLines(filename);
+            var duomenuMasyvas = System.IO.File.ReadLines(filename);
+
+            (string header, list<string> linijos = duomenuMasyvas.Split("\n\n").ToArray().As(x=>x, x=>x);
+
             foreach (var line in duomenuMasyvas)
             {
 
-                var skaiciai = line.Split(' ');
+               
 
 
 

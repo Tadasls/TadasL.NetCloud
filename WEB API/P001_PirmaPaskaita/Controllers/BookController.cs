@@ -140,6 +140,38 @@ namespace L05_Tasks_MSSQL.Controllers
 
 
 
+        [HttpPost("Filtravimas")]
+        public ActionResult<IEnumerable<GetBookDto>> Filter(FilterBooksRequestDto req)
+               {
+            try
+            {
+                if (req == null)
+                {
+                    return BadRequest();
+                }
+
+                var book = _wrapper.Bind(req);
+                var books = _bookRepo.Filter(book);
+                if (books?.Count == 0)
+                {
+                    return NotFound();
+                }
+
+
+                IEnumerable<GetBookDto> getBookDto = books.Select(d => _wrapper.Bind(d)).ToList();
+                return Ok(getBookDto);
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+
+        }
+
+
+
         /// <summary>
         /// Redaguojame Knygos informacija pagal nurodyta id
         /// </summary>

@@ -10,5 +10,7 @@ namespace L05_Tasks_MSSQL.Services
         Book Bind(CreateBookDto book);
 
         Book Bind(UpdateBookDto book);
+
+        Book Bind(FilterBooksRequestDto book);
     }
 }

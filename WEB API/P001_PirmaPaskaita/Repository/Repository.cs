@@ -4,6 +4,7 @@ using System.Linq;
 using WebAppMSSQL.Repository.IRepository;
 using L05_Tasks_MSSQL.Data;
 using L05_Tasks_MSSQL.Models;
+using L05_Tasks_MSSQL.Models.DTO;
 
 namespace WebAppMSSQL.Repository
 {
@@ -61,6 +62,20 @@ namespace WebAppMSSQL.Repository
             return query.ToList();
         }
 
+
+        //public List<TEntity> Filter(Expression<Func<TEntity, bool>>? filter = null)
+        //{
+        //    IQueryable<TEntity> query = _dbSet;
+
+        //    if (filter != null)
+        //    {
+        //        query = query.Where(filter);
+        //    }
+
+        //    return query.ToList();
+        //}
+
+
         public void Remove(TEntity entity)
         {
             _dbSet.Remove(entity);
@@ -71,5 +86,7 @@ namespace WebAppMSSQL.Repository
         {
             _db.SaveChanges();
         }
+
+      
     }
 }
