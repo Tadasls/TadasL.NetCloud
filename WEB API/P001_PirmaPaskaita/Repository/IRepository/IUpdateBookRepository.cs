@@ -2,7 +2,7 @@
 
 namespace WebAppMSSQL.Repository.IRepository
 {
-    public interface IUpdateBookRepository : IBookRepository<Book>
+    public interface IUpdateBookRepository : IRepository<Book>
     {
         Book Update(Book book);
     }

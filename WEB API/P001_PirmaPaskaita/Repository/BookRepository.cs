@@ -18,12 +18,12 @@ namespace WebAppMSSQL.Repository
     // 5. Uzregistruojam Dependency Injection Program.cs faile
     // 6. Injectinam repo i Controlleri
     // 7. Naudojam ir megaujames
-    public class BookRepository<TEntity> : IBookRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly KnygynasContext _db;
         private DbSet<TEntity> _dbSet;
 
-        public BookRepository(KnygynasContext db)
+        public Repository(KnygynasContext db)
         {
             _db = db;
             _dbSet = _db.Set<TEntity>();

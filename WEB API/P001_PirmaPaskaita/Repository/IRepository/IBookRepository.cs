@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace WebAppMSSQL.Repository.IRepository
 {
-    public interface IBookRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         // CRUD
         List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);

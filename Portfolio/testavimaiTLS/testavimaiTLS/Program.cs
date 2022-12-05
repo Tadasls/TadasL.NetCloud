@@ -1,6 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Xml.Schema;
 
 namespace testavimaiTLS
@@ -13,9 +16,13 @@ namespace testavimaiTLS
             // PirmasSuskaiciavimoMetodas();
             // AntrasSuskaiciavimoMetodas();
             // AntrasSuskaiciavimoMetodas2Dalis();
-            TreciaDienaASuskaiciavimoMetodas();
+            // TreciaDienaASuskaiciavimoMetodas();
+            // KetvirtaDienaASuskaiciavimoMetodas();
 
-           // NemanoSprendimas();
+            // NemanoSprendimas3();
+
+            PenktadienaSprendimas();
+
         }
         public static void PirmasSuskaiciavimoMetodas()
         {
@@ -331,7 +338,7 @@ namespace testavimaiTLS
             Console.WriteLine();
         }
 
-        public static void NemanoSprendimas()
+        public static void NemanoSprendimas3()
         {
             Dictionary<char, int> ValueLookup = new Dictionary<char, int>();
             
@@ -393,6 +400,84 @@ namespace testavimaiTLS
 
         }
 
+        public static void KetvirtaDienaASuskaiciavimoMetodas()
+        {
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input4.txt";
+            string[] duomenuMasyvas = System.IO.File.ReadAllLines(filename);
+
+
+            var range = new Regex("(\\d+)-(\\d+)");
+
+            var data = (from line in File.ReadAllLines(filename)
+                        where !string.IsNullOrWhiteSpace(line)
+                        select line.Split(",")
+                        .Select(r => range.Match(r))
+                        .Select(m => (low: long.Parse(m.Groups[1].Value),
+                                       high: long.Parse(m.Groups[2].Value)))
+                        .ToArray())
+                        .ToArray();
+
+            var result = 0L;
+            foreach (var pair in data)
+            {
+                if (pair[0].low <= pair[1].low && pair[0].high >= pair[1].high)
+                {
+                    result++;
+                }
+                else if (pair[1].low <= pair[0].low && pair[1].high >= pair[0].high)
+                {
+                    result++;
+                }
+            }
+
+            Console.WriteLine("ats");
+            Console.WriteLine(result);
+            //471
+
+            var result2 = 0L;
+            foreach (var pair in data)
+            {
+                if (pair[0].low >= pair[1].low && pair[0].low <= pair[1].high)
+                {
+                    result2++;
+                }
+                else if (pair[0].high >= pair[1].low && pair[0].high <= pair[1].high)
+                {
+                    result2++;
+                }
+                else if (pair[1].low >= pair[0].low && pair[1].low <= pair[0].high)
+                {
+                    result2++;
+                }
+                else if (pair[1].high >= pair[0].low && pair[1].high <= pair[0].high)
+                {
+                    result2++;
+                }
+            }
+            Console.WriteLine("ats2");
+            Console.WriteLine(result2);
+
+            //888
+
+        }
+
+        public static void PenktadienaSprendimas()
+        {
+           
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input5.txt";
+            string[] duomenuMasyvas = System.IO.File.ReadAllLines(filename);
+            foreach (var line in duomenuMasyvas)
+            {
+
+                var skaiciai = line.Split(' ');
+
+
+
+            }
+
+
+        }
+       
 
 
 
@@ -403,4 +488,16 @@ namespace testavimaiTLS
 
     }
 
+
+
+
+
+
+
+
 }
+
+
+
+
+

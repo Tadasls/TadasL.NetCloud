@@ -4,7 +4,7 @@ using WebAppMSSQL.Repository.IRepository;
 
 namespace WebAppMSSQL.Repository
 {
-    public class BookUpdateRepository : BookRepository<Book>, IUpdateBookRepository
+    public class BookUpdateRepository : Repository<Book>, IUpdateBookRepository
     {
         private readonly KnygynasContext _db;
 
