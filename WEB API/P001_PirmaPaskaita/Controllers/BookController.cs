@@ -33,10 +33,6 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
        
-      
-
-
-
         /// <summary>
         /// Get skirtas gauti visa knygų sarasa
         /// </summary>
@@ -79,7 +75,6 @@ namespace L05_Tasks_MSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<GetBookDto> GetBookById(int id)
         {
-
             _logger.LogInformation("Metodas Get pagal (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             try
             {
@@ -90,7 +85,6 @@ namespace L05_Tasks_MSSQL.Controllers
                 }
 
                 var book = _bookRepo.Get(a => a.Id == id);
-
                 if (book == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
@@ -130,23 +124,24 @@ namespace L05_Tasks_MSSQL.Controllers
             }
 
             Book newBook = _wrapper.Bind(createBookDto);
-
             _bookRepo.Create(newBook);
-          
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
         }
 
 
-
         [HttpPost("Filtravimas")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IEnumerable<GetBookDto>> Filter(FilterBooksRequestDto req)
                {
             try
             {
                 if (req == null)
                 {
+                    _logger.LogError("Filtravimo iskvietimo laikas buvo - {1} negalejo surasti irasu nes nebuvo paduoti nauji duomenys", DateTime.Now);
                     return BadRequest();
                 }
 
@@ -154,22 +149,21 @@ namespace L05_Tasks_MSSQL.Controllers
                 var books = _bookRepo.Filter(book);
                 if (books?.Count == 0)
                 {
+                    _logger.LogError("Filtravimo   iskvietimo laikas buvo - {1} nesurado nurodytu knygu nes ju nebuvo", DateTime.Now);
                     return NotFound();
                 }
 
-
                 IEnumerable<GetBookDto> getBookDto = books.Select(d => _wrapper.Bind(d)).ToList();
-                return Ok(getBookDto);
 
+                _logger.LogInformation("Filtravimas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
+                return Ok(getBookDto);
             }
             catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-
         }
-
 
 
         /// <summary>
