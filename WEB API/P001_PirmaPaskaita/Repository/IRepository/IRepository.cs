@@ -10,6 +10,7 @@ namespace WebAppMSSQL.Repository.IRepository
         List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);
         TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true);
         //List<TEntity> Filter(Expression<Func<TEntity, bool>>? filter = null);
+        //List<Book> Filter(Book book); 
         void Create(TEntity entity);
         void Remove(TEntity entity);
         void Save();

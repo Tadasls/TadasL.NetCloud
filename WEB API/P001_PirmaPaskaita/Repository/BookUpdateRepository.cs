@@ -1,5 +1,6 @@
 ﻿using L05_Tasks_MSSQL.Data;
 using L05_Tasks_MSSQL.Models;
+using System.Linq;
 using WebAppMSSQL.Repository.IRepository;
 
 namespace WebAppMSSQL.Repository
@@ -26,7 +27,10 @@ namespace WebAppMSSQL.Repository
         {
             //var books = _db.Books.Where(e => e.Title == book.Title && e.Author == book.Author && e.ECoverType == book.ECoverType).ToList();
 
-            var books = _db.Books.Where(b => b.Title.Contains(book.Title != null ? book.Title : "") || b.Author.Contains(book.Author != null ? book.Author : "")).ToList();
+            var books = _db.Books
+                .Where(b => b.Title.Contains(book.Title != null ? book.Title : "") 
+                         || b.Author.Contains(book.Author != null ? book.Author : ""))
+                .ToList();
 
             return  books;
         }
