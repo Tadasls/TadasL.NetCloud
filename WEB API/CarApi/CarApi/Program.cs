@@ -1,4 +1,9 @@
 
+using CarApi.Database;
+using CarApi.Models;
+using CarApi.Repositories;
+using CarApi.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace CarApi
@@ -10,6 +15,13 @@ namespace CarApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<CarContext>(options =>
+            {
+                options.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
+            });
+
+            builder.Services.AddTransient<IRepository<Car>, CarRepository>();
+            builder.Services.AddTransient<ICarAdapter, CarAdapter>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,8 +34,6 @@ namespace CarApi
                options.IncludeXmlComments(xmlPath);
            });
 
-
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -34,9 +44,7 @@ namespace CarApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
 
             app.MapControllers();
 

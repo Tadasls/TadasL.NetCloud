@@ -131,11 +131,11 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
-        [HttpPost("Filtravimas")]
+        [HttpGet("Filtravimas")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<GetBookDto>> Filter(FilterBooksRequestDto req)
+        public ActionResult<IEnumerable<GetBookDto>> Filter([FromQuery] FilterBooksRequestDto req)
                {
             try
             {

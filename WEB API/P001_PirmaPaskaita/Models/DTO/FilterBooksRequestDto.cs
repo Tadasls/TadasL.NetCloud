@@ -9,6 +9,7 @@ namespace L05_Tasks_MSSQL.Models.DTO
 
         }
 
+      
         public FilterBooksRequestDto(string pavadinimas, string autorius, string knygosTipas)
         {
             Pavadinimas = pavadinimas;
