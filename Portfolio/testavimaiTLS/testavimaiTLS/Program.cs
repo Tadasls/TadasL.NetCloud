@@ -21,8 +21,10 @@ namespace testavimaiTLS
 
             // NemanoSprendimas3();
 
-            PenktadienaSprendimas();
+            // PenktadienaSprendimas();
+            // SestaDienaSprendimas();
 
+            SestAntraDalis();
         }
         public static void PirmasSuskaiciavimoMetodas()
         {
@@ -463,27 +465,113 @@ namespace testavimaiTLS
 
         public static void PenktadienaSprendimas()
         {
-           
+
             string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input5.txt";
             var duomenuMasyvas = System.IO.File.ReadLines(filename);
 
-            (string header, list<string> linijos = duomenuMasyvas.Split("\n\n").ToArray().As(x=>x, x=>x);
+            //(string header, list<string> linijos = duomenuMasyvas.Split("\n\n").ToArray().As(x=>x, x=>x);
+
+            //foreach (var line in duomenuMasyvas)
+            //{
+
+            //}
+
+        }
+
+
+        public static void SestaDienaSprendimas()
+        {
+
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input6.txt";
+            var duomenuMasyvas = System.IO.File.ReadLines(filename);
+
+
+            char[] charArray = { };
 
             foreach (var line in duomenuMasyvas)
             {
+               charArray = line.ToCharArray();
+            }
 
-               
+
+            for (int i = 0; i <= charArray.Count()-5; i++)
+            {
+                bool arSutampa1 = charArray[i].Equals(charArray[i + 1]);
+                bool arSutampa2 = charArray[i].Equals(charArray[i + 2]);
+                bool arSutampa3 = charArray[i].Equals(charArray[i + 3]);
+                bool arSutampaA2 = charArray[i+1].Equals(charArray[i + 2]);
+                bool arSutampaA3 = charArray[i+1].Equals(charArray[i + 3]);
+                bool arSutampaB3 = charArray[i+2].Equals(charArray[i + 3]);
+
+                if (arSutampa1 || arSutampa2 || arSutampa3 || arSutampaA2 || arSutampaA3 || arSutampaB3)
+                {
+
+                    //Console.Write(charArray[i]);
+                    //Console.Write(charArray[i + 1]);
+                    //Console.Write(charArray[i + 2]);
+                    //Console.Write(charArray[i + 3]);
+                   
+                   
+
+                    //Console.WriteLine(" - Pasikartojimas");
+                } else
+                {
+                    Console.Write($" - Ats ???{i+4}??? - ");
+                    Console.Write(charArray[i]);
+                    Console.Write(charArray[i + 1]);
+                    Console.Write(charArray[i + 2]);
+                    Console.Write(charArray[i + 3]);
+                    Console.WriteLine();
+
+                }
+
+                //1876
 
 
 
             }
 
 
+
+
+
+
+
+
+
+
         }
-       
+
+
+        public static void SestAntraDalis()
+        {
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input6.txt";
+
+            var data = (from eilute in File.ReadLines(filename)
+                        where !string.IsNullOrEmpty(eilute)
+                        select eilute).ToArray();
 
 
 
+            var line = data[0];
+
+            for (var idx = 0; idx < line.Length - 3; ++idx)
+            {
+                if (line.Substring(idx).Take(14).Distinct().Count() == 14)   
+                {
+                    Console.WriteLine(idx + 14);
+                }
+
+               
+
+
+            }
+
+
+            //2202
+
+
+        }
 
 
 
