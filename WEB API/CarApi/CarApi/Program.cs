@@ -20,7 +20,7 @@ namespace CarApi
                 options.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
             });
 
-            builder.Services.AddTransient<IRepository<Car>, CarRepository>();
+            builder.Services.AddTransient<ICarRepository, CarRepository>();
             builder.Services.AddTransient<ICarAdapter, CarAdapter>();
 
             builder.Services.AddControllers();

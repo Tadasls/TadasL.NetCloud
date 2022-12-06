@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
 
@@ -32,32 +33,7 @@ namespace L05_Tasks_MSSQL.Controllers
             _bookRepo = bookRepo;
         }
 
-       
-        /// <summary>
-        /// Get skirtas gauti visa knygų sarasa
-        /// </summary>
-        /// <returns>?????????????????? ar sita vieta veikia ??????? </returns>
-        /// <response code="200">gavus 200 reiskia kad uzklausa pavyko ir sekmingai grazintas rezultatas</response>
-        /// <response code="500">500 serverio tipo klaidos.. Amen!</response>
-        [HttpGet("Visos Knygos")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetBookDto>))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<GetBookDto>> GetBooks()
-        {
-            _logger.LogInformation("Metodo Get iskvietimo laikas yra - {0} ", DateTime.Now);
-            try
-            {
-                _logger.LogInformation("paieskos metodas su rezultatai buvo yvykdytas tokiu metu {1} ", DateTime.Now);
-                return Ok(_bookRepo.GetAll()
-                    .Select(book => _wrapper.Bind(book))
-                    .ToList());
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Metodas Get nuluzimo laikas yra - {0}", DateTime.Now);
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
+
 
         /// <summary>
         /// Metodas sugrazina viena knyga is duomenu bazes pagal paduota id
@@ -102,7 +78,6 @@ namespace L05_Tasks_MSSQL.Controllers
             }
         }
 
-
         /// <summary>
         /// kontroleris skirtas sukuria nauja knyga
         /// </summary>
@@ -131,39 +106,42 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
-        [HttpGet("Filtravimas")]
+
+
+        /// <summary>
+        /// Get skirtas gauti visa knygų sarasa ir filtruoti
+        /// </summary>
+        /// <returns>?????????????????? ar sita vieta veikia ??????? </returns>
+        /// <response code="200">gavus 200 reiskia kad uzklausa pavyko ir sekmingai grazintas rezultatas</response>
+        /// <response code="500">500 serverio tipo klaidos.. Amen!</response>
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<GetBookDto>> Filter([FromQuery] FilterBooksRequestDto req)
-               {
-            try
-            {
-                if (req == null)
-                {
-                    _logger.LogError("Filtravimo iskvietimo laikas buvo - {1} negalejo surasti irasu nes nebuvo paduoti nauji duomenys", DateTime.Now);
-                    return BadRequest();
-                }
+        public ActionResult<IEnumerable<GetBookDto>> Get([FromQuery] FilterBooksRequestDto req)
+        {
 
-                var book = _wrapper.Bind(req);
-                var books = _bookRepo.Filter(book);
-                if (books?.Count == 0)
-                {
-                    _logger.LogError("Filtravimo   iskvietimo laikas buvo - {1} nesurado nurodytu knygu nes ju nebuvo", DateTime.Now);
-                    return NotFound();
-                }
+            _logger.LogInformation("Getting Books list with parameters {req}", JsonConvert.SerializeObject(req));
 
-                IEnumerable<GetBookDto> getBookDto = books.Select(d => _wrapper.Bind(d)).ToList();
+            IEnumerable<Book> entities = _bookRepo.GetAll().ToList();
 
-                _logger.LogInformation("Filtravimas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
-                return Ok(getBookDto);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            if (req.Autorius != null)
+                entities = entities.Where(x => x.Author == req.Autorius);
+
+            if (req.Pavadinimas != null)
+                entities = entities.Where(x => x.Title == req.Pavadinimas);
+
+            if (req.KnygosTipas != null)
+                entities = entities.Where(x => x.ECoverType == (ECoverType)Enum.Parse(typeof(ECoverType), req.KnygosTipas));
+
+
+            var model = entities?.Select(x => _wrapper.Bind(x));
+
+            return Ok(model);
 
         }
+
+
 
 
         /// <summary>
@@ -193,14 +171,12 @@ namespace L05_Tasks_MSSQL.Controllers
             foundBook.ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), updateBookDto.KnygosTipas);
             foundBook.PublishYear = updateBookDto.Isleista.Year;
 
-
             _bookRepo.Update(foundBook);
            
             _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             return NoContent();
           
         }
-
 
         /// <summary>
         /// Trinama knyga is duomenu bases pagal nurodoma id
@@ -229,7 +205,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
                 _bookRepo.Remove(book);
              
-
                 _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas ir ivykdytas  tokiu laiku - {1} ", id, DateTime.Now);
                 return NoContent();
             }

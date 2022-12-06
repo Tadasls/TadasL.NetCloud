@@ -1,4 +1,5 @@
 ﻿using L05_Tasks_MSSQL.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace L05_Tasks_MSSQL.Models.DTO
 {
@@ -8,7 +9,6 @@ namespace L05_Tasks_MSSQL.Models.DTO
         {
 
         }
-
       
         public FilterBooksRequestDto(string pavadinimas, string autorius, string knygosTipas)
         {
@@ -17,10 +17,22 @@ namespace L05_Tasks_MSSQL.Models.DTO
             KnygosTipas = knygosTipas;
         }
 
-        public string Pavadinimas { get; set; }
+        /// <summary>
+        /// Knygos pavadinimas
+        /// </summary>
+        [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
+        public string? Pavadinimas { get; set; }
 
-        public string Autorius { get; set; }
+        /// <summary>
+        /// Knygos Autorius
+        /// </summary>
+        [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
+        public string? Autorius { get; set; }
 
-        public string KnygosTipas { get; set; }
+        /// <summary>
+        /// KnygosTipas
+        /// </summary>
+        [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
+        public string? KnygosTipas { get; set; }
     }
 }
