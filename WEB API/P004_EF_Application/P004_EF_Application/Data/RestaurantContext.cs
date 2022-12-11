@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using P004_EF_Application.Models;
+using P04_EF_Applying_To_API.Models;
 
 namespace P004_EF_Application.Data
 {
@@ -12,6 +13,8 @@ namespace P004_EF_Application.Data
 
         public DbSet<Dish> Dishes { get; set; } 
         public DbSet<RecipeItem> RecipyItems { get; set; }
+        public DbSet<LocalUser> LocalUsers { get; set; }   
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

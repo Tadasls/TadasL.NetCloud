@@ -1,8 +1,8 @@
-﻿using L05_Tasks_MSSQL.Models.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebAppMSSQL.Models.Enums;
 
-namespace L05_Tasks_MSSQL.Models
+namespace WebAppMSSQL.Models
 {
     public class Book
     {
@@ -20,10 +20,18 @@ namespace L05_Tasks_MSSQL.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Author { get; set; }
         public ECoverType ECoverType { get; set; }
         public int PublishYear { get; set; }
         public DateTime UpdateDateTime { get; set; }
+        public int Stock { get; set; }
+        virtual public ICollection<Reservation> Reservations { get; set; }
+        
+
+
+
     }
 }

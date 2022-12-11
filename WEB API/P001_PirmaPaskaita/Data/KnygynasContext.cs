@@ -1,14 +1,17 @@
-﻿using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.Enums;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.Enums;
 
-namespace L05_Tasks_MSSQL.Data
+namespace WebAppMSSQL.Data
 {
     public class KnygynasContext : DbContext
     {
         public KnygynasContext(DbContextOptions<KnygynasContext> options) : base(options) { }
-
         public DbSet<Book> Books { get; set; }
+        public DbSet<LocalUser> LocalUsers { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +33,10 @@ namespace L05_Tasks_MSSQL.Data
                 new Book(9, "The Hobbit", "John Tolkien ", ECoverType.Hardcover, 1937),
                 new Book(10, "The Dream Of The Red Chambe", "Cao Xueqin", ECoverType.Paperback, 1791)
                 );
+
+
         }
+
     }
 }
 

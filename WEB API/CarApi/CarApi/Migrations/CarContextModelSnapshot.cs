@@ -96,6 +96,29 @@ namespace CarApi.Migrations
                             Year = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
+
+            modelBuilder.Entity("CarApi.Models.LocalUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocalUsers");
+                });
 #pragma warning restore 612, 618
         }
     }

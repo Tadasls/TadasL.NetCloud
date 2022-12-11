@@ -1,7 +1,7 @@
-﻿using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.DTO;
+﻿using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.DTO.BookDTO;
 
-namespace L05_Tasks_MSSQL.Services
+namespace WebAppMSSQL.Interfaces
 {
     public interface IBookWrapper
     {

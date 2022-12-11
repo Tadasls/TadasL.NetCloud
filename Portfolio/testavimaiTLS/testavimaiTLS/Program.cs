@@ -24,7 +24,7 @@ namespace testavimaiTLS
             // PenktadienaSprendimas();
             // SestaDienaSprendimas();
 
-            SestAntraDalis();
+           // SestAntraDalis();
         }
         public static void PirmasSuskaiciavimoMetodas()
         {
@@ -527,17 +527,7 @@ namespace testavimaiTLS
 
                 //1876
 
-
-
             }
-
-
-
-
-
-
-
-
 
 
         }
@@ -572,6 +562,17 @@ namespace testavimaiTLS
 
 
         }
+
+
+        public static void SeptintaDalis()
+        {
+
+
+        }
+
+
+
+
 
 
 

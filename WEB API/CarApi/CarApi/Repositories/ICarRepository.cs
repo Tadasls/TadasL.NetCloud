@@ -2,6 +2,9 @@
 
 namespace CarApi.Repositories
 {
-    public interface ICarRepository : IRepository<Car> { }
+    public interface ICarRepository : IRepository<Car>
+    {
+
+    }
 
 }

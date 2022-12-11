@@ -1,6 +1,4 @@
-﻿using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.DTO;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace WebAppMSSQL.Repository.IRepository
 {
@@ -9,8 +7,7 @@ namespace WebAppMSSQL.Repository.IRepository
         // CRUD
         List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);
         TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true);
-        //List<TEntity> Filter(Expression<Func<TEntity, bool>>? filter = null);
-        //List<Book> Filter(Book book); 
+
         void Create(TEntity entity);
         void Remove(TEntity entity);
         void Save();

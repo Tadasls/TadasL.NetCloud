@@ -1,4 +1,4 @@
-﻿namespace L05_Tasks_MSSQL.Models.Enums
+﻿namespace WebAppMSSQL.Models.Enums
 {
     public enum ECoverType {Hardcover, Paperback, Electronic}
 }

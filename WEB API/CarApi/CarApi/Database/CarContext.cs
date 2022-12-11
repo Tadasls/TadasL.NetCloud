@@ -14,6 +14,10 @@ namespace CarApi.Database
 
         public DbSet<Car> Cars { get; set; } //cia yra db lentele
 
+        public DbSet<LocalUser> LocalUsers { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Car>().HasKey(x => x.Id);

@@ -1,13 +1,14 @@
-﻿using L05_Tasks_MSSQL.Data;
-using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.DTO;
-using L05_Tasks_MSSQL.Models.Enums;
-using L05_Tasks_MSSQL.Services;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Data;
+using WebAppMSSQL.Interfaces;
+using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.DTO.BookDTO;
+using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
 
@@ -18,22 +19,17 @@ namespace L05_Tasks_MSSQL.Controllers
     public class KnygynasController : ControllerBase
     {
 
-        //private readonly KnygynasContext _knygynasDB;
         private readonly IBookWrapper _wrapper;
         private readonly ILogger<KnygynasController> _logger;
         private readonly IUpdateBookRepository _bookRepo;
-
-        //KnygynasContext knyguDB,
+               
 
         public KnygynasController(IBookWrapper wrapper, ILogger<KnygynasController> logger, IUpdateBookRepository bookRepo)
         {
-            //_knygynasDB = knyguDB;
             _wrapper = wrapper;
             _logger = logger;
             _bookRepo = bookRepo;
         }
-
-
 
         /// <summary>
         /// Metodas sugrazina viena knyga is duomenu bazes pagal paduota id
@@ -78,35 +74,6 @@ namespace L05_Tasks_MSSQL.Controllers
             }
         }
 
-        /// <summary>
-        /// kontroleris skirtas sukuria nauja knyga
-        /// </summary>
-        /// <param name="createBookDto">tai tra naujos Knygos objektas</param>
-        /// <returns>Grazina rezultata greiciausiais kur niekas nemato... </returns>
-        /// <response code="201">201 pranesimas reiskia kad Sekmingai į DB įrašyta nauja knyga</response>
-        /// <response code="400">Blogas kreipimasis gautas</response>
-        /// <response code="500">Baisi klaida! nes ji serverio</response>
-        [HttpPost("CreateBook")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<CreateBookDto> CreateBook(CreateBookDto createBookDto)
-        {
-            if (createBookDto == null)
-            {
-                _logger.LogError("sukurimo iskvietimo laikas buvo - {1} negalejo sukurti iraso nes nebuvo  paduoti nauji duomenys", DateTime.Now);
-                return BadRequest();
-            }
-
-            Book newBook = _wrapper.Bind(createBookDto);
-            _bookRepo.Create(newBook);
-
-            _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
-            return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
-        }
-
-
-
 
         /// <summary>
         /// Get skirtas gauti visa knygų sarasa ir filtruoti
@@ -142,14 +109,43 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
+        /// <summary>
+        /// kontroleris skirtas sukuria nauja knyga
+        /// </summary>
+        /// <param name="createBookDto">tai tra naujos Knygos objektas</param>
+        /// <returns>Grazina rezultata greiciausiais kur niekas nemato... </returns>
+        /// <response code="201">201 pranesimas reiskia kad Sekmingai į DB įrašyta nauja knyga</response>
+        /// <response code="400">Blogas kreipimasis gautas</response>
+        /// <response code="500">Baisi klaida! nes ji serverio</response>
+        [HttpPost("CreateBook")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<CreateBookDto> CreateBook(CreateBookDto createBookDto)
+        {
+            if (createBookDto == null)
+            {
+                _logger.LogError("sukurimo iskvietimo laikas buvo - {1} negalejo sukurti iraso nes nebuvo  paduoti nauji duomenys", DateTime.Now);
+                return BadRequest();
+            }
+
+            Book newBook = _wrapper.Bind(createBookDto);
+            _bookRepo.Create(newBook);
+
+            _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
+            return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
+        }
 
 
         /// <summary>
         /// Redaguojame Knygos informacija pagal nurodyta id
         /// </summary>
         /// <param name="id"> cia redaguojamos knygos id </param>
+        /// <param name="updateBookDto"> cia paduodama redaguojamos knygos </param>
         /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult UpdateBook(int id, UpdateBookDto updateBookDto)
         {
             if (id == 0 || updateBookDto == null)
@@ -188,6 +184,7 @@ namespace L05_Tasks_MSSQL.Controllers
         /// <response code="404">Nerastas adresas</response>
         /// <response code="500">Ziauri serverio klaida!</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -214,6 +211,9 @@ namespace L05_Tasks_MSSQL.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+
+
 
     }
 }

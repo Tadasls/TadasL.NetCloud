@@ -2,6 +2,7 @@ using CarApi.Models;
 using CarApi.Models.Dto;
 using CarApi.Repositories;
 using CarApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Mime;
@@ -70,6 +71,7 @@ namespace CarApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetCarResult>))]
         [Produces(MediaTypeNames.Application.Json)]
         public IActionResult Get([FromQuery] FilterCarRequest req)
@@ -119,6 +121,7 @@ namespace CarApi.Controllers
         /// <returns></returns>
         /// <response code="400">paduodamos informacijos validacijos klaidos </response>
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Produces(MediaTypeNames.Application.Json)]
@@ -155,6 +158,7 @@ namespace CarApi.Controllers
         /// <returns></returns>
         /// <response code="400">paduodamos informacijos validacijos klaidos </response>
         [HttpPut]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -194,6 +198,7 @@ namespace CarApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(int id)

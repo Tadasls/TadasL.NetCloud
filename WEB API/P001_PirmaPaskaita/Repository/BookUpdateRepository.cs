@@ -1,6 +1,6 @@
-﻿using L05_Tasks_MSSQL.Data;
-using L05_Tasks_MSSQL.Models;
-using System.Linq;
+﻿using System.Linq;
+using WebAppMSSQL.Data;
+using WebAppMSSQL.Models;
 using WebAppMSSQL.Repository.IRepository;
 
 namespace WebAppMSSQL.Repository
@@ -26,18 +26,6 @@ namespace WebAppMSSQL.Repository
         public List<Book> Filter(Book book)
         {
             //var books = _db.Books.Where(e => e.Title == book.Title && e.Author == book.Author && e.ECoverType == book.ECoverType).ToList();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using P004_EF_Application.Data;
@@ -24,6 +25,7 @@ namespace P004_EF_Application.Controllers
         /// </summary>
         /// <returns>All dishes in DB</returns>
         [HttpGet("dishes")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetDishDTO>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IEnumerable<GetDishDTO>> GetDishes()
@@ -75,6 +77,7 @@ namespace P004_EF_Application.Controllers
         }
 
         [HttpPost("dishes")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateDishDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -102,6 +105,7 @@ namespace P004_EF_Application.Controllers
         }
 
         [HttpDelete("dishes/delete/{id:int}")]
+        [Authorize(Roles = "super-admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -127,6 +131,7 @@ namespace P004_EF_Application.Controllers
         }
 
         [HttpPut("dishes/update/{id:int}")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

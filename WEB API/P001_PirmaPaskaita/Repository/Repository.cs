@@ -2,9 +2,7 @@
 using System.Linq.Expressions;
 using System.Linq;
 using WebAppMSSQL.Repository.IRepository;
-using L05_Tasks_MSSQL.Data;
-using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.DTO;
+using WebAppMSSQL.Data;
 
 namespace WebAppMSSQL.Repository
 {

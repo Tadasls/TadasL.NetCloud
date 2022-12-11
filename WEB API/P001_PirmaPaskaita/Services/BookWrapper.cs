@@ -1,8 +1,9 @@
-﻿using L05_Tasks_MSSQL.Models;
-using L05_Tasks_MSSQL.Models.DTO;
-using L05_Tasks_MSSQL.Models.Enums;
+﻿using WebAppMSSQL.Interfaces;
+using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.DTO.BookDTO;
+using WebAppMSSQL.Models.Enums;
 
-namespace L05_Tasks_MSSQL.Services
+namespace WebAppMSSQL.Services
 {
 
     public class BookWrapper : IBookWrapper

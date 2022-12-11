@@ -1,4 +1,4 @@
-﻿using L05_Tasks_MSSQL.Models;
+﻿using WebAppMSSQL.Models;
 
 namespace WebAppMSSQL.Repository.IRepository
 {
