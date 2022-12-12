@@ -8,13 +8,14 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
         {
 
         }
-        public UpdateBookDto(int id, DateTime isleista, string autorius, string pavadinimas, string knygosTipas)
+        public UpdateBookDto(int id, DateTime isleista, string autorius, string pavadinimas, string knygosTipas, int knyguKiekis)
         {
             Id = id;
             Isleista = isleista;
             Autorius = autorius;
             Pavadinimas = pavadinimas;
             KnygosTipas = knygosTipas;
+            KnyguKiekis = knyguKiekis;
         }
 
 
@@ -47,5 +48,11 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
         /// </summary>
         [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
         public string KnygosTipas { get; set; }
+
+        /// <summary>
+        /// Knygos kiekis
+        /// </summary>
+        [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
+        public int KnyguKiekis { get; set; }
     }
 }

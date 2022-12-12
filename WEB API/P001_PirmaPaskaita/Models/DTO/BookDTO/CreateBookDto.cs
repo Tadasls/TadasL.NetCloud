@@ -32,5 +32,11 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
         /// </summary>
         [MaxLength(50, ErrorMessage = "Mark cannot be longer than 50 characters")]
         public string KnygosTipas { get; set; }
+
+
+        /// <summary>
+        /// Knygos kiekis
+        /// </summary>
+        public int KnyguKiekis { get; set; }
     }
 }

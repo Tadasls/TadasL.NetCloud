@@ -1,10 +1,14 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Text;
 using WebAppMSSQL.Data;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO;
+using WebAppMSSQL.Models.DTO.UserTDO;
 using WebAppMSSQL.Repository.IRepository;
 using WebAppMSSQL.Services;
 using WebAppMSSQL.Services.IServices;
@@ -86,5 +90,62 @@ namespace WebAppMSSQL.Repository
             user.PasswordHash = null;
             return user;
         }
+
+
+        public List<GetUserDto> GetAll(Expression<Func<LocalUser, bool>>? filter = null)
+        {
+            IQueryable<LocalUser> users = _db.LocalUsers;
+            if (filter != null) users = _db.LocalUsers.Where(filter);
+
+            var userDto = new List<GetUserDto>();
+            foreach (var user in users)
+            {
+                userDto.Add(new GetUserDto()
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Role = user.Role,
+                    HasAmountOfBooks = user.HasAmountOfBooks
+                });
+
+            }
+            return userDto;
+        }
+
+
+
+        public GetUserDto Get(Expression<Func<LocalUser, bool>> filter)
+        {
+            LocalUser user = _db.LocalUsers.Where(filter).FirstOrDefault();
+            var userDto = new GetUserDto()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Role = user.Role,
+                HasAmountOfBooks = user.HasAmountOfBooks,
+                Debt = user.Debt,
+    };
+            return userDto;
+        }
+
+        public void UpdateTakenLibraryBooks(int userId, int modifier)
+        {
+            LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
+            user.HasAmountOfBooks += modifier;
+            _db.LocalUsers.Update(user);
+            _db.SaveChanges();
+        }
+
+
+        public bool Exist(int id)
+        {
+            return _db.LocalUsers.Any(x => x.Id == id);
+        }
+
+
+
+
+
+
     }
 }

@@ -15,8 +15,7 @@ namespace WebAppMSSQL.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Role { get; set; }
-
-        //papildyta rezervacijomis ir validacijomis
+        public int HasAmountOfBooks { get; set; }
         virtual public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
         [CustomValidation(typeof(LocalUser), "RegistrationValidation")]
@@ -42,12 +41,11 @@ namespace WebAppMSSQL.Models
             }
         }
 
-        public const int MAX_BORROWED_BOOKS = 5;
+        public int MAX_BORROWED_BOOKS = 5;
 
-        public const decimal MAX_DEBT = 50.0m;
+        public double MAX_DEBT = 50;
 
-        public const int BORROW_PERIOD_DAYS = 28;
-
+        public int BORROW_PERIOD_DAYS = 28;
 
         [NotMapped]
         public bool IsActive

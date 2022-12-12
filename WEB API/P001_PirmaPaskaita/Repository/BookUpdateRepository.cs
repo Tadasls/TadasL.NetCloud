@@ -16,6 +16,7 @@ namespace WebAppMSSQL.Repository
 
         public Book Update(Book book)
         {
+           
             book.UpdateDateTime = DateTime.Now;
             _db.Books.Update(book);
             _db.SaveChanges();
@@ -26,7 +27,6 @@ namespace WebAppMSSQL.Repository
         public List<Book> Filter(Book book)
         {
             //var books = _db.Books.Where(e => e.Title == book.Title && e.Author == book.Author && e.ECoverType == book.ECoverType).ToList();
-
 
 
             var books = _db.Books
@@ -40,7 +40,13 @@ namespace WebAppMSSQL.Repository
 
         }
 
-
+        public void UpdateTakenLibraryBooksKN(int bookId, int modifier)
+        {
+            Book book = _db.Books.First(u => u.Id == bookId);
+            book.Stock += modifier;
+            _db.Books.Update(book);
+            _db.SaveChanges();
+        }
 
 
 

@@ -8,13 +8,14 @@ namespace WebAppMSSQL.Models
     {
         public Book() { }
 
-        public Book(int id, string title, string author, ECoverType eCoverType, int publishYear)
+        public Book(int id, string title, string author, ECoverType eCoverType, int publishYear, int stock)
         {
             Id = id;
             Title = title;
             Author = author;
             ECoverType = eCoverType;
             PublishYear = publishYear;
+            Stock = stock;
         }
 
         [Key]
@@ -26,8 +27,8 @@ namespace WebAppMSSQL.Models
         public string Author { get; set; }
         public ECoverType ECoverType { get; set; }
         public int PublishYear { get; set; }
-        public DateTime UpdateDateTime { get; set; }
         public int Stock { get; set; }
+        public DateTime UpdateDateTime { get; set; }
         virtual public ICollection<Reservation> Reservations { get; set; }
         
 

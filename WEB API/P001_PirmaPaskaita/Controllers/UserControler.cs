@@ -1,18 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMSSQL.Models.DTO;
+using WebAppMSSQL.Models.DTO.UserTDO;
+using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository.IRepository;
 
 namespace L05_Tasks_MSSQL.Controllers
 {
-
-    // knyga grazinta per 4 sav. // prie knygos propercio dateTime -  paskolinimo laikas ? ir Baudos kastai double DelayFine pavelavimo kastai 
-    // klientas skolinasi iki 5 knygu /  knygu kiekis bibliotekoje  user list of books
-    // kliento pasiskolintos knygu krepselis ?  user list of books
-    // sekretore administruoja knygu skaiciu.. updatina book Qnt
-
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -56,5 +50,37 @@ namespace L05_Tasks_MSSQL.Controllers
 
             return Ok();
         }
+
+        [HttpGet("Get/{id:int}")]
+        public ActionResult<GetUserDto> GetUserById(int id)
+        {
+
+            if (id == 0)
+            {
+                return BadRequest("nera tokio ID");
+            }
+            var user = _userRepo.Get(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound("nera tokio vartotojo");
+            }
+
+            return Ok(user);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

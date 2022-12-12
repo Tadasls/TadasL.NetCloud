@@ -11,13 +11,13 @@ namespace WebAppMSSQL.Models.ReservationsDTO
 
         }
 
-        public UpdateReservationDTO( DateTime borrowDate, DateTime returnDate, DateTime? actualReturnDate)  // ,int id,   , double delayFine
+        public UpdateReservationDTO(DateTime borrowDate, DateTime returnDate, DateTime? actualReturnDate, double delayFine)  // ,int id
         {
-           // Id = id;
+            // Id = id;
             BorrowDate = borrowDate;
             ReturnDate = returnDate;
             ActualReturnDate = actualReturnDate;
-           // DelayFine = delayFine;
+            DelayFine = delayFine;
         }
 
         //public int Id { get; set; }
@@ -33,9 +33,14 @@ namespace WebAppMSSQL.Models.ReservationsDTO
         [DataType(DataType.Date)]
         [Display(Name = "Actual Return Date")]
         public DateTime? ActualReturnDate { get; set; }
-        //public double DelayFine { get; set; }
 
+        public double DelayFine { get; set; }
 
+        [Display(Name = "Kliento ID")]
+        public int LocalUserId { get; set; }
+
+        [Display(Name = "Knygos ID")]
+        public int BookId { get; set; }
 
 
 

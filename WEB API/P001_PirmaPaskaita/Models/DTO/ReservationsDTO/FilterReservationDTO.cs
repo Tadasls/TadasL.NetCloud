@@ -22,17 +22,17 @@ namespace WebAppMSSQL.Models.ReservationsDTO
      
         [DataType(DataType.Date)]
         [Display(Name = "Borrow Date")]
-        public DateTime BorrowDate { get; set; }
+        public DateTime? BorrowDate { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Return Date")]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         [Display(Name = "Kliento ID")]
-        public int LocalUserId { get; set; }
+        public int? LocalUserId { get; set; }
 
         [Display(Name = "Knygos ID")]
-        public int BookId { get; set; }
+        public int? BookId { get; set; }
 
 
 

@@ -11,18 +11,14 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    [Migration("20221211104734_Nuline")]
-    partial class Nuline
+    [Migration("20221212144039_nuline")]
+    partial class nuline
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
             modelBuilder.Entity("WebAppMSSQL.Models.Book", b =>
                 {
@@ -40,6 +36,9 @@ namespace WebAppMSSQL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PublishYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Stock")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -60,6 +59,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Several authors",
                             ECoverType = "Paperback",
                             PublishYear = 1,
+                            Stock = 10,
                             Title = "The Bible",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -69,6 +69,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Mao Zedong",
                             ECoverType = "Hardcover",
                             PublishYear = 1964,
+                            Stock = 10,
                             Title = "Quotations from Chairman Mao Tse-Tung",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -78,6 +79,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Several authors",
                             ECoverType = "Hardcover",
                             PublishYear = 700,
+                            Stock = 10,
                             Title = "The Quran",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -87,6 +89,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "John Tolkien",
                             ECoverType = "Hardcover",
                             PublishYear = 1954,
+                            Stock = 10,
                             Title = "The Lord Of The Rings",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -96,6 +99,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Antoine de Saint-Exupery",
                             ECoverType = "Electronic",
                             PublishYear = 1943,
+                            Stock = 10,
                             Title = "Le Petit Prince",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -105,6 +109,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Joanne Rowling",
                             ECoverType = "Paperback",
                             PublishYear = 1997,
+                            Stock = 10,
                             Title = "Harry Potter and the Philosopher’s Stone",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -114,6 +119,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Robert Baden-Powell",
                             ECoverType = "Paperback",
                             PublishYear = 1908,
+                            Stock = 10,
                             Title = "Scouting for Boys",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -123,6 +129,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Agatha Christie",
                             ECoverType = "Paperback",
                             PublishYear = 1939,
+                            Stock = 10,
                             Title = "And Then There Were None",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -132,6 +139,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "John Tolkien ",
                             ECoverType = "Hardcover",
                             PublishYear = 1937,
+                            Stock = 10,
                             Title = "The Hobbit",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -141,6 +149,7 @@ namespace WebAppMSSQL.Migrations
                             Author = "Cao Xueqin",
                             ECoverType = "Paperback",
                             PublishYear = 1791,
+                            Stock = 10,
                             Title = "The Dream Of The Red Chambe",
                             UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -154,6 +163,9 @@ namespace WebAppMSSQL.Migrations
 
                     b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("HasAmountOfBooks")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -210,7 +222,7 @@ namespace WebAppMSSQL.Migrations
 
                     b.HasIndex("LocalUserId");
 
-                    b.ToTable("Reservation");
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("WebAppMSSQL.Models.Reservation", b =>

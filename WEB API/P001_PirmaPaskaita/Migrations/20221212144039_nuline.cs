@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebAppMSSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class Nuline : Migration
+    public partial class nuline : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,6 +23,7 @@ namespace WebAppMSSQL.Migrations
                     Author = table.Column<string>(type: "TEXT", nullable: false),
                     ECoverType = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     PublishYear = table.Column<int>(type: "INTEGER", nullable: false),
+                    Stock = table.Column<int>(type: "INTEGER", nullable: false),
                     UpdateDateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -41,6 +42,7 @@ namespace WebAppMSSQL.Migrations
                     PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: false),
                     Role = table.Column<string>(type: "TEXT", nullable: false),
+                    HasAmountOfBooks = table.Column<int>(type: "INTEGER", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
@@ -50,7 +52,7 @@ namespace WebAppMSSQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reservation",
+                name: "Reservations",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -63,15 +65,15 @@ namespace WebAppMSSQL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reservation", x => x.Id);
+                    table.PrimaryKey("PK_Reservations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reservation_Books_BookId",
+                        name: "FK_Reservations_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservation_LocalUsers_LocalUserId",
+                        name: "FK_Reservations_LocalUsers_LocalUserId",
                         column: x => x.LocalUserId,
                         principalTable: "LocalUsers",
                         principalColumn: "Id",
@@ -80,29 +82,29 @@ namespace WebAppMSSQL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "ECoverType", "PublishYear", "Title", "UpdateDateTime" },
+                columns: new[] { "Id", "Author", "ECoverType", "PublishYear", "Stock", "Title", "UpdateDateTime" },
                 values: new object[,]
                 {
-                    { 1, "Several authors", "Paperback", 1, "The Bible", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Mao Zedong", "Hardcover", 1964, "Quotations from Chairman Mao Tse-Tung", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "Several authors", "Hardcover", 700, "The Quran", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, "John Tolkien", "Hardcover", 1954, "The Lord Of The Rings", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, "Antoine de Saint-Exupery", "Electronic", 1943, "Le Petit Prince", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, "Joanne Rowling", "Paperback", 1997, "Harry Potter and the Philosopher’s Stone", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, "Robert Baden-Powell", "Paperback", 1908, "Scouting for Boys", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, "Agatha Christie", "Paperback", 1939, "And Then There Were None", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, "John Tolkien ", "Hardcover", 1937, "The Hobbit", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 10, "Cao Xueqin", "Paperback", 1791, "The Dream Of The Red Chambe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Several authors", "Paperback", 1, 10, "The Bible", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Mao Zedong", "Hardcover", 1964, 10, "Quotations from Chairman Mao Tse-Tung", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Several authors", "Hardcover", 700, 10, "The Quran", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, "John Tolkien", "Hardcover", 1954, 10, "The Lord Of The Rings", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, "Antoine de Saint-Exupery", "Electronic", 1943, 10, "Le Petit Prince", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, "Joanne Rowling", "Paperback", 1997, 10, "Harry Potter and the Philosopher’s Stone", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, "Robert Baden-Powell", "Paperback", 1908, 10, "Scouting for Boys", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, "Agatha Christie", "Paperback", 1939, 10, "And Then There Were None", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, "John Tolkien ", "Hardcover", 1937, 10, "The Hobbit", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, "Cao Xueqin", "Paperback", 1791, 10, "The Dream Of The Red Chambe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_BookId",
-                table: "Reservation",
+                name: "IX_Reservations_BookId",
+                table: "Reservations",
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_LocalUserId",
-                table: "Reservation",
+                name: "IX_Reservations_LocalUserId",
+                table: "Reservations",
                 column: "LocalUserId");
         }
 
@@ -110,7 +112,7 @@ namespace WebAppMSSQL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Reservation");
+                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "Books");

@@ -14,7 +14,8 @@ namespace WebAppMSSQL.Services
             {
                 Id = book.Id,
                 LeidybosMetai = book.PublishYear,
-                PavadinimasIrAutorius = book.Title + " " + book.Author
+                PavadinimasIrAutorius = book.Title + " " + book.Author,
+                KnyguKiekis = book.Stock,
             };
         }
 
@@ -25,7 +26,8 @@ namespace WebAppMSSQL.Services
                 Title = book.Pavadinimas,
                 Author = book.Autorius,
                 PublishYear = book.Isleista.Year,
-                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas)
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
+                Stock = book.KnyguKiekis,
             };
         }
 
@@ -37,7 +39,8 @@ namespace WebAppMSSQL.Services
                 Title = book.Pavadinimas,
                 Author = book.Autorius,
                 PublishYear = book.Isleista.Year,
-                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas)
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
+                Stock = book.KnyguKiekis,
             };
         }
         public Book Bind(FilterBooksRequestDto book)

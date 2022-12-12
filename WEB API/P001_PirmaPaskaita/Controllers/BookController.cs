@@ -145,7 +145,7 @@ namespace L05_Tasks_MSSQL.Controllers
         /// <param name="updateBookDto"> cia paduodama redaguojamos knygos </param>
         /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
         [HttpPut("{id}")]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public ActionResult UpdateBook(int id, UpdateBookDto updateBookDto)
         {
             if (id == 0 || updateBookDto == null)
@@ -162,12 +162,15 @@ namespace L05_Tasks_MSSQL.Controllers
                 return NotFound();
             }
 
-            foundBook.Author = updateBookDto.Autorius;
-            foundBook.Title = updateBookDto.Pavadinimas;
-            foundBook.ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), updateBookDto.KnygosTipas);
-            foundBook.PublishYear = updateBookDto.Isleista.Year;
+            //foundBook.Author = updateBookDto.Autorius;
+            //foundBook.Title = updateBookDto.Pavadinimas;
+            //foundBook.ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), updateBookDto.KnygosTipas);
+            //foundBook.PublishYear = updateBookDto.Isleista.Year;
+            
+            Book book = _wrapper.Bind(updateBookDto);
 
-            _bookRepo.Update(foundBook);
+
+            _bookRepo.Update(book);
            
             _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             return NoContent();

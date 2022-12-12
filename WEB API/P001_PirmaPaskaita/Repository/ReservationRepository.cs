@@ -4,6 +4,7 @@ using System.Linq;
 using WebAppMSSQL.Repository.IRepository;
 using WebAppMSSQL.Data;
 using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.ReservationsDTO;
 
 namespace WebAppMSSQL.Repository
 {
@@ -81,6 +82,21 @@ namespace WebAppMSSQL.Repository
         {
             _dbSet.Update(entity);
             Save();
+        }
+
+
+        public List<Reservation> Filter(Reservation reservation)
+        {
+            
+            var reservations = _db.Reservations
+                .Where(b => b.LocalUserId.Equals(reservation.LocalUserId != null ? reservation.LocalUserId : "")
+                         || b.BookId.Equals(reservation.BookId != null ? reservation.BookId : "")
+                         ).ToList();
+
+            return reservations;
+
+
+
         }
 
 

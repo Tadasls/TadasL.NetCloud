@@ -6,5 +6,6 @@ namespace WebAppMSSQL.Repository.IRepository
     {
         Book Update(Book book);
         List<Book> Filter(Book book);
+        void UpdateTakenLibraryBooksKN(int bookId, int modifier);
     }
 }

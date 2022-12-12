@@ -27,6 +27,9 @@ namespace CarApi
             builder.Services.AddTransient<ICarRepository, CarRepository>();
             builder.Services.AddTransient<ICarAdapter, CarAdapter>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICarLeasingService, CarLeasingService>();
+
+            
 
             var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
             builder.Services.AddAuthentication(x =>

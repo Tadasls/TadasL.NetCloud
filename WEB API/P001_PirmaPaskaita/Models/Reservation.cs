@@ -10,17 +10,18 @@ namespace WebAppMSSQL.Models
 
         }
 
-        public Reservation(int id, DateTime borrowDate, DateTime? actualReturnDate, int localUserId, LocalUser localUser, int bookId, Book book) // DateTime returnDate,
+        public Reservation(int id, DateTime borrowDate, DateTime returnDate, DateTime? actualReturnDate, int localUserId, LocalUser localUser, int bookId, Book book) 
         {
             Id = id;
             BorrowDate = borrowDate;
-           // ReturnDate = returnDate;
+            ReturnDate = returnDate;
             ActualReturnDate = actualReturnDate;
             LocalUserId = localUserId;
             LocalUser = localUser;
             BookId = bookId;
             Book = book;
         }
+
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,20 +34,6 @@ namespace WebAppMSSQL.Models
         [Display(Name = "Return Date")]
         public DateTime ReturnDate { get; set; }
 
-        //public DateTime ReturnDate
-        //{
-        //    get
-        //    {
-        //        if (BorrowDate != null)
-        //        {
-        //            DateTime ReturnDate = BorrowDate.AddDays(28);
-        //        }
-
-        //        return ReturnDate;
-        //    }
-        //}
-
-
         [DataType(DataType.Date)]
         [Display(Name = "Actual Return Date")]
         public DateTime? ActualReturnDate { get; set; }
@@ -55,22 +42,28 @@ namespace WebAppMSSQL.Models
         [Display(Name = "Kliento ID")]
         public int LocalUserId { get; set; }
 
-        virtual  public LocalUser LocalUser { get; set; }
+        virtual  public LocalUser LocalUser { get; set; } // virtualus
 
         [Required]
         [Display(Name = "Knygos ID")]
         public int BookId { get; set; }
 
-        virtual public Book Book { get; set; }
+        virtual public Book Book { get; set; } // virtualus
 
         [Display(Name = "Knygos Skola")]
         public double DelayFine 
         {
             get
             {
-                double skola = (double)DelayDays * 0.2; 
-            return skola;
+                double skola = (double)DelayDays * 0.2;
+                if (skola >= 50)
+                {
+                    return skola = 50;
+                }
+
+                return skola;
             }
+        
         }
   
         [NotMapped]
@@ -91,14 +84,15 @@ namespace WebAppMSSQL.Models
                 }
                 else if (ReturnDate < DateTime.Now)
                 {
-                   return (int)(DateTime.Now - ReturnDate).TotalDays;
+                    return (int)(DateTime.Now - ReturnDate).TotalDays;
                 }
-                    else
-                    {
-                        return 0;
-                    }
+                else
+                {
+                    return 0;
+                }
 
             }
+            
 
 
 
