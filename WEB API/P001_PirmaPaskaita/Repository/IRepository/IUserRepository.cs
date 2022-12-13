@@ -12,6 +12,7 @@ namespace WebAppMSSQL.Repository.IRepository
         bool IsUniqueUser(string username);
         LoginResponse Login(LoginRequest loginRequest);
         LocalUser Register(RegistrationRequest registrationRequest);
-        void UpdateTakenLibraryBooks(int userId, int modifier);
+     
+
     }
 }

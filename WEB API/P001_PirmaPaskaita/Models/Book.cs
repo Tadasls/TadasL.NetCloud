@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebAppMSSQL.Models.Enums;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebAppMSSQL.Models
 {
@@ -17,6 +18,8 @@ namespace WebAppMSSQL.Models
             PublishYear = publishYear;
             Stock = stock;
         }
+      
+
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,8 +31,8 @@ namespace WebAppMSSQL.Models
         public ECoverType ECoverType { get; set; }
         public int PublishYear { get; set; }
         public int Stock { get; set; }
-        public DateTime UpdateDateTime { get; set; }
-        virtual public ICollection<Reservation> Reservations { get; set; }
+        public DateTime Updated { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
         
 
 

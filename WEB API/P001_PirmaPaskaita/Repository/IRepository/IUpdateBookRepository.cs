@@ -4,8 +4,8 @@ namespace WebAppMSSQL.Repository.IRepository
 {
     public interface IUpdateBookRepository : IRepository<Book>
     {
-        Book Update(Book book);
+       void Update(Book book);
         List<Book> Filter(Book book);
-        void UpdateTakenLibraryBooksKN(int bookId, int modifier);
+   
     }
 }

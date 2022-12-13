@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 using WebAppMSSQL.Data;
-using WebAppMSSQL.Interfaces;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
 using WebAppMSSQL.Services;
@@ -30,6 +29,10 @@ namespace L05_Tasks_MSSQL
                // option.UseLazyLoadingProxies();
                 //cia kiti nustatymai jei reiktu SQL Lite  -  option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
             });
+
+            builder.Services.AddTransient<IDebtsService, DebtsService>();
+            builder.Services.AddTransient<IStockService, StockService>();
+            builder.Services.AddTransient<IValidationService, ValidationService>();
 
             builder.Services.AddTransient<IBookWrapper, BookWrapper>();
             builder.Services.AddScoped<IUpdateBookRepository, BookUpdateRepository>();

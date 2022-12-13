@@ -1,7 +1,7 @@
 ﻿using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 
-namespace WebAppMSSQL.Interfaces
+namespace WebAppMSSQL.Services.IServices
 {
     public interface IBookWrapper
     {

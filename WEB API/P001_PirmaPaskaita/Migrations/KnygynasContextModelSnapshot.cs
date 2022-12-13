@@ -42,7 +42,7 @@ namespace WebAppMSSQL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UpdateDateTime")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -56,9 +56,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Several authors",
                             ECoverType = "Paperback",
                             PublishYear = 1,
-                            Stock = 10,
+                            Stock = 1,
                             Title = "The Bible",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -66,9 +66,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Mao Zedong",
                             ECoverType = "Hardcover",
                             PublishYear = 1964,
-                            Stock = 10,
+                            Stock = 2,
                             Title = "Quotations from Chairman Mao Tse-Tung",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -76,9 +76,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Several authors",
                             ECoverType = "Hardcover",
                             PublishYear = 700,
-                            Stock = 10,
+                            Stock = 3,
                             Title = "The Quran",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -86,9 +86,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "John Tolkien",
                             ECoverType = "Hardcover",
                             PublishYear = 1954,
-                            Stock = 10,
+                            Stock = 4,
                             Title = "The Lord Of The Rings",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -96,9 +96,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Antoine de Saint-Exupery",
                             ECoverType = "Electronic",
                             PublishYear = 1943,
-                            Stock = 10,
+                            Stock = 5,
                             Title = "Le Petit Prince",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -106,9 +106,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Joanne Rowling",
                             ECoverType = "Paperback",
                             PublishYear = 1997,
-                            Stock = 10,
+                            Stock = 6,
                             Title = "Harry Potter and the Philosopher’s Stone",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -116,9 +116,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Robert Baden-Powell",
                             ECoverType = "Paperback",
                             PublishYear = 1908,
-                            Stock = 10,
+                            Stock = 7,
                             Title = "Scouting for Boys",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -126,9 +126,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "Agatha Christie",
                             ECoverType = "Paperback",
                             PublishYear = 1939,
-                            Stock = 10,
+                            Stock = 8,
                             Title = "And Then There Were None",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -136,9 +136,9 @@ namespace WebAppMSSQL.Migrations
                             Author = "John Tolkien ",
                             ECoverType = "Hardcover",
                             PublishYear = 1937,
-                            Stock = 10,
+                            Stock = 9,
                             Title = "The Hobbit",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -148,7 +148,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1791,
                             Stock = 10,
                             Title = "The Dream Of The Red Chambe",
-                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

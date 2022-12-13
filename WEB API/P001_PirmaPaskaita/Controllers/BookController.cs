@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
-using WebAppMSSQL.Interfaces;
+using System.Net.Mime;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
+using WebAppMSSQL.Services.IServices;
 
 namespace L05_Tasks_MSSQL.Controllers
 {
@@ -18,12 +19,10 @@ namespace L05_Tasks_MSSQL.Controllers
     [ApiController]
     public class KnygynasController : ControllerBase
     {
-
         private readonly IBookWrapper _wrapper;
         private readonly ILogger<KnygynasController> _logger;
         private readonly IUpdateBookRepository _bookRepo;
-               
-
+              
         public KnygynasController(IBookWrapper wrapper, ILogger<KnygynasController> logger, IUpdateBookRepository bookRepo)
         {
             _wrapper = wrapper;
@@ -117,13 +116,14 @@ namespace L05_Tasks_MSSQL.Controllers
         /// <response code="201">201 pranesimas reiskia kad Sekmingai į DB įrašyta nauja knyga</response>
         /// <response code="400">Blogas kreipimasis gautas</response>
         /// <response code="500">Baisi klaida! nes ji serverio</response>
-        [HttpPost("CreateBook")]
-        [Authorize(Roles = "admin")]
+        [HttpPost("CreateBook", Name = "CreateBook")]
+        // [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<CreateBookDto> CreateBook(CreateBookDto createBookDto)
         {
+
             if (createBookDto == null)
             {
                 _logger.LogError("sukurimo iskvietimo laikas buvo - {1} negalejo sukurti iraso nes nebuvo  paduoti nauji duomenys", DateTime.Now);
@@ -134,48 +134,47 @@ namespace L05_Tasks_MSSQL.Controllers
             _bookRepo.Create(newBook);
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
-            return CreatedAtRoute("GetBook", new { id = newBook.Id }, createBookDto);
+            return CreatedAtRoute("CreateBook", new { id = newBook.Id }, createBookDto);
         }
 
 
         /// <summary>
-        /// Redaguojame Knygos informacija pagal nurodyta id
+        /// Atnaujiname knyga, siusdami knygos objekta
         /// </summary>
-        /// <param name="id"> cia redaguojamos knygos id </param>
-        /// <param name="updateBookDto"> cia paduodama redaguojamos knygos </param>
-        /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
-        [HttpPut("{id}")]
+        /// <param name="bookUpdated">Knykos objektas su visais atnaujintais laukais</param>
+        /// <returns></returns>
+        /// <response code="204">Sekmingai atnaujinta knyga</response>
+        /// <response code="400">Blogas kreipimasis</response>
+        /// <response code="500">Baisi klaida!</response>
+        [HttpPut("update/{id:int}")]
         //[Authorize(Roles = "admin")]
-        public ActionResult UpdateBook(int id, UpdateBookDto updateBookDto)
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(IEnumerable<CreateBookDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdateBook(int id, UpdateBookDto bookUpdated)
         {
-            if (id == 0 || updateBookDto == null)
+            _logger.LogInformation("HttpPut UpdateBook(bookUpdated = {0}) buvo iskvietas {1} ", JsonConvert.SerializeObject(bookUpdated), DateTime.Now);
+            try
             {
-                _logger.LogError("Redagavimo Metodas pagal nurodyta (id = {0}) kurio iskvietimo laikas buvo - {1} nesurado nurodyto id arba nebuvo uzpildyti duomenys", id, DateTime.Now);
-                return BadRequest();
+                if (id == 0 || bookUpdated == null)
+                {
+                    _logger.LogError("HttpPut UpdateBook(bookUpdated) bookUpdated objektas == null {1} ", DateTime.Now);
+                    return BadRequest();
+                }
+
+                Book book = _wrapper.Bind(bookUpdated);
+                _bookRepo.Update(book);
+                return NoContent();
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "HttpPut UpdateBook(bookUpdated = {0}) nuluzo {1} ", JsonConvert.SerializeObject(bookUpdated), DateTime.Now);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-            var foundBook = _bookRepo.Get(d => d.Id == id);
-
-            if (foundBook == null)
-            {
-                _logger.LogError("Redagavimo Metodas pagal nurodyta (id = {0}) kurio iskvietimo laikas buvo - {1} nesurado nurodyto id", id, DateTime.Now);
-                return NotFound();
-            }
-
-            //foundBook.Author = updateBookDto.Autorius;
-            //foundBook.Title = updateBookDto.Pavadinimas;
-            //foundBook.ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), updateBookDto.KnygosTipas);
-            //foundBook.PublishYear = updateBookDto.Isleista.Year;
-            
-            Book book = _wrapper.Bind(updateBookDto);
-
-
-            _bookRepo.Update(book);
-           
-            _logger.LogInformation("Redagavimo Metodas atliktas sekmingai pagal nurodyta (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
-            return NoContent();
-          
         }
+
 
         /// <summary>
         /// Trinama knyga is duomenu bases pagal nurodoma id

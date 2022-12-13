@@ -6,13 +6,13 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Data;
 using System.Net;
-using WebAppMSSQL.Interfaces;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
+using WebAppMSSQL.Services.IServices;
 
 namespace WebAppMSSQL.Controllers
 {
@@ -24,14 +24,20 @@ namespace WebAppMSSQL.Controllers
         private readonly IUserRepository _userRepo;
         private readonly IReservationRepository _reservationRepo;
         private readonly ILogger<ReservationController> _logger;
-       
+        private readonly IStockService _stockService;
+        private readonly IDebtsService _debtsService;
 
-        public ReservationController(IReservationRepository reservationRepo, ILogger<ReservationController> logger, IUserRepository userRepo, IUpdateBookRepository bookRepo)
+            
+
+        public ReservationController(IReservationRepository reservationRepo, ILogger<ReservationController> logger, 
+            IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService)
         {
             _logger = logger;
             _userRepo = userRepo;
             _bookRepo = bookRepo;
             _reservationRepo = reservationRepo;
+            _stockService = stockService;
+            _debtsService = debtsService;
         }
 
 
@@ -138,43 +144,37 @@ namespace WebAppMSSQL.Controllers
         public ActionResult<CreateReservationDTO> CreateReservation(CreateReservationDTO createReservationDTO)
         {
 
+            //validacija jei nera uzklausos duomenu
             if (createReservationDTO == null)
             {
                 _logger.LogError("sukurimo iskvietimo laikas buvo - {1} negalejo sukurti iraso nes nebuvo  paduoti nauji duomenys", DateTime.Now);
                 return BadRequest();
             }
 
+            //validacijos jei arba nera tokios knygos id arba ju likutis per mazas 
             var knygaPagalId = _bookRepo.Get(b => b.Id == createReservationDTO.BookId);
+            //exist
+
             if (knygaPagalId == null) return NotFound("Nera tokios knygos");
+            if (knygaPagalId.Stock == 0) return NotFound("Knygu neliko");
 
-            var knyguKiekis = knygaPagalId.Stock;
-            if (knyguKiekis == 0) return NotFound("Knygu neliko");
 
-            double visoSkola = 0;
-            double knygosSkola = 0;
-             int skoluSkaicius = 0;
-
-           IEnumerable<Reservation> entities = _reservationRepo.GetAll().ToList();
-            foreach (var item in entities)
-            {
-
-                if (item.LocalUserId == createReservationDTO.LocalUserId)
-                {
-                    knygosSkola = item.DelayFine;
-                    skoluSkaicius++;
-                }
-                visoSkola += knygosSkola;
-            }
-
-                var getUserDto = _userRepo.Get(b => b.Id == createReservationDTO.LocalUserId);
+            // validacijos ar yra useris ir ar jis turi leistina skaiciu knygu
+            var getUserDto = _userRepo.Get(b => b.Id == createReservationDTO.LocalUserId);
             if (getUserDto == null) return NotFound("nera tokio userio");
-
             if (getUserDto.HasAmountOfBooks >= 5) return Conflict("User has too many books taken already");
+
+
+            //skolu servisas
+             double visoSkola = 0;
+             int skoluSkaicius = 0;
+            _debtsService.GautiSkolosDydiMetodas(createReservationDTO);
+            _debtsService.GautiSkoluSkaiciuMetodas(createReservationDTO);
+
             if (skoluSkaicius >= 2) return Conflict("klientas jau turi 2 skolas"); 
             if (visoSkola >= 10) return Conflict("klientas jau skolingas daugiau nei 20 Eur"); 
 
-
-
+          //naujos rezervacijos sukurimas
             Reservation model = new Reservation()
             {
                 BorrowDate = createReservationDTO.BorrowDate,
@@ -182,16 +182,13 @@ namespace WebAppMSSQL.Controllers
                 BookId = createReservationDTO.BookId,
                 LocalUserId = createReservationDTO.LocalUserId,
 
-              
             };
-                       
-
              _reservationRepo.Create(model);
-
-            _userRepo.UpdateTakenLibraryBooks(getUserDto.Id, 1);
-
-            _bookRepo.UpdateTakenLibraryBooksKN(knygaPagalId.Id, -1);
-
+            
+            
+            //likuciu servisas
+            _stockService.UpdateTakenLibraryBooks(getUserDto.Id, 1);
+            _stockService.UpdateTakenLibraryBooksKN(knygaPagalId.Id, -1);
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("GetReservation", new { id = model.Id }, createReservationDTO);  
@@ -207,15 +204,14 @@ namespace WebAppMSSQL.Controllers
         [HttpPut("{id}")]
         //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
-        public ActionResult UpdateReservation(int id, UpdateReservationDTO updateRezervationDto)
+        public ActionResult UpdateReservation(int id, ReturnReservationDTO returnRezervationDto)
         {
-            if (id == 0 || updateRezervationDto == null)
+            if (id == 0 || returnRezervationDto == null)
             {
                 return BadRequest();
             }
 
             var foundReservation = _reservationRepo.Get(d => d.Id == id);
-
             if (foundReservation == null)
             {
                 return NotFound();
@@ -223,15 +219,14 @@ namespace WebAppMSSQL.Controllers
 
             //foundReservation.Id = updateRezervationDto.Id;
            // foundReservation.BorrowDate = updateRezervationDto.BorrowDate;
-            foundReservation.ActualReturnDate = updateRezervationDto.ActualReturnDate;
+            foundReservation.ActualReturnDate = returnRezervationDto.ActualReturnDate;
            // foundReservation.LocalUserId = updateRezervationDto.LocalUserId;
           //foundReservation.BookId = updateRezervationDto.BookId;
 
             _reservationRepo.Update(foundReservation);
-                      
-            
-            _userRepo.UpdateTakenLibraryBooks(updateRezervationDto.LocalUserId, -1);
-            _bookRepo.UpdateTakenLibraryBooksKN(updateRezervationDto.BookId, 1);
+
+            _stockService.UpdateTakenLibraryBooks(returnRezervationDto.LocalUserId, -1);
+            _stockService.UpdateTakenLibraryBooksKN(returnRezervationDto.BookId, 1);
 
 
             return NoContent();

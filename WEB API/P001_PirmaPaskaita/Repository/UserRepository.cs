@@ -128,15 +128,7 @@ namespace WebAppMSSQL.Repository
             return userDto;
         }
 
-        public void UpdateTakenLibraryBooks(int userId, int modifier)
-        {
-            LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
-            user.HasAmountOfBooks += modifier;
-            _db.LocalUsers.Update(user);
-            _db.SaveChanges();
-        }
-
-
+      
         public bool Exist(int id)
         {
             return _db.LocalUsers.Any(x => x.Id == id);

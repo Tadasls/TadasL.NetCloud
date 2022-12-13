@@ -1,7 +1,7 @@
-﻿using WebAppMSSQL.Interfaces;
-using WebAppMSSQL.Models;
+﻿using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.Enums;
+using WebAppMSSQL.Services.IServices;
 
 namespace WebAppMSSQL.Services
 {
@@ -26,8 +26,9 @@ namespace WebAppMSSQL.Services
                 Title = book.Pavadinimas,
                 Author = book.Autorius,
                 PublishYear = book.Isleista.Year,
-                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
                 Stock = book.KnyguKiekis,
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
+               
             };
         }
 
@@ -39,10 +40,12 @@ namespace WebAppMSSQL.Services
                 Title = book.Pavadinimas,
                 Author = book.Autorius,
                 PublishYear = book.Isleista.Year,
-                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
                 Stock = book.KnyguKiekis,
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas)
+
             };
         }
+
         public Book Bind(FilterBooksRequestDto book)
         {
             return new Book
@@ -51,9 +54,9 @@ namespace WebAppMSSQL.Services
                 Author = book.Autorius,
                 ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
             };
-
         }
-
+    
+ 
 
     }
 }

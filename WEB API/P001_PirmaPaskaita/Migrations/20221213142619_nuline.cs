@@ -24,7 +24,7 @@ namespace WebAppMSSQL.Migrations
                     ECoverType = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     PublishYear = table.Column<int>(type: "INTEGER", nullable: false),
                     Stock = table.Column<int>(type: "INTEGER", nullable: false),
-                    UpdateDateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Updated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,18 +82,18 @@ namespace WebAppMSSQL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "ECoverType", "PublishYear", "Stock", "Title", "UpdateDateTime" },
+                columns: new[] { "Id", "Author", "ECoverType", "PublishYear", "Stock", "Title", "Updated" },
                 values: new object[,]
                 {
-                    { 1, "Several authors", "Paperback", 1, 10, "The Bible", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Mao Zedong", "Hardcover", 1964, 10, "Quotations from Chairman Mao Tse-Tung", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "Several authors", "Hardcover", 700, 10, "The Quran", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, "John Tolkien", "Hardcover", 1954, 10, "The Lord Of The Rings", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, "Antoine de Saint-Exupery", "Electronic", 1943, 10, "Le Petit Prince", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, "Joanne Rowling", "Paperback", 1997, 10, "Harry Potter and the Philosopher’s Stone", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, "Robert Baden-Powell", "Paperback", 1908, 10, "Scouting for Boys", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, "Agatha Christie", "Paperback", 1939, 10, "And Then There Were None", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, "John Tolkien ", "Hardcover", 1937, 10, "The Hobbit", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1, "Several authors", "Paperback", 1, 1, "The Bible", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Mao Zedong", "Hardcover", 1964, 2, "Quotations from Chairman Mao Tse-Tung", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Several authors", "Hardcover", 700, 3, "The Quran", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, "John Tolkien", "Hardcover", 1954, 4, "The Lord Of The Rings", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, "Antoine de Saint-Exupery", "Electronic", 1943, 5, "Le Petit Prince", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, "Joanne Rowling", "Paperback", 1997, 6, "Harry Potter and the Philosopher’s Stone", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, "Robert Baden-Powell", "Paperback", 1908, 7, "Scouting for Boys", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, "Agatha Christie", "Paperback", 1939, 8, "And Then There Were None", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, "John Tolkien ", "Hardcover", 1937, 9, "The Hobbit", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 10, "Cao Xueqin", "Paperback", 1791, 10, "The Dream Of The Red Chambe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 

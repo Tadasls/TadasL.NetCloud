@@ -74,7 +74,10 @@ namespace WebAppMSSQL.Repository
         }
 
 
-    
+        public bool Exist(int id)
+        {
+            return _db.Books.Any(x => x.Id == id);
+        }
 
 
 

@@ -64,7 +64,6 @@ namespace WebAppMSSQL.Repository
         }
 
 
-
         public void Remove(Reservation entity)
         {
             _dbSet.Remove(entity);
@@ -95,10 +94,11 @@ namespace WebAppMSSQL.Repository
 
             return reservations;
 
-
-
         }
 
+
+
+     
 
 
     }

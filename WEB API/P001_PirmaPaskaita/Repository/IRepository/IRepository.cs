@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using WebAppMSSQL.Models;
 
 namespace WebAppMSSQL.Repository.IRepository
 {
@@ -11,5 +12,10 @@ namespace WebAppMSSQL.Repository.IRepository
         void Create(TEntity entity);
         void Remove(TEntity entity);
         void Save();
+        bool Exist(int id);
+
+        //void Update(Book book);
+        //List<Book> Filter(Book book);
+
     }
 }
