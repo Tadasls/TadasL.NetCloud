@@ -27,8 +27,6 @@ namespace WebAppMSSQL.Controllers
         private readonly IStockService _stockService;
         private readonly IDebtsService _debtsService;
 
-            
-
         public ReservationController(IReservationRepository reservationRepo, ILogger<ReservationController> logger, 
             IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService)
         {

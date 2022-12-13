@@ -14,6 +14,7 @@ namespace WebAppMSSQL.Services
         double knygosSkola = 0;
         int skoluSkaicius = 0;
 
+      
         public DebtsService(IReservationRepository reservationRepo)
         {
             _reservationRepo = reservationRepo;
@@ -37,6 +38,8 @@ namespace WebAppMSSQL.Services
             return visoSkola;
 
         }
+
+       
 
         public int GautiSkoluSkaiciuMetodas(CreateReservationDTO createReservationDTO)
         {
