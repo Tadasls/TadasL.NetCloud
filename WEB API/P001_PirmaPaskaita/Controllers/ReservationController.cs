@@ -123,7 +123,7 @@ namespace WebAppMSSQL.Controllers
 
 
         /// <summary>
-        /// kontroleris skirtas sukuria nauja Rezervacija, ranka irasome grazinimo termina + 28d.!!!
+        /// kontroleris skirtas sukuria nauja Rezervacija!!!
         /// </summary>
         /// <param name="createReservationDTO">tai tra naujos Rezervacijos objektas</param>
         /// <returns>Grazina rezultata greiciausiais kur niekas nemato... </returns>

@@ -61,29 +61,6 @@ namespace WebAppMSSQL.Repository
             return query.ToList();
         }
 
-        ////
-        //public List<Book> Filter(Book book)
-        //{
-        //    //var books = _db.Books.Where(e => e.Title == book.Title && e.Author == book.Author && e.ECoverType == book.ECoverType).ToList();
-
-        //    var books = _db.Books.Where(b => b.Title.Contains(book.Title != null ? book.Title : "") || b.Author.Contains(book.Author != null ? book.Author : "")).ToList();
-
-        //    return books;
-        //}
-        ////
-
-        //public List<TEntity> Filter(Expression<Func<TEntity, bool>>? filter = null)
-        //{
-        //    IQueryable<TEntity> query = _dbSet;
-
-        //    if (filter != null)
-        //    {
-        //        query = query.Where(filter);
-        //    }
-
-        //    return query.ToList();
-        //}
-
 
         public void Remove(TEntity entity)
         {
