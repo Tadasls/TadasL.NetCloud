@@ -4,6 +4,7 @@ using P004_EF_Application.Data;
 using P004_EF_Application.Models;
 using P004_EF_Application.Repository.IRepository;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace P004_EF_Application.Repository
@@ -60,7 +61,18 @@ namespace P004_EF_Application.Repository
            await _db.SaveChangesAsync();
         }
 
-     
+        public async Task<bool> ExistAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            IQueryable<TEntity> query = _dbSet;
+
+            if (filter == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            return await query.AnyAsync(filter);
+        }
+
 
 
         //public async Task<bool>ExistAsync(int id)

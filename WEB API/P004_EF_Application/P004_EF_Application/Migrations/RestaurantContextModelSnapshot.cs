@@ -31,7 +31,7 @@ namespace P004EFApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedDateTime")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagePath")
@@ -62,7 +62,7 @@ namespace P004EFApplication.Migrations
                         {
                             DishId = 1,
                             Country = "Lithuania",
-                            CreatedDateTime = new DateTime(2022, 12, 8, 19, 22, 58, 280, DateTimeKind.Local).AddTicks(8342),
+                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1325),
                             ImagePath = "",
                             Name = "Fried Bread Sticks",
                             SpiceLevel = "Mild",
@@ -73,7 +73,7 @@ namespace P004EFApplication.Migrations
                         {
                             DishId = 2,
                             Country = "Lithuania",
-                            CreatedDateTime = new DateTime(2022, 12, 8, 19, 22, 58, 280, DateTimeKind.Local).AddTicks(8376),
+                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1359),
                             ImagePath = "",
                             Name = "Potato dumplings",
                             SpiceLevel = "low",
@@ -84,13 +84,34 @@ namespace P004EFApplication.Migrations
                         {
                             DishId = 3,
                             Country = "Lithuania",
-                            CreatedDateTime = new DateTime(2022, 12, 8, 19, 22, 58, 280, DateTimeKind.Local).AddTicks(8379),
+                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1362),
                             ImagePath = "",
                             Name = "Kibinai",
                             SpiceLevel = "low",
                             Type = "Street Food",
                             UpdatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("P004_EF_Application.Models.DishOrder", b =>
+                {
+                    b.Property<int>("DishOrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DishId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LocalUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("DishOrderId");
+
+                    b.HasIndex("DishId");
+
+                    b.HasIndex("LocalUserId");
+
+                    b.ToTable("DishOrders");
                 });
 
             modelBuilder.Entity("P004_EF_Application.Models.RecipeItem", b =>
@@ -219,6 +240,25 @@ namespace P004EFApplication.Migrations
                     b.ToTable("LocalUsers");
                 });
 
+            modelBuilder.Entity("P004_EF_Application.Models.DishOrder", b =>
+                {
+                    b.HasOne("P004_EF_Application.Models.Dish", "Dish")
+                        .WithMany("DishOrders")
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("P04_EF_Applying_To_API.Models.LocalUser", "LocalUser")
+                        .WithMany("DishOrders")
+                        .HasForeignKey("LocalUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Dish");
+
+                    b.Navigation("LocalUser");
+                });
+
             modelBuilder.Entity("P004_EF_Application.Models.RecipeItem", b =>
                 {
                     b.HasOne("P004_EF_Application.Models.Dish", "Dish")
@@ -232,7 +272,14 @@ namespace P004EFApplication.Migrations
 
             modelBuilder.Entity("P004_EF_Application.Models.Dish", b =>
                 {
+                    b.Navigation("DishOrders");
+
                     b.Navigation("RecipeItems");
+                });
+
+            modelBuilder.Entity("P04_EF_Applying_To_API.Models.LocalUser", b =>
+                {
+                    b.Navigation("DishOrders");
                 });
 #pragma warning restore 612, 618
         }

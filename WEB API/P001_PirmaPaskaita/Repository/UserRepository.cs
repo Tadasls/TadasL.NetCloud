@@ -127,12 +127,12 @@ namespace WebAppMSSQL.Repository
     };
             return userDto;
         }
-        public bool Exist(int id)
+
+        public async Task<bool> IsRegisteredAsync(int userId) // same as exist
         {
-            return _db.LocalUsers.Any(x => x.Id == id);  // su _dbSet neveikia ????
+            var isRegistered = await _db.LocalUsers.AnyAsync(u => u.Id == userId);
+            return isRegistered;
         }
-
-
 
 
 

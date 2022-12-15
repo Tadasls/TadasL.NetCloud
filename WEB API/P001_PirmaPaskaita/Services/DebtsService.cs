@@ -21,44 +21,6 @@ namespace WebAppMSSQL.Services
             _reservationRepo = reservationRepo;
         }
 
-        //public async Task<double> GautiSkolosDydiMetodas(CreateReservationDTO createReservationDTO)
-        //{
-        //    var info = await _reservationRepo.GetAllAsync();
-
-        //    IEnumerable<Reservation> rezervacijos = info.ToList();
-
-        //    foreach (var item in rezervacijos)
-        //    {
-        //        if (item.LocalUserId == createReservationDTO.LocalUserId)
-        //        {
-        //            knygosSkola = item.DelayFine;
-        //        }
-        //        visoSkola += knygosSkola;
-
-        //    }
-        //    return visoSkola;
-
-        //}
-
-
-        //public async Task<int> GautiSkoluSkaiciuMetodas(CreateReservationDTO createReservationDTO)
-        //{
-        //    IEnumerable<Reservation> rezervacijos = await _reservationRepo.GetAllAsync(); //.ToList();
-
-        //    foreach (var item in rezervacijos)
-        //    {
-        //        if (item.LocalUserId == createReservationDTO.LocalUserId && item.ActualReturnDate==null && item.Active==true)
-        //        {
-        //            aktyviuRezervacijuSkaicius++;
-        //        }
-
-
-        //    }
-        //    return aktyviuRezervacijuSkaicius;
-
-        //}
-
-
         public async Task<int> SuskaiciuotiKiekDienuVeluojamaGrazinti(int id)
         {
             var visosRezervacija = await _reservationRepo.GetAllAsync(); //.ToList();
@@ -87,7 +49,6 @@ namespace WebAppMSSQL.Services
             }
             return klientasVisoPradelseDienu;
         }
-
         public async Task<int> SuskaiciuotiKiekTuriSkolu(int id)
         {
             var visosRezervacija = await _reservationRepo.GetAllAsync(); //.ToList();
@@ -113,8 +74,6 @@ namespace WebAppMSSQL.Services
             }
             return skoluSkaicius;
         }
-
-
         public double SuskaiciuotiSkolosDydi(int pradelstaDienu)
         {
             double klientoSkola = (double)pradelstaDienu * 0.2;

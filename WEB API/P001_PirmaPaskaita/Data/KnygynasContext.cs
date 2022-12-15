@@ -15,6 +15,30 @@ namespace WebAppMSSQL.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Reservation>()
+         .HasKey(d => d.Id);
+
+            modelBuilder.Entity<Reservation>()
+                .Property(d => d.Id)
+                .ValueGeneratedOnAdd();
+
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(dio => dio.Book)
+                .WithMany(d => d.Reservations)
+                .HasForeignKey(d => d.BookId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Reservation>()
+             .HasOne(dio => dio.LocalUser)
+             .WithMany(d => d.Reservations)
+             .HasForeignKey(d => d.LocalUserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+
+
+
             modelBuilder.Entity<Book>()
             .Property(u => u.ECoverType)
             .HasConversion<string>()
@@ -33,6 +57,8 @@ namespace WebAppMSSQL.Data
                 new Book(9, "The Hobbit", "John Tolkien ", ECoverType.Hardcover, 1937, 9),
                 new Book(10, "The Dream Of The Red Chambe", "Cao Xueqin", ECoverType.Paperback, 1791, 10)
                 );
+
+
 
 
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebAppMSSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class nuline : Migration
+    public partial class Nuline : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,8 @@ namespace WebAppMSSQL.Migrations
                     Role = table.Column<string>(type: "TEXT", nullable: false),
                     HasAmountOfBooks = table.Column<int>(type: "INTEGER", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    WasOnline = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,7 +62,8 @@ namespace WebAppMSSQL.Migrations
                     ReturnDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ActualReturnDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LocalUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    BookId = table.Column<int>(type: "INTEGER", nullable: false)
+                    BookId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Active = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,14 +72,12 @@ namespace WebAppMSSQL.Migrations
                         name: "FK_Reservations_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reservations_LocalUsers_LocalUserId",
                         column: x => x.LocalUserId,
                         principalTable: "LocalUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(

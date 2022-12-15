@@ -12,7 +12,6 @@ namespace WebAppMSSQL.Repository
     {
         private readonly KnygynasContext _db;
         private DbSet<Reservation> _dbSet;
-            
         public ReservationRepository(KnygynasContext db)
         {
             _db = db;
@@ -50,11 +49,7 @@ namespace WebAppMSSQL.Repository
         public async Task<int> CountAsync()
         {
             return await _dbSet.CountAsync();
-        }
-        public bool Exist(int id)
-        {
-            return _dbSet.Any(x => x.Id == id);
-        }
+        } // nenaudojamas
         public async Task RemoveAsync(Reservation entity)
         {
             _dbSet.Remove(entity);
@@ -77,10 +72,22 @@ namespace WebAppMSSQL.Repository
 
             return reservations;
 
+        } // nenaudojamas
+        public async Task<bool> ExistAsync(Expression<Func<Reservation, bool>> filter)
+        {
+            IQueryable<Reservation> query = _dbSet;
+
+            if (filter == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            return await query.AnyAsync(filter);
         }
-   
-        
-      
-       
+
+
+
+
+
     }
 }

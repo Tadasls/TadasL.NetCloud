@@ -15,7 +15,7 @@ namespace P004_EF_Application.Models
             SpiceLevel = createDishDTO.SpiceLevel;
             Country = createDishDTO.Country;
             ImagePath = createDishDTO.ImagePath;
-            CreatedDateTime = createDishDTO.CreatedDateTime;
+            DateTime = createDishDTO.CreatedDateTime;
         }
 
         public Dish(int dishId, string name, string type, string spiceLevel, string country, string imagePath, DateTime createDateTime)
@@ -26,7 +26,7 @@ namespace P004_EF_Application.Models
             SpiceLevel = spiceLevel;
             Country = country;
             ImagePath = imagePath;
-            CreatedDateTime = createDateTime;
+            DateTime = createDateTime;
         }
 
         [Key]
@@ -37,10 +37,10 @@ namespace P004_EF_Application.Models
         public string SpiceLevel { get; set; }
         public string Country { get; set; }
         public string ImagePath { get; set; }
-        public DateTime CreatedDateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public DateTime UpdatedDateTime { get; set; }
         public virtual List<RecipeItem> RecipeItems { get; set; }
 
-        public virtual List<DishOrder> DisOrders { get; set; }
+        public virtual List<DishOrder> DishOrders { get; set; }
     }
 }

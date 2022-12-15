@@ -95,7 +95,7 @@ namespace P004_EF_Application.Controllers
                 SpiceLevel = dishDto.SpiceLevel,
                 Type = dishDto.Type,
                 Name = dishDto.Name,
-                CreatedDateTime = dishDto.CreatedDateTime,
+                DateTime = dishDto.CreatedDateTime,
                 ImagePath = dishDto.ImagePath
             };
 

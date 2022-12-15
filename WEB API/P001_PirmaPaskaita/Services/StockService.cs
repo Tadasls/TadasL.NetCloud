@@ -11,19 +11,19 @@ namespace WebAppMSSQL.Services
         {
             _db = db;
         }
-        public void UpdateTakenLibraryBooksKN(int bookId, int modifier)
+        public async Task UpdateTakenLibraryBooksKN(int bookId, int modifier)
         {
             Book book = _db.Books.First(u => u.Id == bookId);
             book.Stock += modifier;
             _db.Books.Update(book);
-            _db.SaveChanges();
+           await _db.SaveChangesAsync();
         }
-        public void UpdateTakenLibraryBooks(int userId, int modifier)
+        public async Task UpdateTakenLibraryBooks(int userId, int modifier)
         {
             LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
             user.HasAmountOfBooks += modifier;
             _db.LocalUsers.Update(user);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
     }

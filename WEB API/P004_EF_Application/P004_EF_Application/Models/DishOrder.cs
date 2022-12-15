@@ -5,7 +5,7 @@ namespace P004_EF_Application.Models
     public class DishOrder
     {
 
-        public int DishorderId { get; set; }
+        public int DishOrderId { get; set; }
         public int LocalUserId { get; set; }
         public int DishId { get; set; }
         public virtual LocalUser LocalUser { get; set; }

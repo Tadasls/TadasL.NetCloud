@@ -11,8 +11,8 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    [Migration("20221214184717_trecia")]
-    partial class trecia
+    [Migration("20221215224405_Nuline")]
+    partial class Nuline
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,6 +190,9 @@ namespace WebAppMSSQL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("WasOnline")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("LocalUsers");
@@ -233,13 +236,13 @@ namespace WebAppMSSQL.Migrations
                     b.HasOne("WebAppMSSQL.Models.Book", "Book")
                         .WithMany("Reservations")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("WebAppMSSQL.Models.LocalUser", "LocalUser")
                         .WithMany("Reservations")
                         .HasForeignKey("LocalUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Book");

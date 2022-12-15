@@ -13,6 +13,8 @@ using System.Text;
 using System.Text.Json.Serialization;
 using P004_EF_Application.Services.IServices;
 using P004_EF_Application.Services;
+using P004_EF_Application.Services.Adapters.IAdapters;
+using P004_EF_Application.Services.Adapters;
 
 namespace P04_EF_Applying_To_API
 {
@@ -30,8 +32,13 @@ namespace P04_EF_Applying_To_API
             });
             builder.Services.AddScoped<IDishRepository, DishRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IDishOrderRepository, DishOrderRepository>();
             builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
+            builder.Services.AddTransient<IDishOrderAdapter, DishOrderAdapter>();
+            builder.Services.AddTransient<ICookingService, CookingService>();
+
+
 
             var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
 

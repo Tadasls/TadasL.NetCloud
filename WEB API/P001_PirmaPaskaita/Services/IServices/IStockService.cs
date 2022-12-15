@@ -2,7 +2,7 @@
 {
     public interface IStockService
     {
-        void UpdateTakenLibraryBooks(int userId, int modifier);
-        void UpdateTakenLibraryBooksKN(int bookId, int modifier);
+        Task UpdateTakenLibraryBooks(int userId, int modifier);
+        Task UpdateTakenLibraryBooksKN(int bookId, int modifier);
     }
 }

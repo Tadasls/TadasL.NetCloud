@@ -17,8 +17,7 @@ namespace WebAppMSSQL.Models.ReservationsDTO
         [Display(Name = "Knygos ID")]
         public int BookId { get; set; }
 
-        //[Display(Name = "Ar Aktyvi Rezervacija (apmoketa(?")]
-        //public bool Active { get; set; }
+   
 
     }
 }

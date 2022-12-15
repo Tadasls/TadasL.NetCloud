@@ -66,15 +66,27 @@ namespace WebAppMSSQL.Repository
         {
            await _db.SaveChangesAsync();
         }
-        public bool Exist(int id)
+      
+        public async Task<bool> ExistAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return _db.Books.Any(x => x.Id == id);   // reikia sutaisyti ??? kad veiktu su dbSet?
+            IQueryable<TEntity> query = _dbSet;
+
+            if (filter == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            return await query.AnyAsync(filter);
         }
+
+
         public async Task UpdateAsync(TEntity entity)
         {
              _db.Update(entity);
             await SaveAsync();
         }
+
+
 
       
     }

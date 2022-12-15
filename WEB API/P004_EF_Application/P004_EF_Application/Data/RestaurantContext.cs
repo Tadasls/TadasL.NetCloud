@@ -21,22 +21,22 @@ namespace P004_EF_Application.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DishOrder>()
-                .HasKey(d => d.DishorderId);
+                .HasKey(d => d.DishOrderId);
 
             modelBuilder.Entity<DishOrder>()
-                .Property(d => d.DishorderId)
+                .Property(d => d.DishOrderId)
                 .ValueGeneratedOnAdd();
 
 
             modelBuilder.Entity<DishOrder>()
                 .HasOne(dio => dio.Dish)
-                .WithMany(d => DishOrders)
+                .WithMany(d => d.DishOrders)
                 .HasForeignKey(d => d.DishId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<DishOrder>()
              .HasOne(dio => dio.LocalUser)
-             .WithMany(d => DishOrders)
+             .WithMany(d =>d.DishOrders)
              .HasForeignKey(d => d.LocalUserId)
              .OnDelete(DeleteBehavior.NoAction);
 
