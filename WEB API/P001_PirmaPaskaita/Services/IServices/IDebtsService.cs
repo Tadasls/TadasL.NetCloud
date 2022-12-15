@@ -4,8 +4,11 @@ namespace WebAppMSSQL.Services.IServices
 {
     public interface IDebtsService
     {
-    
-        double GautiSkolosDydiMetodas(CreateReservationDTO createReservationDTO);
-        int GautiSkoluSkaiciuMetodas(CreateReservationDTO createReservationDTO);
+        //Task<double> GautiSkolosDydiMetodas(CreateReservationDTO createReservationDTO);
+        //Task<int> GautiSkoluSkaiciuMetodas(CreateReservationDTO createReservationDTO);
+        Task<int> SuskaiciuotiKiekDienuVeluojamaGrazinti(int id);
+        Task<int> SuskaiciuotiKiekTuriSkolu(int id);
+        double SuskaiciuotiSkolosDydi(int veluojaDienu);
+
     }
 }

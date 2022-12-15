@@ -13,7 +13,6 @@ namespace WebAppMSSQL.Services
         {
             _secretKey = conf.GetValue<string>("ApiSettings:Secret");
         }
-
         public string GetJwtToken(int userId, string role)
         {
             // To generate JWT token

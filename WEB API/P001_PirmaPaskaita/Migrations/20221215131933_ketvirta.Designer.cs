@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMSSQL.Data;
 
@@ -10,9 +11,11 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    partial class KnygynasContextModelSnapshot : ModelSnapshot
+    [Migration("20221215131933_ketvirta")]
+    partial class ketvirta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");

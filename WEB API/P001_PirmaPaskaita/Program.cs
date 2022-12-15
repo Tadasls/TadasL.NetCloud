@@ -32,10 +32,14 @@ namespace L05_Tasks_MSSQL
 
             builder.Services.AddTransient<IDebtsService, DebtsService>();
             builder.Services.AddTransient<IStockService, StockService>();
-            builder.Services.AddTransient<IValidationService, ValidationService>();
+            builder.Services.AddTransient<IUserHelpService, UserHelpService>();
 
             builder.Services.AddTransient<IBookWrapper, BookWrapper>();
+            builder.Services.AddTransient<IReservationWrapper, ReservationWrapper>();
+
             builder.Services.AddScoped<IUpdateBookRepository, BookUpdateRepository>();
+
+            
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IPasswordService, PasswordService>();
@@ -62,10 +66,8 @@ namespace L05_Tasks_MSSQL
              });
 
 
-
             builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

@@ -7,8 +7,7 @@ namespace WebAppMSSQL.Repository.IRepository
 {
     public interface IReservationRepository : IRepository<Reservation>    
     {
-        
-        bool Exist(int id);
-        void Update(Reservation entity);
+      //  bool Exist(int id);
+      //  void Update(Reservation entity);
     }
 }

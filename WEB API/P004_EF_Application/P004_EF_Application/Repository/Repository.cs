@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using P004_EF_Application.Data;
+using P004_EF_Application.Models;
 using P004_EF_Application.Repository.IRepository;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,52 +10,65 @@ namespace P004_EF_Application.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly RestaurantContext _dishRepo;
-        private DbSet<TEntity> _dishRepoSet;
+        private readonly RestaurantContext _db;
+        private DbSet<TEntity> _dbSet;
 
         public Repository(RestaurantContext db)
         {
-            _dishRepo = db;
-            _dishRepoSet = _dishRepo.Set<TEntity>();
+            _db = db;
+            _dbSet = _db.Set<TEntity>();
         }
 
-        public void Create(TEntity entity)
+        public async Task CreateAsync(TEntity entity)
         {
-            _dishRepoSet.Add(entity);
-            Save();
+            _dbSet.Add(entity);
+            await SaveAsync();
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, bool tracked = true)
         {
-            IQueryable<TEntity> query = _dishRepoSet.AsQueryable();
-            if(!tracked) 
+            IQueryable<TEntity> query = _dbSet;
+
+            if (!tracked)
             {
                 query = query.AsNoTracking();
             }
-            query = query.Where(filter);
-            return query.FirstOrDefault();
-        }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null)
+            query = query.Where(filter);
+
+            return await query.FirstOrDefaultAsync();
+        }
+        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
-            IQueryable<TEntity> query = _dishRepoSet;
+            IQueryable<TEntity> query = _dbSet;
             if(filter != null)
             {
                 query = query.Where(filter);    
             }
-            return query.ToList();  
+            return await query.ToListAsync();  
 
         }
 
-        public void Remove(TEntity entity)
+        public async Task RemoveAsync(TEntity entity)
         {
-            _dishRepoSet.Remove(entity);
-            Save();
+            _dbSet.Remove(entity);
+           await SaveAsync();
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _dishRepo.SaveChanges();
+           await _db.SaveChangesAsync();
         }
+
+     
+
+
+        //public async Task<bool>ExistAsync(int id)
+        //{
+        //    return await _dbSet.Any(x=>x.Id == id); 
+        //}
+
+
+
     }
 }

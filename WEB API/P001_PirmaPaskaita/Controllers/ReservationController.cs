@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Net;
 using WebAppMSSQL.Models;
@@ -12,6 +13,7 @@ using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
+using WebAppMSSQL.Services;
 using WebAppMSSQL.Services.IServices;
 
 namespace WebAppMSSQL.Controllers
@@ -26,9 +28,13 @@ namespace WebAppMSSQL.Controllers
         private readonly ILogger<ReservationController> _logger;
         private readonly IStockService _stockService;
         private readonly IDebtsService _debtsService;
+        private readonly IReservationWrapper _reservationWrapper;
+        private readonly IUserHelpService _userHelpService;
+
+
 
         public ReservationController(IReservationRepository reservationRepo, ILogger<ReservationController> logger, 
-            IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService)
+            IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService, IReservationWrapper reservationWrapper, IUserHelpService userHelpService)
         {
             _logger = logger;
             _userRepo = userRepo;
@@ -36,6 +42,8 @@ namespace WebAppMSSQL.Controllers
             _reservationRepo = reservationRepo;
             _stockService = stockService;
             _debtsService = debtsService;
+            _reservationWrapper = reservationWrapper;
+            _userHelpService = userHelpService;
         }
 
 
@@ -53,7 +61,7 @@ namespace WebAppMSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<GetReservationDTO> GetReservationById(int id)
+        public async Task<ActionResult<GetReservationDTO>> GetReservationById(int id)
         {
             _logger.LogInformation("Metodas Get pagal (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             try
@@ -64,7 +72,7 @@ namespace WebAppMSSQL.Controllers
                     return BadRequest();
                 }
 
-                var reservation = _reservationRepo.Get(a => a.Id == id);
+                var reservation = await _reservationRepo.GetAsync(a => a.Id == id);
                 if (reservation == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
@@ -94,10 +102,10 @@ namespace WebAppMSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public ActionResult<IEnumerable<GetReservationDTO>> GetAllReservations([FromQuery] FilterReservationDTO req) // cia yra filtravimo problema 
+        public async Task<ActionResult<IEnumerable<GetReservationDTO>>> GetAllReservations([FromQuery] FilterReservationDTO req) // cia yra filtravimo problema 
         {
-           
-            IEnumerable<Reservation> entities = _reservationRepo.GetAll().ToList();
+
+            IEnumerable<Reservation> entities = await _reservationRepo.GetAllAsync();  //.ToList();
 
             if (entities == null)
             {
@@ -139,7 +147,7 @@ namespace WebAppMSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateReservationDTO>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<CreateReservationDTO> CreateReservation(CreateReservationDTO createReservationDTO)
+        public async Task<ActionResult<CreateReservationDTO>> CreateReservation(CreateReservationDTO createReservationDTO)
         {
 
             //validacija jei nera uzklausos duomenu
@@ -150,42 +158,56 @@ namespace WebAppMSSQL.Controllers
             }
 
             //validacijos jei arba nera tokios knygos id arba ju likutis per mazas 
-            var knygaPagalId = _bookRepo.Get(b => b.Id == createReservationDTO.BookId);
-            //exist
+            bool arYraTokiaKnyga = _bookRepo.Exist(createReservationDTO.BookId);
+            if (!arYraTokiaKnyga) return NotFound("Nera tokios knygos");
 
-            if (knygaPagalId == null) return NotFound("Nera tokios knygos");
+            //exist
+            var knygaPagalId = await _bookRepo.GetAsync(b => b.Id == createReservationDTO.BookId);
             if (knygaPagalId.Stock == 0) return NotFound("Knygu neliko");
 
-
             // validacijos ar yra useris ir ar jis turi leistina skaiciu knygu
-            var getUserDto = _userRepo.Get(b => b.Id == createReservationDTO.LocalUserId);
-            if (getUserDto == null) return NotFound("nera tokio userio");
-            if (getUserDto.HasAmountOfBooks >= 5) return Conflict("User has too many books taken already");
+            bool arYtaToksvartotojas = _userRepo.Exist(createReservationDTO.LocalUserId);
+            if (!arYtaToksvartotojas) return NotFound("nera tokio userio");
+
+            var useris = await _userRepo.GetAsync(u => u.Id == createReservationDTO.LocalUserId);
+            if (useris.HasAmountOfBooks >= 5) return Conflict("User has too many books taken already");
+                                      
+            
+             //skolu servisas
+
+            int skoluSkaicius = 0;
+            double visoSkola = 0;
+            int kiekDienuVeluoja = 0;
+
+             kiekDienuVeluoja =await _debtsService.SuskaiciuotiKiekDienuVeluojamaGrazinti(createReservationDTO.LocalUserId);
+
+             visoSkola = _debtsService.SuskaiciuotiSkolosDydi(kiekDienuVeluoja);
+             if (visoSkola >= 10) return Conflict("klientas jau skolingas daugiau nei 20 Eur");
+
+             skoluSkaicius = await _debtsService.SuskaiciuotiKiekTuriSkolu(createReservationDTO.LocalUserId);
+            if (skoluSkaicius >= 2) return Conflict("klientas jau turi 2 skolas");
+
+         
+
+            // skoluSkaicius = await _debtsService.GautiSkoluSkaiciuMetodas(createReservationDTO);
+            // visoSkola = await _debtsService.GautiSkolosDydiMetodas(createReservationDTO);
 
 
-            //skolu servisas
-             double visoSkola = 0;
-             int skoluSkaicius = 0;
-            _debtsService.GautiSkolosDydiMetodas(createReservationDTO);
-            _debtsService.GautiSkoluSkaiciuMetodas(createReservationDTO);
-
-            if (skoluSkaicius >= 2) return Conflict("klientas jau turi 2 skolas"); 
-            if (visoSkola >= 10) return Conflict("klientas jau skolingas daugiau nei 20 Eur"); 
-
-          //naujos rezervacijos sukurimas
+            //naujos rezervacijos sukurimas
             Reservation model = new Reservation()
             {
                 BorrowDate = createReservationDTO.BorrowDate,
                 ReturnDate = createReservationDTO.BorrowDate.AddDays(28),
                 BookId = createReservationDTO.BookId,
                 LocalUserId = createReservationDTO.LocalUserId,
+                Active = true,
 
-            };
-             _reservationRepo.Create(model);
+        };
+             await _reservationRepo.CreateAsync(model);
             
             
             //likuciu servisas
-            _stockService.UpdateTakenLibraryBooks(getUserDto.Id, 1);
+            _stockService.UpdateTakenLibraryBooks(createReservationDTO.LocalUserId, 1);
             _stockService.UpdateTakenLibraryBooksKN(knygaPagalId.Id, -1);
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
@@ -199,33 +221,33 @@ namespace WebAppMSSQL.Controllers
         /// <param name="id"> cia redaguojamos Rezervacijos pagal id,  </param>
         /// <param name="updateRezervationDto"> cia redaguojamos knygos info </param>
         /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
-        [HttpPut("{id}")]
+        [HttpPut("Grazinimas")]   //"{id}"
         //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
-        public ActionResult UpdateReservation(int id, ReturnReservationDTO returnRezervationDto)
+        public async Task<ActionResult> UpdateReservation(int id, ReturnReservationDTO returnReservationDto)
         {
-            if (id == 0 || returnRezervationDto == null)
+            if (id == 0 || returnReservationDto == null)
             {
                 return BadRequest();
             }
 
-            var foundReservation = _reservationRepo.Get(d => d.Id == id);
+            var foundReservation = await _reservationRepo.GetAsync(d => d.Id == id);
             if (foundReservation == null)
             {
                 return NotFound();
             }
 
-            //foundReservation.Id = updateRezervationDto.Id;
-           // foundReservation.BorrowDate = updateRezervationDto.BorrowDate;
-            foundReservation.ActualReturnDate = returnRezervationDto.ActualReturnDate;
-           // foundReservation.LocalUserId = updateRezervationDto.LocalUserId;
-          //foundReservation.BookId = updateRezervationDto.BookId;
+            //var reservation = _reservationWrapper.KonvertuokiDuomenis(returnReservationDto);
 
-            _reservationRepo.Update(foundReservation);
+            foundReservation.ActualReturnDate = returnReservationDto.ActualReturnDate;
+            foundReservation.LocalUserId = returnReservationDto.LocalUserId;
+            foundReservation.BookId = returnReservationDto.BookId;
+            foundReservation.Active = false;
 
-            _stockService.UpdateTakenLibraryBooks(returnRezervationDto.LocalUserId, -1);
-            _stockService.UpdateTakenLibraryBooksKN(returnRezervationDto.BookId, 1);
+            await _reservationRepo.UpdateAsync(foundReservation);
 
+            _stockService.UpdateTakenLibraryBooks(returnReservationDto.LocalUserId, -1);
+            _stockService.UpdateTakenLibraryBooksKN(returnReservationDto.BookId, 1);
 
             return NoContent();
 
@@ -246,19 +268,19 @@ namespace WebAppMSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult DeleteReservationById(int id)
+        public async Task<ActionResult> DeleteReservationById(int id)
         {
             _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas tokiu laiku - {1} ", id, DateTime.Now);
             try
             {
-                var reservation = _reservationRepo.Get(b => b.Id == id);
+                var reservation =await _reservationRepo.GetAsync(b => b.Id == id);
                 if (reservation == null)
                 {
                     _logger.LogError("HttpDelete  Trinimo metodas pagal (id = {0}) knyga su tokiu id buvo nerasta {1} ", id, DateTime.Now);
                     return NotFound();
                 }
 
-                _reservationRepo.Remove(reservation);
+               await _reservationRepo.RemoveAsync(reservation);
 
                 _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas ir ivykdytas  tokiu laiku - {1} ", id, DateTime.Now);
                 return NoContent();
@@ -269,6 +291,24 @@ namespace WebAppMSSQL.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+
+
+        //[HttpGet("FavoriteAuthors/{id:int}")]
+        //public async Task<ActionResult<IOrderedEnumerable<IGrouping<string, GetBookDto>>?>> GetFavoriteAutors(int id)
+        //{
+
+
+        //    var favoriteAuthors = await _userHelpService.GetFavoriteAutorsForUser(id);
+
+        //    return Ok(favoriteAuthors);
+        //}
+
+
+
+      
+
+
 
 
 

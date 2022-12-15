@@ -4,8 +4,8 @@ namespace P004_EF_Application.Repository.IRepository
 {
     public interface IDishRepository : IRepository<Dish>
     {
-        Dish Update(Dish dish);
-
+       Task <Dish> UpdateAsync(Dish dish);
+          
 
     }
 }

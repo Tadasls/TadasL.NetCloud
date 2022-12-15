@@ -19,9 +19,9 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest model)
+        public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
-            var loginResponse = _userRepo.Login(model);
+            var loginResponse = await _userRepo.LoginAsync(model);
 
             if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
             {
@@ -32,16 +32,16 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegistrationRequest model)
+        public async Task<IActionResult> Register([FromBody] RegistrationRequest model)
         {
-            var isUserNameUnique = _userRepo.IsUniqueUser(model.Username);
+            var isUserNameUnique = await _userRepo.IsUniqueUserAsync(model.Username);
 
             if (!isUserNameUnique)
             {
                 return BadRequest(new { message = "Username already exists" });
             }
 
-            var user = _userRepo.Register(model);
+            var user = await _userRepo.RegisterAsync(model);
 
             if (user == null)
             {
@@ -52,14 +52,14 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
         [HttpGet("Get/{id:int}")]
-        public ActionResult<GetUserDto> GetUserById(int id)
+        public async Task<ActionResult<GetUserDto>> GetUserById(int id)
         {
 
             if (id == 0)
             {
                 return BadRequest("nera tokio ID");
             }
-            var user = _userRepo.Get(u => u.Id == id);
+            var user = await _userRepo.GetAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound("nera tokio vartotojo");
@@ -71,7 +71,7 @@ namespace L05_Tasks_MSSQL.Controllers
 
 
 
-
+ 
 
 
 

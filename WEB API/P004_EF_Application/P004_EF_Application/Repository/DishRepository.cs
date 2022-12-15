@@ -7,21 +7,23 @@ namespace P004_EF_Application.Repository
 {
     public class DishRepository : Repository<Dish>, IDishRepository
     {
-        private readonly RestaurantContext _dishRepo;
+        private readonly RestaurantContext _db;
 
         public DishRepository(RestaurantContext db) : base (db)
         {
-            _dishRepo = db;
+            _db = db;
         }
 
-        public Dish Update(Dish dish)
+        public async Task<Dish> UpdateAsync(Dish dish)
         {
             dish.UpdatedDateTime = DateTime.Now;
-            _dishRepo.Update(dish);
-            _dishRepo.SaveChanges();  
+            _db.Update(dish);
+            await _db.SaveChangesAsync();  
+            
 
             return dish;
         }
 
+       
     }
 }

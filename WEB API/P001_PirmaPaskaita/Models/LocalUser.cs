@@ -25,21 +25,25 @@ namespace WebAppMSSQL.Models
         [Display(Name = "Expiration Date")]
         public DateTime? ExpirationDate { get; set; }
 
-        [Display(Name = "Skola")]
-        public double Debt{
-            get
-            {
-                double skola = 0;
-                foreach (var reservacion in Reservations)
-                {
-                    if (reservacion.LocalUserId == Id)
-                    {
-                         skola += reservacion.DelayFine;
-                    }
-                }
-                return skola;
-            }
-        }
+        //[Display(Name = "Skola")]
+        //public double Debt{
+        //    get
+        //    {
+        //        double skola = 0;
+        //        foreach (var reservacion in Reservations)
+        //        {
+        //            if (reservacion.LocalUserId == Id)
+        //            {
+        //                 skola += reservacion.DelayFine;
+        //            }
+        //        }
+        //        return skola;
+        //    }
+        //}
+
+        public DateTime? WasOnline { get; set; }
+
+        //toDo
 
         public int MAX_BORROWED_BOOKS = 5;
 

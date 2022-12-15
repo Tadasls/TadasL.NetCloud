@@ -8,6 +8,11 @@ namespace WebAppMSSQL.Services
 
     public class BookWrapper : IBookWrapper
     {
+        public BookWrapper()
+        {
+
+        }
+
         public GetBookDto Bind(Book book)
         {
             return new GetBookDto
@@ -41,7 +46,8 @@ namespace WebAppMSSQL.Services
                 Author = book.Autorius,
                 PublishYear = book.Isleista.Year,
                 Stock = book.KnyguKiekis,
-                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas)
+                ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
+                Updated = DateTime.Now,
 
             };
         }

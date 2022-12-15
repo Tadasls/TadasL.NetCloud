@@ -8,10 +8,10 @@ namespace WebAppMSSQL.Repository.IRepository
     public interface IUserRepository
     {
         bool Exist(int id);
-        GetUserDto Get(Expression<Func<LocalUser, bool>> filter);
-        bool IsUniqueUser(string username);
-        LoginResponse Login(LoginRequest loginRequest);
-        LocalUser Register(RegistrationRequest registrationRequest);
+        Task<GetUserDto> GetAsync(Expression<Func<LocalUser, bool>> filter);
+        Task<bool> IsUniqueUserAsync(string username);
+        Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
+        Task<LocalUser> RegisterAsync(RegistrationRequest registrationRequest);
      
 
     }

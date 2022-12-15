@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMSSQL.Data;
 
@@ -10,9 +11,11 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    partial class KnygynasContextModelSnapshot : ModelSnapshot
+    [Migration("20221214134210_antra")]
+    partial class antra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -187,9 +190,6 @@ namespace WebAppMSSQL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("WasOnline")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("LocalUsers");
@@ -199,9 +199,6 @@ namespace WebAppMSSQL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Active")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("ActualReturnDate")

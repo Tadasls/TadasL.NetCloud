@@ -8,7 +8,6 @@ using WebAppMSSQL.Models.ReservationsDTO;
 
 namespace WebAppMSSQL.Repository
 {
-
     public class ReservationRepository : IReservationRepository     //<TEntity> where TEntity : class
     {
         private readonly KnygynasContext _db;
@@ -19,18 +18,14 @@ namespace WebAppMSSQL.Repository
             _db = db;
             _dbSet = _db.Set<Reservation>();
         }
-
-        public void Create(Reservation entity)
+        public async Task CreateAsync(Reservation entity)
         {
             _dbSet.Add(entity);
-            Save();
+            await SaveAsync();
 
             // int return entity.Id; ??
         }
-
-
-
-        public Reservation Get(Expression<Func<Reservation, bool>> filter, bool tracked = true)
+        public async Task<Reservation> GetAsync(Expression<Func<Reservation, bool>> filter, bool tracked = true)
         {
             IQueryable<Reservation> query = _dbSet.AsQueryable();
             if (!tracked)
@@ -38,10 +33,9 @@ namespace WebAppMSSQL.Repository
                 query = query.AsNoTracking();
             }
             query = query.Where(filter);
-            return query.FirstOrDefault();
+            return await query.FirstOrDefaultAsync();
         }
-
-        public List<Reservation> GetAll(Expression<Func<Reservation, bool>>? filter = null)
+        public async Task<List<Reservation>> GetAllAsync(Expression<Func<Reservation, bool>>? filter = null)
         {
             IQueryable<Reservation> query = _dbSet;
 
@@ -50,56 +44,43 @@ namespace WebAppMSSQL.Repository
                 query = query.Where(filter);
             }
 
-            return query.ToList();
+            return await query.ToListAsync();
 
         }
-        public int Count()
+        public async Task<int> CountAsync()
         {
-            return _dbSet.Count();
+            return await _dbSet.CountAsync();
         }
-
         public bool Exist(int id)
         {
             return _dbSet.Any(x => x.Id == id);
         }
-
-
-        public void Remove(Reservation entity)
+        public async Task RemoveAsync(Reservation entity)
         {
             _dbSet.Remove(entity);
-            Save();
+           await SaveAsync();
         }
-
-         public void Save()
+        public async Task SaveAsync()
         {
-            _db.SaveChanges();
+            _db.SaveChangesAsync();
         }
-
-
-
-        public void Update(Reservation entity)
+        public async Task UpdateAsync(Reservation entity)
         {
             _dbSet.Update(entity);
-            Save();
+           await SaveAsync();
         }
-
-
         public List<Reservation> Filter(Reservation reservation)
         {
-            
-            var reservations = _db.Reservations
-                .Where(b => b.LocalUserId.Equals(reservation.LocalUserId != null ? reservation.LocalUserId : "")
+            var reservations = _db.Reservations.Where(b => b.LocalUserId.Equals(reservation.LocalUserId != null ? reservation.LocalUserId : "")
                          || b.BookId.Equals(reservation.BookId != null ? reservation.BookId : "")
                          ).ToList();
 
             return reservations;
 
         }
-
-
-
-     
-
-
+   
+        
+      
+       
     }
 }

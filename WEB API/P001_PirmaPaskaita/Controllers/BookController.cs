@@ -44,7 +44,7 @@ namespace L05_Tasks_MSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<GetBookDto> GetBookById(int id)
+        public async Task<ActionResult<GetBookDto>> GetBookById(int id)
         {
             _logger.LogInformation("Metodas Get pagal (id = {0}) iskvietimo laikas buvo - {1} ", id, DateTime.Now);
             try
@@ -55,7 +55,7 @@ namespace L05_Tasks_MSSQL.Controllers
                     return BadRequest();
                 }
 
-                var book = _bookRepo.Get(a => a.Id == id);
+                var book = await _bookRepo.GetAsync(a => a.Id == id);
                 if (book == null)
                 {
                     _logger.LogError("Get GetBookById(id = {0}) knyga su tokiu id nerasta {1} ", id, DateTime.Now);
@@ -84,12 +84,11 @@ namespace L05_Tasks_MSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<GetBookDto>> Get([FromQuery] FilterBooksRequestDto req)
+        public async Task<ActionResult<IEnumerable<GetBookDto>>> GetAll([FromQuery] FilterBooksRequestDto req)
         {
-
             _logger.LogInformation("Getting Books list with parameters {req}", JsonConvert.SerializeObject(req));
-
-            IEnumerable<Book> entities = _bookRepo.GetAll().ToList();
+            
+            IEnumerable<Book> entities = await _bookRepo.GetAllAsync(); //.ToList();
 
             if (req.Autorius != null)
                 entities = entities.Where(x => x.Author == req.Autorius);
@@ -99,7 +98,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
             if (req.KnygosTipas != null)
                 entities = entities.Where(x => x.ECoverType == (ECoverType)Enum.Parse(typeof(ECoverType), req.KnygosTipas));
-
 
             var model = entities?.Select(x => _wrapper.Bind(x));
 
@@ -121,7 +119,7 @@ namespace L05_Tasks_MSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<CreateBookDto> CreateBook(CreateBookDto createBookDto)
+        public async Task<ActionResult<CreateBookDto>> CreateBook(CreateBookDto createBookDto)
         {
 
             if (createBookDto == null)
@@ -131,7 +129,7 @@ namespace L05_Tasks_MSSQL.Controllers
             }
 
             Book newBook = _wrapper.Bind(createBookDto);
-            _bookRepo.Create(newBook);
+           await _bookRepo.CreateAsync(newBook);
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("CreateBook", new { id = newBook.Id }, createBookDto);
@@ -146,24 +144,24 @@ namespace L05_Tasks_MSSQL.Controllers
         /// <response code="204">Sekmingai atnaujinta knyga</response>
         /// <response code="400">Blogas kreipimasis</response>
         /// <response code="500">Baisi klaida!</response>
-        [HttpPut("update/{id:int}")]
+        [HttpPut("update")] //  /{id:int}
         //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(IEnumerable<CreateBookDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateBook(int id, UpdateBookDto bookUpdated)
+        public async Task<IActionResult> UpdateBook(/*int id, */UpdateBookDto bookUpdated)
         {
             _logger.LogInformation("HttpPut UpdateBook(bookUpdated = {0}) buvo iskvietas {1} ", JsonConvert.SerializeObject(bookUpdated), DateTime.Now);
             try
             {
-                if (id == 0 || bookUpdated == null)
+                if (/* id == 0 || */ bookUpdated == null)
                 {
                     _logger.LogError("HttpPut UpdateBook(bookUpdated) bookUpdated objektas == null {1} ", DateTime.Now);
                     return BadRequest();
                 }
 
                 Book book = _wrapper.Bind(bookUpdated);
-                _bookRepo.Update(book);
+                _bookRepo.UpdateAsync(book);
                 return NoContent();
 
             }
@@ -190,19 +188,19 @@ namespace L05_Tasks_MSSQL.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult DeleteBookById(int id)
+        public async Task<ActionResult> DeleteBookById(int id)
         {
             _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas tokiu laiku - {1} ", id, DateTime.Now);
             try
             {
-                var book = _bookRepo.Get(b => b.Id == id);
+                var book = await _bookRepo.GetAsync(b => b.Id == id);
                 if (book == null)
                 {
                     _logger.LogError("HttpDelete  Trinimo metodas pagal (id = {0}) knyga su tokiu id buvo nerasta {1} ", id, DateTime.Now);
                     return NotFound();
                 }
 
-                _bookRepo.Remove(book);
+               await _bookRepo.RemoveAsync(book);
              
                 _logger.LogInformation("HttpDelete Metodas trinti pagal (id = {0}) buvo iskvietas ir ivykdytas  tokiu laiku - {1} ", id, DateTime.Now);
                 return NoContent();

@@ -25,12 +25,12 @@ namespace P004_EF_Application.Controllers
         /// </summary>
         /// <returns>All dishes in DB</returns>
         [HttpGet("dishes")]
-        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetDishDTO>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<GetDishDTO>> GetDishes()
+        public async Task<ActionResult<IEnumerable<GetDishDTO>>> GetDishes()
         {
-            return Ok(_dishRepo.GetAll()
+            var dishes = await _dishRepo.GetAllAsync();
+            return Ok(dishes
                 .Select(d => new GetDishDTO(d))
                 .ToList());
         }
@@ -57,7 +57,7 @@ namespace P004_EF_Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<GetDishDTO> GetDishById(int id)
+        public async Task<ActionResult<GetDishDTO>> GetDishById(int id)
         {
             if (id == 0)
             {
@@ -66,7 +66,8 @@ namespace P004_EF_Application.Controllers
 
             // Tam, kad istraukti duomenis naudokite
             // First, FirstOrDefault, Single, SingleOrDefault, ToList
-            var dish = _dishRepo.Get(d => d.DishId == id);
+
+            var dish = await _dishRepo.GetAsync(d => d.DishId == id);
 
             if (dish == null)
             {
@@ -81,7 +82,7 @@ namespace P004_EF_Application.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateDishDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<CreateDishDTO> CreateDish(CreateDishDTO dishDto)
+        public async Task<ActionResult<CreateDishDTO>> CreateDish(CreateDishDTO dishDto)
         {
             if (dishDto == null)
             {
@@ -98,7 +99,7 @@ namespace P004_EF_Application.Controllers
                 ImagePath = dishDto.ImagePath
             };
 
-            _dishRepo.Create(model);
+           await _dishRepo.CreateAsync(model);
             
 
             return CreatedAtRoute("GetDish", new { id = model.DishId }, dishDto);
@@ -110,21 +111,21 @@ namespace P004_EF_Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult DeleteDish(int id)
+        public async Task<ActionResult> DeleteDish(int id)
         {
             if (id == 0)
             {
                 return BadRequest();
             }
 
-            var dish = _dishRepo.Get(d => d.DishId == id);
+            var dish = await _dishRepo.GetAsync(d => d.DishId == id);
 
             if (dish == null)
             {
                 return NotFound();
             }
 
-            _dishRepo.Remove(dish);
+           await _dishRepo.RemoveAsync(dish);
            
 
             return NoContent();
@@ -136,14 +137,14 @@ namespace P004_EF_Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult UpdateDish(int id, UpdateDishDTO updateDishDTO)
+        public async Task<ActionResult> UpdateDish(int id, UpdateDishDTO updateDishDTO)
         {
             if (id == 0 || updateDishDTO == null)
             {
                 return BadRequest();
             }
 
-            var foundDish = _dishRepo.Get(d => d.DishId == id);
+            var foundDish = await _dishRepo.GetAsync(d => d.DishId == id);
 
             if (foundDish == null)
             {
@@ -156,7 +157,7 @@ namespace P004_EF_Application.Controllers
             foundDish.SpiceLevel = updateDishDTO.SpiceLevel;
             foundDish.Country = updateDishDTO.Country;
 
-            _dishRepo.Update(foundDish);
+            await _dishRepo.UpdateAsync(foundDish);
          
 
             return NoContent();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAppMSSQL.Models
@@ -10,7 +11,7 @@ namespace WebAppMSSQL.Models
 
         }
 
-        public Reservation(int id, DateTime borrowDate, DateTime returnDate, DateTime? actualReturnDate, int localUserId, LocalUser localUser, int bookId, Book book) 
+        public Reservation(int id, DateTime borrowDate, DateTime returnDate, DateTime? actualReturnDate, int localUserId, LocalUser localUser, int bookId, Book book, bool active) 
         {
             Id = id;
             BorrowDate = borrowDate;
@@ -20,6 +21,7 @@ namespace WebAppMSSQL.Models
             LocalUser = localUser;
             BookId = bookId;
             Book = book;
+            Active = active;
         }
 
 
@@ -41,8 +43,7 @@ namespace WebAppMSSQL.Models
         [Required]
         [Display(Name = "Kliento ID")]
         public int LocalUserId { get; set; }
-
-        virtual  public LocalUser LocalUser { get; set; } // virtualus
+        virtual public LocalUser LocalUser { get; set; } // virtualus
 
         [Required]
         [Display(Name = "Knygos ID")]
@@ -50,52 +51,58 @@ namespace WebAppMSSQL.Models
 
         virtual public Book Book { get; set; } // virtualus
 
-        [Display(Name = "Knygos Skola")]
-        public double DelayFine 
-        {
-            get
-            {
-                double skola = (double)DelayDays * 0.2;
-                if (skola >= 50)
-                {
-                    return skola = 50;
-                }
+        //[Display(Name = "Knygos Skola")]
+        //public double DelayFine 
+        //{
+        //    get
+        //    {
+        //        double skola = (double)DelayDays * 0.2;
+        //        if (skola >= 50)
+        //        {
+        //            return skola = 50;
+        //        }
 
-                return skola;
-            }
+        //        return skola;
+        //    }
         
-        }
-  
-        [NotMapped]
-        public int? DelayDays
-        {
-            get
-            {
-                if (ActualReturnDate.HasValue)
-                {
-                    if (((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays > 0)
-                    {
-                        return (int)((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-                else if (ReturnDate < DateTime.Now)
-                {
-                    return (int)(DateTime.Now - ReturnDate).TotalDays;
-                }
-                else
-                {
-                    return 0;
-                }
+        //}
 
-            }
-            
+        //[NotMapped]
+        ////[Display(Name = "Veluojama grazinti Dienu")]      
+        //public int? DelayDays
+        //{
+        //    get
+        //    {
+        //        if (ActualReturnDate.HasValue)
+        //        {
+        //            if (((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays > 0)
+        //            {
+        //                return (int)((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays;
+        //            }
+        //            else
+        //            {
+        //                return 0;
+        //            }
+        //        }
+        //        else if (ReturnDate < DateTime.Now)
+        //        {
+        //            return (int)(DateTime.Now - ReturnDate).TotalDays;
+        //        }
+        //        else
+        //        {
+        //            return 0;
+        //        }
+
+        //    }
+      
+        //}
+
+        [Display(Name = "Ar Aktyvi Rezervacija (apmoketa?)")]
+        public bool Active { get; set; }
 
 
 
-        }
+
+
     }
 }

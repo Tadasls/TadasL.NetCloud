@@ -6,16 +6,13 @@ namespace WebAppMSSQL.Repository.IRepository
     public interface IRepository<TEntity> where TEntity : class
     {
         // CRUD
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);
-        TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true);
-
-        void Create(TEntity entity);
-        void Remove(TEntity entity);
-        void Save();
+                
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, bool tracked = true);
+        Task CreateAsync(TEntity entity);
+        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null);
+        Task RemoveAsync(TEntity entity);
+        Task SaveAsync();
         bool Exist(int id);
-
-        //void Update(Book book);
-        //List<Book> Filter(Book book);
-
+        Task UpdateAsync(TEntity entity);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace P04_EF_Applying_To_API.Models
+﻿using P004_EF_Application.Models;
+
+namespace P04_EF_Applying_To_API.Models
 {
     public class LocalUser
     {
@@ -8,5 +10,8 @@
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Role { get; set; }
+        public virtual List<DishOrder> DishOrders { get; set; }
+
+         
     }
 }

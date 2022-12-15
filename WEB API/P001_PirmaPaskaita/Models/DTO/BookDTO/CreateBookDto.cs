@@ -4,7 +4,18 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
 {
     public class CreateBookDto
     {
-     
+        //public CreateBookDto(string pavadinimas, string autorius, DateTime isleista, string knygosTipas, int knyguKiekis)
+        //{
+        //    Pavadinimas = pavadinimas;
+        //    Autorius = autorius;
+        //    Isleista = isleista;
+        //    KnygosTipas = knygosTipas;
+        //    KnyguKiekis = knyguKiekis;
+        //}
+
+
+
+
         /// <summary>
         /// Knygos pavadinimas
         /// </summary>

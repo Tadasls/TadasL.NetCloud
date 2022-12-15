@@ -20,10 +20,12 @@ namespace WebAppMSSQL.Repository
         private readonly KnygynasContext _db;
         private readonly IPasswordService _passwordService;
         private readonly IJwtService _jwtService;
+       // private DbSet<UserRepository> _dbSet;
 
         public UserRepository(KnygynasContext db, IPasswordService passwordService, IJwtService jwtService)
         {
             _db = db;
+           // _dbSet = _db.Set<UserRepository>();
             _passwordService = passwordService;
             _jwtService = jwtService;
         }
@@ -33,20 +35,19 @@ namespace WebAppMSSQL.Repository
         /// </summary>
         /// <param name="username">Registration username</param>
         /// <returns>A flag indicating if username already exists</returns>
-        public bool IsUniqueUser(string username)
+        public async Task<bool> IsUniqueUserAsync(string username)
         {
-            var user = _db.LocalUsers.FirstOrDefault(x => x.Username == username);
+            var user = await  _db.LocalUsers.FirstOrDefaultAsync(x => x.Username == username);
             if (user == null)
             {
                 return true;
             }
             return false;
         }
-
-        public LoginResponse Login(LoginRequest loginRequest)
+        public async Task<LoginResponse> LoginAsync(LoginRequest loginRequest)
         {
             var inputPasswordBytes = Encoding.UTF8.GetBytes(loginRequest.Password);
-            var user = _db.LocalUsers.FirstOrDefault(x => x.Username.ToLower() == loginRequest.Username.ToLower());
+            var user = await _db.LocalUsers.FirstOrDefaultAsync(x => x.Username.ToLower() == loginRequest.Username.ToLower());
 
             if (user == null && !_passwordService.VerifyPasswordHash(loginRequest.Password, user.PasswordHash, user.PasswordSalt))
             {
@@ -67,12 +68,14 @@ namespace WebAppMSSQL.Repository
 
             loginResponse.User.PasswordHash = null;
 
+            user.WasOnline = DateTime.Now;
+
             return loginResponse;
         }
 
         // Add RegistrationResponse (Should not include password)
         // Add adapter classes to map to wanted classes
-        public LocalUser Register(RegistrationRequest registrationRequest)
+        public async Task<LocalUser> RegisterAsync(RegistrationRequest registrationRequest)
         {
             _passwordService.CreatePasswordHash(registrationRequest.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
@@ -82,16 +85,16 @@ namespace WebAppMSSQL.Repository
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Name = registrationRequest.Name,
-                Role = registrationRequest.Role
+                Role = registrationRequest.Role,
+                RegistrationDate = DateTime.Now,
+                ExpirationDate = DateTime.Now.AddYears(1),
             };
 
             _db.LocalUsers.Add(user);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
             user.PasswordHash = null;
             return user;
         }
-
-
         public List<GetUserDto> GetAll(Expression<Func<LocalUser, bool>>? filter = null)
         {
             IQueryable<LocalUser> users = _db.LocalUsers;
@@ -111,28 +114,24 @@ namespace WebAppMSSQL.Repository
             }
             return userDto;
         }
-
-
-
-        public GetUserDto Get(Expression<Func<LocalUser, bool>> filter)
+        public async Task<GetUserDto> GetAsync(Expression<Func<LocalUser, bool>> filter)
         {
-            LocalUser user = _db.LocalUsers.Where(filter).FirstOrDefault();
+            LocalUser user = await _db.LocalUsers.Where(filter).FirstOrDefaultAsync();
             var userDto = new GetUserDto()
             {
                 Id = user.Id,
                 Username = user.Username,
                 Role = user.Role,
                 HasAmountOfBooks = user.HasAmountOfBooks,
-                Debt = user.Debt,
+               // Debt = user.Debt,
     };
             return userDto;
         }
-
-      
         public bool Exist(int id)
         {
-            return _db.LocalUsers.Any(x => x.Id == id);
+            return _db.LocalUsers.Any(x => x.Id == id);  // su _dbSet neveikia ????
         }
+
 
 
 

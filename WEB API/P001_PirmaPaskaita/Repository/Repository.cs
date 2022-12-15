@@ -28,14 +28,12 @@ namespace WebAppMSSQL.Repository
             _db = db;
             _dbSet = _db.Set<TEntity>();
         }
-
-        public void Create(TEntity entity)
+        public async Task CreateAsync(TEntity entity)
         {
             _dbSet.Add(entity);
-            Save();
+            await SaveAsync();
         }
-
-        public TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, bool tracked = true)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -46,10 +44,9 @@ namespace WebAppMSSQL.Repository
 
             query = query.Where(filter);
 
-            return query.FirstOrDefault();
+            return await query.FirstOrDefaultAsync();
         }
-
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null)
+        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -58,28 +55,27 @@ namespace WebAppMSSQL.Repository
                 query = query.Where(filter);
             }
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
-
-
-        public void Remove(TEntity entity)
+        public async Task RemoveAsync(TEntity entity)
         {
             _dbSet.Remove(entity);
-            Save();
+            await SaveAsync();
         }
-
-        public void Save()
+        public async Task SaveAsync()
         {
-            _db.SaveChanges();
+           await _db.SaveChangesAsync();
         }
-
-
         public bool Exist(int id)
         {
-            return _db.Books.Any(x => x.Id == id);
+            return _db.Books.Any(x => x.Id == id);   // reikia sutaisyti ??? kad veiktu su dbSet?
+        }
+        public async Task UpdateAsync(TEntity entity)
+        {
+             _db.Update(entity);
+            await SaveAsync();
         }
 
-
-
+      
     }
 }

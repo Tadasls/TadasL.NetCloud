@@ -14,11 +14,33 @@ namespace P004_EF_Application.Data
         public DbSet<Dish> Dishes { get; set; } 
         public DbSet<RecipeItem> RecipyItems { get; set; }
         public DbSet<LocalUser> LocalUsers { get; set; }   
+        public DbSet<DishOrder> DishOrders { get; set; }   
 
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DishOrder>()
+                .HasKey(d => d.DishorderId);
+
+            modelBuilder.Entity<DishOrder>()
+                .Property(d => d.DishorderId)
+                .ValueGeneratedOnAdd();
+
+
+            modelBuilder.Entity<DishOrder>()
+                .HasOne(dio => dio.Dish)
+                .WithMany(d => DishOrders)
+                .HasForeignKey(d => d.DishId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<DishOrder>()
+             .HasOne(dio => dio.LocalUser)
+             .WithMany(d => DishOrders)
+             .HasForeignKey(d => d.LocalUserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+
             modelBuilder.Entity<Dish>()
                 .HasData(
                 new Dish(1, "Fried Bread Sticks", "Snacks", "Mild", "Lithuania", "", DateTime.Now),

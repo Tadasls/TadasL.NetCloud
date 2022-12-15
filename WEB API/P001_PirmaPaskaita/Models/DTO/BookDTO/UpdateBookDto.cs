@@ -38,6 +38,9 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
         /// Knygos kiekis
         /// </summary>
         public int KnyguKiekis { get; set; }
-
+        ///// <summary>
+        ///// Knygos info atnaujinimo data
+        ///// </summary>
+        //public DateTime Updated { get; set; }
     }
 }
