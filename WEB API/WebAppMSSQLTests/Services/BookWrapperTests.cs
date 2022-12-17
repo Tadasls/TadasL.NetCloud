@@ -45,7 +45,7 @@ namespace WebAppMSSQL.Services.Tests
             }
 
 
-  //[TestMethod()]
+        //[TestMethod()]
         //public void BindTest()
         //{
         //    var fakeBook = new CreateBookDto
@@ -57,7 +57,7 @@ namespace WebAppMSSQL.Services.Tests
         //        KnygosTipas = "Hardcover"
         //    };
 
-        //    var expected = new Book()  
+        //    var expected = new Book()
         //    {
         //        Title = "The Great Gatsby",
         //        Author = "F. Scott Fitzgerald",
@@ -67,7 +67,7 @@ namespace WebAppMSSQL.Services.Tests
         //    };
 
         //    var sut = new BookWrapper();
-        //    var actual = sut.Bind(fakeBook);   
+        //    var actual = sut.Bind(fakeBook);
 
         //    Assert.AreEqual(expected, actual);
 

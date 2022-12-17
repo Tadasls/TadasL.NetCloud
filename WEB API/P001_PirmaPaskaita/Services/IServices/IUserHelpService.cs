@@ -7,6 +7,6 @@ namespace WebAppMSSQL.Services.IServices
 {
     public interface IUserHelpService
     {
-       // Task<List<GetBookDto>> GetFavoriteAutorsForUser(int id);
+        Task<GetBookDto> GetFavoriteAutorsForUser(int id, List<Reservation> visosUserioRezervacijos);
     }
 }

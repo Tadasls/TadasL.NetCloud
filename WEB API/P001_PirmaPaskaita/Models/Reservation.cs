@@ -24,7 +24,6 @@ namespace WebAppMSSQL.Models
             Active = active;
         }
 
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -67,35 +66,7 @@ namespace WebAppMSSQL.Models
         
         //}
 
-        //[NotMapped]
-        ////[Display(Name = "Veluojama grazinti Dienu")]      
-        //public int? DelayDays
-        //{
-        //    get
-        //    {
-        //        if (ActualReturnDate.HasValue)
-        //        {
-        //            if (((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays > 0)
-        //            {
-        //                return (int)((DateTime)ActualReturnDate - (DateTime)ReturnDate).TotalDays;
-        //            }
-        //            else
-        //            {
-        //                return 0;
-        //            }
-        //        }
-        //        else if (ReturnDate < DateTime.Now)
-        //        {
-        //            return (int)(DateTime.Now - ReturnDate).TotalDays;
-        //        }
-        //        else
-        //        {
-        //            return 0;
-        //        }
 
-        //    }
-      
-        //}
 
         [Display(Name = "Ar Aktyvi Rezervacija (apmoketa?)")]
         public bool Active { get; set; }

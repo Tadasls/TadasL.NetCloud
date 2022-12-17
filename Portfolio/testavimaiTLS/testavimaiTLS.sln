@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testavimaiTLS", "testavimaiTLS\testavimaiTLS.csproj", "{3D42B1D7-29CE-499B-A237-210F5FBA44E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testavimaiTLS", "testavimaiTLS\testavimaiTLS.csproj", "{3D42B1D7-29CE-499B-A237-210F5FBA44E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zaidimuTest", "..\zaidimuTest\zaidimuTest.csproj", "{C8E1F237-AE38-4610-A10C-A14E7504BC3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3D42B1D7-29CE-499B-A237-210F5FBA44E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D42B1D7-29CE-499B-A237-210F5FBA44E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D42B1D7-29CE-499B-A237-210F5FBA44E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E1F237-AE38-4610-A10C-A14E7504BC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E1F237-AE38-4610-A10C-A14E7504BC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E1F237-AE38-4610-A10C-A14E7504BC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E1F237-AE38-4610-A10C-A14E7504BC3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

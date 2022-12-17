@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO;
+using WebAppMSSQL.Models.DTO.BookDTO;
+using WebAppMSSQL.Models.DTO.ReservationsDTO;
 using WebAppMSSQL.Models.DTO.UserTDO;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository.IRepository;
+using WebAppMSSQL.Services.IServices;
 
 namespace L05_Tasks_MSSQL.Controllers
 {
@@ -12,10 +16,18 @@ namespace L05_Tasks_MSSQL.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepo;
+        private readonly IUpdateBookRepository _bookRepo;
+        private readonly IDebtsService _debtsService;
+        private readonly IReservationRepository _reservationRepository;
+        private readonly IUserHelpService _userHelpService;
 
-        public UserController(IUserRepository userRepo)
+        public UserController(IUserRepository userRepo, IUpdateBookRepository bookUpdateRepository, IDebtsService debtsService, IReservationRepository reservationRepository, IUserHelpService userHelpService)
         {
             _userRepo = userRepo;
+            _bookRepo = bookUpdateRepository;
+            _debtsService = debtsService;
+            _reservationRepository = reservationRepository;
+            _userHelpService = userHelpService;
         }
 
         [HttpPost("login")]
@@ -69,11 +81,28 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
+        [HttpGet("FavoriteAuthors")] 
+        public async Task<ActionResult<List<GetBookDto>>?>GetFavoriteAutorsForUser(int id)
+        {
+            var allUserReservations = await _reservationRepository.GetAllAsync(r => r.LocalUserId == id);
+           // var userioKnyga = await _bookRepo.GetAsync(a => a.Id == id);
+            var favoriteAuthor = await _userHelpService.GetFavoriteAutorsForUser(id, allUserReservations);
 
 
- 
 
 
+            return Ok(favoriteAuthor);
+        }
+
+
+        [HttpGet("UserioSkolosDydis")]  
+        public async Task<double> GetSkolkasUsersio(int id)
+        {
+            var allUserReservations = await _reservationRepository.GetAllAsync(r => r.LocalUserId == id);
+            int praterminuotosDienos = await _debtsService.CountDelayDays(id, allUserReservations);
+            double useriosSkola = _debtsService.SuskaiciuotiSkolosDydi(praterminuotosDienos);
+            return useriosSkola;
+        }
 
 
 

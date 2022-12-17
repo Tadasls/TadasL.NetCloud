@@ -1,5 +1,6 @@
 ﻿using L05_Tasks_MSSQL.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebAppMSSQL.Data;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
@@ -12,37 +13,38 @@ namespace WebAppMSSQL.Services
 {
     public class UserHelpService : IUserHelpService
     {
-        private readonly KnygynasContext _db;
+     
+        private readonly IUpdateBookRepository _bookRepo;
+        private readonly IBookWrapper _bookWrapper;
         private readonly ILogger<KnygynasController> _logger;
-        private readonly IReservationRepository _reservationRepo;
+      
 
-        public UserHelpService(KnygynasContext db, ILogger<KnygynasController> logger, IReservationRepository reservationRepo)
+        public UserHelpService(IUpdateBookRepository bookRepo, IBookWrapper bookWrapper, ILogger<KnygynasController> logger)
         {
-            _db = db;
+            
+            _bookRepo = bookRepo;
+            _bookWrapper = bookWrapper;
             _logger = logger;
-            _reservationRepo = reservationRepo;
 
         }
 
 
-        //public async Task<List<GetBookDto>> GetFavoriteAutorsForUser(int id)
-        //{
-        //     var VisosUserioRezervacijos = await _reservationRepo.GetAllAsync(r => r.LocalUserId == id);
+        public async Task<GetBookDto> GetFavoriteAutorsForUser(int id, List<Reservation>visosUserioRezervacijos)
+        {
+            List<GetBookDto>? favoriteBooks = new List<GetBookDto>();
+            foreach (var item in visosUserioRezervacijos)
+            {
+                GetBookDto useriopMegstamaKnyga = _bookWrapper.Bind(await _bookRepo.GetAsync(a => a.Id == id));
+                favoriteBooks.Add(useriopMegstamaKnyga);
+            }
+            var mostFavoriteBook = favoriteBooks.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
 
-        //    foreach (var item in VisosUserioRezervacijos)
-        //    {
-
-        //       var useropMegstamaKnyga = item.BookId; 
-        //       var knyguSarasas.Add(useropMegstamaKnyga);
-        //    }
-
-
-        //    return knyguSarasas;
-        //}
+            return mostFavoriteBook;
+        }
 
 
 
-    
+
 
 
 

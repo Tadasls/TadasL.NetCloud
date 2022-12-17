@@ -12,22 +12,18 @@ namespace WebAppMSSQL.Services
 
         private readonly IReservationRepository _reservationRepo;
 
-        double visoSkola = 0;
-        double knygosSkola = 0;
-        int aktyviuRezervacijuSkaicius = 0;
-
         public DebtsService(IReservationRepository reservationRepo)
         {
             _reservationRepo = reservationRepo;
         }
 
-        public async Task<int> SuskaiciuotiKiekDienuVeluojamaGrazinti(int id)
+        public async Task<int> CountDelayDays(int id, List<Reservation> allReservations)
         {
-            var visosRezervacija = await _reservationRepo.GetAllAsync(); //.ToList();
+           // var visosRezervacijos = await _reservationRepo.GetAllAsync(); //.ToList();
             int knygaVeluojamaGrazinti = 0;
             int klientasVisoPradelseDienu = 0;
 
-            foreach (var item in visosRezervacija)
+            foreach (var item in allReservations)
             {
                 if (item.LocalUserId == id)
                 {
@@ -43,18 +39,20 @@ namespace WebAppMSSQL.Services
                     {
                         return 0;
                     }
+
+                    klientasVisoPradelseDienu += knygaVeluojamaGrazinti;
                 }
 
-                klientasVisoPradelseDienu += knygaVeluojamaGrazinti;
+                
             }
             return klientasVisoPradelseDienu;
         }
-        public async Task<int> SuskaiciuotiKiekTuriSkolu(int id)
+        public async Task<int> CountDebtsAmount(int id, List<Reservation> allReservations)
         {
-            var visosRezervacija = await _reservationRepo.GetAllAsync(); //.ToList();
+          //  var visosRezervacija = await _reservationRepo.GetAllAsync(); //.ToList();
             int skoluSkaicius = 0;
 
-            foreach (var item in visosRezervacija)
+            foreach (var item in allReservations)
             {
                 if (item.LocalUserId == id)
                 {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Net;
@@ -46,6 +47,7 @@ namespace WebAppMSSQL.Controllers
             _reservationWrapper = reservationWrapper;
             _userHelpService = userHelpService;
         }
+
 
 
         /// <summary>
@@ -173,43 +175,25 @@ namespace WebAppMSSQL.Controllers
             // validacijos ar yra useris turi leistina skaiciu knygu
             var useris = await _userRepo.GetAsync(u => u.Id == request.LocalUserId);
             if (useris.HasAmountOfBooks >= 5) return Conflict("Useris jau turi knygu limita pasiekta ");
-                                      
-            
+
+
             //skolu servisas
-            var kiekDienuVeluoja = await _debtsService.SuskaiciuotiKiekDienuVeluojamaGrazinti(request.LocalUserId);
+            var allReservations = await _reservationRepo.GetAllAsync(r => r.LocalUserId == request.LocalUserId);
+            var kiekDienuVeluoja = await _debtsService.CountDelayDays(request.LocalUserId, allReservations);
             var visoSkola = _debtsService.SuskaiciuotiSkolosDydi(kiekDienuVeluoja);
             if (visoSkola >= 10) return Conflict("klientas jau skolingas daugiau nei 20 Eur");
 
-            var skoluSkaicius = await _debtsService.SuskaiciuotiKiekTuriSkolu(request.LocalUserId);
-            if (skoluSkaicius >= 2) return Conflict("klientas jau turi 2 skolas");
-
-
-            //naujos rezervacijos sukurimas
-            //Reservation model = new Reservation()
-            //{
-            //    BorrowDate = request.BorrowDate,
-            //    ReturnDate = request.BorrowDate.AddDays(28),
-            //    BookId = request.BookId,
-            //    LocalUserId = request.LocalUserId,
-            //    Active = true,
-
-            //};
-            //await _reservationRepo.CreateAsync(model);
-
-            //pakeitimu zona
+            var debtsNumber = await _debtsService.CountDebtsAmount(request.LocalUserId, allReservations);
+            if (debtsNumber >= 2) return Conflict("klientas jau turi 2 skolas");
 
             var reservatedBook = await _bookRepo.GetAsync(b => b.Id == request.BookId);
             var response = _reservationWrapper.Bind(reservatedBook); // atiduodam kaip rezervacijos pasekme
-
-
             var newReservation = _reservationWrapper.Bind(request); //transformuojame rezervacija
             await _reservationRepo.CreateAsync(newReservation); // irasome nauja rezervacija
 
-
-
             //likuciu servisas
             await _stockService.UpdateTakenLibraryBooks(request.LocalUserId, 1);
-           await _stockService.UpdateTakenLibraryBooksKN(knygaPagalId.Id, -1);
+            await _stockService.UpdateTakenLibraryBooksKN(knygaPagalId.Id, -1);
 
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("GetReservation", new { LocalUserId = request.LocalUserId, BookId = request.BookId }, response);
@@ -296,15 +280,7 @@ namespace WebAppMSSQL.Controllers
 
 
 
-        //[HttpGet("FavoriteAuthors/{id:int}")]
-        //public async Task<ActionResult<IOrderedEnumerable<IGrouping<string, GetBookDto>>?>> GetFavoriteAutors(int id)
-        //{
 
-
-        //    var favoriteAuthors = await _userHelpService.GetFavoriteAutorsForUser(id);
-
-        //    return Ok(favoriteAuthors);
-        //}
 
 
 

@@ -24,7 +24,10 @@ namespace testavimaiTLS
             // PenktadienaSprendimas();
             // SestaDienaSprendimas();
 
-           // SestAntraDalis();
+            // SestAntraDalis();
+            //Console.WriteLine(Penkt()); //15
+
+
         }
         public static void PirmasSuskaiciavimoMetodas()
         {
@@ -43,7 +46,7 @@ namespace testavimaiTLS
             }
             Console.WriteLine($" Viso elfu yra {elfai}");
 
-            int[] skaiciuMasyvas = new int[Convert.ToInt32(elfai)+1];
+            int[] skaiciuMasyvas = new int[Convert.ToInt32(elfai) + 1];
 
             int skaitliukas = 0;
 
@@ -54,7 +57,7 @@ namespace testavimaiTLS
                     int suma = Convert.ToInt32(example);
                     skaiciuMasyvas[skaitliukas] += suma;
                 }
-                 else if (example == "")
+                else if (example == "")
                 {
                     ++skaitliukas;
                 }
@@ -66,7 +69,7 @@ namespace testavimaiTLS
 
             Array.Sort(skaiciuMasyvas);
             Array.Reverse(skaiciuMasyvas);
-        
+
             int totalSuma = Convert.ToInt32(skaiciuMasyvas[0]) + Convert.ToInt32(skaiciuMasyvas[1]) + Convert.ToInt32(skaiciuMasyvas[2]);
             Console.WriteLine($"Top 3 suma {skaiciuMasyvas[0]} + {skaiciuMasyvas[1]} + {skaiciuMasyvas[2]}");
             Console.WriteLine(totalSuma);
@@ -158,19 +161,19 @@ namespace testavimaiTLS
 
             Console.WriteLine(eiluciuSkaicius);
 
-            Console.WriteLine(AYeiluciuSkaicius*8); 
-            Console.WriteLine(AXeiluciuSkaicius*4); 
-            Console.WriteLine(AZeiluciuSkaicius*3); 
+            Console.WriteLine(AYeiluciuSkaicius * 8);
+            Console.WriteLine(AXeiluciuSkaicius * 4);
+            Console.WriteLine(AZeiluciuSkaicius * 3);
 
-            Console.WriteLine(BYeiluciuSkaicius*5);
-            Console.WriteLine(BXeiluciuSkaicius*1); 
-            Console.WriteLine(BZeiluciuSkaicius*9); 
+            Console.WriteLine(BYeiluciuSkaicius * 5);
+            Console.WriteLine(BXeiluciuSkaicius * 1);
+            Console.WriteLine(BZeiluciuSkaicius * 9);
 
-            Console.WriteLine(CYeiluciuSkaicius*2); 
-            Console.WriteLine(CXeiluciuSkaicius*7); 
-            Console.WriteLine(CZeiluciuSkaicius*6); 
+            Console.WriteLine(CYeiluciuSkaicius * 2);
+            Console.WriteLine(CXeiluciuSkaicius * 7);
+            Console.WriteLine(CZeiluciuSkaicius * 6);
 
-            var total = 
+            var total =
             AYeiluciuSkaicius * 8 +
             AXeiluciuSkaicius * 4 +
             AZeiluciuSkaicius * 3 +
@@ -194,7 +197,7 @@ namespace testavimaiTLS
             string Z = "Scissors"; // 3 zirkles
 
 
-         
+
 
         }
 
@@ -286,14 +289,14 @@ namespace testavimaiTLS
 
 
             var total =
-            AYeiluciuSkaicius * 4+
-            AXeiluciuSkaicius * 3+
-            AZeiluciuSkaicius * 8+
-            BYeiluciuSkaicius * 5+
-            BXeiluciuSkaicius * 1+
-            BZeiluciuSkaicius * 9+
-            CYeiluciuSkaicius * 6+
-            CXeiluciuSkaicius * 2+
+            AYeiluciuSkaicius * 4 +
+            AXeiluciuSkaicius * 3 +
+            AZeiluciuSkaicius * 8 +
+            BYeiluciuSkaicius * 5 +
+            BXeiluciuSkaicius * 1 +
+            BZeiluciuSkaicius * 9 +
+            CYeiluciuSkaicius * 6 +
+            CXeiluciuSkaicius * 2 +
             CZeiluciuSkaicius * 7;
 
             Console.WriteLine($"viso bus - {total}");
@@ -310,23 +313,23 @@ namespace testavimaiTLS
             string[] duomenuMasyvas = System.IO.File.ReadAllLines(filename);
 
             var eiluciuSkaicius = 0;
-            List<string> sarasasRaidziu = new List<string> {};
+            List<string> sarasasRaidziu = new List<string> { };
 
             foreach (string example in duomenuMasyvas)
             {
                 eiluciuSkaicius++;
-               
 
-                string pirmaPuse = example.Substring(0,(example.Length)/2);
-                string antraPuse = example.Substring((example.Length)/2);
-               
+
+                string pirmaPuse = example.Substring(0, (example.Length) / 2);
+                string antraPuse = example.Substring((example.Length) / 2);
+
                 var intersect = pirmaPuse.Intersect(antraPuse).FirstOrDefault();
-               
+
                 // Console.WriteLine($"{eiluciuSkaicius} - {pirmaPuse} - {antraPuse} = {intersect} ");
 
 
-               sarasasRaidziu.Add(intersect.ToString());
-               
+                sarasasRaidziu.Add(intersect.ToString());
+
             }
             Console.WriteLine();
 
@@ -343,21 +346,21 @@ namespace testavimaiTLS
         public static void NemanoSprendimas3()
         {
             Dictionary<char, int> ValueLookup = new Dictionary<char, int>();
-            
-                var c = 'a';
-                int val = 1;
-                while (c <= 'z')
-                    ValueLookup.Add(c++, val++);
-                c = 'A';
-                while (c <= 'Z')
-                    ValueLookup.Add(c++, val++);
-               
-               
+
+            var c = 'a';
+            int val = 1;
+            while (c <= 'z')
+                ValueLookup.Add(c++, val++);
+            c = 'A';
+            while (c <= 'Z')
+                ValueLookup.Add(c++, val++);
+
+
             string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input3.txt";
 
 
-             Part1();
-             Part2();
+            Part1();
+            Part2();
 
             void Part1()
             {
@@ -490,18 +493,18 @@ namespace testavimaiTLS
 
             foreach (var line in duomenuMasyvas)
             {
-               charArray = line.ToCharArray();
+                charArray = line.ToCharArray();
             }
 
 
-            for (int i = 0; i <= charArray.Count()-5; i++)
+            for (int i = 0; i <= charArray.Count() - 5; i++)
             {
                 bool arSutampa1 = charArray[i].Equals(charArray[i + 1]);
                 bool arSutampa2 = charArray[i].Equals(charArray[i + 2]);
                 bool arSutampa3 = charArray[i].Equals(charArray[i + 3]);
-                bool arSutampaA2 = charArray[i+1].Equals(charArray[i + 2]);
-                bool arSutampaA3 = charArray[i+1].Equals(charArray[i + 3]);
-                bool arSutampaB3 = charArray[i+2].Equals(charArray[i + 3]);
+                bool arSutampaA2 = charArray[i + 1].Equals(charArray[i + 2]);
+                bool arSutampaA3 = charArray[i + 1].Equals(charArray[i + 3]);
+                bool arSutampaB3 = charArray[i + 2].Equals(charArray[i + 3]);
 
                 if (arSutampa1 || arSutampa2 || arSutampa3 || arSutampaA2 || arSutampaA3 || arSutampaB3)
                 {
@@ -510,13 +513,13 @@ namespace testavimaiTLS
                     //Console.Write(charArray[i + 1]);
                     //Console.Write(charArray[i + 2]);
                     //Console.Write(charArray[i + 3]);
-                   
-                   
+
+
 
                     //Console.WriteLine(" - Pasikartojimas");
                 } else
                 {
-                    Console.Write($" - Ats ???{i+4}??? - ");
+                    Console.Write($" - Ats ???{i + 4}??? - ");
                     Console.Write(charArray[i]);
                     Console.Write(charArray[i + 1]);
                     Console.Write(charArray[i + 2]);
@@ -547,12 +550,12 @@ namespace testavimaiTLS
 
             for (var idx = 0; idx < line.Length - 3; ++idx)
             {
-                if (line.Substring(idx).Take(14).Distinct().Count() == 14)   
+                if (line.Substring(idx).Take(14).Distinct().Count() == 14)
                 {
                     Console.WriteLine(idx + 14);
                 }
 
-               
+
 
 
             }
@@ -563,15 +566,80 @@ namespace testavimaiTLS
 
         }
 
-
-        public static void SeptintaDalis()
+        public static string Penkt()
         {
+            string filename = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\input15.txt";
+            var input = File.ReadAllLines(filename).ToList();
+            List<int[]> data = new List<int[]>();
+
+        Regex rx = new Regex(@"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)", RegexOptions.Compiled);
+           
+            foreach (var s in input)
+            {
+                int[] pars = new int[4];
+                Match m = rx.Match(s);
+                for (int i = 1; i <= 4; i++) pars[i - 1] = int.Parse(m.Groups[i].Value);
+                data.Add(pars);
+            }
+
+
+            //List<int> ranges = new List<int>();
+            //HashSet<int> bcount = new HashSet<int>();
+            //int target = 2000000;
+            //foreach (var pars in data)
+            //{
+            //    var db = Math.Abs(pars[0] - pars[2]) + Math.Abs(pars[1] - pars[3]);
+            //    var dy = Math.Abs(pars[1] - target);
+            //    if (dy <= db)
+            //    {
+            //        ranges.Add(2 * (pars[0] - (db - dy)));
+            //        ranges.Add(2 * (pars[0] + (db - dy)) + 1);
+            //    }
+            //    if (pars[3] == target) bcount.Add(pars[3]);
+            //}
+            //ranges.Sort();
+            //int count = 0, start = 0, tot = 0;
+            //foreach (var r in ranges)
+            //{
+            //    if (r % 2 == 0 && ++count == 1) start = r / 2;
+            //    if (r % 2 == 1 && --count == 0) tot += r / 2 - start + 1;
+            //}
+            //tot -= bcount.Count;
+            //Console.WriteLine("ats pirmas");
+            //Console.WriteLine(tot.ToString());
+
+            
+                long range = 4000000;
+                for (long target = 0; target < range; target++)
+                {
+                    List<long> ranges = new List<long>();
+                    foreach (var pars in data)
+                    {
+                        long db = Math.Abs(pars[0] - pars[2]) + Math.Abs(pars[1] - pars[3]);
+                        long dy = Math.Abs(pars[1] - target);
+                        long a = pars[0] - (db - dy), b = pars[0] + (db - dy);
+                        if (dy <= db && a <= range && b >= 0)
+                        {
+                            if (a < 0) a = 0;
+                            if (b > range) b = range;
+                            ranges.Add(2 * a);
+                            ranges.Add(2 * b + 1);
+                        }
+                    }
+                    ranges.Sort();
+                    long count = 0, start = 0, tot = 0;
+                    foreach (long r in ranges)
+                    {
+                        if (r % 2 == 0 && ++count == 1) start = r / 2;
+                        if (r % 2 == 1 && --count == 0) tot += r / 2 - start + 1;
+                        if (count == 0 && tot < range) return (tot * 4000000 + target).ToString();
+                    }
+                }
+                return "";
+           
 
 
         }
-
-
-
 
 
 
@@ -582,12 +650,27 @@ namespace testavimaiTLS
 
 
 
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

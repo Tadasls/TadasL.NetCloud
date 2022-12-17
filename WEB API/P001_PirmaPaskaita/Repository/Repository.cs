@@ -33,7 +33,7 @@ namespace WebAppMSSQL.Repository
             _dbSet.Add(entity);
             await SaveAsync();
         }
-        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, bool tracked = true)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>>? filter, bool tracked = true)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -66,7 +66,6 @@ namespace WebAppMSSQL.Repository
         {
            await _db.SaveChangesAsync();
         }
-      
         public async Task<bool> ExistAsync(Expression<Func<TEntity, bool>> filter)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -78,8 +77,6 @@ namespace WebAppMSSQL.Repository
 
             return await query.AnyAsync(filter);
         }
-
-
         public async Task UpdateAsync(TEntity entity)
         {
              _db.Update(entity);

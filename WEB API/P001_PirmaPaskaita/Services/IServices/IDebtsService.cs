@@ -1,13 +1,12 @@
-﻿using WebAppMSSQL.Models.ReservationsDTO;
+﻿using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.ReservationsDTO;
 
 namespace WebAppMSSQL.Services.IServices
 {
     public interface IDebtsService
     {
-        //Task<double> GautiSkolosDydiMetodas(CreateReservationDTO createReservationDTO);
-        //Task<int> GautiSkoluSkaiciuMetodas(CreateReservationDTO createReservationDTO);
-        Task<int> SuskaiciuotiKiekDienuVeluojamaGrazinti(int id);
-        Task<int> SuskaiciuotiKiekTuriSkolu(int id);
+        Task<int> CountDebtsAmount(int id, List<Reservation> allReservations);
+        Task<int> CountDelayDays(int id, List<Reservation> allReservations);
         double SuskaiciuotiSkolosDydi(int veluojaDienu);
 
     }
