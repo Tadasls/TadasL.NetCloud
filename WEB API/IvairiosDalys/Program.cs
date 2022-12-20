@@ -30,12 +30,24 @@ namespace L05_Tasks_MSSQL
             builder.Services.AddTransient<IBadService, BadService>();
             builder.Services.AddTransient<INegalimaDalyba, Skaiciuokle>();
 
+    
+
 
             builder.Services.AddTransient<IBookWrapper, BookWrapper>();
             builder.Services.AddDbContext<BookStoreContext>(option =>
             {
-             option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
+                option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
             });
+
+
+            builder.Services.AddHttpClient("FakeApi", client => {
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServices:FakeApiUri"]);
+                client.Timeout = TimeSpan.FromSeconds(10);
+                client.DefaultRequestHeaders.Clear();
+            });
+            builder.Services.AddTransient<IFakeApiProxyService, FakeApiProxyService>();
+
+
 
             builder.Services.AddControllers();
 

@@ -45,6 +45,17 @@ namespace L05_Tasks_MSSQL
             builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
 
+
+            builder.Services.AddHttpClient("WebMapService", client => {
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServices:FakeApiUri"]);
+                client.Timeout = TimeSpan.FromSeconds(10);
+                client.DefaultRequestHeaders.Clear();
+            });
+
+            builder.Services.AddScoped<IShippingService, ShippingService>();
+            
+
+
             var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
 
             builder.Services.AddAuthentication(x =>
