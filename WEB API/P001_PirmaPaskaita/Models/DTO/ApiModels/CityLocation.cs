@@ -63,33 +63,33 @@
         public float[] coordinates { get; set; }
     }
 
-    public class Properties
-    {
-        public string id { get; set; }
-        public string gid { get; set; }
-        public string layer { get; set; }
-        public string source { get; set; }
-        public string source_id { get; set; }
-        public string name { get; set; }
-        public int confidence { get; set; }
-        public string match_type { get; set; }
-        public string accuracy { get; set; }
-        public string country { get; set; }
-        public string country_gid { get; set; }
-        public string country_a { get; set; }
-        public string region { get; set; }
-        public string region_gid { get; set; }
-        public string region_a { get; set; }
-        public string county { get; set; }
-        public string county_gid { get; set; }
-        public string locality { get; set; }
-        public string locality_gid { get; set; }
-        public string continent { get; set; }
-        public string continent_gid { get; set; }
-        public string label { get; set; }
-        public Addendum addendum { get; set; }
-        public string county_a { get; set; }
-    }
+    //public class Properties
+    //{
+    //    public string id { get; set; }
+    //    public string gid { get; set; }
+    //    public string layer { get; set; }
+    //    public string source { get; set; }
+    //    public string source_id { get; set; }
+    //    public string name { get; set; }
+    //    public int confidence { get; set; }
+    //    public string match_type { get; set; }
+    //    public string accuracy { get; set; }
+    //    public string country { get; set; }
+    //    public string country_gid { get; set; }
+    //    public string country_a { get; set; }
+    //    public string region { get; set; }
+    //    public string region_gid { get; set; }
+    //    public string region_a { get; set; }
+    //    public string county { get; set; }
+    //    public string county_gid { get; set; }
+    //    public string locality { get; set; }
+    //    public string locality_gid { get; set; }
+    //    public string continent { get; set; }
+    //    public string continent_gid { get; set; }
+    //    public string label { get; set; }
+    //    public Addendum addendum { get; set; }
+    //    public string county_a { get; set; }
+    //}
 
     public class Addendum
     {
@@ -118,56 +118,6 @@
 
 
     // 
-
-
-    public class Distance
-    {
-        public string type { get; set; }
-        public Feature[] features { get; set; }
-        public float[] bbox { get; set; }
-        public Metadata metadata { get; set; }
-    }
-
-
-
-    public class Metadata
-    {
-        public string attribution { get; set; }
-        public string service { get; set; }
-        public long timestamp { get; set; }
-        public Query query { get; set; }
-        public Engine engine { get; set; }
-    }
-
-         
-
-    public class Summary
-    {
-        public float distance { get; set; }
-        public float duration { get; set; }
-    }
-
-    public class Segment
-    {
-        public float distance { get; set; }
-        public float duration { get; set; }
-        public Step[] steps { get; set; }
-    }
-
-    public class Step
-    {
-        public float distance { get; set; }
-        public float duration { get; set; }
-        public int type { get; set; }
-        public string instruction { get; set; }
-        public string name { get; set; }
-        public int[] way_points { get; set; }
-    }
-
-
-
-
-
 
 
 

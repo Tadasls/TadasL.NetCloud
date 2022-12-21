@@ -31,7 +31,7 @@ namespace WebAppMSSQL.Controllers
             try
             {
                 var res = await _service.GetKoordinates(cityName);
-               // var koordinates = res.features[0].geometry.coordinates;
+
 
                 return Ok(res);
 
@@ -60,10 +60,9 @@ namespace WebAppMSSQL.Controllers
                     return NotFound();
                 }
 
-                var pristatymoKoordinates = await _service.GetKoordinates(cityName);
-             //  var xy = pristatymoKoordinates.features[0].geometry.coordinates[0].ToString() + "," + pristatymoKoordinates.features[0].geometry.coordinates[1].ToString();
-                var atstumasInKm = await _service.GetAtstumas(pristatymoKoordinates);
-                var pristatymoKaina = await _service.GetKaina(atstumasInKm);
+                string? pristatymoKoordinates = await _service.GetKoordinates(cityName); //surandeme miesto koordinates
+                double atstumasInKm = await _service.GetAtstumas(pristatymoKoordinates); //paskaiciuojame atstuma
+                double pristatymoKaina = await _service.GetKaina(atstumasInKm); //paskaiciuojame pristatymo kaina
 
 
                 return Ok(pristatymoKaina);

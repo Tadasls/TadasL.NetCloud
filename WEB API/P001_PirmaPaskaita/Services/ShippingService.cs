@@ -21,11 +21,11 @@ namespace WebAppMSSQL.Services
 
         public async Task<string> GetKoordinates(string cityName)
         {
-            var httpClient = _httpClientFactory.CreateClient("WebMapService");
-            var endpoint = "/geocode/search/structured";
-            var res = await httpClient.GetFromJsonAsync<CityLocation>(endpoint + "?api_key=" + apiKey + "&locality=" + cityName);
-            var xy = res.features[0].geometry.coordinates[0].ToString() + "," + res.features[0].geometry.coordinates[1].ToString();
-            return xy;
+            HttpClient httpClient = _httpClientFactory.CreateClient("WebMapService");
+            string endpoint = "/geocode/search/structured";
+             CityLocation res = await httpClient.GetFromJsonAsync<CityLocation>(endpoint + "?api_key=" + apiKey + "&locality=" + cityName);
+             string xy = res.features[0].geometry.coordinates[0].ToString() + "," + res.features[0].geometry.coordinates[1].ToString();
+            return  xy;
         }
 
 
@@ -33,18 +33,25 @@ namespace WebAppMSSQL.Services
 
         public async Task<double> GetAtstumas(string cityLocation)
         {
-            var httpClient = _httpClientFactory.CreateClient("WebMapService");
-            var endpoint = "/v2/directions/driving-car";
-            var res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
-            //var res3 = JsonConvert.DeserializeObject<string>(res2);
-           
-            if (res2.IsSuccessStatusCode)
-            {
-                var content = await res2.Content.ReadAsStringAsync();
-                var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
-                return distanceInKm;
-            }
-            return 0;
+            HttpClient httpClient = _httpClientFactory.CreateClient("WebMapService");
+            string endpoint = "/v2/directions/driving-car";
+
+
+
+            var res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            double xy = res2.features[0].properties.summary.distance;
+            return xy;
+
+
+            //HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            //if (res2.IsSuccessStatusCode)
+            //{
+            //    var content = await res2.Content.ReadAsStringAsync();
+            //    var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
+            //    return distanceInKm;
+            //}
+            //return 0;
+
 
         }
 

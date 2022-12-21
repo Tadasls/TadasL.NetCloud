@@ -8,5 +8,6 @@ namespace WebAppMSSQL.Services.IServices
         Task<string> GetKoordinates(string cityName);
         Task<double> GetAtstumas(string cityLocation);
         Task<double> GetKaina(double atstumas);
+       
     }
 }

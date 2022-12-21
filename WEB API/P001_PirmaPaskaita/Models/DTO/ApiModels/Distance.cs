@@ -2,23 +2,22 @@
 {
 
 
-    //public class Distance
-    //{
-    //    public string type { get; set; }
-    //    public Feature[] features { get; set; }
-    //    public float[] bbox { get; set; }
-    //    public Metadata metadata { get; set; }
-    //}
+    public class Distance
+    {
+        public string type { get; set; }
+        public Feature[] features { get; set; }
+        public float[] bbox { get; set; }
+        public Metadata metadata { get; set; }
+    }
 
-
-    //public class Metadata
-    //{
-    //    public string attribution { get; set; }
-    //    public string service { get; set; }
-    //    public long timestamp { get; set; }
-    //    public Query query { get; set; }
-    //    public Engine engine { get; set; }
-    //}
+    public class Metadata
+    {
+        public string attribution { get; set; }
+        public string service { get; set; }
+        public long timestamp { get; set; }
+        public Query query { get; set; }
+        public Engine engine { get; set; }
+    }
 
     //public class Query
     //{
@@ -42,42 +41,41 @@
     //    public Geometry geometry { get; set; }
     //}
 
-    //public class Properties
-    //{
-    //    public Segment[] segments { get; set; }
-    //    public Summary summary { get; set; }
-    //    public int[] way_points { get; set; }
-    //}
+    public class Properties
+    {
+        public Segment[] segments { get; set; }
+        public Summary summary { get; set; }
+        public int[] way_points { get; set; }
+    }
 
-    //public class Summary
-    //{
-    //    public float distance { get; set; }
-    //    public float duration { get; set; }
-    //}
+    public class Summary
+    {
+        public float distance { get; set; }
+        public float duration { get; set; }
+    }
 
-    //public class Segment
-    //{
-    //    public float distance { get; set; }
-    //    public float duration { get; set; }
-    //    public Step[] steps { get; set; }
-    //}
+    public class Segment
+    {
+        public float distance { get; set; }
+        public float duration { get; set; }
+        public Step[] steps { get; set; }
+    }
 
-    //public class Step
-    //{
-    //    public float distance { get; set; }
-    //    public float duration { get; set; }
-    //    public int type { get; set; }
-    //    public string instruction { get; set; }
-    //    public string name { get; set; }
-    //    public int[] way_points { get; set; }
-    //}
+    public class Step
+    {
+        public float distance { get; set; }
+        public float duration { get; set; }
+        public int type { get; set; }
+        public string instruction { get; set; }
+        public string name { get; set; }
+        public int[] way_points { get; set; }
+    }
 
     //public class Geometry
     //{
     //    public float[][] coordinates { get; set; }
     //    public string type { get; set; }
     //}
-
 
 
 
