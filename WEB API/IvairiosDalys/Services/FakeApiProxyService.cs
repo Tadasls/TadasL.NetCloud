@@ -41,7 +41,6 @@ namespace L05_Tasks_MSSQL.Services
            
         }
 
-
         public async Task<IEnumerable<BookApiModel>> GetBooksAsJSon()
         {
             var httpClient = _httpClientFactory.CreateClient("FakeApi");
@@ -49,7 +48,6 @@ namespace L05_Tasks_MSSQL.Services
             var res = await httpClient.GetFromJsonAsync<List<BookApiModel>>(endpoint);
             return res;
         }
-
 
         public async Task CreateBook(BookApiModel data)
         {

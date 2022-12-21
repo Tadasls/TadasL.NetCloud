@@ -47,7 +47,13 @@ namespace L05_Tasks_MSSQL
 
 
             builder.Services.AddHttpClient("WebMapService", client => {
-                client.BaseAddress = new Uri(builder.Configuration["ExternalServices:FakeApiUri"]);
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServicesOP:WebNuoroda"]);
+                client.Timeout = TimeSpan.FromSeconds(10);
+                client.DefaultRequestHeaders.Clear();
+            });
+
+            builder.Services.AddHttpClient("CountriesMapService", client => {
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServicesCC:WebNuoroda"]);
                 client.Timeout = TimeSpan.FromSeconds(10);
                 client.DefaultRequestHeaders.Clear();
             });
