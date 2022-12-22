@@ -1,6 +1,6 @@
 ﻿namespace WebAppMSSQL.Models.DTO.ReservationsDTO
 {
-    public class RezervationsDebtsDto
+    public class ReservationsDebtsDto
     {
         public int LocalUserId { get; set; }
         public int BookId { get; set; }

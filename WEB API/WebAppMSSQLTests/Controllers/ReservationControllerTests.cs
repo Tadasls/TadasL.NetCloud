@@ -22,7 +22,7 @@ namespace WebAppMSSQL.Controllers.Tests
         //[TestMethod]
         //public async Task TestCreateReservation_Success()
         //{
-        //    Arrange
+        // //   Arrange
         //   var request = new CreateReservationDTO
         //   {
         //       LocalUserId = 1,
@@ -32,7 +32,7 @@ namespace WebAppMSSQL.Controllers.Tests
 
         //    var mockUserRepo = new Mock<IUserRepository>();
         //    mockUserRepo.Setup(repo => repo.IsRegisteredAsync(request.LocalUserId)).ReturnsAsync(true);
-        //    mockUserRepo.Setup(repo => repo.GetAsync(u => u.LocalUserId == request.LocalUserId)).ReturnsAsync(new GetUserDto { Id = request.LocalUserId, HasAmountOfBooks = 4 });
+        //    mockUserRepo.Setup(repo => repo.GetAsync(u => u.Id == request.LocalUserId)).ReturnsAsync(new GetUserDto { Id = request.LocalUserId, HasAmountOfBooks = 4 });
 
         //    var mockBookRepo = new Mock<IUpdateBookRepository>();
         //    mockBookRepo.Setup(repo => repo.ExistAsync(b => b.Id == request.BookId)).ReturnsAsync(true);
@@ -52,10 +52,10 @@ namespace WebAppMSSQL.Controllers.Tests
 
         //    var reservationController = new ReservationController(mockUserRepo.Object, mockBookRepo.Object, mockDebtsService.Object, mockReservationRepo.Object, mockStockService.Object);
 
-        //    Act
+        // //   Act
         //   var result = await reservationController.CreateReservation(request);
 
-        //    Assert
+        //   // Assert
         //    Assert.IsInstanceOfType(result, typeof(CreatedAtActionResult));
         //    Assert.AreEqual((result as CreatedAtActionResult).StatusCode, 201);
         //    Assert.IsInstanceOfType((result as CreatedAtActionResult).Value, typeof(CreateReservationDTO));

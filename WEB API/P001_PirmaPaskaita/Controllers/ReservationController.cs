@@ -223,12 +223,22 @@ namespace WebAppMSSQL.Controllers
                 return NotFound();
             }
 
+            var allUserReservations = await _reservationRepo.GetAllAsync(r => r.LocalUserId == request.LocalUserId);
+            var vienosKnygosSkola = await _debtsService.VienosKnygosSkola(request.BookId, allUserReservations);
+
+            if (request.PaidWithPoints > Convert.ToInt32(vienosKnygosSkola))
+            {
+                return BadRequest("Negalima sumoketi daugiau nei 99 proc sumos taskais");
+            }
+
+
             //var reservation = _reservationWrapper.Bind(returnReservationDto);
 
             foundReservation.ActualReturnDate = request.ActualReturnDate;
             foundReservation.LocalUserId = request.LocalUserId;
             foundReservation.BookId = request.BookId;
             foundReservation.Active = false;
+            foundReservation.PaidWithPoints = request.PaidWithPoints;
 
            await _reservationRepo.UpdateAsync(foundReservation);
 

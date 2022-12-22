@@ -85,6 +85,42 @@ namespace WebAppMSSQL.Services
         }
 
      
-       
+       public async Task <double> VienosKnygosSkola(int BookId, List<Reservation> allReservations)
+        {
+            int knygaVeluojamaGrazinti = 0;
+            int knygosPradelsimas = 0;
+
+            foreach (var item in allReservations)
+            {
+                if (item.BookId == BookId)
+                {
+                    if (item.ActualReturnDate.HasValue && (((DateTime)item.ActualReturnDate - (DateTime)item.ReturnDate).TotalDays > 0))
+                    {
+                        knygaVeluojamaGrazinti = (int)((DateTime)item.ActualReturnDate - (DateTime)item.ReturnDate).TotalDays;
+                    }
+                    else if (item.ReturnDate < DateTime.Now)
+                    {
+                        knygaVeluojamaGrazinti = (int)(DateTime.Now - item.ReturnDate).TotalDays;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                    knygosPradelsimas += knygaVeluojamaGrazinti;
+                }
+
+            }
+            double knygosSkola = SuskaiciuotiSkolosDydi(knygosPradelsimas);
+
+            return knygosSkola;
+
+
+
+
+
+
+            return 0.1;
+        }
     }
 }

@@ -26,5 +26,21 @@ namespace WebAppMSSQL.Services
             await _db.SaveChangesAsync();
         }
 
+
+        public async Task PapildytiTaskaisUzPrisijungima(int userId, int modifier)
+        {
+            LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
+            user.KluboTaskai += modifier;
+            _db.LocalUsers.Update(user);
+            await _db.SaveChangesAsync();
+        }
+
+
+
+
+
+
+
+
     }
 }

@@ -72,6 +72,8 @@ namespace WebAppMSSQL.Models
         [Display(Name = "Ar Aktyvi Rezervacija (apmoketa?)")]
         public bool Active { get; set; }
 
+        public int PaidWithPoints { get; set; }
+
 
 
 

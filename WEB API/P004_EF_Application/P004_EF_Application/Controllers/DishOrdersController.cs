@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using P004_EF_Application.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using P004_EF_Application.Models.Dto;
 using P004_EF_Application.Repository.IRepository;
-using P004_EF_Application.Services.Adapters;
 using P004_EF_Application.Services.Adapters.IAdapters;
 using P004_EF_Application.Services.IServices;
-using P04_EF_Applying_To_API.Repository;
 using P04_EF_Applying_To_API.Repository.IRepository;
-using System.Diagnostics.Contracts;
 using System.Net.Mime;
 
 namespace P004_EF_Application.Controllers
@@ -18,17 +12,16 @@ namespace P004_EF_Application.Controllers
     [ApiController]
     public class DishOrderController : ControllerBase
     {
-        private readonly IDishOrderRepository _dishOrderRepository;
-        private readonly IUserRepository _userRepository;
-        private readonly IDishRepository _dishRepository;
+        private readonly IUnitOfWork _db;
+  
         private readonly IDishOrderAdapter _dishOrderAdapter;
         private readonly ICookingService _cookingService;
 
-        public DishOrderController(IDishOrderRepository dishOrderRepository, IUserRepository userRepository, IDishRepository dishRepository, IDishOrderAdapter dishOrderAdapter, ICookingService cookingService)
+        public DishOrderController(IUnitOfWork db, IDishOrderAdapter dishOrderAdapter, ICookingService cookingService)
         {
-            _dishOrderRepository = dishOrderRepository;
-            _userRepository = userRepository;
-            _dishRepository = dishRepository;
+          
+
+            _db = db;
             _dishOrderAdapter = dishOrderAdapter;
             _cookingService = cookingService;
         }
@@ -46,14 +39,14 @@ namespace P004_EF_Application.Controllers
                 return BadRequest();
             }
 
-            var isDishOrdered = await _dishOrderRepository.ExistAsync(o => o.LocalUserId == model.UserId && o.DishId == model.DishId);
+            var isDishOrdered = await _db.DishOrder.ExistAsync(o => o.LocalUserId == model.UserId && o.DishId == model.DishId);
 
             if (!isDishOrdered)
             {
                 return NotFound();
             }
 
-            var dishOrder = await _dishOrderRepository.GetAsync(o => o.LocalUserId == model.UserId && o.DishId == model.DishId);
+            var dishOrder = await _db.DishOrder.GetAsync(o => o.LocalUserId == model.UserId && o.DishId == model.DishId);
             var response = _dishOrderAdapter.Bind(dishOrder);
 
             return Ok(response);
@@ -72,26 +65,26 @@ namespace P004_EF_Application.Controllers
                 return BadRequest(request);
             }
 
-            var userExists = await _userRepository.IsRegisteredAsync(request.UserId);
+            var userExists = await _db.User.IsRegisteredAsync(request.UserId);
 
             if (!userExists)
             {
                 return NotFound(new { message = "User was not found" });
             }
 
-            var dishExists = await _dishRepository.ExistAsync(d => d.DishId == request.DishId);
+            var dishExists = await _db.Dish.ExistAsync(d => d.DishId == request.DishId);
 
             if (!dishExists)
             {
                 return NotFound(new { message = "Dish was not found" });
             }
 
-            var orderedDish = await _dishRepository.GetAsync(d => d.DishId == request.DishId);
+            var orderedDish = await _db.Dish.GetAsync(d => d.DishId == request.DishId);
 
             var newDishOrder = _dishOrderAdapter.Bind(request);
             var response = _dishOrderAdapter.Bind(orderedDish);
 
-            await _dishOrderRepository.CreateAsync(newDishOrder);
+            await _db.DishOrder.CreateAsync(newDishOrder);
 
             // Lets write a service
             await _cookingService.CookAsync(newDishOrder);

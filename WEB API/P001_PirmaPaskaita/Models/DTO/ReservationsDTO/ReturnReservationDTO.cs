@@ -16,8 +16,7 @@ namespace WebAppMSSQL.Models.ReservationsDTO
 
         [Display(Name = "Knygos ID")]
         public int BookId { get; set; }
-
-   
+        public int PaidWithPoints { get; set; }
 
     }
 }

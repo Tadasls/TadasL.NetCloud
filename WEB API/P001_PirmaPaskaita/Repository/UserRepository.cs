@@ -20,7 +20,7 @@ namespace WebAppMSSQL.Repository
         private readonly KnygynasContext _db;
         private readonly IPasswordService _passwordService;
         private readonly IJwtService _jwtService;
-       // private DbSet<UserRepository> _dbSet;
+        private DbSet<UserRepository> _dbSet;
 
         public UserRepository(KnygynasContext db, IPasswordService passwordService, IJwtService jwtService)
         {
@@ -68,7 +68,6 @@ namespace WebAppMSSQL.Repository
 
             loginResponse.User.PasswordHash = null;
 
-            user.WasOnline = DateTime.Now;
 
             return loginResponse;
         }
@@ -134,8 +133,7 @@ namespace WebAppMSSQL.Repository
             return isRegistered;
         }
 
-
-
+ 
 
 
     }

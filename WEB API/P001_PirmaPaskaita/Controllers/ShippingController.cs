@@ -50,7 +50,7 @@ namespace WebAppMSSQL.Controllers
         /// <param name="cityName">pristatymo miesto pavadinimas</param>
         /// <returns></returns>
         [HttpGet("GetDeliveryPrice")]
-        public async Task<ActionResult<double>> GetDeliveryPriceToEnteredCity([FromQuery] string cityName)
+        public async Task<ActionResult<double?>> GetDeliveryPriceToEnteredCity([FromQuery] string cityName)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace WebAppMSSQL.Controllers
 
                 string? pristatymoKoordinates = await _service.GetKoordinates(cityName); //surandeme miesto koordinates
                 double atstumasInKm = await _service.GetAtstumas(pristatymoKoordinates); //paskaiciuojame atstuma
-                double pristatymoKaina = await _service.GetKaina(atstumasInKm); //paskaiciuojame pristatymo kaina
+                double? pristatymoKaina = await _service.GetKaina(atstumasInKm); //paskaiciuojame pristatymo kaina
 
 
                 return Ok(pristatymoKaina);

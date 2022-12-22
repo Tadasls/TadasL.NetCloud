@@ -8,6 +8,6 @@ namespace WebAppMSSQL.Services.IServices
         Task<int> CountDebtsAmount(int id, List<Reservation> allReservations);
         Task<int> CountDelayDays(int id, List<Reservation> allReservations);
         double SuskaiciuotiSkolosDydi(int veluojaDienu);
-
+        Task<double> VienosKnygosSkola(int id, List<Reservation> allReservations);
     }
 }

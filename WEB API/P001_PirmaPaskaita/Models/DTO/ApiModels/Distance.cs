@@ -41,18 +41,25 @@
     //    public Geometry geometry { get; set; }
     //}
 
-    public class Properties
-    {
-        public Segment[] segments { get; set; }
-        public Summary summary { get; set; }
-        public int[] way_points { get; set; }
-    }
 
-    public class Summary
-    {
-        public float distance { get; set; }
-        public float duration { get; set; }
-    }
+
+
+
+
+
+
+    //public class Properties
+    //{
+    //    public Segment[] segments { get; set; }
+    //    public Summary summary { get; set; }
+    //    public int[] way_points { get; set; }
+    //}
+
+    //public class Summary
+    //{
+    //    public float distance { get; set; }
+    //    public float duration { get; set; }
+    //}
 
     public class Segment
     {

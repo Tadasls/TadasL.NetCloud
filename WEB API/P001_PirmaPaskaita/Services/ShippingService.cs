@@ -36,24 +36,19 @@ namespace WebAppMSSQL.Services
             HttpClient httpClient = _httpClientFactory.CreateClient("WebMapService");
             string endpoint = "/v2/directions/driving-car";
 
+            Distance res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            var xy = res2.features[0].properties.summary.distance;
 
+            return xy;
 
-            //Distance res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
-            //float xy = res2.features[0].properties.summary.distance;
-
-            //return 0.1;
-
-
-            HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
-            if (res2.IsSuccessStatusCode)
-            {
-                var content = await res2.Content.ReadAsStringAsync();
-                var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
-                return distanceInKm;
-            }
-            return 0;
-
-
+            //HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            //if (res2.IsSuccessStatusCode)
+            //{
+            //    var content = await res2.Content.ReadAsStringAsync();
+            //    var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
+            //    return distanceInKm;
+            //}
+            //return 0;
         }
 
         public double GetDistanceInMetersFromResponseString(string content)
@@ -67,26 +62,25 @@ namespace WebAppMSSQL.Services
 
 
        
-        public async Task<double> GetKaina(double atstumas)
+        public async Task<double?> GetKaina(double atstumas)
             {
-             double pristatymoKaina = 0;
+             double pristatymoKaina = 5;
 
-            if (atstumas < 50 )
+            if (atstumas <= 50 )
             {
-                return pristatymoKaina = 3;
+                return pristatymoKaina - 2;
             }
-
-            if (atstumas >=50 && atstumas <= 150)
+            if (atstumas > 50 && atstumas <= 150)
             {
-                return pristatymoKaina = 5;
+                return pristatymoKaina;
             }
-
-            if (atstumas > 150)
+            if (atstumas > 150 && atstumas <= 300)
             {
-                return pristatymoKaina = 7;
+                return pristatymoKaina + 2;
             }
+            if (atstumas > 300) return null;
 
-            return pristatymoKaina = 0;
+            return null;
             }
 
 
