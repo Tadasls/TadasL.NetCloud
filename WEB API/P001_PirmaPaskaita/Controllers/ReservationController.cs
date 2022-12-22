@@ -207,7 +207,7 @@ namespace WebAppMSSQL.Controllers
         /// <param name="id"> cia redaguojamos Rezervacijos pagal id,  </param>
         /// <param name="updateRezervationDto"> cia redaguojamos knygos info </param>
         /// <returns>Status code, kazkur jei rasime toky pranesima cia is kontrolerio balsas</returns>
-        [HttpPut("Grazinimas")]   //"{id}"
+        [HttpPost("Grazinimas")]   //"{id}"
         //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         public async Task<ActionResult> UpdateReservation(int id, ReturnReservationDTO request)

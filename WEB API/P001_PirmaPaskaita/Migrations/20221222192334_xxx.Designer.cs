@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMSSQL.Data;
 
@@ -10,9 +11,11 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    partial class KnygynasContextModelSnapshot : ModelSnapshot
+    [Migration("20221222192334_xxx")]
+    partial class xxx
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -257,7 +260,7 @@ namespace WebAppMSSQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LocalUserId")
+                    b.Property<int?>("LocalUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
@@ -296,13 +299,9 @@ namespace WebAppMSSQL.Migrations
 
             modelBuilder.Entity("WebAppMSSQL.Models.UNotification", b =>
                 {
-                    b.HasOne("WebAppMSSQL.Models.LocalUser", "LocalUser")
+                    b.HasOne("WebAppMSSQL.Models.LocalUser", null)
                         .WithMany("UNotifications")
-                        .HasForeignKey("LocalUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LocalUser");
+                        .HasForeignKey("LocalUserId");
                 });
 
             modelBuilder.Entity("WebAppMSSQL.Models.Book", b =>

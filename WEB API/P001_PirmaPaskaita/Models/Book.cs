@@ -33,8 +33,7 @@ namespace WebAppMSSQL.Models
         public int Stock { get; set; }
         public DateTime Updated { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
-        
-
+        public bool OnSale { get; set; }
 
 
     }

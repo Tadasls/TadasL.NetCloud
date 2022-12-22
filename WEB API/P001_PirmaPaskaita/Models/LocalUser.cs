@@ -15,6 +15,7 @@ namespace WebAppMSSQL.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Role { get; set; }
+       
         public int HasAmountOfBooks { get; set; }
         virtual public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
@@ -24,24 +25,9 @@ namespace WebAppMSSQL.Models
 
         [Display(Name = "Expiration Date")]
         public DateTime? ExpirationDate { get; set; }
-
         public int KluboTaskai { get; set; }
-
-        //[Display(Name = "Skola")]
-        //public double Debt{
-        //    get
-        //    {
-        //        double skola = 0;
-        //        foreach (var reservacion in Reservations)
-        //        {
-        //            if (reservacion.LocalUserId == Id)
-        //            {
-        //                 skola += reservacion.DelayFine;
-        //            }
-        //        }
-        //        return skola;
-        //    }
-        //}
+        public string UserLevel { get; set; }
+        virtual public List<UNotification> UNotifications { get; set; } = new List<UNotification>();
 
         public DateTime? WasOnline { get; set; }
 
