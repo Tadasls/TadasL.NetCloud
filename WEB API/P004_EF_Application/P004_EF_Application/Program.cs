@@ -15,6 +15,7 @@ using P004_EF_Application.Services.IServices;
 using P004_EF_Application.Services;
 using P004_EF_Application.Services.Adapters.IAdapters;
 using P004_EF_Application.Services.Adapters;
+using Microsoft.AspNetCore.JsonPatch.Internal;
 
 namespace P04_EF_Applying_To_API
 {
@@ -36,6 +37,7 @@ namespace P04_EF_Applying_To_API
             builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
             builder.Services.AddTransient<IDishOrderAdapter, DishOrderAdapter>();
+            builder.Services.AddTransient<IDishAdapter, DishAdapter>();
             builder.Services.AddTransient<ICookingService, CookingService>();
 
 

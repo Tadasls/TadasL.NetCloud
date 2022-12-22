@@ -38,19 +38,20 @@ namespace WebAppMSSQL.Services
 
 
 
-            var res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
-            double xy = res2.features[0].properties.summary.distance;
-            return xy;
+            //Distance res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            //float xy = res2.features[0].properties.summary.distance;
+
+            //return 0.1;
 
 
-            //HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
-            //if (res2.IsSuccessStatusCode)
-            //{
-            //    var content = await res2.Content.ReadAsStringAsync();
-            //    var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
-            //    return distanceInKm;
-            //}
-            //return 0;
+            HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
+            if (res2.IsSuccessStatusCode)
+            {
+                var content = await res2.Content.ReadAsStringAsync();
+                var distanceInKm = GetDistanceInMetersFromResponseString(content) / 1000;
+                return distanceInKm;
+            }
+            return 0;
 
 
         }
@@ -100,5 +101,5 @@ namespace WebAppMSSQL.Services
 
 
 
-    }
+}
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace P004EFApplication.Migrations
 {
     /// <inheritdoc />
-    public partial class Nuline : Migration
+    public partial class nuline : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,11 +21,11 @@ namespace P004EFApplication.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
-                    SpiceLevel = table.Column<string>(type: "TEXT", nullable: false),
+                    SpiceLevel = table.Column<string>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", nullable: false),
                     ImagePath = table.Column<string>(type: "TEXT", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedDateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CreateDateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdateDateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,12 +96,12 @@ namespace P004EFApplication.Migrations
 
             migrationBuilder.InsertData(
                 table: "Dishes",
-                columns: new[] { "DishId", "Country", "DateTime", "ImagePath", "Name", "SpiceLevel", "Type", "UpdatedDateTime" },
+                columns: new[] { "DishId", "Country", "CreateDateTime", "ImagePath", "Name", "SpiceLevel", "Type", "UpdateDateTime" },
                 values: new object[,]
                 {
-                    { 1, "Lithuania", new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1325), "", "Fried Bread Sticks", "Mild", "Snacks", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Lithuania", new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1359), "", "Potato dumplings", "low", "Main dish", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "Lithuania", new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1362), "", "Kibinai", "low", "Street Food", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Lithuania", new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1341), "", "Fried Bread Sticks", "Mild", "Snacks", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Lithuania", new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1382), "", "Potato dumplings", "low", "Main dish", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Lithuania", new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1385), "", "Kibinai", "low", "Street Food", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

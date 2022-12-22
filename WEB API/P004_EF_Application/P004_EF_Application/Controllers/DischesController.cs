@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using P004_EF_Application.Data;
 using P004_EF_Application.Models;
 using P004_EF_Application.Models.Dto;
 using P004_EF_Application.Repository.IRepository;
+using P004_EF_Application.Services.Adapters.IAdapters;
+using System.Net.Mime;
 
 namespace P004_EF_Application.Controllers
 {
@@ -14,10 +17,12 @@ namespace P004_EF_Application.Controllers
     public class DishesController : ControllerBase
     {
         private readonly IDishRepository _dishRepo;
+        private readonly IDishAdapter _dishAdapter;
 
-        public DishesController(IDishRepository dishRepo)
+        public DishesController(IDishRepository dishRepo, IDishAdapter dishAdapter)
         {
             _dishRepo = dishRepo;
+            _dishAdapter = dishAdapter;
         }
 
         /// <summary>
@@ -57,6 +62,7 @@ namespace P004_EF_Application.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<ActionResult<GetDishDTO>> GetDishById(int id)
         {
             if (id == 0)
@@ -66,7 +72,6 @@ namespace P004_EF_Application.Controllers
 
             // Tam, kad istraukti duomenis naudokite
             // First, FirstOrDefault, Single, SingleOrDefault, ToList
-
             var dish = await _dishRepo.GetAsync(d => d.DishId == id);
 
             if (dish == null)
@@ -78,10 +83,11 @@ namespace P004_EF_Application.Controllers
         }
 
         [HttpPost("dishes")]
-        [Authorize(Roles = "admin")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateDishDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Produces(MediaTypeNames.Application.Json)]
         public async Task<ActionResult<CreateDishDTO>> CreateDish(CreateDishDTO dishDto)
         {
             if (dishDto == null)
@@ -95,12 +101,11 @@ namespace P004_EF_Application.Controllers
                 SpiceLevel = dishDto.SpiceLevel,
                 Type = dishDto.Type,
                 Name = dishDto.Name,
-                DateTime = dishDto.CreatedDateTime,
+                CreateDateTime = dishDto.CreateDateTime,
                 ImagePath = dishDto.ImagePath
             };
 
-           await _dishRepo.CreateAsync(model);
-            
+            await _dishRepo.CreateAsync(model);
 
             return CreatedAtRoute("GetDish", new { id = model.DishId }, dishDto);
         }
@@ -125,8 +130,7 @@ namespace P004_EF_Application.Controllers
                 return NotFound();
             }
 
-           await _dishRepo.RemoveAsync(dish);
-           
+            await _dishRepo.RemoveAsync(dish);
 
             return NoContent();
         }
@@ -158,7 +162,96 @@ namespace P004_EF_Application.Controllers
             foundDish.Country = updateDishDTO.Country;
 
             await _dishRepo.UpdateAsync(foundDish);
-         
+
+            return NoContent();
+        }
+
+        /*
+          https://jsonpatch.com/
+            [
+              {
+                "path": "/Name",
+                "op": "replace",
+                "value": "Patched with DTO value"
+              }
+            ]
+            [
+              {
+                "path": "/RecipeItems",
+                "op": "add",
+                "value": [{
+            "Name":"TestRecipeItem",
+            "Calories":"50"
+            }]
+              }
+            ]
+         */
+        [HttpPatch("patch/{id:int}", Name = "UpdatePartialDish")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdatePartialDish(int id, JsonPatchDocument<Dish> request)
+        {
+            if (id == 0 || request == null)
+            {
+                return BadRequest();
+            }
+
+            var dishExists = await _dishRepo.ExistAsync(d => d.DishId == id);
+
+            if (!dishExists)
+            {
+                return NotFound();
+            }
+
+            var foundDish = await _dishRepo.GetAsync(d => d.DishId == id);
+
+            request.ApplyTo(foundDish, ModelState);
+
+            await _dishRepo.UpdateAsync(foundDish);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPatch("patch/{id:int}/dto", Name = "UpdatePartialDishDto")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdatePartialDishByDto(int id, JsonPatchDocument<UpdateDishDTO> request)
+        {
+            if (id == 0 || request == null)
+            {
+                return BadRequest();
+            }
+
+            var dishExists = await _dishRepo.ExistAsync(d => d.DishId == id);
+
+            if (!dishExists)
+            {
+                return NotFound();
+            }
+
+            var foundDish = await _dishRepo.GetAsync(d => d.DishId == id, tracked: false);
+
+            var updateDishDto = _dishAdapter.Bind(foundDish);
+
+            request.ApplyTo(updateDishDto, ModelState);
+
+            var dish = _dishAdapter.Bind(updateDishDto, foundDish.DishId);
+
+            await _dishRepo.UpdateAsync(dish);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             return NoContent();
         }

@@ -50,6 +50,7 @@ namespace WebAppMSSQL.Models
 
         virtual public Book Book { get; set; } // virtualus
 
+
         //[Display(Name = "Knygos Skola")]
         //public double DelayFine 
         //{

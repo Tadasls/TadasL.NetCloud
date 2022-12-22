@@ -25,6 +25,8 @@ namespace WebAppMSSQL.Models
         [Display(Name = "Expiration Date")]
         public DateTime? ExpirationDate { get; set; }
 
+        public int KluboTaskai { get; set; }
+
         //[Display(Name = "Skola")]
         //public double Debt{
         //    get

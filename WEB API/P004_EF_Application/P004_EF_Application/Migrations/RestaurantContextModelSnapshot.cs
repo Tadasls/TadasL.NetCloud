@@ -31,7 +31,7 @@ namespace P004EFApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateTime")
+                    b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagePath")
@@ -43,14 +43,13 @@ namespace P004EFApplication.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SpiceLevel")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UpdatedDateTime")
+                    b.Property<DateTime>("UpdateDateTime")
                         .HasColumnType("TEXT");
 
                     b.HasKey("DishId");
@@ -62,34 +61,34 @@ namespace P004EFApplication.Migrations
                         {
                             DishId = 1,
                             Country = "Lithuania",
-                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1325),
+                            CreateDateTime = new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1341),
                             ImagePath = "",
                             Name = "Fried Bread Sticks",
                             SpiceLevel = "Mild",
                             Type = "Snacks",
-                            UpdatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DishId = 2,
                             Country = "Lithuania",
-                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1359),
+                            CreateDateTime = new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1382),
                             ImagePath = "",
                             Name = "Potato dumplings",
                             SpiceLevel = "low",
                             Type = "Main dish",
-                            UpdatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DishId = 3,
                             Country = "Lithuania",
-                            DateTime = new DateTime(2022, 12, 15, 21, 59, 45, 123, DateTimeKind.Local).AddTicks(1362),
+                            CreateDateTime = new DateTime(2022, 12, 21, 19, 19, 13, 814, DateTimeKind.Local).AddTicks(1385),
                             ImagePath = "",
                             Name = "Kibinai",
                             SpiceLevel = "low",
                             Type = "Street Food",
-                            UpdatedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
