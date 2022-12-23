@@ -23,8 +23,9 @@ namespace L05_Tasks_MSSQL.Controllers
         private readonly IReservationRepository _reservationRepository;
         private readonly IUserHelpService _userHelpService;
         private readonly IStockService _stockService;
+        private readonly IMembershipService _membersService;
 
-        public UserController(IUserRepository userRepo, IStockService stockService, IUpdateBookRepository bookUpdateRepository, IDebtsService debtsService, IReservationRepository reservationRepository, IUserHelpService userHelpService)
+        public UserController(IUserRepository userRepo, IMembershipService membersService, IStockService stockService, IUpdateBookRepository bookUpdateRepository, IDebtsService debtsService, IReservationRepository reservationRepository, IUserHelpService userHelpService)
         {
             _userRepo = userRepo;
             _bookRepo = bookUpdateRepository;
@@ -32,6 +33,7 @@ namespace L05_Tasks_MSSQL.Controllers
             _reservationRepository = reservationRepository;
             _userHelpService = userHelpService;
             _stockService = stockService;
+            _membersService = membersService;
         }
 
         [HttpPost("login")]
@@ -101,7 +103,12 @@ namespace L05_Tasks_MSSQL.Controllers
             return useriosSkola;
         }
 
-
+        [HttpGet("GautiVipBonusa")]
+        public async Task GautiVipBonusa(int id)
+        {
+            var user = await _userRepo.GetAsync(u => u.Id == id);
+            await _membersService.PridetiTaskuUzPrisijungimaVIPBONUS(user.Id);
+        }
 
 
 

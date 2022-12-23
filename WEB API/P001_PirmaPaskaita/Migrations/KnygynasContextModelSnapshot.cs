@@ -27,13 +27,15 @@ namespace WebAppMSSQL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ECoverType")
+                    b.Property<string>("EBookStatus")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("OnSale")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ECoverType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("PublishYear")
                         .HasColumnType("INTEGER");
@@ -57,111 +59,111 @@ namespace WebAppMSSQL.Migrations
                         {
                             Id = 1,
                             Author = "Several authors",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
-                            OnSale = false,
                             PublishYear = 1,
                             Stock = 1,
                             Title = "The Bible",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8364)
                         },
                         new
                         {
                             Id = 2,
                             Author = "Mao Zedong",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
-                            OnSale = false,
                             PublishYear = 1964,
                             Stock = 2,
                             Title = "Quotations from Chairman Mao Tse-Tung",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8405)
                         },
                         new
                         {
                             Id = 3,
                             Author = "Several authors",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
-                            OnSale = false,
                             PublishYear = 700,
                             Stock = 3,
                             Title = "The Quran",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8407)
                         },
                         new
                         {
                             Id = 4,
                             Author = "John Tolkien",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
-                            OnSale = false,
                             PublishYear = 1954,
                             Stock = 4,
                             Title = "The Lord Of The Rings",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8409)
                         },
                         new
                         {
                             Id = 5,
                             Author = "Antoine de Saint-Exupery",
+                            EBookStatus = "Registed",
                             ECoverType = "Electronic",
-                            OnSale = false,
                             PublishYear = 1943,
                             Stock = 5,
                             Title = "Le Petit Prince",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8411)
                         },
                         new
                         {
                             Id = 6,
                             Author = "Joanne Rowling",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
-                            OnSale = false,
                             PublishYear = 1997,
                             Stock = 6,
                             Title = "Harry Potter and the Philosopher’s Stone",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8413)
                         },
                         new
                         {
                             Id = 7,
                             Author = "Robert Baden-Powell",
+                            EBookStatus = "WishListed",
                             ECoverType = "Paperback",
-                            OnSale = false,
                             PublishYear = 1908,
                             Stock = 7,
                             Title = "Scouting for Boys",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8415)
                         },
                         new
                         {
                             Id = 8,
                             Author = "Agatha Christie",
+                            EBookStatus = "WishListed",
                             ECoverType = "Paperback",
-                            OnSale = false,
                             PublishYear = 1939,
                             Stock = 8,
                             Title = "And Then There Were None",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8417)
                         },
                         new
                         {
                             Id = 9,
                             Author = "John Tolkien ",
+                            EBookStatus = "OnSale",
                             ECoverType = "Hardcover",
-                            OnSale = false,
                             PublishYear = 1937,
                             Stock = 9,
                             Title = "The Hobbit",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8419)
                         },
                         new
                         {
                             Id = 10,
                             Author = "Cao Xueqin",
+                            EBookStatus = "OnSale",
                             ECoverType = "Paperback",
-                            OnSale = false,
                             PublishYear = 1791,
                             Stock = 10,
                             Title = "The Dream Of The Red Chambe",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 24, 0, 54, 30, 991, DateTimeKind.Local).AddTicks(8421)
                         });
                 });
 
@@ -177,7 +179,7 @@ namespace WebAppMSSQL.Migrations
                     b.Property<int>("HasAmountOfBooks")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("KluboTaskai")
+                    b.Property<int>("LoyaltyPoints")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -209,6 +211,9 @@ namespace WebAppMSSQL.Migrations
 
                     b.Property<DateTime?>("WasOnline")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("WasOnlineWeekNumber")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

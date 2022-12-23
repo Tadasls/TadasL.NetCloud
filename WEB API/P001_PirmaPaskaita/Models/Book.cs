@@ -9,7 +9,7 @@ namespace WebAppMSSQL.Models
     {
         public Book() { }
 
-        public Book(int id, string title, string author, ECoverType eCoverType, int publishYear, int stock)
+        public Book(int id, string title, string author, ECoverType eCoverType, int publishYear, int stock, DateTime updated, EBookStatus ebookStatus)
         {
             Id = id;
             Title = title;
@@ -17,9 +17,11 @@ namespace WebAppMSSQL.Models
             ECoverType = eCoverType;
             PublishYear = publishYear;
             Stock = stock;
+            Updated = updated;
+            EBookStatus = ebookStatus;
+            
         }
       
-
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,9 +34,8 @@ namespace WebAppMSSQL.Models
         public int PublishYear { get; set; }
         public int Stock { get; set; }
         public DateTime Updated { get; set; }
+        public EBookStatus EBookStatus { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
-        public bool OnSale { get; set; }
-
 
     }
 }

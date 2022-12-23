@@ -32,6 +32,8 @@ namespace L05_Tasks_MSSQL
 
             builder.Services.AddTransient<IDebtsService, DebtsService>();
             builder.Services.AddTransient<IStockService, StockService>();
+            builder.Services.AddTransient<IMembershipService, MembershipService>();
+
             builder.Services.AddTransient<IUserHelpService, UserHelpService>();
 
             builder.Services.AddTransient<IBookWrapper, BookWrapper>();

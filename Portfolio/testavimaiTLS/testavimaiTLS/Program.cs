@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Xml.Schema;
+using System;
+using System.Globalization;
 
 namespace testavimaiTLS
 {
@@ -27,7 +30,7 @@ namespace testavimaiTLS
             // SestAntraDalis();
             //Console.WriteLine(Penkt()); //15
 
-
+            Laikas();
         }
         public static void PirmasSuskaiciavimoMetodas()
         {
@@ -642,15 +645,29 @@ namespace testavimaiTLS
         }
 
 
+        public static void Laikas()
+        {
 
+      
 
+              Calendar calendar = CultureInfo.CurrentCulture.Calendar;
+                int weekOfYear = calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-
-    }
-
-
-
+                Console.WriteLine("Week of the year: " + weekOfYear);
+        }
+    } 
 }
+
+
+
+
+ 
+
+
+
+
+
+
 
 
 

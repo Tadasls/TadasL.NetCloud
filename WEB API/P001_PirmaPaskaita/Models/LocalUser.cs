@@ -25,11 +25,13 @@ namespace WebAppMSSQL.Models
 
         [Display(Name = "Expiration Date")]
         public DateTime? ExpirationDate { get; set; }
-        public int KluboTaskai { get; set; }
+        public int LoyaltyPoints { get; set; }
         public string UserLevel { get; set; }
         virtual public List<UNotification> UNotifications { get; set; } = new List<UNotification>();
 
         public DateTime? WasOnline { get; set; }
+        public int WasOnlineWeekNumber { get; set; }
+
 
         //toDo
 

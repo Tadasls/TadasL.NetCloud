@@ -21,15 +21,18 @@ namespace WebAppMSSQL.Repository
         private readonly IPasswordService _passwordService;
         private readonly IJwtService _jwtService;
         private readonly IStockService _stockService;
+        private readonly IMembershipService _membersService;
+
         private DbSet<UserRepository> _dbSet;
 
-        public UserRepository(KnygynasContext db, IPasswordService passwordService, IStockService stockService, IJwtService jwtService)
+        public UserRepository(KnygynasContext db, IMembershipService membersService, IPasswordService passwordService, IStockService stockService, IJwtService jwtService)
         {
             _db = db;
            // _dbSet = _db.Set<UserRepository>();
             _passwordService = passwordService;
             _jwtService = jwtService;
             _stockService = stockService;
+            _membersService = membersService;
         }
 
         /// <summary>
@@ -60,8 +63,8 @@ namespace WebAppMSSQL.Repository
                 };
             }
 
-            await _stockService.PridetiTaskuUzPrisijungima(user.Id, 50);
-            await _stockService.AtnaujintiPrisijungimoData(user.Id);
+            await _membersService.PridetiTaskuUzPrisijungima(user.Id);
+            await _membersService.AtnaujintiPrisijungimoData(user.Id);
 
 
             var token = _jwtService.GetJwtToken(user.Id, user.Role);

@@ -11,8 +11,8 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    [Migration("20221222150410_xx")]
-    partial class xx
+    [Migration("20221223214713_Nuline")]
+    partial class Nuline
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,11 @@ namespace WebAppMSSQL.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EBookStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ECoverType")
@@ -57,101 +62,111 @@ namespace WebAppMSSQL.Migrations
                         {
                             Id = 1,
                             Author = "Several authors",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
                             PublishYear = 1,
                             Stock = 1,
                             Title = "The Bible",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1746)
                         },
                         new
                         {
                             Id = 2,
                             Author = "Mao Zedong",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
                             PublishYear = 1964,
                             Stock = 2,
                             Title = "Quotations from Chairman Mao Tse-Tung",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1787)
                         },
                         new
                         {
                             Id = 3,
                             Author = "Several authors",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
                             PublishYear = 700,
                             Stock = 3,
                             Title = "The Quran",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1790)
                         },
                         new
                         {
                             Id = 4,
                             Author = "John Tolkien",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
                             PublishYear = 1954,
                             Stock = 4,
                             Title = "The Lord Of The Rings",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1792)
                         },
                         new
                         {
                             Id = 5,
                             Author = "Antoine de Saint-Exupery",
+                            EBookStatus = "Registed",
                             ECoverType = "Electronic",
                             PublishYear = 1943,
                             Stock = 5,
                             Title = "Le Petit Prince",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1794)
                         },
                         new
                         {
                             Id = 6,
                             Author = "Joanne Rowling",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
                             PublishYear = 1997,
                             Stock = 6,
                             Title = "Harry Potter and the Philosopher’s Stone",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1796)
                         },
                         new
                         {
                             Id = 7,
                             Author = "Robert Baden-Powell",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
                             PublishYear = 1908,
                             Stock = 7,
                             Title = "Scouting for Boys",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1798)
                         },
                         new
                         {
                             Id = 8,
                             Author = "Agatha Christie",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
                             PublishYear = 1939,
                             Stock = 8,
                             Title = "And Then There Were None",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1800)
                         },
                         new
                         {
                             Id = 9,
                             Author = "John Tolkien ",
+                            EBookStatus = "Registed",
                             ECoverType = "Hardcover",
                             PublishYear = 1937,
                             Stock = 9,
                             Title = "The Hobbit",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1802)
                         },
                         new
                         {
                             Id = 10,
                             Author = "Cao Xueqin",
+                            EBookStatus = "Registed",
                             ECoverType = "Paperback",
                             PublishYear = 1791,
                             Stock = 10,
                             Title = "The Dream Of The Red Chambe",
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Updated = new DateTime(2022, 12, 23, 23, 47, 13, 431, DateTimeKind.Local).AddTicks(1804)
                         });
                 });
 
@@ -167,7 +182,7 @@ namespace WebAppMSSQL.Migrations
                     b.Property<int>("HasAmountOfBooks")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("KluboTaskai")
+                    b.Property<int>("LoyaltyPoints")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -186,6 +201,10 @@ namespace WebAppMSSQL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserLevel")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -237,6 +256,30 @@ namespace WebAppMSSQL.Migrations
                     b.ToTable("Reservations");
                 });
 
+            modelBuilder.Entity("WebAppMSSQL.Models.UNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LocalUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocalUserId");
+
+                    b.ToTable("UNotification");
+                });
+
             modelBuilder.Entity("WebAppMSSQL.Models.Reservation", b =>
                 {
                     b.HasOne("WebAppMSSQL.Models.Book", "Book")
@@ -256,6 +299,17 @@ namespace WebAppMSSQL.Migrations
                     b.Navigation("LocalUser");
                 });
 
+            modelBuilder.Entity("WebAppMSSQL.Models.UNotification", b =>
+                {
+                    b.HasOne("WebAppMSSQL.Models.LocalUser", "LocalUser")
+                        .WithMany("UNotifications")
+                        .HasForeignKey("LocalUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LocalUser");
+                });
+
             modelBuilder.Entity("WebAppMSSQL.Models.Book", b =>
                 {
                     b.Navigation("Reservations");
@@ -264,6 +318,8 @@ namespace WebAppMSSQL.Migrations
             modelBuilder.Entity("WebAppMSSQL.Models.LocalUser", b =>
                 {
                     b.Navigation("Reservations");
+
+                    b.Navigation("UNotifications");
                 });
 #pragma warning restore 612, 618
         }
