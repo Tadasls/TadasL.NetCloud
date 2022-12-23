@@ -1,5 +1,6 @@
 ﻿using WebAppMSSQL.Data;
 using WebAppMSSQL.Models;
+using WebAppMSSQL.Models.DTO;
 using WebAppMSSQL.Services.IServices;
 
 namespace WebAppMSSQL.Services
@@ -27,16 +28,28 @@ namespace WebAppMSSQL.Services
         }
 
 
-        public async Task PapildytiTaskaisUzPrisijungima(int userId, int modifier)
+
+        public async Task PridetiTaskuUzPrisijungima(int userId, int modifier)
         {
             LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
-            user.KluboTaskai += modifier;
-            _db.LocalUsers.Update(user);
-            await _db.SaveChangesAsync();
+            if (user.WasOnline.Value.Day != DateTime.Today.Day && user.WasOnline.Value.Month != DateTime.Today.Month)
+            {
+                user.KluboTaskai += modifier;
+                _db.LocalUsers.Update(user);
+                await _db.SaveChangesAsync();
+            }
+           
+
         }
 
+        public async Task AtnaujintiPrisijungimoData(int userId)
+        {
+            LocalUser user = _db.LocalUsers.First(u => u.Id == userId);
+            user.WasOnline = DateTime.Now;
+            _db.LocalUsers.Update(user);
+            await _db.SaveChangesAsync();
 
-
+        }
 
 
 

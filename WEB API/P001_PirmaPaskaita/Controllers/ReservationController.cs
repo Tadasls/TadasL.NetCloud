@@ -108,14 +108,11 @@ namespace WebAppMSSQL.Controllers
 
         public async Task<ActionResult<IEnumerable<GetReservationDTO>>> GetAllReservations([FromQuery] FilterReservationDTO req) // cia yra filtravimo problema 
         {
-
             IEnumerable<Reservation> entities = await _reservationRepo.GetAllAsync();  //.ToList();
-
             if (entities == null)
             {
                 return BadRequest("nera galiojanciu rezervaciju");
             }
-
 
             if (req.LocalUserId != null)
                 entities = entities.Where(x => x.LocalUserId == req.LocalUserId);

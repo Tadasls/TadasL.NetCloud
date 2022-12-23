@@ -20,14 +20,16 @@ namespace WebAppMSSQL.Repository
         private readonly KnygynasContext _db;
         private readonly IPasswordService _passwordService;
         private readonly IJwtService _jwtService;
+        private readonly IStockService _stockService;
         private DbSet<UserRepository> _dbSet;
 
-        public UserRepository(KnygynasContext db, IPasswordService passwordService, IJwtService jwtService)
+        public UserRepository(KnygynasContext db, IPasswordService passwordService, IStockService stockService, IJwtService jwtService)
         {
             _db = db;
            // _dbSet = _db.Set<UserRepository>();
             _passwordService = passwordService;
             _jwtService = jwtService;
+            _stockService = stockService;
         }
 
         /// <summary>
@@ -58,6 +60,10 @@ namespace WebAppMSSQL.Repository
                 };
             }
 
+            await _stockService.PridetiTaskuUzPrisijungima(user.Id, 50);
+            await _stockService.AtnaujintiPrisijungimoData(user.Id);
+
+
             var token = _jwtService.GetJwtToken(user.Id, user.Role);
 
             LoginResponse loginResponse = new()
@@ -66,8 +72,8 @@ namespace WebAppMSSQL.Repository
                 User = user
             };
 
-            loginResponse.User.PasswordHash = null;
 
+            loginResponse.User.PasswordHash = null;
 
             return loginResponse;
         }
@@ -87,6 +93,8 @@ namespace WebAppMSSQL.Repository
                 Role = registrationRequest.Role,
                 RegistrationDate = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddYears(1),
+                WasOnline = DateTime.Now,
+                UserLevel = "Pradinukas",
             };
 
             _db.LocalUsers.Add(user);
@@ -126,7 +134,6 @@ namespace WebAppMSSQL.Repository
     };
             return userDto;
         }
-
         public async Task<bool> IsRegisteredAsync(int userId) // same as exist
         {
             var isRegistered = await _db.LocalUsers.AnyAsync(u => u.Id == userId);

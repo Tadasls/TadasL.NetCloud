@@ -35,6 +35,7 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ActionResult))]
         public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
             var loginResponse = await _userRepo.LoginAsync(model);
@@ -43,23 +44,6 @@ namespace L05_Tasks_MSSQL.Controllers
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
-
-           
-            if (loginResponse.User.WasOnline != DateTime.Today)
-            {
-
-              //await _stockService.PapildytiTaskaisUzPrisijungima(loginResponse.User.Id, 50);
-
-                loginResponse.User.KluboTaskai += 50;
-                if (DateTime.Now.Month == 12 && DateTime.Now.Day == 24)
-                {
-                    loginResponse.User.KluboTaskai += 150;
-                }
-            }
-            loginResponse.User.WasOnline = DateTime.Now;
-
-
-
 
             return Ok(loginResponse);
         }
@@ -83,11 +67,9 @@ namespace L05_Tasks_MSSQL.Controllers
 
             return Ok();
         }
-
         [HttpGet("Get/{id:int}")]
         public async Task<ActionResult<GetUserDto>> GetUserById(int id)
         {
-
             if (id == 0)
             {
                 return BadRequest("nera tokio ID");
@@ -100,8 +82,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
             return Ok(user);
         }
-
-
         [HttpGet("FavoriteAuthors")] 
         public async Task<ActionResult<List<GetBookDto>>?>GetFavoriteAutorsForUser(int id)
         {
@@ -112,8 +92,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
             return Ok(favoriteAuthor);
         }
-
-
         [HttpGet("UserioSkolosDydis")]  
         public async Task<double> GetSkolkasUsersio(int id)
         {
