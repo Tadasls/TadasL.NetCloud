@@ -31,7 +31,6 @@ namespace ApiMokymai.Controllers
             {
                 var res = await _service.GetBooks();
                 return Ok(res);
-
             }
             catch (Exception ex)
             {
@@ -49,12 +48,9 @@ namespace ApiMokymai.Controllers
             {
                 await _service.CreateBook(data);
                 return Ok();
-
-
             }
             catch (Exception ex)
             {
-
                 _logger.LogError(ex, "kazkas blogo");
                 throw;
             }

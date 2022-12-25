@@ -13,7 +13,7 @@ namespace WebAppMSSQL.Services
         {
             _secretKey = conf.GetValue<string>("ApiSettings:Secret");
         }
-        public string GetJwtToken(int userId, string role)
+        public string GetJwtToken(int userId, string role ) //,string userLevel
         {
             // To generate JWT token
             // 1. To generate a JWT token we need a secret.
@@ -38,6 +38,7 @@ namespace WebAppMSSQL.Services
                 {
                     new Claim(ClaimTypes.Name, userId.ToString()),
                     new Claim(ClaimTypes.Role, role)
+                   // new Claim(ClaimTypes.Surname, userLevel),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),

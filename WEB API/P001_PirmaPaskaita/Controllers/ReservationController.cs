@@ -11,6 +11,7 @@ using System.Net;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.DTO.ReservationsDTO;
+using WebAppMSSQL.Models.DTO.UserTDO;
 using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository;
@@ -31,11 +32,11 @@ namespace WebAppMSSQL.Controllers
         private readonly IStockService _stockService;
         private readonly IDebtsService _debtsService;
         private readonly IReservationWrapper _reservationWrapper;
-        private readonly IUserHelpService _userHelpService;
+     
         private readonly IMembershipService _membersService;
 
         public ReservationController(IReservationRepository reservationRepo, IMembershipService membersService,  ILogger<ReservationController> logger, 
-            IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService, IReservationWrapper reservationWrapper, IUserHelpService userHelpService)
+            IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService, IReservationWrapper reservationWrapper)
         {
             _logger = logger;
             _userRepo = userRepo;
@@ -44,7 +45,7 @@ namespace WebAppMSSQL.Controllers
             _stockService = stockService;
             _debtsService = debtsService;
             _reservationWrapper = reservationWrapper;
-            _userHelpService = userHelpService;
+          
             _membersService = membersService;
         }
 
@@ -214,7 +215,7 @@ namespace WebAppMSSQL.Controllers
             {
                 return NotFound();
             }
-
+            var useris = await _userRepo.GetAsync(u => u.Id == request.LocalUserId);
             var allUserReservations = await _reservationRepo.GetAllAsync(r => r.LocalUserId == request.LocalUserId);
             var vienosKnygosSkola = await _debtsService.VienosKnygosSkola(request.BookId, allUserReservations);
 
@@ -222,7 +223,8 @@ namespace WebAppMSSQL.Controllers
             {
                 return BadRequest("Negalima sumoketi daugiau nei 99 proc sumos taskais");
             }
-
+            if (Convert.ToInt32(vienosKnygosSkola) < request.PaidWithPoints) return NotFound("Mokama suma viršija skolą!");
+            if (useris.Points < request.PaidWithPoints) return NotFound("Vartotojas neturi tiek \"Taškų\"!");
 
             //var reservation = _reservationWrapper.Bind(returnReservationDto);
 

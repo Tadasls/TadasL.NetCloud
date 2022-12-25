@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMSSQL", "WebAppMSSQL.csproj", "{1A096871-B840-4F6F-AAE4-ACCF6D6413FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMSSQLTests", "..\WebAppMSSQLTests\WebAppMSSQLTests.csproj", "{89CEC125-4F4F-43C5-BDA7-9443993275D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMSSQLTests", "..\WebAppMSSQLTests\WebAppMSSQLTests.csproj", "{89CEC125-4F4F-43C5-BDA7-9443993275D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testai", "Testai", "{A5B6725C-52CA-497E-A187-B166A37CD7F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89CEC125-4F4F-43C5-BDA7-9443993275D4} = {A5B6725C-52CA-497E-A187-B166A37CD7F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F6C7F7B-52A9-4B75-8757-00DA823FE575}

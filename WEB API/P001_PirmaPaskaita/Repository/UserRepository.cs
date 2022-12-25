@@ -67,7 +67,7 @@ namespace WebAppMSSQL.Repository
             await _membersService.AtnaujintiPrisijungimoData(user.Id);
             await _membersService.SetUserLevel(user.Id);
 
-            var token = _jwtService.GetJwtToken(user.Id, user.Role);
+            var token = _jwtService.GetJwtToken(user.Id, user.Role); //,user.UserLevel
 
             LoginResponse loginResponse = new()
             {

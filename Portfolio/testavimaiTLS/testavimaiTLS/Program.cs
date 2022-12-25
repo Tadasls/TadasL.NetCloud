@@ -648,12 +648,16 @@ namespace testavimaiTLS
         public static void Laikas()
         {
 
-      
 
-              Calendar calendar = CultureInfo.CurrentCulture.Calendar;
-                int weekOfYear = calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-                Console.WriteLine("Week of the year: " + weekOfYear);
+            //Calendar calendar = CultureInfo.CurrentCulture.Calendar;
+            //  int weekOfYear = calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            //  Console.WriteLine("Week of the year: " + weekOfYear);
+
+        
+
+
         }
     } 
 }

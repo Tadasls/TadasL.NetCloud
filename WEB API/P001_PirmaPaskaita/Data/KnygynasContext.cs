@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System.ComponentModel.DataAnnotations;
+using WebAppMSSQL.Data.InitialData;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.Enums;
 
@@ -49,6 +50,7 @@ namespace WebAppMSSQL.Data
           .HasMaxLength(50);
 
 
+           // modelBuilder.Entity<LocalUser>().HasData(UsersInitialData.userInitialDataSeed);
 
 
             modelBuilder.Entity<UNotification>()
@@ -57,9 +59,6 @@ namespace WebAppMSSQL.Data
             modelBuilder.Entity<UNotification>()
                 .Property(d => d.Id)
                 .ValueGeneratedOnAdd();
-
-
-
 
 
 
