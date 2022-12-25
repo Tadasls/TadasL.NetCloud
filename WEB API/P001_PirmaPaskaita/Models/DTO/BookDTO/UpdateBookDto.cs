@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data;
+using WebAppMSSQL.Models.Enums;
 
 namespace WebAppMSSQL.Models.DTO.BookDTO
 {
@@ -42,5 +43,9 @@ namespace WebAppMSSQL.Models.DTO.BookDTO
         ///// Knygos info atnaujinimo data
         ///// </summary>
         //public DateTime Updated { get; set; }
+
+        public string KnygosStatusas { get; set; }
+
+
     }
 }

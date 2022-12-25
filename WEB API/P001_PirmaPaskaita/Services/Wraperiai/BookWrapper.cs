@@ -1,9 +1,11 @@
-﻿using WebAppMSSQL.Models;
+﻿using WebAppMSSQL.Data;
+using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Services.IServices;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace WebAppMSSQL.Services
+namespace WebAppMSSQL.Services.Wraperiai
 {
 
     public class BookWrapper : IBookWrapper
@@ -12,6 +14,14 @@ namespace WebAppMSSQL.Services
         {
 
         }
+
+
+        private readonly KnygynasContext _db;
+        public BookWrapper(KnygynasContext db)
+        {
+            _db = db;
+        }
+
 
         public GetBookDto Bind(Book book)
         {
@@ -33,7 +43,7 @@ namespace WebAppMSSQL.Services
                 PublishYear = book.Isleista.Year,
                 Stock = book.KnyguKiekis,
                 ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
-               
+
             };
         }
 
@@ -48,6 +58,7 @@ namespace WebAppMSSQL.Services
                 Stock = book.KnyguKiekis,
                 ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
                 Updated = DateTime.Now,
+                EBookStatus = (EBookStatus)Enum.Parse(typeof(EBookStatus), book.KnygosStatusas)
 
             };
         }
@@ -61,8 +72,8 @@ namespace WebAppMSSQL.Services
                 ECoverType = (ECoverType)Enum.Parse(typeof(ECoverType), book.KnygosTipas),
             };
         }
-    
- 
+
+
 
     }
 }

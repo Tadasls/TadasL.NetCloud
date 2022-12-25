@@ -10,6 +10,7 @@ using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
 using WebAppMSSQL.Services;
 using WebAppMSSQL.Services.IServices;
+using WebAppMSSQL.Services.Wraperiai;
 
 namespace L05_Tasks_MSSQL
 {
@@ -33,17 +34,15 @@ namespace L05_Tasks_MSSQL
             builder.Services.AddTransient<IDebtsService, DebtsService>();
             builder.Services.AddTransient<IStockService, StockService>();
             builder.Services.AddTransient<IMembershipService, MembershipService>();
-
+            builder.Services.AddTransient<IUserNotificationService, UserNotificationService>();
             builder.Services.AddTransient<IUserHelpService, UserHelpService>();
-
             builder.Services.AddTransient<IBookWrapper, BookWrapper>();
             builder.Services.AddTransient<IReservationWrapper, ReservationWrapper>();
 
             builder.Services.AddScoped<IUpdateBookRepository, BookUpdateRepository>();
-
-            
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
             builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
 
@@ -59,6 +58,12 @@ namespace L05_Tasks_MSSQL
                 client.Timeout = TimeSpan.FromSeconds(10);
                 client.DefaultRequestHeaders.Clear();
             });
+            builder.Services.AddHttpClient("HolidaysService", client => {
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServicesHS:WebNuoroda"]);
+                client.Timeout = TimeSpan.FromSeconds(10);
+                client.DefaultRequestHeaders.Clear();
+            });
+
 
             builder.Services.AddScoped<IShippingService, ShippingService>();
             

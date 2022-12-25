@@ -9,6 +9,8 @@ namespace WebAppMSSQL.Models.DTO.UserTDO
         public string Role { get; set; }
         public int HasAmountOfBooks { get; set; }
         public double Debt { get; set; }
+        public DateTime WasOnline { get; set; }
+        public int Points { get; set; }
 
     }
 }

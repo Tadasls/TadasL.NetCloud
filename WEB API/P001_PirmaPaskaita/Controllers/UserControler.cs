@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO;
+using WebAppMSSQL.Models.DTO.ApiModels;
 using WebAppMSSQL.Models.DTO.BookDTO;
 using WebAppMSSQL.Models.DTO.ReservationsDTO;
 using WebAppMSSQL.Models.DTO.UserTDO;
@@ -22,17 +23,15 @@ namespace L05_Tasks_MSSQL.Controllers
         private readonly IDebtsService _debtsService;
         private readonly IReservationRepository _reservationRepository;
         private readonly IUserHelpService _userHelpService;
-        private readonly IStockService _stockService;
         private readonly IMembershipService _membersService;
 
-        public UserController(IUserRepository userRepo, IMembershipService membersService, IStockService stockService, IUpdateBookRepository bookUpdateRepository, IDebtsService debtsService, IReservationRepository reservationRepository, IUserHelpService userHelpService)
+        public UserController(IUserRepository userRepo, IMembershipService membersService, IUpdateBookRepository bookUpdateRepository, IDebtsService debtsService, IReservationRepository reservationRepository, IUserHelpService userHelpService)
         {
             _userRepo = userRepo;
             _bookRepo = bookUpdateRepository;
             _debtsService = debtsService;
             _reservationRepository = reservationRepository;
             _userHelpService = userHelpService;
-            _stockService = stockService;
             _membersService = membersService;
         }
 
@@ -41,7 +40,6 @@ namespace L05_Tasks_MSSQL.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
             var loginResponse = await _userRepo.LoginAsync(model);
-
             if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -49,7 +47,6 @@ namespace L05_Tasks_MSSQL.Controllers
 
             return Ok(loginResponse);
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequest model)
         {
@@ -110,8 +107,24 @@ namespace L05_Tasks_MSSQL.Controllers
             await _membersService.PridetiTaskuUzPrisijungimaVIPBONUS(user.Id);
         }
 
+        [HttpGet("SventinesDienos")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<HolidayModel>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetHolidays()
+        {
+            try
+            {
+                var res = await _membersService.GetHolidays();
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+               // _logger.LogError(ex, "Ivyko kazkas labai baisaus");
+                throw;
+            }
 
-
+        }
 
 
 

@@ -32,10 +32,9 @@ namespace WebAppMSSQL.Controllers
         private readonly IDebtsService _debtsService;
         private readonly IReservationWrapper _reservationWrapper;
         private readonly IUserHelpService _userHelpService;
+        private readonly IMembershipService _membersService;
 
-
-
-        public ReservationController(IReservationRepository reservationRepo, ILogger<ReservationController> logger, 
+        public ReservationController(IReservationRepository reservationRepo, IMembershipService membersService,  ILogger<ReservationController> logger, 
             IUserRepository userRepo, IUpdateBookRepository bookRepo, IStockService stockService, IDebtsService debtsService, IReservationWrapper reservationWrapper, IUserHelpService userHelpService)
         {
             _logger = logger;
@@ -46,9 +45,8 @@ namespace WebAppMSSQL.Controllers
             _debtsService = debtsService;
             _reservationWrapper = reservationWrapper;
             _userHelpService = userHelpService;
+            _membersService = membersService;
         }
-
-
 
         /// <summary>
         /// Metodas sugrazina viena knyga is duomenu bazes pagal paduota id
@@ -94,7 +92,6 @@ namespace WebAppMSSQL.Controllers
             }
         }
 
-
         /// <summary>
         /// Get skirtas gauti visa rez sarasa ir filtruoti
         /// </summary>
@@ -133,7 +130,6 @@ namespace WebAppMSSQL.Controllers
 
 
         }
-
 
         /// <summary>
         /// kontroleris skirtas sukuria nauja Rezervacija!!!
@@ -197,7 +193,6 @@ namespace WebAppMSSQL.Controllers
            
         }
 
-
         /// <summary>
         /// Redaguojame Rezervacijos informacija pagal nurodyta id galima pakeisti pasiskolino data, ir ivede grazinimo data pazymime kad grazinta
         /// </summary>
@@ -238,14 +233,13 @@ namespace WebAppMSSQL.Controllers
             foundReservation.PaidWithPoints = request.PaidWithPoints;
 
            await _reservationRepo.UpdateAsync(foundReservation);
-
+           await _membersService.PanaudotiTaskusUzSkolas(request.LocalUserId, request.PaidWithPoints);
            await _stockService.UpdateTakenLibraryBooks(request.LocalUserId, -1);
            await _stockService.UpdateTakenLibraryBooksKN(request.BookId, 1);
 
             return NoContent();
 
         }
-
 
         /// <summary>
         /// Trinama Rezervacija is duomenu bases pagal nurodoma id

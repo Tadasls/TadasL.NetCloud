@@ -6,11 +6,11 @@ using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Services.IServices;
 
-namespace WebAppMSSQL.Services
+namespace WebAppMSSQL.Services.Wraperiai
 {
     public class ReservationWrapper : IReservationWrapper
     {
-        public ReservationWrapper() {}
+        public ReservationWrapper() { }
 
 
         //public Reservation Bind(ReturnReservationDTO returnReservationDto)
@@ -55,7 +55,7 @@ namespace WebAppMSSQL.Services
                 BookName = book.Title,
                 HandlingFinnishDateTime = DateTime.Now.AddMinutes(5), //magic numbers
                 State = "Vykdoma rezervacija..",
-                
+
             };
         }
 

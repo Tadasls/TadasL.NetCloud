@@ -11,6 +11,7 @@ using System.Collections;
 using WebAppMSSQL.Models.Enums;
 using Microsoft.AspNetCore.Routing;
 using WebAppMSSQL.Services.IServices;
+using WebAppMSSQL.Services.Wraperiai;
 
 namespace WebAppMSSQL.Services.Tests
 {

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using Newtonsoft.Json;
 using System.Data;
 using System.Net.Mime;
@@ -12,6 +14,7 @@ using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
 using WebAppMSSQL.Services.IServices;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace L05_Tasks_MSSQL.Controllers
 {
@@ -22,12 +25,16 @@ namespace L05_Tasks_MSSQL.Controllers
         private readonly IBookWrapper _wrapper;
         private readonly ILogger<KnygynasController> _logger;
         private readonly IUpdateBookRepository _bookRepo;
+        private readonly IUserNotificationService _userNotificationService;
+        private readonly IReservationRepository _reservationRepo;
               
-        public KnygynasController(IBookWrapper wrapper, ILogger<KnygynasController> logger, IUpdateBookRepository bookRepo)
+        public KnygynasController(IBookWrapper wrapper, IReservationRepository reservationRepo, IUserNotificationService userNotificationService, ILogger<KnygynasController> logger, IUpdateBookRepository bookRepo)
         {
             _wrapper = wrapper;
             _logger = logger;
             _bookRepo = bookRepo;
+            _userNotificationService = userNotificationService;
+            _reservationRepo = reservationRepo;
         }
 
         /// <summary>
@@ -73,7 +80,6 @@ namespace L05_Tasks_MSSQL.Controllers
             }
         }
 
-
         /// <summary>
         /// Get skirtas gauti visa knygų sarasa ir filtruoti
         /// </summary>
@@ -99,13 +105,13 @@ namespace L05_Tasks_MSSQL.Controllers
             if (req.KnygosTipas != null)
                 entities = entities.Where(x => x.ECoverType == (ECoverType)Enum.Parse(typeof(ECoverType), req.KnygosTipas));
 
+           
+
             var model = entities?.Select(x => _wrapper.Bind(x));
 
             return Ok(model);
 
         }
-
-
 
         /// <summary>
         /// Get skirtas gauti visa knygų sarasa ir filtruoti
@@ -139,17 +145,6 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
         /// <summary>
         /// kontroleris skirtas sukuria nauja knyga
         /// </summary>
@@ -178,7 +173,6 @@ namespace L05_Tasks_MSSQL.Controllers
             _logger.LogInformation("sukurimo Metodas atliktas sekmingai, jo ivykdymo laikas buvo - {1} ", DateTime.Now);
             return CreatedAtRoute("CreateBook", new { id = newBook.Id }, createBookDto);
         }
-
 
         /// <summary>
         /// Atnaujiname knyga, siusdami knygos objekta
@@ -216,6 +210,61 @@ namespace L05_Tasks_MSSQL.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Atnaujiname knyga, siusdami knygos objekta
+        /// </summary>
+        /// <param name="bookActivated">Knykos objektas su visais atnaujintais laukais</param>
+        /// <returns></returns>
+        /// <response code="204">Sekmingai atnaujinta knyga</response>
+        /// <response code="400">Blogas kreipimasis</response>
+        /// <response code="500">Baisi klaida!</response>
+        [HttpPut("updateIvedimasISistema")] 
+        //[Authorize(Roles = "admin")]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(IEnumerable<CreateBookDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateBookActivate(ActivateBookDto bookActivated)
+        {
+            _logger.LogInformation("HttpPut ActivateBookDto(bookActivated = {0}) buvo iskvietas {1} ", JsonConvert.SerializeObject(bookActivated), DateTime.Now);
+            try
+            {
+                if (bookActivated == null)
+                {
+                    _logger.LogError("HttpPut ActivateBookDto(bookActivated) bookUpdated objektas == null {1} ", DateTime.Now);
+                    return BadRequest();
+                }
+
+                var UpdatedBook = await _bookRepo.GetAsync(d => d.Id == bookActivated.Id);
+                if (UpdatedBook == null)
+                {
+                    return NotFound();
+                }
+
+                UpdatedBook.Id = bookActivated.Id;
+                UpdatedBook.Updated = DateTime.Now;
+                UpdatedBook.EBookStatus = (EBookStatus)Enum.Parse(typeof(EBookStatus), bookActivated.KnygosStatusas);
+               
+                Reservation? userBooksReservations = await _reservationRepo.GetAsync(r => r.BookId == bookActivated.Id);
+                if (UpdatedBook.EBookStatus == EBookStatus.Registed && userBooksReservations != null)
+                {
+                    _userNotificationService.SukurtiPranesimaVartotojams(bookActivated.Id, userBooksReservations.LocalUserId);
+                }
+              
+
+                await _bookRepo.UpdateAsync(UpdatedBook);
+
+                return NoContent();
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "HttpPut ActivateBookDto(bookActivated = {0}) nuluzo {1} ", JsonConvert.SerializeObject(bookActivated), DateTime.Now);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+        }
+
 
 
         /// <summary>

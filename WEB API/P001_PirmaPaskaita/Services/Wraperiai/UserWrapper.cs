@@ -1,7 +1,7 @@
 ﻿using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.UserDTO;
 
-namespace WebAppMSSQL.Services
+namespace WebAppMSSQL.Services.Wraperiai
 {
     public class UserWrapper
     {

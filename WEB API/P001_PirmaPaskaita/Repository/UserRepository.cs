@@ -65,7 +65,7 @@ namespace WebAppMSSQL.Repository
 
             await _membersService.PridetiTaskuUzPrisijungima(user.Id);
             await _membersService.AtnaujintiPrisijungimoData(user.Id);
-
+            await _membersService.SetUserLevel(user.Id);
 
             var token = _jwtService.GetJwtToken(user.Id, user.Role);
 
@@ -75,8 +75,8 @@ namespace WebAppMSSQL.Repository
                 User = user
             };
 
-
             loginResponse.User.PasswordHash = null;
+            loginResponse.User.PasswordSalt = null;
 
             return loginResponse;
         }
@@ -142,8 +142,46 @@ namespace WebAppMSSQL.Repository
             var isRegistered = await _db.LocalUsers.AnyAsync(u => u.Id == userId);
             return isRegistered;
         }
+        public async Task Update(GetUserDto userDto)
+        {
+            try
+            {
+                LocalUser user = _db.LocalUsers.First(u => u.Id == userDto.Id);
+                user.HasAmountOfBooks = userDto.HasAmountOfBooks;
+                user.WasOnline = userDto.WasOnline;
+                user.LoyaltyPoints = userDto.Points;
 
- 
+                _db.LocalUsers.Update(user);
+                await _db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //public async Task Update2(LocalUser userUpdated)
+        //{
+        //    try
+        //    {
+        //        LocalUser user = _db.LocalUsers.First(u => u.Id == userUpdated.Id);
+        //        user.HasAmountOfBooks = userUpdated.HasAmountOfBooks;
+        //        user.WasOnline = userUpdated.WasOnline;
+        //        user.LoyaltyPoints = userUpdated.LoyaltyPoints;
+
+        //        _db.LocalUsers.Update(user);
+        //        await _db.SaveChangesAsync();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+
+
+
+
+
 
 
     }

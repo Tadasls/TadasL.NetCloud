@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppMSSQL.Data;
 
@@ -10,9 +11,11 @@ using WebAppMSSQL.Data;
 namespace WebAppMSSQL.Migrations
 {
     [DbContext(typeof(KnygynasContext))]
-    partial class KnygynasContextModelSnapshot : ModelSnapshot
+    [Migration("20221224160149_trecia")]
+    partial class trecia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -33,7 +36,6 @@ namespace WebAppMSSQL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ECoverType")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
@@ -64,7 +66,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1,
                             Stock = 1,
                             Title = "The Bible",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7413)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6895)
                         },
                         new
                         {
@@ -75,7 +77,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1964,
                             Stock = 2,
                             Title = "Quotations from Chairman Mao Tse-Tung",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7444)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6929)
                         },
                         new
                         {
@@ -86,7 +88,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 700,
                             Stock = 3,
                             Title = "The Quran",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7447)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6931)
                         },
                         new
                         {
@@ -97,7 +99,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1954,
                             Stock = 4,
                             Title = "The Lord Of The Rings",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7449)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6933)
                         },
                         new
                         {
@@ -108,7 +110,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1943,
                             Stock = 5,
                             Title = "Le Petit Prince",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7451)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6935)
                         },
                         new
                         {
@@ -119,7 +121,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1997,
                             Stock = 6,
                             Title = "Harry Potter and the Philosopher’s Stone",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7453)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6937)
                         },
                         new
                         {
@@ -130,7 +132,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1908,
                             Stock = 1,
                             Title = "Scouting for Boys",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7455)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6939)
                         },
                         new
                         {
@@ -141,7 +143,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1939,
                             Stock = 1,
                             Title = "And Then There Were None",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7457)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6941)
                         },
                         new
                         {
@@ -152,7 +154,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1937,
                             Stock = 1,
                             Title = "The Hobbit",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7459)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6943)
                         },
                         new
                         {
@@ -163,7 +165,7 @@ namespace WebAppMSSQL.Migrations
                             PublishYear = 1791,
                             Stock = 1,
                             Title = "The Dream Of The Red Chambe",
-                            Updated = new DateTime(2022, 12, 24, 23, 1, 45, 379, DateTimeKind.Local).AddTicks(7461)
+                            Updated = new DateTime(2022, 12, 24, 18, 1, 49, 759, DateTimeKind.Local).AddTicks(6945)
                         });
                 });
 
@@ -209,7 +211,7 @@ namespace WebAppMSSQL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("WasOnline")
+                    b.Property<DateTime?>("WasOnline")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("WasOnlineWeekNumber")
@@ -260,9 +262,6 @@ namespace WebAppMSSQL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsSeen")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("LocalUserId")

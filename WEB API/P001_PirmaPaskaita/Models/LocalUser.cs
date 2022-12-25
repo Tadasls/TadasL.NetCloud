@@ -29,7 +29,7 @@ namespace WebAppMSSQL.Models
         public string UserLevel { get; set; }
         virtual public List<UNotification> UNotifications { get; set; } = new List<UNotification>();
 
-        public DateTime? WasOnline { get; set; }
+        public DateTime WasOnline { get; set; } //?
         public int WasOnlineWeekNumber { get; set; }
 
 

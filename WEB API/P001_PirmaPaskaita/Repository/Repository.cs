@@ -79,7 +79,7 @@ namespace WebAppMSSQL.Repository
         }
         public async Task UpdateAsync(TEntity entity)
         {
-             _db.Update(entity);
+            _dbSet.Update(entity);
             await SaveAsync();
         }
 

@@ -8,6 +8,7 @@ namespace WebAppMSSQL.Models
         public string Topic { get; set; }
         public string Message { get; set; }
         public int LocalUserId { get; set; }
+        public bool IsSeen { get; set; }    
         virtual public LocalUser LocalUser { get; set; } // virtualus
     }
 }

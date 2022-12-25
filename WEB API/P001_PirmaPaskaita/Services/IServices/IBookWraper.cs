@@ -12,5 +12,6 @@ namespace WebAppMSSQL.Services.IServices
         Book Bind(UpdateBookDto book);
 
         Book Bind(FilterBooksRequestDto book);
+ 
     }
 }
