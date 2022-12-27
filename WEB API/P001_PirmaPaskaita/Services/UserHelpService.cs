@@ -1,9 +1,12 @@
 ﻿using L05_Tasks_MSSQL.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using WebAppMSSQL.Data;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO.BookDTO;
+using WebAppMSSQL.Models.Enums;
 using WebAppMSSQL.Models.ReservationsDTO;
 using WebAppMSSQL.Repository;
 using WebAppMSSQL.Repository.IRepository;
@@ -44,7 +47,26 @@ namespace WebAppMSSQL.Services
 
 
 
+        public async Task<List<GetBookDto>> RodytiKnygasPagalStatusa(int id, List<Book> visosKnygos)
+        {
+            List<GetBookDto>? userioMatomosKnygos = new List<GetBookDto>();
+            GetBookDto userioLygioKnyga = new GetBookDto(); 
 
+            foreach (var book in visosKnygos)
+            {
+
+                if (book.EBookStatus.ToString().Equals("Registed"))
+                {
+                    userioLygioKnyga = _bookWrapper.Bind(book);
+                }
+                
+             
+               
+               userioMatomosKnygos.Add(userioLygioKnyga);
+            }
+          
+            return userioMatomosKnygos;
+        }
 
 
 

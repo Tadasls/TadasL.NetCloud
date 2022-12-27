@@ -116,11 +116,6 @@ namespace WebAppMSSQL.Services
             return knygosSkola;
 
 
-
-
-
-
-            return 0.1;
         }
     }
 }

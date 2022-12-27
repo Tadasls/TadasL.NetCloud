@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebAppMSSQL.Models;
 using WebAppMSSQL.Models.DTO;
 using WebAppMSSQL.Models.DTO.ApiModels;
@@ -106,6 +107,19 @@ namespace L05_Tasks_MSSQL.Controllers
             var user = await _userRepo.GetAsync(u => u.Id == id);
             await _membersService.PridetiTaskuUzPrisijungimaVIPBONUS(user.Id);
         }
+
+
+
+        [HttpGet("GautiKnygasPagalStatusa")]
+        public async Task<ActionResult<List<GetBookDto>>?> ParodytiKnygasPagalStatusa(int id)
+        {
+            var user = await _userRepo.GetAsync(u => u.Id == id);
+            var visosKnygos = await _bookRepo.GetAllAsync();
+            var userioKnygos = await _userHelpService.RodytiKnygasPagalStatusa(user.Id, visosKnygos);
+
+            return Ok(userioKnygos);
+        }
+
 
         [HttpGet("SventinesDienos")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<HolidayModel>))]
