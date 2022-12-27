@@ -32,7 +32,6 @@ namespace WebAppMSSQL.Controllers
         private readonly IStockService _stockService;
         private readonly IDebtsService _debtsService;
         private readonly IReservationWrapper _reservationWrapper;
-     
         private readonly IMembershipService _membersService;
 
         public ReservationController(IReservationRepository reservationRepo, IMembershipService membersService,  ILogger<ReservationController> logger, 
@@ -119,10 +118,10 @@ namespace WebAppMSSQL.Controllers
                 entities = entities.Where(x => x.BookId == req.BookId);
 
             if (req.ReturnDate != null)
-               entities = entities.Where(x => x.ReturnDate == req.ReturnDate);
+                entities = entities.Where(x => x.ReturnDate == req.ReturnDate);
 
             if (req.BorrowDate != null)
-               entities = entities.Where(x => x.BorrowDate == req.BorrowDate);
+                entities = entities.Where(x => x.BorrowDate == req.BorrowDate);
 
 
             var model = entities?.Select(x => x);

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 using WebAppMSSQL.Models.DTO.ApiModels;
+using WebAppMSSQL.Models.DTO.ApiModels.kitas;
 using WebAppMSSQL.Services.IServices;
 
 namespace WebAppMSSQL.Services
