@@ -1,5 +1,6 @@
 ﻿using CarApi.Database;
 using CarApi.Models;
+using CarApi.Repositories.Interfaces;
 using System.Linq.Expressions;
 
 namespace CarApi.Repositories

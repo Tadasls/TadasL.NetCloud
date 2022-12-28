@@ -29,25 +29,23 @@ namespace WebAppMSSQL.Repository.Tests
         //    };
 
 
-            
-            
-        //    //var membersService = new Mock<IMembershipService>();
-        //    //var stockService = new Mock<IStockService>();
-        //    //var userRepo = new Mock<IUserRepository>();
-        //    //var userRepo = new KnygynasContext _db;
-        //    //var userRepo = new IPasswordService _passwordService;
-        //    //var jwtService  = new Mock<IJwtService>();
-        //    //var membersService = new IMembershipService _membersService;
+        //    var membersService = new Mock<IMembershipService>();
+        //    var stockService = new Mock<IStockService>();
+        //    var userRepo = new Mock<IUserRepository>();
+        //    var userRepo = new KnygynasContext _db;
+        //    var userRepo = new IPasswordService _passwordService;
+        //    var jwtService = new Mock<IJwtService>();
+        //    var membersService = new IMembershipService _membersService;
 
 
 
 
         //    var userService = new UserRepository(membersService.Object, stockService.Object);
 
-        //    // Act
-        //    var loginResponse =  userService.LoginAsync(loginRequest);
+        //    Act
+        //   var loginResponse = userService.LoginAsync(loginRequest);
 
-        //    // Assert
+        //    Assert
         //    Assert.IsNotNull(loginResponse);
         //}
     }

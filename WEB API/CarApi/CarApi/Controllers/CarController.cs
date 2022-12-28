@@ -1,7 +1,8 @@
 using CarApi.Models;
 using CarApi.Models.Dto;
-using CarApi.Repositories;
+using CarApi.Repositories.Interfaces;
 using CarApi.Services;
+using CarApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

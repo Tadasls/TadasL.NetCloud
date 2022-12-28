@@ -1,4 +1,5 @@
-﻿using CarApi.Repositories;
+﻿using CarApi.Repositories.Interfaces;
+using CarApi.Services.Interfaces;
 using System.Data;
 
 namespace CarApi.Services

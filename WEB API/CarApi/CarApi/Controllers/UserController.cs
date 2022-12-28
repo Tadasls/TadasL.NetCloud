@@ -1,5 +1,7 @@
-﻿using CarApi.Models.Dto;
-using CarApi.Repositories;
+﻿using CarApi.Models;
+using CarApi.Models.Dto;
+using CarApi.Repositories.Interfaces;
+using CarApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,37 +12,44 @@ namespace CarApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepo;
+        private readonly IUserRepository _userRepository;
+        private readonly IPasswordService _passwordService;
+        private readonly IJwtService _jwtService;
 
-        public UserController(IUserRepository userRepo)
+        public UserController(IUserRepository userRepository,
+            IPasswordService passwordService,
+            IJwtService jwtService)
         {
-            _userRepo = userRepo;
+            _userRepository = userRepository;
+            _passwordService = passwordService;
+            _jwtService = jwtService;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest model)
+        [HttpPost]
+        public IActionResult Login([FromBody] LoginDto model)
         {
-            var loginResponse = _userRepo.Login(model);
+            var isOk = _userRepository.TryLogin(model.UserName, model.Password, out var user);
+            if (!isOk)
+                return Unauthorized("Bad username or password");
 
-            if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
-            {
-                return BadRequest(new { message = "Username or password is incorrect" });
-            }
+            var token = _jwtService.GetJwtToken(user.Id, user.Role);
 
-            return Ok(loginResponse);
+
+            return Ok(new LoginResult { UserName = model.UserName, Token = token });
         }
+
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegistrationRequest model)
+        public async Task<IActionResult> Register([FromBody] LocalUser model)
         {
-            var isUserNameUnique = _userRepo.IsUniqueUser(model.Username);
+            var isUserNameUnique = await _userRepository.IsUniqueUser(model.UserName);
 
             if (!isUserNameUnique)
             {
                 return BadRequest(new { message = "Username already exists" });
             }
 
-            var user = _userRepo.Register(model);
+            var user = _userRepository.Register(model);
 
             if (user == null)
             {
@@ -49,6 +58,9 @@ namespace CarApi.Controllers
 
             return Ok();
         }
+
     }
+
 }
+
 

@@ -2,7 +2,9 @@
 using CarApi.Database;
 using CarApi.Models;
 using CarApi.Repositories;
+using CarApi.Repositories.Interfaces;
 using CarApi.Services;
+using CarApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -29,7 +31,8 @@ namespace CarApi
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICarLeasingService, CarLeasingService>();
 
-            
+            builder.Services.AddScoped<IPasswordService, PasswordService>();
+            builder.Services.AddScoped<IJwtService, JwtService>();
 
             var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
             builder.Services.AddAuthentication(x =>

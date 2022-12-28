@@ -33,7 +33,18 @@ namespace WebAppMSSQL.Controllers.Tests
         public async Task TestGetAllReservations()
         {
             // Arrange
+
+
             var mockRepo = new Mock<IReservationRepository>();
+            var fakeOb = new List<Reservation>
+            {
+            new Reservation { LocalUserId = 1, BookId = 1, BorrowDate = new DateTime(2022, 1, 1), ReturnDate = new DateTime(2022, 1, 15) },
+            new Reservation { LocalUserId = 2, BookId = 2, BorrowDate = new DateTime(2022, 2, 1), ReturnDate = new DateTime(2022, 2, 15) },
+            new Reservation { LocalUserId = 3, BookId = 3, BorrowDate = new DateTime(2022, 3, 1), ReturnDate = new DateTime(2022, 3, 15) }
+            };
+                                
+            mockRepo.Setup(repo => repo.GetAllAsync(It.IsAny<Expression<Func<Reservation, bool>>>())).ReturnsAsync(fakeOb);
+
 
             var logger = new Mock<ILogger<ReservationController>>();
             var membersService = new Mock<IMembershipService>();
@@ -44,14 +55,8 @@ namespace WebAppMSSQL.Controllers.Tests
             var bookRepo = new Mock<IUpdateBookRepository>();
 
 
-            var fakeOb = new List<Reservation>
-            {
-            new Reservation { LocalUserId = 1, BookId = 1, BorrowDate = new DateTime(2022, 1, 1), ReturnDate = new DateTime(2022, 1, 15) },
-            new Reservation { LocalUserId = 2, BookId = 2, BorrowDate = new DateTime(2022, 2, 1), ReturnDate = new DateTime(2022, 2, 15) },
-            new Reservation { LocalUserId = 3, BookId = 3, BorrowDate = new DateTime(2022, 3, 1), ReturnDate = new DateTime(2022, 3, 15) }
-            };
-
-            mockRepo.Setup(repo => repo.GetAllAsync(It.IsAny<Expression<Func<Reservation, bool>>>())).ReturnsAsync(fakeOb);
+         
+          
 
             var controller = new ReservationController(mockRepo.Object, membersService.Object, logger.Object,
                 userRepo.Object, bookRepo.Object, stockService.Object, debtsService.Object, reservationWrapper.Object);
@@ -72,27 +77,6 @@ namespace WebAppMSSQL.Controllers.Tests
 
 
 
-
-
-
-
-
-        //var req = new FilterReservationDTO
-        //{
-        //    LocalUserId = 1,
-        //    BookId = 2,
-        //    ReturnDate = DateTime.Today,
-        //    BorrowDate = DateTime.Today.AddDays(-10)
-        //};
-
-        //var reservationController = new ReservationController(reservation_repository_mock.Object, reservation_wraper_mock.Object, req);
-
-
-
-
-
-
-
         //[TestMethod]
         //public async Task TestCreateReservation_Success()
         //{
@@ -102,7 +86,7 @@ namespace WebAppMSSQL.Controllers.Tests
         //        LocalUserId = 1,
         //        BookId = 2,
         //        BorrowDate = DateTime.Now,
-               
+
         //    };
 
         //    var mockUserRepo = new Mock<IUserRepository>();
@@ -111,15 +95,15 @@ namespace WebAppMSSQL.Controllers.Tests
 
         //    var mockBookRepo = new Mock<IUpdateBookRepository>();
         //    mockBookRepo.Setup(repo => repo.ExistAsync(b => b.Id == request.BookId)).ReturnsAsync(true);
-        //   // mockBookRepo.Setup(repo => repo.GetAsync(b => b.Id == request.BookId)).ReturnsAsync(new Book { Id = request.BookId, Stock = 1 });
+        //    mockBookRepo.Setup(repo => repo.GetAsync(b => b.Id == request.BookId)).ReturnsAsync(new Book { Id = request.BookId, Stock = 1 });
+
            
 
 
-
         //    var mockDebtsService = new Mock<IDebtsService>();
-        //   // mockDebtsService.Setup(service => service.CountDelayDays(request.LocalUserId)).ReturnsAsync(0);
+        //    // mockDebtsService.Setup(service => service.CountDelayDays(request.LocalUserId)).ReturnsAsync(0);
         //    mockDebtsService.Setup(service => service.SuskaiciuotiSkolosDydi(0)).Returns(0);
-        //   // mockDebtsService.Setup(service => service.CountDebtsAmount(request.LocalUserId)).ReturnsAsync(1);
+        //    // mockDebtsService.Setup(service => service.CountDebtsAmount(request.LocalUserId)).ReturnsAsync(1);
 
         //    var mockReservationRepo = new Mock<IReservationRepository>();
         //    mockReservationRepo.Setup(repo => repo.CreateAsync(It.IsAny<Reservation>())).Returns(Task.CompletedTask);
@@ -141,15 +125,14 @@ namespace WebAppMSSQL.Controllers.Tests
         //    //   Act
         //    var result = await reservationController.CreateReservation(request);
 
-        //    // Assert
-        //    Assert.IsInstanceOfType(result, typeof(CreatedAtActionResult));
+        //    // Assert     
+        //    Assert.IsInstanceOfType(result, typeof(CreateReservationDTO));
         //    //Assert.AreEqual((result as CreatedAtActionResult).StatusCode, 201);
         //    //Assert.IsInstanceOfType((result as CreatedAtActionResult).Value, typeof(CreateReservationDTO));
-          
+        //}
 
 
 
-
+        }
     }
-}
 
