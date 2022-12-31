@@ -1,4 +1,4 @@
-const url = 'https://localhost:7187/api/Dishes/dishes';
+const url = 'https://localhost:7068/Knygynas';
 const options = {
     method: 'get'
 }
@@ -22,13 +22,13 @@ function loadData() {
                 </section>
                 <section class="menu-item-info">
                     <section class="menu-item-name">
-                        <h3>${element.name}</h3>
+                        <h3>${element.pavadinimasIrAutorius}</h3>
                     </section>
                     <section class="menu-item-desc">
-                        ${element.country} - ${element.type}
+                      laidybos metai:   ${element.leidybosMetai} - ir knygu kiekis  ${element.knyguKiekis} 
                     </section>
                     <section class="menu-item-price">
-                        Aštrumas: ${element.spiceLevel}
+                        Kiekis: ${element.id}
                     </section>
                 </section>
             </article>`;
