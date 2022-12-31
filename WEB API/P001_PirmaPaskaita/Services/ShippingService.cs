@@ -40,7 +40,7 @@ namespace WebAppMSSQL.Services
             Distance res2 = await httpClient.GetFromJsonAsync<Distance>(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
             var xy = res2.features[0].properties.summary.distance;
 
-            return xy;
+            return xy/1000;
 
             //HttpResponseMessage res2 = await httpClient.GetAsync(endpoint + "?api_key=" + apiKey + "&start=" + warehouseLocation + "&end=" + cityLocation);
             //if (res2.IsSuccessStatusCode)
