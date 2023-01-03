@@ -20,7 +20,6 @@ namespace CarApi.Services
                 Fuel = car.Fuel.ToString()
             };
         }
-
         public Car Bind(PostCarRequest car)
         {
             return new Car
@@ -47,7 +46,5 @@ namespace CarApi.Services
                 Fuel = (ECarFuel)Enum.Parse(typeof(ECarFuel), car.Fuel)
             };
         }
-
-
     }
 }

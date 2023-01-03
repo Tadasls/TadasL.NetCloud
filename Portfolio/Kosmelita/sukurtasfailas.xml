@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <Id>123548</Id>
+    <ProductName>Kava</ProductName>
+    <Price>1.25</Price>
+    <VatRate>25</VatRate>
+    <Type>food</Type>
+    <ProductionDate>2019-05-08T00:00:00</ProductionDate>
+    <ExpirationDate>2021-05-08T00:00:00</ExpirationDate>
+    <Manufacturer>Kavos turgus</Manufacturer>
+    <Barcode>5564846513</Barcode>
+    <Barcode2>55648465135</Barcode2>
+    <Aliases>
+      <string>skani kava</string>
+      <string>Gurmanu Kava</string>
+    </Aliases>
+    <OriginCountry>Mianmar</OriginCountry>
+    <OriginTown>Birma</OriginTown>
+    <ProductionCountry>Lithuania</ProductionCountry>
+    <ProductionTown>Kaunas</ProductionTown>
+    <SupplierName>bigfood</SupplierName>
+    <SupplierCode>1236859</SupplierCode>
+    <SupplierAddress>islandijos 88A, Kaunas</SupplierAddress>
+  </Product>
+  <Product>
+    <Id>S1284</Id>
+    <ProductName>spausdinimas</ProductName>
+    <Price>0.1</Price>
+    <VatRate>0</VatRate>
+    <Type>service</Type>
+    <ProductionDate>0001-01-01T00:00:00</ProductionDate>
+    <ExpirationDate>0001-01-01T00:00:00</ExpirationDate>
+    <Barcode2>1356484</Barcode2>
+    <Aliases>
+      <string>spalvotas spausdinimas</string>
+      <string>pigus spaudinimas</string>
+    </Aliases>
+    <ProductionCountry>Lithuania</ProductionCountry>
+    <ProductionTown>Kaunas</ProductionTown>
+    <Options>
+      <string>spalvotas</string>
+      <string>nespalvotas</string>
+      <string>kietu lapu</string>
+      <string>kartonu</string>
+    </Options>
+  </Product>
+</ArrayOfProduct>

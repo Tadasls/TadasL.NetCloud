@@ -11,4 +11,7 @@
         public ECarFuel Fuel { get; set; }
     }
 
+
+
+
 }

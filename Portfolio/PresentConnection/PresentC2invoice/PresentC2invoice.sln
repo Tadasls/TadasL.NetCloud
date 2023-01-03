@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentC2invoice", "PresentC2invoice.csproj", "{D518D115-39F5-45CB-AE14-E086D69BDDD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentC2invoiceTests", "..\PresentC2invoiceTests\PresentC2invoiceTests.csproj", "{566AB92D-7BF3-474F-94FF-21CB5C43D7C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D518D115-39F5-45CB-AE14-E086D69BDDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D518D115-39F5-45CB-AE14-E086D69BDDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D518D115-39F5-45CB-AE14-E086D69BDDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D518D115-39F5-45CB-AE14-E086D69BDDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566AB92D-7BF3-474F-94FF-21CB5C43D7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566AB92D-7BF3-474F-94FF-21CB5C43D7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566AB92D-7BF3-474F-94FF-21CB5C43D7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566AB92D-7BF3-474F-94FF-21CB5C43D7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD4ABEEE-1122-4761-8726-6820CB1D5DE0}
+	EndGlobalSection
+EndGlobal

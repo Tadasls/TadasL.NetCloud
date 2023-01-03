@@ -2,7 +2,10 @@
 {
     public class LoginResponse
     {
-        public LocalUser? User { get; set; }
-        public string Token { get; set; }
+        public string? UserName { get; set; }
+        public string? Token { get; set; }
     }
 }
+
+
+

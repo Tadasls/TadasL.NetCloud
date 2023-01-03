@@ -51,6 +51,9 @@ namespace CarApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCarResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces(MediaTypeNames.Application.Json)]
         public IActionResult Get(int id)
         {
@@ -66,14 +69,13 @@ namespace CarApi.Controllers
             return Ok(model);
         }
 
-
         /// <summary>
         /// Gaunamas visas arba isfiltruotas duomenu bazeje esanciu automobiliu sarasas
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetCarResult>))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Produces(MediaTypeNames.Application.Json)]
         public IActionResult Get([FromQuery] FilterCarRequest req)
         {
@@ -116,15 +118,16 @@ namespace CarApi.Controllers
     */
 
 
+
         /// <summary>
         /// Irasomas automobilis i duomenu baze
         /// </summary>
         /// <returns></returns>
         /// <response code="400">paduodamos informacijos validacijos klaidos </response>
         [HttpPost]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Produces(MediaTypeNames.Application.Json)]
         [Consumes(MediaTypeNames.Application.Json)]
         public IActionResult Post(PostCarRequest req)
@@ -152,17 +155,16 @@ namespace CarApi.Controllers
             return Created("PostCar", new { Id = id });
         }
 
-
         /// <summary>
         /// Modifikuojamas automobilis duomenu bazeje
         /// </summary>
         /// <returns></returns>
         /// <response code="400">paduodamos informacijos validacijos klaidos </response>
         [HttpPut]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Consumes(MediaTypeNames.Application.Json)]
         public IActionResult Put(PutCarRequest req)
         {
@@ -194,12 +196,13 @@ namespace CarApi.Controllers
             return NoContent();
         }
 
+
+
         /// <summary>
         /// Trinamas automobilis is duomenu bazes
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(int id)

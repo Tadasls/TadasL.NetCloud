@@ -97,6 +97,19 @@ namespace CarApi.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CarApi.Models.CarUser", b =>
+                {
+                    b.Property<int>("CarId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LocalUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CarId", "LocalUserId");
+
+                    b.ToTable("CarUser");
+                });
+
             modelBuilder.Entity("CarApi.Models.LocalUser", b =>
                 {
                     b.Property<int>("Id")

@@ -136,7 +136,8 @@ namespace L05_Tasks_MSSQL
             builder.Services.AddCors(p => p.AddPolicy("corsforTLS", builder =>
             {
                 builder.WithOrigins("*")
-                .AllowAnyMethod().AllowAnyHeader();
+                .AllowAnyMethod()
+                .AllowAnyHeader();
 
             }));
 

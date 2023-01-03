@@ -5,7 +5,6 @@ using CarApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace CarApi.Controllers
 {
     [Route("api/[controller]")]
@@ -13,20 +12,24 @@ namespace CarApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPasswordService _passwordService;
+        private readonly IUserService _userService;
         private readonly IJwtService _jwtService;
 
         public UserController(IUserRepository userRepository,
-            IPasswordService passwordService,
+            IUserService userService,
             IJwtService jwtService)
         {
             _userRepository = userRepository;
-            _passwordService = passwordService;
+            _userService = userService;
             _jwtService = jwtService;
         }
 
-        [HttpPost]
-        public IActionResult Login([FromBody] LoginDto model)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginResponse))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest model)
         {
             var isOk = _userRepository.TryLogin(model.UserName, model.Password, out var user);
             if (!isOk)
@@ -35,32 +38,37 @@ namespace CarApi.Controllers
             var token = _jwtService.GetJwtToken(user.Id, user.Role);
 
 
-            return Ok(new LoginResult { UserName = model.UserName, Token = token });
+            return Ok(new LoginResponse { UserName = model.UserName, Token = token });
         }
 
-
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Produces("application/json")]
+        [Consumes("application/json")]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] LocalUser model)
+        public IActionResult Register([FromBody] RegisterUserRequest model)
         {
-            var isUserNameUnique = await _userRepository.IsUniqueUser(model.UserName);
+            if (_userRepository.Exist(model.UserName))
+                return BadRequest("User already exists");
 
-            if (!isUserNameUnique)
+            _userService.CreatePasswordHash(model.Password, out var passwordHash, out var passwordSalt);
+            var user = new LocalUser
             {
-                return BadRequest(new { message = "Username already exists" });
-            }
+                UserName = model.UserName,
+                Role = model.Role,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
 
-            var user = _userRepository.Register(model);
+            var id = _userRepository.Register(user);
 
-            if (user == null)
-            {
-                return BadRequest(new { message = "Error while registering" });
-            }
-
-            return Ok();
+            return Created(nameof(Login), new { id = id });
         }
+
+
 
     }
-
 }
+
 
 

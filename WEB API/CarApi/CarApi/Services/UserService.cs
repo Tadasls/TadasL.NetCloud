@@ -2,7 +2,7 @@
 
 namespace CarApi.Services
 {
-    public class PasswordService : IPasswordService
+    public class UserService : IUserService
     {
 
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

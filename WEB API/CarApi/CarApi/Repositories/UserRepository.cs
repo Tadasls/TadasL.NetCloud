@@ -15,44 +15,38 @@ namespace CarApi.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly CarContext _context;
-        private readonly IPasswordService _passwordService;
+        private readonly IUserService _userService;
 
         public UserRepository(CarContext context,
-            IPasswordService passwordService)
+            IUserService userService)
         {
             _context = context;
-            _passwordService = passwordService;
+            _userService = userService;
         }
 
-        public async Task<bool> IsUniqueUser(string username)
+        public bool Exist(string userName)
         {
-            var user = await _context.LocalUsers.FirstOrDefaultAsync(x => x.UserName == username);
-            if (user == null)
-            {
-                return true;
-            }
-            return false;
+            return _context.LocalUsers.Any(x => x.UserName == userName);
         }
 
 
         public virtual bool TryLogin(string userName, string password, out LocalUser? user)
         {
-            _passwordService.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-             user = _context.LocalUsers.FirstOrDefault(x => x.UserName == userName);
-        if (user == null)
-            return false;
+            user = _context.LocalUsers.FirstOrDefault(x => x.UserName == userName);
+            if (user == null)
+                return false;
 
-        if (_passwordService.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            return false;
+            if (!_userService.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return false;
 
-        return true;
+            return true;
         }
 
-   
-        public async Task<int> Register(LocalUser user)
+
+        public int Register(LocalUser user)
         {
             _context.LocalUsers.Add(user);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return user.Id;
         }
     }

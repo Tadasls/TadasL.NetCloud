@@ -1,9 +1,16 @@
-﻿namespace CarApi.Models.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CarApi.Models.Dto
 {
     public class LoginRequest
     {
-        // Jei sitie duomenys sutaps, mes vartotojui atgal grazinam JWT
-        public string Username { get; set; }
-        public string Password { get; set; }
+        [Required]
+        public string? UserName { get; set; }
+
+        [Required]
+        public string? Password { get; set; }
     }
 }
+
+
+

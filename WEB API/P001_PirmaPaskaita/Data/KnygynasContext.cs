@@ -13,6 +13,7 @@ namespace WebAppMSSQL.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<LocalUser> LocalUsers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<UNotification> UNotifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
