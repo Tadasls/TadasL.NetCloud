@@ -11,6 +11,7 @@ namespace CarApi.Repositories.Interfaces
         //bool TryLogin(string userName, string password, out LocalUser? user);
 
         bool Exist(string userName);
+        LocalUser Get(int id);
         int Register(LocalUser user);
         bool TryLogin(string userName, string password, out LocalUser? user);
 

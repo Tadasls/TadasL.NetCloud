@@ -41,7 +41,7 @@ namespace P004_EF_Application.Data
              .OnDelete(DeleteBehavior.NoAction);
 
 
-            modelBuilder.Entity<Dish>()
+        modelBuilder.Entity<Dish>()
                 .HasData(
                 new Dish(1, "Fried Bread Sticks", "Snacks", "Mild", "Lithuania", "", DateTime.Now),
                 new Dish(2, "Potato dumplings", "Main dish", "low", "Lithuania", "", DateTime.Now),

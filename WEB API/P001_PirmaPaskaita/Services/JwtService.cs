@@ -8,12 +8,12 @@ namespace WebAppMSSQL.Services
 {
     public class JwtService : IJwtService
     {
-        private string _secretKey;
+        private readonly string _secretKey;
         public JwtService(IConfiguration conf)
         {
             _secretKey = conf.GetValue<string>("ApiSettings:Secret");
         }
-        public string GetJwtToken(int userId, string role, string userLevel) //,string userLevel
+        public virtual string GetJwtToken(int userId, string role, string userLevel) //,string userLevel
         {
             // To generate JWT token
             // 1. To generate a JWT token we need a secret.

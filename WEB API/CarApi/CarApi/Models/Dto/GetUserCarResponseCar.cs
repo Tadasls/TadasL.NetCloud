@@ -1,12 +1,10 @@
-﻿namespace CarApi.Models.Dto
-{
-    public class GetCarResponse
-    {
-        public GetCarResponse()
-        {
-        }
+﻿using CarApi.Models;
 
-        public GetCarResponse(Car car)
+namespace CarApi.Models.Dto
+{
+    public class GetUserCarResponseCar
+    {
+        public GetUserCarResponseCar(Car car)
         {
             Id = car.Id;
             Mark = car.Mark;

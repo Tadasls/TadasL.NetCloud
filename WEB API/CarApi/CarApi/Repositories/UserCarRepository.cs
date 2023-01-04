@@ -40,6 +40,25 @@ namespace CarApi.Repositories
 
             return entities;
         }
+        public IEnumerable<Car> Get2(int userId)
+        {
+
+            var currentUserID = int.Parse(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+            var entities =
+               from carUser in _context.CarUser.Where(x => x.LocalUserId == currentUserID)
+               join car in _context.Cars on carUser.CarId equals car.Id 
+               join localUser in _context.LocalUsers on carUser.LocalUserId equals localUser.Id 
+               join userIdentity in _context.UserIdentity on localUser.Id equals userIdentity.Id
+               where carUser.LocalUserId == userId
+               select car;
+
+            return entities;
+        }
+
+
+
+
     }
 
 

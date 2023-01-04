@@ -16,6 +16,7 @@ namespace CarApi.Database
 
         public DbSet<LocalUser> LocalUsers { get; set; }
         public DbSet<CarUser> CarUser { get; set; }
+        public DbSet<UserIdentity> UserIdentity { get; set; }
 
 
 
@@ -66,6 +67,17 @@ namespace CarApi.Database
                 .HasKey(x => new { x.CarId, x.LocalUserId });
 
 
+            modelBuilder.Entity<UserIdentity>()
+                        .HasKey(u => u.AsmensKodas);
+
+
+            modelBuilder.Entity<UserIdentity>()
+               .HasOne(dio => dio.LocalUser);
+             
+
+
+
+        
 
 
 

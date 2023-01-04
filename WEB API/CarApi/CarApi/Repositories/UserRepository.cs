@@ -29,6 +29,12 @@ namespace CarApi.Repositories
             return _context.LocalUsers.Any(x => x.UserName == userName);
         }
 
+        public LocalUser Get(int id)
+        {
+            return _context.LocalUsers.First(x => x.Id == id);
+        }
+
+
 
         public virtual bool TryLogin(string userName, string password, out LocalUser? user)
         {
