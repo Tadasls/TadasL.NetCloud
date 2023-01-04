@@ -32,18 +32,53 @@ namespace CarApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalUsers",
+                name: "CarUser",
+                columns: table => new
+                {
+                    CarId = table.Column<int>(type: "INTEGER", nullable: false),
+                    LocalUserId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarUser", x => new { x.CarId, x.LocalUserId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false)
+                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    Role = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalUsers", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserIdentity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Vardas = table.Column<string>(type: "TEXT", nullable: false),
+                    Pavarde = table.Column<string>(type: "TEXT", nullable: false),
+                    AsmensKodas = table.Column<string>(type: "TEXT", nullable: false),
+                    LocalUserId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserIdentity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserIdentity_Users_LocalUserId",
+                        column: x => x.LocalUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -56,6 +91,11 @@ namespace CarApi.Migrations
                     { 3, "Diesel", "Manual", "Opel", "Astra", "AAC 001", new DateTime(2015, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 4, "Diesel", "Manual", "VW", "Passat", "AAA 002", new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserIdentity_LocalUserId",
+                table: "UserIdentity",
+                column: "LocalUserId");
         }
 
         /// <inheritdoc />
@@ -65,7 +105,13 @@ namespace CarApi.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "LocalUsers");
+                name: "CarUser");
+
+            migrationBuilder.DropTable(
+                name: "UserIdentity");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

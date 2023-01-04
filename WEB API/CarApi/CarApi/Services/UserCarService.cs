@@ -1,20 +1,40 @@
-﻿using CarApi.Models;
+﻿using CarApi.Controllers;
+using CarApi.Models;
 using CarApi.Models.Dto;
+using CarApi.Repositories.Interfaces;
+using System.Collections.Generic;
 
 namespace CarApi.Services
 {
     public class UserCarService : IUserCarService 
     {
-        //public GetCarResponse BuildCarResponse(LocalUser? user, IEnumerable<Car> cars)
-        //{
-        //    return new GetCarResponse()
-        //    {
-        //        Vardas = user.Vardas,
-        //        Pavarde = user.Pavarde,
-        //        AsmensKodas = user.AsmensKodas,
-        //        Automobiliai = Car.Select(cars => new GetCarResponseCar(c)).ToList(),
-        //    };
-        //}
+        private readonly IUserRepository _userRepository;
+
+
+        public UserCarService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        public GetUserCarResponse BuildCarResponse(int userId, IEnumerable<Car>? cars)
+        {
+
+            //var user = _userRepository.Get(userId);
+
+            //var vardas = user.UserIdentity.Vardas;
+            //var pavarde = user.UserIdentity.Pavarde;
+            //var asmensKodas = user.UserIdentity.AsmensKodas;
+
+
+            //return new GetUserCarResponse()
+            //{
+            //    Vardas = vardas,
+            //    Pavarde = pavarde,
+            //    AsmensKodas = asmensKodas,
+            //    Automobiliai = cars.Select(c => new GetUserCarResponseCar(c)).ToList(),
+            //};
+            throw new NotImplementedException();
+        }
 
 
     }

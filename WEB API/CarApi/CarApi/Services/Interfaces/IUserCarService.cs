@@ -5,6 +5,6 @@ namespace CarApi.Services
 {
     public interface IUserCarService
     {
-             // GetCarResponse BuildCarResponse(LocalUser? user, IEnumerable<Car> cars);
+        //GetUserCarResponse BuildCarResponse(int userId, IEnumerable<Car>? cars);
     }
 }

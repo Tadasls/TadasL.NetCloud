@@ -134,7 +134,46 @@ namespace CarApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LocalUsers");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("CarApi.Models.UserIdentity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AsmensKodas")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LocalUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Pavarde")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Vardas")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocalUserId");
+
+                    b.ToTable("UserIdentity");
+                });
+
+            modelBuilder.Entity("CarApi.Models.UserIdentity", b =>
+                {
+                    b.HasOne("CarApi.Models.LocalUser", "LocalUser")
+                        .WithMany()
+                        .HasForeignKey("LocalUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LocalUser");
                 });
 #pragma warning restore 612, 618
         }

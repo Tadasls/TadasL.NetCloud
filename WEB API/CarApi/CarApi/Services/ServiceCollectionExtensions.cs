@@ -16,11 +16,20 @@ namespace CarApi.Services
             }
 
             services.AddTransient<ICarRepository, CarRepository>();
-            services.AddTransient<ICarAdapter, CarAdapter>();
-            services.AddTransient<ICarLeasingService, CarLeasingService>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserCarRepository, UserCarRepository>();
+            services.AddTransient<IUserIdentityRepository, UserIdentityRepository>();
+            services.AddTransient<ICarUserRepository, CarUserRepository>();
+
+            services.AddTransient<ICarAdapter, CarAdapter>();
+
+            services.AddTransient<ICarLeasingService, CarLeasingService>();
             services.AddTransient<IUserCarService, UserCarService>();
+
+        
+         
+
+
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using CarApi.Models.Dto;
+﻿using CarApi.Models;
+using CarApi.Models.Dto;
 using CarApi.Repositories.Interfaces;
 using CarApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -51,9 +52,9 @@ namespace CarApi.Controllers
         }
 
 
-        
 
-        [HttpGet("/api/user/{key}/AllUserCars")]
+
+        [HttpGet("/api/user/{key}/cars2Papildomas")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetUserCarResponse>))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -66,28 +67,10 @@ namespace CarApi.Controllers
                 _logger.LogWarning("User {currentUserId} tried to access user {key} cars", currentUserId, key);
                 return Forbid();
             }
-
-            //var user = _userRepository.Get(currentUserId);
-            // var getCarResponse = _userCarService.BuildCarResponse(user, cars);
-
             var cars = _repository.Get2(key);
-            return Ok(cars.Select(c => new GetUserCarResponse(c)));
+            
+            return Ok(cars.Select(c => new GetCarResponse(c))); //GetUserCarResponse
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }

@@ -7,6 +7,6 @@
         public string Role { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-
+      //  public virtual UserIdentity UserIdentity { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using System.Text;
 
 namespace CarApi.Repositories
 {
+  
     public class UserRepository : IUserRepository
     {
         private readonly CarContext _context;
@@ -24,21 +25,9 @@ namespace CarApi.Repositories
             _userService = userService;
         }
 
-        public bool Exist(string userName)
-        {
-            return _context.LocalUsers.Any(x => x.UserName == userName);
-        }
-
-        public LocalUser Get(int id)
-        {
-            return _context.LocalUsers.First(x => x.Id == id);
-        }
-
-
-
         public virtual bool TryLogin(string userName, string password, out LocalUser? user)
         {
-            user = _context.LocalUsers.FirstOrDefault(x => x.UserName == userName);
+            user = _context.Users.FirstOrDefault(x => x.UserName == userName);
             if (user == null)
                 return false;
 
@@ -48,12 +37,24 @@ namespace CarApi.Repositories
             return true;
         }
 
-
         public int Register(LocalUser user)
         {
-            _context.LocalUsers.Add(user);
+            _context.Users.Add(user);
             _context.SaveChanges();
             return user.Id;
         }
+
+        public bool Exist(string userName)
+        {
+            return _context.Users.Any(x => x.UserName == userName);
+        }
+
+        public LocalUser Get(int id)
+        {
+            return _context.Users.First(x => x.Id == id);
+        }
+
+
+
     }
 }
