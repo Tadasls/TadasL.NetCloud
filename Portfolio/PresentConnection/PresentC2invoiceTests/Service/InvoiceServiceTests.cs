@@ -1,15 +1,7 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using PresentC2invoice.Data;
 using PresentC2invoice.Models;
-using PresentC2invoice.Service;
-using PresentC2invoice.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PresentC2invoice.Service.Tests
 {

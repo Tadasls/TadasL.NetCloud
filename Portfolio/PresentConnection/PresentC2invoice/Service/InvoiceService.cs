@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PresentC2invoice.Data;
+﻿using PresentC2invoice.Data;
 using PresentC2invoice.Models;
 using PresentC2invoice.Service.IService;
 using PressentConnection.Data;
@@ -38,10 +33,10 @@ namespace PresentC2invoice.Service
                 return 0;
             }
 
-            //if (customer.Country == serviceProvider.Country|| (serviceProvider.IsVATPayer && arEuCountry && !customer.IsVATPayer))
-            //{
-            //    return CalculateVATForCountry(customer.Country, orderAmount);
-            //}
+            if (customer.Country == serviceProvider.Country || (serviceProvider.IsVATPayer && arEuCountry && !customer.IsVATPayer))
+            {
+                return CalculateVATForCountry(customer.Country, orderAmount);
+            }
 
             return CalculateVATForCountry(customer.Country, orderAmount);
         }

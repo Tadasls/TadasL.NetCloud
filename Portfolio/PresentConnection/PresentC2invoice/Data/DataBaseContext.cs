@@ -17,7 +17,7 @@ namespace PressentConnection.Data
    
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           // modelBuilder.Entity<Project>().HasData(UsersInitialData.userInitialDataSeed); 
+           
 
         }
 

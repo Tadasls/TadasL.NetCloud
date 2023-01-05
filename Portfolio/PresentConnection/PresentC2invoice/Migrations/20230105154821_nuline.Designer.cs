@@ -11,7 +11,7 @@ using PressentConnection.Data;
 namespace PresentC2invoice.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230102105012_nuline")]
+    [Migration("20230105154821_nuline")]
     partial class nuline
     {
         /// <inheritdoc />
