@@ -22,7 +22,7 @@ namespace PressentC.Controllers
         public string FillDataBase()
         {
 
-            _optimizationService.PaleidimoMetodas();
+            _optimizationService.Start();
 
             return "done";
         }

@@ -63,7 +63,7 @@ namespace WebAppMSSQL.Repository
                 };
             }
 
-            await _membersService.PridetiTaskuUzPrisijungima(user.Id);
+           // await _membersService.PridetiTaskuUzPrisijungima(user.Id);
             await _membersService.AtnaujintiPrisijungimoData(user.Id);
             await _membersService.SetUserLevel(user.Id);
 

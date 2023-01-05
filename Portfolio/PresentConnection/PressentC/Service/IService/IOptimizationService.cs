@@ -9,7 +9,7 @@ namespace PressentC.Service.IService
         Task<List<Project>> GenerateProjectsAsync(int count);
       //  List<PressentConnection.Program.Root> GenerateRoots(int count);
         Task<List<Root>> GenerateRootsAsync(int count);
-        Task PaleidimoMetodas();
+        Task Start();
         void UpdateRoot(List<Project> projects, List<PressentConnection.Program.Root> roots);
     }
 }

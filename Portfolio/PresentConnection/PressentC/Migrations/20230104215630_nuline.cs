@@ -5,7 +5,7 @@
 namespace PressentC.Migrations
 {
     /// <inheritdoc />
-    public partial class Nuline : Migration
+    public partial class nuline : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,8 +14,8 @@ namespace PressentC.Migrations
                 name: "Projects",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "TEXT", nullable: false),
-                    PartitionKey = table.Column<string>(type: "TEXT", nullable: false)
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PartitionKey = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,8 +26,8 @@ namespace PressentC.Migrations
                 name: "Roots",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "TEXT", nullable: false),
-                    partitionKey = table.Column<string>(type: "TEXT", nullable: false)
+                    id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    partitionKey = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,11 +38,11 @@ namespace PressentC.Migrations
                 name: "Tenants",
                 columns: table => new
                 {
-                    objectId = table.Column<string>(type: "TEXT", nullable: false),
-                    tenant = table.Column<string>(type: "TEXT", nullable: false),
-                    userPrincipalName = table.Column<string>(type: "TEXT", nullable: false),
-                    deleted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Rootid = table.Column<string>(type: "TEXT", nullable: false)
+                    objectId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    tenant = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userPrincipalName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    deleted = table.Column<bool>(type: "bit", nullable: false),
+                    Rootid = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,9 +59,9 @@ namespace PressentC.Migrations
                 name: "Emails",
                 columns: table => new
                 {
-                    email = table.Column<string>(type: "TEXT", nullable: false),
-                    alternative = table.Column<bool>(type: "INTEGER", nullable: false),
-                    tenantobjectId = table.Column<string>(type: "TEXT", nullable: false)
+                    email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    alternative = table.Column<bool>(type: "bit", nullable: false),
+                    tenantobjectId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {

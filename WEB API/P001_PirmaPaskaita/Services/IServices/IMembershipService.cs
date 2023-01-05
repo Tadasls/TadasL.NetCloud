@@ -7,9 +7,9 @@ namespace WebAppMSSQL.Services.IServices
     {
         bool ArBuvoUserisSndOnline(int userId);
         Task AtnaujintiPrisijungimoData(int userId);
-        Task<HolidayModel> GetHolidays();
+       // Task<HolidayModel> GetHolidays();
         Task PanaudotiTaskusUzSkolas(int userId, int taskai);
-        Task PridetiTaskuUzPrisijungima(int userId);
+       // Task PridetiTaskuUzPrisijungima(int userId);
         Task PridetiTaskuUzPrisijungimaVIPBONUS(int userId);
         Task SetUserLevel(int userId);
     }

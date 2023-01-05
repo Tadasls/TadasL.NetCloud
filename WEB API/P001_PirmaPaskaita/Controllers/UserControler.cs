@@ -121,24 +121,24 @@ namespace L05_Tasks_MSSQL.Controllers
         }
 
 
-        [HttpGet("SventinesDienos")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<HolidayModel>))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Produces("application/json")]
-        public async Task<IActionResult> GetHolidays()
-        {
-            try
-            {
-                var res = await _membersService.GetHolidays();
-                return Ok(res);
-            }
-            catch (Exception ex)
-            {
-               // _logger.LogError(ex, "Ivyko kazkas labai baisaus");
-                throw;
-            }
+        //[HttpGet("SventinesDienos")]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<HolidayModel>))]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[Produces("application/json")]
+        //public async Task<IActionResult> GetHolidays()
+        //{
+        //    try
+        //    {
+        //        var res = await _membersService.GetHolidays();
+        //        return Ok(res);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //       // _logger.LogError(ex, "Ivyko kazkas labai baisaus");
+        //        throw;
+        //    }
 
-        }
+        //}
 
 
 

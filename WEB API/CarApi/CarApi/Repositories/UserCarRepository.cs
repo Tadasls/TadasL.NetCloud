@@ -51,7 +51,16 @@ namespace CarApi.Repositories
                join localUser in _context.Users on carUser.LocalUserId equals localUser.Id
                join userIdentity in _context.UserIdentity on localUser.Id equals userIdentity.Id
                where carUser.LocalUserId == userId
-               select car;
+              select car;
+              // select new { userIdentity, car };
+
+            //foreach (var entity in entities)
+            //{
+            //    var userIdentity = entity.userIdentity;
+            //    var car = entity.car;
+            //    // Use userIdentity and car objects here...
+            //}
+
 
             return entities;
         }

@@ -20,7 +20,7 @@ namespace PressentC.Service
            
         }
 
-        public async Task PaleidimoMetodas()
+        public async Task Start()
         {
             var stopwatch = Stopwatch.StartNew();
             int projektuSkaicius = 10000, useriuSkaicius = 2000;

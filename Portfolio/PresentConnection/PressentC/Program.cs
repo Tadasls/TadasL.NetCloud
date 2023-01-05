@@ -15,7 +15,10 @@ namespace PressentC
 
             builder.Services.AddDbContext<DataBaseContext>(option =>
             {
-                option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
+
+                option.UseSqlServer(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
+               
+               // option.UseSqlite(builder.Configuration.GetConnectionString("MyDefaultSQLConnection"));
                 // option.UseLazyLoadingProxies();
             });
 
