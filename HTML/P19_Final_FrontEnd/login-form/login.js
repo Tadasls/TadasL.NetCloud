@@ -107,6 +107,13 @@ loginFormSbmBtn.addEventListener("click", (e) => {
     localStorage.setItem('UserData', JSON.stringify(obj)); 
   };
   
+  document.addEventListener('DOMContentLoaded', () => {
+    const o = Object.assign({}, JSON.parse(localStorage.getItem('UserData')));
+    logFirstName.value = o.regUserName ?? ``;
+    logLastName.value = o.regUserLastname ?? ``;
+  });
+
+
 
 
 
@@ -133,11 +140,6 @@ loginFormSbmBtn.addEventListener("click", (e) => {
     
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const o = Object.assign({}, JSON.parse(localStorage.getItem('UserData')));
-    logFirstName.value = o.regUserName ?? ``;
-    logLastName.value = o.regUserLastname ?? ``;
-  });
 
 
 
