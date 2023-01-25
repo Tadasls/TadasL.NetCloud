@@ -24,6 +24,7 @@ namespace testavimaiTLS
 
             // NemanoSprendimas3();
 
+
             // PenktadienaSprendimas();
             // SestaDienaSprendimas();
 
