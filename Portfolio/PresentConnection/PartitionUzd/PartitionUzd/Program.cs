@@ -13,8 +13,10 @@ namespace PartitionUzd
 
         static void Main(string[] args)
         {
+
             //Choose your test Numbers
             int projectsAmount = 1000000, usersAmount = 200000;
+
 
             var stopwatch = Stopwatch.StartNew();
             var roots = FillDatabaseWithFakeDataWithUsers(usersAmount);
