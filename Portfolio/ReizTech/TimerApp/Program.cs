@@ -1,10 +1,17 @@
 ﻿using System.Transactions;
+using System;
+using System.Collections.Generic;
 
 namespace TimerApp
 {
     public class Program
     {
         public static void Main(string[] args)
+        {
+            StartAngleCalculator();
+        }
+
+        public static void StartAngleCalculator()
         {
             //calculations with current time 
 
@@ -65,20 +72,79 @@ namespace TimerApp
 
         public static void TimeMeniu()
         {
-            Console.WriteLine("1. Input custom time values \n2. Exit. ");
+            Console.WriteLine("1. Input custom time values \n2. Second Task. \n3. Exit. ");
             string mainMeniu = Convert.ToString(Console.ReadLine());
             switch (mainMeniu)
             {
                 case "1":
                     TimeInput();
                     break;
-
                 case "2":
+                    SecondTask();
+                    break;
+                case "3":
                     Console.WriteLine("Exit");
                     System.Environment.Exit(-1);
                     break;
 
             }
         }
+
+        public static void SecondTask()
+        {
+            Console.Write("Enter the MaxLevel of branches to be generated: ");
+            int maxLevel = Convert.ToInt32(Console.ReadLine());
+
+            Random random = new Random();
+            int numberOfBranches = random.Next(0, maxLevel);
+
+            Branch root = new Branch();
+            GenerateBranches(root, numberOfBranches);
+
+            int depth = CalculateDepth(root, 0);
+            Console.WriteLine("Depth of the hierarchical structure: " + depth);
+            Console.ReadLine();
+            System.Environment.Exit(-1);
+        }
+
+
+
+        public static void GenerateBranches(Branch branch, int numberOfBranches)
+        {
+            if (numberOfBranches == 0)
+                return;
+
+            branch.Branches.Add(new Branch());
+            GenerateBranches(branch.Branches[0], numberOfBranches - 1);
+        }
+
+        public static int CalculateDepth(Branch branch, int depth)
+        {
+            if (branch.Branches.Count == 0)
+                return depth;
+
+            int maxDepth = 0;
+            foreach (Branch childBranch in branch.Branches)
+            {
+                int childDepth = CalculateDepth(childBranch, depth + 1);
+                if (childDepth > maxDepth)
+                {
+                    maxDepth = childDepth;
+                }
+            }
+
+            return maxDepth;
+        }
+
+
+
+
+
+
+
+
     }
+
+  
+
 }
