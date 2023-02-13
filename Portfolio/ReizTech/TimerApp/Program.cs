@@ -70,6 +70,7 @@ namespace TimerApp
             TimeMeniu();
         }
 
+
         public static void TimeMeniu()
         {
             Console.WriteLine("1. Input custom time values \n2. Second Task. \n3. Exit. ");
